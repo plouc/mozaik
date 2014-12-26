@@ -1,25 +1,28 @@
-var React    = require('react');
-var _        = require('lodash');
-var request  = require('superagent');
-var JobBuild = require('./JobBuild.jsx');
+var React            = require('react');
+var Reflux           = require('reflux');
+var _                = require('lodash');
+var JobBuild         = require('./JobBuild.jsx');
+var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
 var JobBuilds = React.createClass({
+    mixins: [
+        Reflux.ListenerMixin,
+        ApiConsumerMixin
+    ],
+
     getInitialState: function () {
+        return { builds: [] };
+    },
+
+    getApiRequest: function () {
         return {
-            builds: []
+            id: 'jenkins.job.' + this.props.job,
+            params: { job: this.props.job }
         };
     },
 
-    componentDidMount: function () {
-        request.get('/jenkins/jobs/source-test')
-            .end(function (res) {
-                if (res.ok) {
-                    this.setState({
-                        builds: _.rest(res.body, res.body.length - 10)
-                    });
-                }
-            }.bind(this))
-        ;
+    onApiData: function (builds) {
+        this.setState({ builds: builds });
     },
 
     render: function () {
