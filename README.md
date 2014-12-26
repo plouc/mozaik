@@ -1,7 +1,7 @@
 MOZAÏK
 ======
 
-[[Wiki|Home]]
+[Wiki](plouc/mozaik/wiki)
 
 Installation
 ------------
