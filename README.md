@@ -1,6 +1,8 @@
 MOZAÏK
 ======
 
+[[Wiki|Home]]
+
 Installation
 ------------
 
