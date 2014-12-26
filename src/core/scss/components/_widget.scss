@@ -24,11 +24,14 @@
     text-transform: uppercase;
     font-weight: 400;
 
-    height: $widget-header-height;
+    height:      $widget-header-height;
+    line-height: $widget-header-height;
 
     border-radius: $widget-header-border-radius;
 
-    padding: 9px 15px;
+    font-size: 15px;
+
+    padding: 0 15px;
 
     position: relative;
 
@@ -47,7 +50,7 @@
       border-radius: 2px;
       padding: 0 7px;
       font-size: 14px;
-      vertical-align: top;
+      vertical-align: middle;
       margin-left: 9px;
       color: $widget-header-count-txt-color;
 

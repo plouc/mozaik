@@ -23,3 +23,24 @@ vim config.js
 gulp publish
 node mozaik.js
 ```
+
+Available widgets
+-----------------
+
+**Jenkins**
+
+`jenkins.jobs`
+
+`jenkins.job_builds`
+
+`jenkins.job_build_durations`
+
+**Github**
+
+`github.pull_requests`
+
+**AWS**
+
+`aws.instances`
+
+`aws.stacks`

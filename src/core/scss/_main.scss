@@ -1,17 +1,3 @@
-@import "_vars";
-//@import "themes/minimal/minimal";
-@import "themes/california/california";
-//@import "themes/retro/retro";
-
-
-@mixin transition($value) {
-  -webkit-transition: #{$value}; /* Saf3.2+, Chrome */
-     -moz-transition: #{$value}; /* FF4+ */
-      -ms-transition: #{$value};
-       -o-transition: #{$value}; /* Opera 10.5+ */
-          transition: #{$value};
-}
-
 html, body {
   font-family: 'Raleway', sans-serif;
   font-size: 18px;
@@ -100,9 +86,3 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   font-weight: 400;
 }
-
-$fa-font-path: "fonts";
-@import "../../../node_modules/font-awesome/scss/font-awesome";
-@import "components/widget";
-
-@import "../../ext/collected";

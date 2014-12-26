@@ -5,7 +5,7 @@ var config = require('../config');
 
 gulp.task('sass', ['collect:sass'], function () {
     return gulp
-        .src(config.src + 'core/scss/hotboard.scss')
+        .src(config.src + 'core/scss/mozaik.scss')
         .pipe(sass())
         .pipe(gulp.dest(config.dest))
     ;

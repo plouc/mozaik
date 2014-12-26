@@ -9,7 +9,7 @@ gulp.task('react', ['collect:js'], function () {
     return browserify(config.src + 'App.jsx')
         .transform(reactify)
         .bundle()
-        .pipe(source('hotboard.js'))
+        .pipe(source('mozaik.js'))
         .pipe(gulp.dest(config.dest))
     ;
 });

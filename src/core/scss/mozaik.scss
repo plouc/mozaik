@@ -1,0 +1,17 @@
+@import "_vars";
+
+// VENDORS
+$fa-font-path: "fonts";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+
+// IMPORT THEME
+//@import "themes/minimal/minimal";
+//@import "themes/california/california";
+//@import "themes/retro/retro";
+
+@import "mixins";
+@import "main";
+@import "components/widget";
+
+// IMPORT EXTENSIONS STYLES
+@import "../../ext/collected";

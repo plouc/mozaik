@@ -4,3 +4,4 @@
 require('./aws/components/register.js');
 require('./github/components/register.js');
 require('./jenkins/components/register.js');
+require('./travis/components/register.js');
