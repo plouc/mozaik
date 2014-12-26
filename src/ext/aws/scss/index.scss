@@ -1,0 +1,46 @@
+.aws {
+  &__instance {
+    position: relative;
+    padding: 9px 15px 9px 30px;
+
+    &:before {
+      content: " ";
+      display: block;
+
+      width:  8px;
+      height: 8px;
+
+      position: absolute;
+
+      top:  15px;
+      left: 12px;
+
+      border-radius: 4px;
+
+      background-color: #000;
+    }
+
+    &--running {
+      &:before {
+        background: $success-color;
+      }
+    }
+
+    &--stopped {
+      &:before {
+        background: $failure-color;
+      }
+    }
+
+    &__id {
+      position: absolute;
+      right: 15px;
+      font-size: 12px;
+      color: darken($main-txt-color, 20);
+    }
+  }
+
+  &__stack {
+    padding: 9px 15px;
+  }
+}

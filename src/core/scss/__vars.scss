@@ -1,0 +1,39 @@
+// GENERIC
+$main-bg-color:                  linear-gradient(to bottom,  #1e2430 0%,#253444 100%) !default;
+$main-txt-color:                 #eedba5                                              !default;
+$main-margin:                    40px                                                 !default;
+
+
+// WIDGET
+$widget-spacing:                 12px                                                 !default;
+$widget-bg-color:                #2b3847                                              !default;
+$widget-shadow:                  0 1px 1px rgba(0, 0, 0, 0.75)                        !default;
+$widget-border-radius:           2px                                                  !default;
+// WIDGET — header
+$widget-header-height:           42px                                                 !default;
+$widget-header-bg-color:         #323f53                                              !default;
+$widget-header-txt-color:        #eedba5                                              !default;
+$widget-header-icon-color:       #e0c671                                              !default;
+$widget-header-shadow:           0 1px 0 #495b71 inset                                !default;
+$widget-header-border-bottom:    1px solid #253246                                    !default;
+$widget-header-border-radius:    2px 2px 0 0                                          !default;
+// WIDGET — header count
+$widget-header-count-bg-color:   #1e2836                                              !default;
+$widget-header-count-txt-color:  #5c738c                                              !default;
+$widget-header-count-shadow:     0 1px 0 rgba(0, 0, 0, 0.5) inset                     !default;
+$widget-header-count-txt-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)                           !default;
+// WIDGET — body
+$widget-body-border-radius:      0 0 2px 2px                                          !default;
+$widget-body-bg-color:           transparent                                          !default;
+$widget-body-shadow:             none                                                 !default;
+
+
+// Meaningful colors
+$unknown-color:                  #495b71                                              !default;
+$success-color:                  #4ec2b4                                              !default;
+$failure-color:                  #de5029                                              !default;
+
+
+// CHARTS
+$histogram-bar-bg-color:         lighten($widget-bg-color, 7)                         !default;
+$chart-axis-txt-color:           lighten($widget-bg-color, 40)                        !default;

@@ -1,0 +1,29 @@
+.github {
+  &__pull-request {
+    position: relative;
+
+    min-height: 34px;
+
+    padding: 9px 15px 9px 50px;
+
+    &__avatar {
+      position: absolute;
+
+      top:  5px;
+      left: 15px;
+
+      display: block;
+
+      width:  24px;
+      height: 24px;
+
+      border-radius: 100%;
+
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

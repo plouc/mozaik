@@ -1,0 +1,108 @@
+@import "_vars";
+//@import "themes/minimal/minimal";
+//@import "themes/california/california";
+//@import "themes/retro/retro";
+
+
+@mixin transition($value) {
+  -webkit-transition: #{$value}; /* Saf3.2+, Chrome */
+     -moz-transition: #{$value}; /* FF4+ */
+      -ms-transition: #{$value};
+       -o-transition: #{$value}; /* Opera 10.5+ */
+          transition: #{$value};
+}
+
+html, body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  background: $main-bg-color;
+  color: $main-txt-color;
+
+  height: 100%;
+  width: 100%;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#hotboard {
+  position: absolute;
+
+  top:    $main-margin - $widget-spacing / 2;
+  right:  $main-margin - $widget-spacing / 2;
+  bottom: $main-margin - $widget-spacing / 2;
+  left:   $main-margin - $widget-spacing / 2;
+}
+
+.hotboard {
+  height: 100%;
+  width:  100%;
+
+  &__timeline {
+    width: 100%;
+    height: 4px;
+
+    position: absolute;
+
+    top: -8px;
+    left: 0;
+
+    padding: 0 $widget-spacing / 2;
+
+    &__progress {
+      height: 100%;
+      width:  100%;
+
+      background-color: #e0c671;
+    }
+  }
+
+  &__sheet {
+    height: 100%;
+    width:  100%;
+
+    position: absolute;
+
+    top:  0;
+    left: 0;
+
+    opacity: 0;
+
+    padding: 20px;
+
+    @include transition(all 800ms);
+
+    transform: scale(0.8);
+
+    z-index: 1;
+
+    &._is-current {
+      left: 0;
+
+      z-index: 2;
+
+      opacity: 1;
+
+      transform: scale(1);
+    }
+  }
+}
+
+.hotboard__wrapper {
+  height: 100%;
+  width:  100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+$fa-font-path: "fonts";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
+@import "components/widget";
+
+@import "../../ext/collected";
