@@ -1,7 +1,16 @@
 {
-  "name": "HotBoard",
+  "name": "Mozaik",
   "version": "0.0.1",
-  "description": "Hot board",
+  "description": "Mozaik dashboard composition tool",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/plouc/mozaik"
+  },
+  "author": {
+      "name": "Raphaël Benitte",
+      "url": "https://github.com/plouc"
+  },
+  "homepage": "https://github.com/plouc/mozaik",
   "dependencies": {
     "aws-sdk": "^2.1.4",
     "bluebird": "^2.4.2",
