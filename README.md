@@ -1,7 +1,7 @@
 MOZAÏK
 ======
 
-[Wiki](plouc/mozaik/wiki)
+[Wiki](https://github.com/plouc/mozaik/wiki)
 
 Installation
 ------------
