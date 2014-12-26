@@ -2,6 +2,8 @@ MOZAÏK
 ======
 
 [Wiki](https://github.com/plouc/mozaik/wiki)
+[Getting started](https://github.com/plouc/mozaik/wiki/getting-started)
+[Widgets](https://github.com/plouc/mozaik/wiki/widgets)
 
 Installation
 ------------
@@ -25,24 +27,3 @@ vim config.js
 gulp publish
 node mozaik.js
 ```
-
-Available widgets
------------------
-
-**Jenkins**
-
-`jenkins.jobs`
-
-`jenkins.job_builds`
-
-`jenkins.job_build_durations`
-
-**Github**
-
-`github.pull_requests`
-
-**AWS**
-
-`aws.instances`
-
-`aws.stacks`
