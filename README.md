@@ -130,6 +130,7 @@ key             | description
 
 ```javascript
 {
+  //…
   api: {
     jenkins: {
       baseUrl: 'https://my-jenkins.ci',
