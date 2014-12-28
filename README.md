@@ -115,6 +115,31 @@ You should have the following config:
 
 ### Jenkins
 
+#### Jenkins — client
+
+
+##### parameters
+
+key             | description
+----------------|-------------------------
+`baseUrl`       | *jenkins base url*
+`auth.user`     | *jenkins auth user*
+`auth.password` | *jenkins auth password*
+
+```javascript
+{
+  api: {
+    jenkins: {
+      baseUrl: 'https://my-jenkins.ci',
+      auth: {
+        user:     'user',
+        password: 'password'
+      }
+    }
+  }
+}
+```
+
 #### Jenkins — job builds histogram
 
 > Show jenkins job builds histogram.
