@@ -103,7 +103,7 @@ You should have the following config:
       ]
     }
   ]
-``
+```
 
 
 
