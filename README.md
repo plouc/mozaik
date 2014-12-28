@@ -33,7 +33,8 @@ node mozaik.js
 
 ## Configuration
 
-Mozaïk can be configured through a simple js config file `config.js` located at the root folder
+Mozaïk can be configured through a simple js config file `config.js` located at the root folder.
+You have a sample config file `config.sample.js` which you can start from.
 
 ```javascript
 module.exports = {
