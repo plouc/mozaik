@@ -1,4 +1,5 @@
-var React = require('react');
+var React  = require('react');
+var moment = require('moment');
 
 
 /**
@@ -23,7 +24,13 @@ var Event = React.createClass({
 
         return (
             <div className={cssClasses}>
-                {this.props.event.client.name}
+                {this.props.event.client.name}<br />
+                {this.props.event.check.name}<br />
+                <span className="sensu__events__item__output">{this.props.event.check.output}</span>
+                <time>
+                    <i className="fa fa-clock-o" />
+                    {moment.unix(this.props.event.check.executed).format('YY-MM-DD HH:mm:ss')}
+                </time>
             </div>
         );
     }

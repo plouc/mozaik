@@ -1,8 +1,12 @@
 .sensu__events {
   &__item {
+    font-size: 16px;
+
     position: relative;
 
-    padding: 7px 15px 7px 35px;
+    padding: 9px 15px 9px 35px;
+
+    line-height: 22px;
 
     &:before {
       content: " ";
@@ -19,6 +23,19 @@
       border-radius: 100%;
 
       background-color: #000;
+    }
+
+    time {
+      font-size: 14px;
+      .fa {
+        margin-right: 5px;
+      }
+    }
+
+    &__output {
+      font-size: 14px;
+      display: block;
+      margin: 7px 0;
     }
 
     &--status-ok {

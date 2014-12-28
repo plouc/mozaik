@@ -1,7 +1,7 @@
 var request = require('superagent');
-require('superagent-bluebird-promise');
-var _       = require('lodash');
 var config  = require('./../../../config');
+
+require('superagent-bluebird-promise');
 
 function buildEndpointCall(endPoint) {
     return function () {
@@ -15,7 +15,7 @@ function buildEndpointCall(endPoint) {
                 console.log(err);
             })
         ;
-    }
+    };
 }
 
 module.exports = {
