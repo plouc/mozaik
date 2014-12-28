@@ -1,0 +1,42 @@
+.sensu__events {
+  &__item {
+    position: relative;
+
+    padding: 7px 15px 7px 35px;
+
+    &:before {
+      content: " ";
+      display: block;
+
+      width:  12px;
+      height: 12px;
+
+      position: absolute;
+
+      top:  14px;
+      left: 12px;
+
+      border-radius: 100%;
+
+      background-color: #000;
+    }
+
+    &--status-ok {
+      &:before {
+        background-color: $success-color;
+      }
+    }
+
+    &--status-warning {
+      &:before {
+        background-color: $warning-color;
+      }
+    }
+
+    &--status-critical {
+      &:before {
+        background-color: $failure-color;
+      }
+    }
+  }
+}

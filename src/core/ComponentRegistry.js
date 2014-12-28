@@ -8,6 +8,9 @@ var ComponentRegistry = {
     },
 
     get: function (type) {
+        if (!_components[type]) {
+            throw new Error('No component defined for type "' + type + '"');
+        }
         return _components[type];
     }
 };

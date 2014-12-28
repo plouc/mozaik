@@ -5,7 +5,7 @@ var d3               = require('d3');
 var $                = require('jquery');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
-var JobBuildDurations = React.createClass({
+var JobBuildsHistogram = React.createClass({
     mixins: [
         Reflux.ListenerMixin,
         ApiConsumerMixin
@@ -146,4 +146,4 @@ var JobBuildDurations = React.createClass({
     }
 });
 
-module.exports = JobBuildDurations;
+module.exports = JobBuildsHistogram;

@@ -1,0 +1,42 @@
+.github__user-badge {
+  img {
+    max-width:  100%;
+    max-height: 100%;
+  }
+
+  &__avatar {
+    width:  120px;
+    height: 120px;
+    border-radius: 60px;
+    display: block;
+
+    overflow: hidden;
+
+    border: 3px solid #fff;
+
+    padding: 5px;
+  }
+
+  &__banner {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__count {
+    display: inline-block;
+  }
+
+  &__info {
+    flex: 1;
+    padding: 0 15px;
+  }
+
+  .widget__body {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
