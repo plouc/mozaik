@@ -15,6 +15,8 @@ npm install
 
 ### Configure your dashboards
 
+You should read the [configuration section](https://github.com/plouc/mozaik#configuration).
+
 ```
 cp config.sample.js config.js
 vim config.js
