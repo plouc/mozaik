@@ -1,7 +1,6 @@
 # MOZAÏK
 
-Visit the [Documentation](https://github.com/plouc/mozaik/wiki)
-
+Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards.
 
 
 
@@ -185,3 +184,7 @@ key     | description
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
+
+
+
+Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
