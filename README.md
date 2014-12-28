@@ -126,6 +126,8 @@ key             | description
 `auth.user`     | *jenkins auth user*
 `auth.password` | *jenkins auth password*
 
+##### usage
+
 ```javascript
 {
   api: {
