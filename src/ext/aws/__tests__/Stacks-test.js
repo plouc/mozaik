@@ -3,7 +3,7 @@ jest.dontMock('./../components/Stack.jsx');
 
 describe('AWS — Stacks', function () {
 
-    it('changes the text after click', function() {
+    it('will update with given array of stacks', function () {
         var React     = require('react/addons');
         var Stacks    = require('./../components/Stacks.jsx');
         var TestUtils = React.addons.TestUtils;
