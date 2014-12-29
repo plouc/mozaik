@@ -35,5 +35,16 @@
     "travis-ci": "^2.0.3",
     "vinyl-source-stream": "^1.0.0",
     "ws": "^0.6.3"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.2.1",
+    "react-tools": "^0.12.2"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

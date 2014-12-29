@@ -1,14 +1,12 @@
 var express = require('express');
 var app     = express();
 var hub     = require('./src/core/hub');
+var config  = require('./config');
 
 app.use(express.static(__dirname + '/build'));
 
-var server = app.listen(3000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('MOZAÏK listening at http://%s:%s', host, port);
+var server = app.listen(config.port, function () {
+    console.log('MOZAÏK listening at http://%s:%s', config.host, config.port);
 });
 
 var WebSocketServer = require('ws').Server;

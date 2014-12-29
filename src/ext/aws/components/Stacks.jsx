@@ -11,15 +11,21 @@ var Stacks = React.createClass({
     ],
 
     getInitialState: function () {
-        return { stacks: [] };
+        return {
+            stacks: []
+        };
     },
 
     getApiRequest: function () {
-        return { id: 'aws.stacks' };
+        return {
+            id: 'aws.stacks'
+        };
     },
 
     onApiData: function (stacks) {
-        this.setState({ stacks: stacks });
+        this.setState({
+            stacks: stacks
+        });
     },
 
     render: function () {
