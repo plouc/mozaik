@@ -24,8 +24,11 @@ describe('Travis — Repository', function () {
 
 
     it('should display repository info', function () {
-        var header = TestUtils.findRenderedDOMComponentWithClass(repository, 'widget__header');
-        expect(header.getDOMNode().textContent).toEqual('');
+        var repoSlug = TestUtils.findRenderedDOMComponentWithClass(repository, 'travis__repository__slug');
+        expect(repoSlug.getDOMNode().textContent).toEqual('');
+
+        var repoBuildNumber = TestUtils.findRenderedDOMComponentWithClass(repository, 'widget__header__count');
+        expect(repoBuildNumber.getDOMNode().textContent).toEqual('');
 
         repository.setState({
             repository: {
@@ -43,6 +46,7 @@ describe('Travis — Repository', function () {
             }
         });
 
-        expect(header.getDOMNode().textContent).toEqual('plouc/mozaik');
+        expect(repoSlug.getDOMNode().textContent).toEqual('plouc/mozaik');
+        expect(repoBuildNumber.getDOMNode().textContent).toEqual('#6');
     });
 });

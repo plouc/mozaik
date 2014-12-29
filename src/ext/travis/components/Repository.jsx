@@ -41,13 +41,27 @@ var Repository = React.createClass({
 
         var infoNode = null;
         if (this.state.repository) {
-
+            infoNode = (
+                <div>
+                    <p>{this.state.repository.description}</p>
+                    <ul>
+                        <li>last build execution date: {this.state.repository.last_build_started_at}</li>
+                        <li>last build status: {this.state.repository.last_build_state}</li>
+                        <li>last build duration: {this.state.repository.last_build_duration}</li>
+                        <li>language: {this.state.github_language}</li>
+                    </ul>
+                </div>
+            );
         }
 
         return (
             <div>
                 <div className="widget__header">
-                    {this.state.repository ? this.state.repository.slug : ''}
+                    Travis:&nbsp;
+                    <span className="travis__repository__slug">{this.state.repository ? this.state.repository.slug : ''}</span>
+                    <span className="widget__header__count">
+                        {this.state.repository ? '#' + this.state.repository.last_build_number : ''}
+                    </span>
                     <i className="fa fa-bug" />
                 </div>
                 <div className="widget__body">
