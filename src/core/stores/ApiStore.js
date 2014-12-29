@@ -1,5 +1,4 @@
 var Reflux     = require('reflux');
-var _          = require('lodash');
 var config     = require('./../../../config');
 var ApiActions = require('./../actions/ApiActions');
 
@@ -15,7 +14,7 @@ var ApiStore = Reflux.createStore({
     },
 
     get: function (id, params) {
-        if (this.ws.readyState != WebSocket.OPEN) {
+        if (this.ws.readyState !== WebSocket.OPEN) {
             throw new Error('Web socket not connected !');
         }
 

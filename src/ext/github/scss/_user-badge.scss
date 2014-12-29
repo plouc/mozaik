@@ -28,7 +28,18 @@
 
   &__info {
     flex: 1;
-    padding: 0 15px;
+    //padding: 0 15px;
+
+
+    &__item {
+      width: 50%;
+      float: left;
+      padding: 5px 15px;
+    }
+
+    &__count {
+
+    }
   }
 
   .widget__body {

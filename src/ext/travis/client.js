@@ -1,7 +1,5 @@
 var Promise = require('bluebird');
 var Travis  = require('travis-ci');
-var _       = require('lodash');
-var config  = require('./../../../config');
 
 var travis = new Travis({
     version: '2.0.0'

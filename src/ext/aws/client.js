@@ -1,6 +1,5 @@
 var Promise = require('bluebird');
 var AWS     = require('aws-sdk');
-var _       = require('lodash');
 var config  = require('./../../../config');
 
 AWS.config.region = config.api.aws.region;

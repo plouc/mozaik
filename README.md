@@ -1,6 +1,8 @@
 # MOZAÏK
 
-[![Travis CI][travis-image]][travis-url] [![Quality][codeclimate-image]][codeclimate-url]
+[![Travis CI][travis-image]][travis-url]
+[![Quality][codeclimate-image]][codeclimate-url]
+[![Dependencies][gemnasium-image]][gemnasium-url]
 
 Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards.
 
@@ -240,3 +242,5 @@ Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
 [travis-url]: https://travis-ci.org/plouc/mozaik
 [codeclimate-image]: https://img.shields.io/codeclimate/github/plouc/mozaik.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/plouc/mozaik
+[gemnasium-image]: https://img.shields.io/gemnasium/plouc/mozaik.svg?style=flat-square
+[gemnasium-url]: https://gemnasium.com/plouc/mozaik
