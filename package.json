@@ -12,9 +12,9 @@
   },
   "homepage": "https://github.com/plouc/mozaik",
   "dependencies": {
-    "aws-sdk": "^2.1.4",
+    "aws-sdk": "^2.0.17",
     "bluebird": "^2.4.2",
-    "browserify": "^7.0.3",
+    "browserify": "^8.0.2",
     "d3": "^3.5.2",
     "express": "^4.10.6",
     "font-awesome": "^4.2.0",
