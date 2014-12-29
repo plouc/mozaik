@@ -12,6 +12,17 @@ describe('Travis — Repository', function () {
     });
 
 
+    it('should return correct api request', function () {
+        expect(repository.getApiRequest()).toEqual({
+            id: 'travis.repository.plouc.mozaik',
+            params: {
+                owner:      'plouc',
+                repository: 'mozaik'
+            }
+        });
+    });
+
+
     it('should display repository info', function () {
         var header = TestUtils.findRenderedDOMComponentWithClass(repository, 'widget__header');
         expect(header.getDOMNode().textContent).toEqual('');

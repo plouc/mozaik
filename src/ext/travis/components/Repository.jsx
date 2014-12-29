@@ -38,6 +38,12 @@ var Repository = React.createClass({
     },
 
     render: function () {
+
+        var infoNode = null;
+        if (this.state.repository) {
+
+        }
+
         return (
             <div>
                 <div className="widget__header">
@@ -45,6 +51,7 @@ var Repository = React.createClass({
                     <i className="fa fa-bug" />
                 </div>
                 <div className="widget__body">
+                    {infoNode}
                 </div>
             </div>
         );

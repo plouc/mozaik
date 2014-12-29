@@ -10,6 +10,10 @@ var PullRequests = React.createClass({
         ApiConsumerMixin
     ],
 
+    propTypes: {
+        repository: React.PropTypes.string.isRequired
+    },
+
     getInitialState: function () {
         return { pullRequests: [] };
     },

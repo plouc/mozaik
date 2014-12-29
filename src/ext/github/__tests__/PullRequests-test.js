@@ -8,7 +8,17 @@ describe('Github — PullRequests', function () {
         React        = require('react/addons');
         TestUtils    = React.addons.TestUtils;
         PullRequests = require('./../components/PullRequests.jsx');
-        pullRequests = TestUtils.renderIntoDocument(<PullRequests />);
+        pullRequests = TestUtils.renderIntoDocument(<PullRequests repository="plouc/mozaik" />);
+    });
+
+
+    it('should return correct api request', function () {
+        expect(pullRequests.getApiRequest()).toEqual({
+            id: 'github.pullRequests.plouc/mozaik',
+            params: {
+                repository: 'plouc/mozaik'
+            }
+        });
     });
 
 
