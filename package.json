@@ -49,6 +49,7 @@
   },
   "main": "mozaik.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "gulp publish"
   }
 }
