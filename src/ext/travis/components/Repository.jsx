@@ -16,7 +16,9 @@ var Repository = React.createClass({
     },
 
     getInitialState: function () {
-        return { repository: null };
+        return {
+            repository: null
+        };
     },
 
     getApiRequest: function () {
@@ -30,7 +32,9 @@ var Repository = React.createClass({
     },
 
     onApiData: function (repository) {
-        this.setState({ repository: repository });
+        this.setState({
+            repository: repository
+        });
     },
 
     render: function () {
