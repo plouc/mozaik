@@ -2,6 +2,7 @@
 
 Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards.
 
+[![Build Status](https://travis-ci.org/plouc/mozaik.png?branch=master)](https://travis-ci.org/plouc/mozaik)
 
 
 
