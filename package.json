@@ -47,6 +47,7 @@
       "<rootDir>/node_modules/lodash"
     ]
   },
+  "main": "mozaik.js",
   "scripts": {
     "test": "jest"
   }
