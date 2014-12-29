@@ -1,20 +1,25 @@
 jest.dontMock('./../components/Stacks.jsx');
 jest.dontMock('./../components/Stack.jsx');
 
+var React, TestUtils, Stacks, stacks;
+
 describe('AWS — Stacks', function () {
 
-    it('will update with given array of stacks', function () {
-        var React     = require('react/addons');
-        var Stacks    = require('./../components/Stacks.jsx');
-        var TestUtils = React.addons.TestUtils;
+    beforeEach(function() {
+        React     = require('react/addons');
+        TestUtils = React.addons.TestUtils;
+        Stacks    = require('./../components/Stacks.jsx');
+        stacks    = TestUtils.renderIntoDocument(<Stacks />);
+    });
 
-        var stacks = TestUtils.renderIntoDocument(
-            <Stacks />
-        );
 
+    it('should display 0 count by default', function () {
         var count = TestUtils.findRenderedDOMComponentWithClass(stacks, 'widget__header__count');
         expect(count.getDOMNode().textContent).toEqual('0');
+    });
 
+
+    it('should update count when stacks array given', function () {
         stacks.setState({
             stacks: [
                 {
@@ -35,8 +40,10 @@ describe('AWS — Stacks', function () {
             ]
         });
 
+        var count = TestUtils.findRenderedDOMComponentWithClass(stacks, 'widget__header__count');
         expect(count.getDOMNode().textContent).toEqual('3');
 
         var stackItems = TestUtils.scryRenderedDOMComponentsWithClass(stacks, 'aws__stack');
+        expect(stackItems.length).toEqual(3);
     });
 });

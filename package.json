@@ -42,7 +42,10 @@
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
-    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/lodash"
+    ]
   },
   "scripts": {
     "test": "jest"

@@ -111,6 +111,18 @@ You should have the following config:
 
 
 
+## Testing
+
+React components are tested through **jest**, in order to run the test suite:
+
+```
+npm test
+```
+
+
+
+
+
 
 ## Widgets
 
