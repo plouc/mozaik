@@ -48,7 +48,7 @@ var Repository = React.createClass({
                         <li>last build execution date: {this.state.repository.last_build_started_at}</li>
                         <li>last build status: {this.state.repository.last_build_state}</li>
                         <li>last build duration: {this.state.repository.last_build_duration}</li>
-                        <li>language: {this.state.github_language}</li>
+                        <li>language: {this.state.repository.github_language}</li>
                     </ul>
                 </div>
             );
@@ -57,7 +57,6 @@ var Repository = React.createClass({
         return (
             <div>
                 <div className="widget__header">
-                    Travis:&nbsp;
                     <span className="travis__repository__slug">{this.state.repository ? this.state.repository.slug : ''}</span>
                     <span className="widget__header__count">
                         {this.state.repository ? '#' + this.state.repository.last_build_number : ''}
