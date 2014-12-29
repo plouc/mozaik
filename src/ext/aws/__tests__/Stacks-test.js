@@ -5,7 +5,7 @@ var React, TestUtils, Stacks, stacks;
 
 describe('AWS — Stacks', function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
         React     = require('react/addons');
         TestUtils = React.addons.TestUtils;
         Stacks    = require('./../components/Stacks.jsx');
