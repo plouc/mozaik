@@ -6,14 +6,15 @@ var BuildHistoryItem = React.createClass({
         var commitNode = null;
         if (this.props.build.commit) {
             commitNode = (
-                <div>{this.props.build.commit.message}</div>
+                <span className="travis__build-history__item__message">{this.props.build.commit.message}</span>
             );
         }
 
+        var cssClasses = 'travis__build-history__item travis__build-history__item--' + this.props.build.state;
+
         return (
-            <div className="travis__build-history__item">
-                #{this.props.build.number} {this.props.build.state}
-                {commitNode}
+            <div className={cssClasses}>
+                #{this.props.build.number} {commitNode}
             </div>
         );
     }
