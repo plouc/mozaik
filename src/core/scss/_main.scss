@@ -22,6 +22,15 @@ html, body {
   left:   $main-margin - $widget-spacing / 2;
 }
 
+.histogram {
+  &__axis {
+    &__legend {
+      font-size: 14px;
+      fill: $chart-axis-txt-color;
+    }
+  }
+}
+
 .hotboard {
   height: 100%;
   width:  100%;

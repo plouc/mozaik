@@ -49,8 +49,24 @@ var BuildHistogram = React.createClass({
         this.backgroundBarsContainer = this.svg.append('g');
         this.barsContainer           = this.svg.append('g');
         this.xAxisContainer          = this.svg.append('g');
+        this.yAxisContainer          = this.svg.append('g');
 
         this.xAxisContainer.attr('class', 'travis__build-histogram__axis travis__build-histogram__axis--x');
+        this.yAxisContainer.attr('class', 'travis__build-histogram__axis travis__build-histogram__axis--y');
+
+        this.xAxisLegend = this.svg.append('text');
+        this.xAxisLegend
+            .attr('class', 'histogram__axis__legend')
+            .attr('text-anchor', 'middle')
+            .text('build number')
+        ;
+
+        this.yAxisLegend = this.svg.append('text');
+        this.yAxisLegend
+            .attr('class', 'histogram__axis__legend')
+            .attr('text-anchor', 'middle')
+            .text('duration in seconds')
+        ;
     },
 
     drawGraph: function () {
@@ -63,17 +79,20 @@ var BuildHistogram = React.createClass({
         });
 
         var margin = {
-            top:    20,
+            top:    15,
             right:  10,
-            bottom: 50,
-            left:   50
+            bottom: 60,
+            left:   60
         };
 
         var utilWidth  = width  - margin.left - margin.right;
         var utilHeight = height - margin.top  - margin.bottom;
 
+        this.xAxisLegend.attr('transform', 'translate(' + (margin.left + utilWidth / 2) + ',' + (margin.top + utilHeight + 45) + ')');
+        this.yAxisLegend.attr('transform', 'rotate(-90) translate(-' + (margin.top + utilHeight / 2) + ',24)');
+
         var x = d3.scale.ordinal()
-            .rangeRoundBands([0, utilWidth], .2);
+            .rangeRoundBands([0, utilWidth], .2, 0);
 
         var y = d3.scale.linear()
             .range([utilHeight, 0]);
@@ -81,6 +100,10 @@ var BuildHistogram = React.createClass({
         var xAxis = d3.svg.axis()
             .scale(x)
             .orient('bottom');
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient('left');
 
         x.domain(this.state.builds.map(function (d) {
             return parseInt(d.number, 10);
@@ -118,6 +141,11 @@ var BuildHistogram = React.createClass({
             .attr('dy', '.35em')
             .attr('transform', 'rotate(90)')
             .style('text-anchor', 'start')
+        ;
+
+        this.yAxisContainer
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+            .call(yAxis)
         ;
 
         this.barsContainer

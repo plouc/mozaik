@@ -142,7 +142,7 @@ key             | description
 
 > Show jenkins job builds histogram.
 
-![jenkins job builds histogram screenshot](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/jenkins.job_builds_histogram.png)
+![jenkins job builds histogram](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/jenkins.job_builds_histogram.png)
 
 ##### parameters
 
@@ -207,6 +207,9 @@ key          | description
 }
 ```
 
+#### Travis — Build histogram
+
+![travis build histogram](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/travis.build_histogram.png)
 
 
 ### AWS

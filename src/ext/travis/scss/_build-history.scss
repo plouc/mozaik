@@ -1,4 +1,7 @@
 .travis__build-history {
+  .travis__build-history__item--created:before {
+    background-color: $unknown-color;
+  }
   .travis__build-history__item--passed:before {
     background-color: $success-color;
   }
