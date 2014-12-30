@@ -79,8 +79,8 @@ var BuildHistogram = React.createClass({
         });
 
         var margin = {
-            top:    15,
-            right:  10,
+            top:    20,
+            right:  20,
             bottom: 60,
             left:   60
         };
@@ -92,7 +92,7 @@ var BuildHistogram = React.createClass({
         this.yAxisLegend.attr('transform', 'rotate(-90) translate(-' + (margin.top + utilHeight / 2) + ',24)');
 
         var x = d3.scale.ordinal()
-            .rangeRoundBands([0, utilWidth], .2, 0);
+            .rangeBands([0, utilWidth], .2, 0);
 
         var y = d3.scale.linear()
             .range([utilHeight, 0]);

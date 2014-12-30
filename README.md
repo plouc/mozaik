@@ -30,7 +30,7 @@ node mozaik.js
 ## Configuration
 
 Mozaïk can be configured through a simple js config file `config.js` located at the root folder.
-You should start from the default config file `config.sample.js` and customize it to fit your needs.
+You should start from the default config file and customize it to fit your needs.
 
 ### Grid system
 
