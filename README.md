@@ -201,7 +201,7 @@ key          | description
 
 ```javascript
 {
-  type: 'travis.repository',
+  type: 'travis.build_history',
   owner: 'plouc', repository: 'mozaik',
   columns: 1, rows: 1, x: 0, y: 0
 }
@@ -210,6 +210,25 @@ key          | description
 #### Travis — Build histogram
 
 ![travis build histogram](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/travis.build_histogram.png)
+
+> Display travis repo build histogram (duration / build number / status)
+
+##### parameters
+
+key          | description
+-------------|--------------------------
+`owner`      | *repo owner*
+`repository` | *repo name*
+
+##### usage
+
+```javascript
+{
+  type: 'travis.build_histogram',
+  owner: 'plouc', repository: 'mozaik',
+  columns: 1, rows: 1, x: 0, y: 0
+}
+```
 
 
 ### AWS
