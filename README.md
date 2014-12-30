@@ -221,7 +221,7 @@ You can easily add your own widgets to mozaïk.
 
 ## Anatomy of an extension
 
-```
+```bash
   |
   +——+ src/
      |
