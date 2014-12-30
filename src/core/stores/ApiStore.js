@@ -2,23 +2,37 @@ var Reflux     = require('reflux');
 var config     = require('./../../../config');
 var ApiActions = require('./../actions/ApiActions');
 
+var buffer = [];
+var ws;
+
 var ApiStore = Reflux.createStore({
     init: function () {
-        this.ws = new WebSocket('ws://' + config.host + ':' + config.port);
-        this.ws.onmessage = function (event) {
+        ws = new WebSocket('ws://' + config.host + ':' + config.port);
+        ws.onmessage = function (event) {
             console.log(JSON.parse(event.data));
             this.trigger(JSON.parse(event.data));
         }.bind(this);
+
+        ws.onopen = function () {
+            buffer.forEach(function (request) {
+                ws.send(JSON.stringify(request));
+            });
+        };
 
         this.listenTo(ApiActions.get, this.get);
     },
 
     get: function (id, params) {
-        if (this.ws.readyState !== WebSocket.OPEN) {
-            throw new Error('Web socket not connected !');
+        if (ws.readyState !== WebSocket.OPEN) {
+            buffer.push({
+                id:     id,
+                params: params || {}
+            });
+
+            return;
         }
 
-        this.ws.send(JSON.stringify({
+        ws.send(JSON.stringify({
             id:     id,
             params: params || {}
         }));
