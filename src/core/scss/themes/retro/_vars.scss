@@ -1,11 +1,11 @@
 // GENERIC
-$main-bg-color:                  rgb(53, 20, 20);
-$main-txt-color:                 hsl(0, 28%, 58%);
-$main-margin:                    30px;
+$main-bg-color:                  rgb(48, 18, 18);
+$main-txt-color:                 hsl(6, 26%, 67%);
+$main-margin:                    50px;
 
 
 // WIDGET
-$widget-spacing:                 4px;
+$widget-spacing:                 2px;
 $widget-bg-color:                rgb(69, 23, 23);
 $widget-shadow:                  none;
 $widget-border-radius:           0;
@@ -13,13 +13,13 @@ $widget-border:                  none;
 // WIDGET — header
 $widget-header-bg-color:         transparent;
 $widget-header-txt-color:        #fff;
-$widget-header-icon-color:       $main-txt-color;
+$widget-header-icon-color:       transparent;
 $widget-header-shadow:           none;
-$widget-header-border-bottom:    none;
+$widget-header-border-bottom:    1px solid $main-bg-color;
 $widget-header-border-radius:    0;
 // WIDGET — header count
 $widget-header-count-bg-color:   $main-bg-color;
-$widget-header-count-txt-color:  $main-txt-color;
+$widget-header-count-txt-color:  hsl(0, 52%, 60%);
 $widget-header-count-shadow:     none;
 $widget-header-count-txt-shadow: none;
 // WIDGET — body
@@ -35,5 +35,5 @@ $failure-color:                  #861810;
 
 
 // CHARTS
-$histogram-bar-bg-color:         $main-bg-color;
+$histogram-bar-bg-color:         darken($widget-bg-color, 2);
 $chart-axis-txt-color:           $main-txt-color;

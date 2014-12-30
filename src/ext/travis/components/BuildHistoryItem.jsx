@@ -10,7 +10,7 @@ var BuildHistoryItem = React.createClass({
             );
         }
 
-        var cssClasses = 'travis__build-history__item travis__build-history__item--' + this.props.build.state;
+        var cssClasses = 'list__item list__item--with-status travis__build-history__item--' + this.props.build.state;
 
         return (
             <div className={cssClasses}>

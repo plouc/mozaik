@@ -1,0 +1,44 @@
+.list {
+  list-style: none;
+
+  margin:  0;
+  padding: 0;
+
+  &__item {
+    padding: 9px 15px;
+
+    line-height: 24px;
+
+    position: relative;
+
+    &--with-status {
+
+      padding: 9px 15px 9px 35px;
+
+      &:before {
+        content: " ";
+        display: block;
+
+        width:  12px;
+        height: 12px;
+
+        position: absolute;
+
+        top:  15px;
+        left: 12px;
+
+        border-radius: 100%;
+
+        background-color: #000;
+      }
+    }
+
+    &--passed:before {
+  background-color: $success-color;
+  }
+    &--errored:before,
+  &--failed:before {
+  background-color: $failure-color;
+  }
+  }
+}

@@ -8,10 +8,12 @@ $fa-font-path: "fonts";
 //@import "themes/minimal/minimal";
 //@import "themes/california/california";
 @import "themes/retro/retro";
+//@import "themes/pastel/pastel";
 
 @import "mixins";
 @import "main";
 @import "components/widget";
+@import "components/list";
 
 // IMPORT EXTENSIONS STYLES
 @import "../../ext/collected";
