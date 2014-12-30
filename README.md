@@ -169,9 +169,9 @@ key   | description
 
 ##### parameters
 
-key     | description
---------|--------------------------
-`plouc` | *github user identifier*
+key    | description
+-------|--------------------------
+`user` | *github user identifier*
 
 ##### usage
 
@@ -185,6 +185,27 @@ key     | description
 
 
 ### Travis
+
+#### Travis — Build history
+
+> Display travis repo build history
+
+##### parameters
+
+key          | description
+-------------|--------------------------
+`owner`      | *repo owner*
+`repository` | *repo name*
+
+##### usage
+
+```javascript
+{
+  type: 'travis.repository',
+  owner: 'plouc', repository: 'mozaik',
+  columns: 1, rows: 1, x: 0, y: 0
+}
+```
 
 
 
