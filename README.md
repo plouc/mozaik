@@ -232,7 +232,7 @@ You can easily add your own widgets to mozaïk.
            +——+ components/ # React components
            |  |
            |  +——— MyComponent.jsx
-           |  +——— register.js
+           |  +——— register.js # expose your components
            |
            +——+ __tests__/ # React components tests (jest)
            |  |
@@ -241,7 +241,7 @@ You can easily add your own widgets to mozaïk.
            +——+ scss/ # custom styles (sass)
            |  |
            |  +——— _my-component.scss
-           |  +——— index.scss
+           |  +——— index.scss # sass entry point
            |
            +——— client.js # server side javascript (used to fetch data)
 ```
