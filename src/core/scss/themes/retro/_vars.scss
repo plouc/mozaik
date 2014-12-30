@@ -2,6 +2,7 @@
 $main-bg-color:                  rgb(48, 18, 18);
 $main-txt-color:                 hsl(6, 26%, 67%);
 $main-margin:                    50px;
+$main-font:                      normal normal 400 16px/18px "Open sans", sans-serif;
 
 
 // WIDGET
@@ -11,12 +12,14 @@ $widget-shadow:                  none;
 $widget-border-radius:           0;
 $widget-border:                  none;
 // WIDGET — header
+$widget-header-height:           48px;
 $widget-header-bg-color:         transparent;
-$widget-header-txt-color:        #fff;
+$widget-header-txt-color:        hsl(10, 60%, 90%);
 $widget-header-icon-color:       transparent;
 $widget-header-shadow:           none;
 $widget-header-border-bottom:    1px solid $main-bg-color;
 $widget-header-border-radius:    0;
+$widget-header-font:             normal normal 100 20px/48px "Roboto Slab", sans-serif;
 // WIDGET — header count
 $widget-header-count-bg-color:   $main-bg-color;
 $widget-header-count-txt-color:  hsl(0, 52%, 60%);

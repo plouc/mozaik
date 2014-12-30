@@ -4,11 +4,14 @@
 $fa-font-path: "fonts";
 @import "../../../node_modules/font-awesome/scss/font-awesome";
 
+
 // IMPORT THEME
+@import "themes/beluga/beluga";
 //@import "themes/minimal/minimal";
 //@import "themes/california/california";
-@import "themes/retro/retro";
+//@import "themes/retro/retro";
 //@import "themes/pastel/pastel";
+
 
 @import "mixins";
 @import "main";

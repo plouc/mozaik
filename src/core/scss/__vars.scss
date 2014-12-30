@@ -1,44 +1,46 @@
 // GENERIC
-$main-bg-color:                  linear-gradient(to bottom,  #1e2430 0%,#253444 100%) !default;
-$main-txt-color:                 #eedba5                                              !default;
-$main-margin:                    40px                                                 !default;
+$main-bg-color:                  #fff                                   !default;
+$main-txt-color:                 #555                                   !default;
+$main-margin:                    20px                                   !default;
+$main-font:                      normal normal 400 16px/18px sans-serif !default;
 
 
 // WIDGET
-$widget-spacing:                 12px                                                 !default;
-$widget-bg-color:                #2b3847                                              !default;
-$widget-shadow:                  0 1px 1px rgba(0, 0, 0, 0.75)                        !default;
-$widget-border-radius:           2px                                                  !default;
-$widget-border:                  none                                                 !default;
+$widget-spacing:                 12px                                   !default;
+$widget-bg-color:                #fff                                   !default;
+$widget-shadow:                  none                                   !default;
+$widget-border-radius:           0                                      !default;
+$widget-border:                  none                                   !default;
 // WIDGET — header
-$widget-header-height:           42px                                                 !default;
-$widget-header-border:           none                                                 !default;
-$widget-header-bg-color:         #323f53                                              !default;
-$widget-header-txt-color:        #eedba5                                              !default;
-$widget-header-icon-color:       #e0c671                                              !default;
-$widget-header-shadow:           0 1px 0 #495b71 inset                                !default;
-$widget-header-border-bottom:    1px solid #253246                                    !default;
-$widget-header-border-radius:    2px 2px 0 0                                          !default;
+$widget-header-height:           42px                                   !default;
+$widget-header-border:           none                                   !default;
+$widget-header-bg-color:         $main-bg-color                         !default;
+$widget-header-txt-color:        $main-txt-color                        !default;
+$widget-header-icon-color:       $main-txt-color                        !default;
+$widget-header-shadow:           none                                   !default;
+$widget-header-border-bottom:    none                                   !default;
+$widget-header-border-radius:    0                                      !default;
+$widget-header-font:             normal normal 400 15px/42px sans-serif !default;
 // WIDGET — header count
-$widget-header-count-bg-color:   #1e2836                                              !default;
-$widget-header-count-txt-color:  #5c738c                                              !default;
-$widget-header-count-shadow:     0 1px 0 rgba(0, 0, 0, 0.5) inset                     !default;
-$widget-header-count-txt-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)                           !default;
-$widget-header-count-border:     none                                                 !default;
+$widget-header-count-bg-color:   $main-bg-color                         !default;
+$widget-header-count-txt-color:  $main-txt-color                        !default;
+$widget-header-count-shadow:     none                                   !default;
+$widget-header-count-txt-shadow: none                                   !default;
+$widget-header-count-border:     none                                   !default;
 // WIDGET — body
-$widget-body-border:             none                                                 !default;
-$widget-body-border-radius:      0 0 2px 2px                                          !default;
-$widget-body-bg-color:           transparent                                          !default;
-$widget-body-shadow:             none                                                 !default;
+$widget-body-border:             none                                   !default;
+$widget-body-border-radius:      0 0 2px 2px                            !default;
+$widget-body-bg-color:           transparent                            !default;
+$widget-body-shadow:             none                                   !default;
 
 
 // Meaningful colors
-$unknown-color:                  #495b71                                              !default;
-$success-color:                  #4ec2b4                                              !default;
-$warning-color:                  #d1be65                                              !default;
-$failure-color:                  #de5029                                              !default;
+$unknown-color:                  #495b71                                !default;
+$success-color:                  #2ac256                                !default;
+$warning-color:                  #d1be65                                !default;
+$failure-color:                  #de1500                                !default;
 
 
 // CHARTS
-$histogram-bar-bg-color:         lighten($widget-bg-color, 7)                         !default;
-$chart-axis-txt-color:           lighten($widget-bg-color, 40)                        !default;
+$histogram-bar-bg-color:         #ddd                                   !default;
+$chart-axis-txt-color:           $main-txt-color                        !default;

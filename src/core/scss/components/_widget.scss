@@ -22,16 +22,12 @@
   border: $widget-border;
 
   &__header {
-    font-family: "Montserrat", sans-serif;
-    text-transform: uppercase;
-    font-weight: 400;
+    font: $widget-header-font;
 
     height:      $widget-header-height;
     line-height: $widget-header-height;
 
     border-radius: $widget-header-border-radius;
-
-    font-size: 15px;
 
     padding: 0 15px;
 
