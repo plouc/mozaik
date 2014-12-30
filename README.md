@@ -188,6 +188,8 @@ key    | description
 
 #### Travis — Build history
 
+![travis build history](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/travis.build_history.png)
+
 > Display travis repo build history
 
 ##### parameters
