@@ -19,6 +19,8 @@
 
   box-shadow: $widget-shadow;
 
+  border: $widget-border;
+
   &__header {
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;

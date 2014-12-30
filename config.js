@@ -42,6 +42,13 @@ module.exports = {
                     x: 0, y: 1
                 },
                 {
+                    type: 'travis.build_histogram',
+                    owner: 'plouc',
+                    repository: 'mozaik',
+                    columns: 1, rows: 1,
+                    x: 1, y: 1
+                },
+                {
                     type: 'travis.build_history',
                     owner: 'plouc',
                     repository: 'mozaik',

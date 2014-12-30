@@ -9,8 +9,10 @@ $widget-spacing:                 12px                                           
 $widget-bg-color:                #2b3847                                              !default;
 $widget-shadow:                  0 1px 1px rgba(0, 0, 0, 0.75)                        !default;
 $widget-border-radius:           2px                                                  !default;
+$widget-border:                  none                                                 !default;
 // WIDGET — header
 $widget-header-height:           42px                                                 !default;
+$widget-header-border:           none                                                 !default;
 $widget-header-bg-color:         #323f53                                              !default;
 $widget-header-txt-color:        #eedba5                                              !default;
 $widget-header-icon-color:       #e0c671                                              !default;
@@ -23,6 +25,7 @@ $widget-header-count-txt-color:  #5c738c                                        
 $widget-header-count-shadow:     0 1px 0 rgba(0, 0, 0, 0.5) inset                     !default;
 $widget-header-count-txt-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)                           !default;
 // WIDGET — body
+$widget-body-border:             none                                                 !default;
 $widget-body-border-radius:      0 0 2px 2px                                          !default;
 $widget-body-bg-color:           transparent                                          !default;
 $widget-body-shadow:             none                                                 !default;

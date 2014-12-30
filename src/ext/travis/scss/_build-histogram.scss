@@ -1,0 +1,23 @@
+.travis__build-histogram {
+  &__bar {
+    fill: $unknown-color;
+    &--passed {
+      fill: darken($success-color, 0);
+    }
+    &--errored {
+      fill: darken($failure-color, 0);
+    }
+  }
+  &__bar-bg {
+    fill: $histogram-bar-bg-color;
+  }
+  &__axis {
+    .domain {
+      fill: transparent;
+    }
+    text {
+      fill: $chart-axis-txt-color;
+      font-size: 12px;
+    }
+  }
+}

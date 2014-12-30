@@ -1,38 +1,39 @@
 // GENERIC
-$main-bg-color:                  #7e706d;
-$main-txt-color:                 #444;
+$main-bg-color:                  rgb(53, 20, 20);
+$main-txt-color:                 hsl(0, 28%, 58%);
 $main-margin:                    30px;
 
 
 // WIDGET
-$widget-spacing:                 1px;
-$widget-bg-color:                #ede2c6;
+$widget-spacing:                 4px;
+$widget-bg-color:                rgb(69, 23, 23);
 $widget-shadow:                  none;
-$widget-radius:                  0;
+$widget-border-radius:           0;
+$widget-border:                  none;
 // WIDGET — header
-$widget-header-bg-color:         #c2b0a2;
-$widget-header-txt-color:        #604d46;
-$widget-header-icon-color:       #cc2924;
+$widget-header-bg-color:         transparent;
+$widget-header-txt-color:        #fff;
+$widget-header-icon-color:       $main-txt-color;
 $widget-header-shadow:           none;
 $widget-header-border-bottom:    none;
 $widget-header-border-radius:    0;
 // WIDGET — header count
-$widget-header-count-bg-color:   #e0d5cf;
-$widget-header-count-txt-color:  #604d46;
+$widget-header-count-bg-color:   $main-bg-color;
+$widget-header-count-txt-color:  $main-txt-color;
 $widget-header-count-shadow:     none;
 $widget-header-count-txt-shadow: none;
 // WIDGET — body
 $widget-body-shadow:             none;
 $widget-body-border-radius:      0;
-$widget-body-bg-color:           #f8f8f8;
+$widget-body-bg-color:           transparent;
 
 
 // Meaningful colors
 $unknown-color:                  #7e706d;
-$success-color:                  #0b9eb2;
-$failure-color:                  #862b34;
+$success-color:                  #50a3b2;
+$failure-color:                  #861810;
 
 
 // CHARTS
-$histogram-bar-bg-color:         #c2b0a2;
-$chart-axis-txt-color:           #806b3f;
+$histogram-bar-bg-color:         $main-bg-color;
+$chart-axis-txt-color:           $main-txt-color;
