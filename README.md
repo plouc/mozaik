@@ -215,11 +215,11 @@ key     | description
 
 
 
-# Extend
+## Extend
 
 You can easily add your own widgets to mozaïk.
 
-## Anatomy of an extension
+### Anatomy of an extension
 
 ```bash
   |
@@ -248,12 +248,13 @@ You can easily add your own widgets to mozaïk.
 
 Note that you do not have to manually import your extension to make it available:
 
-* the `collect:js` gulp task imports the components defined in `my-extension/components/register.js`
+* the `collect:js` gulp task imports the **react components** defined in `my-extension/components/register.js`
   in `src/collectedComponents`.
-* the `collect:sass` gulp task will take care of your custom styles, all you have to do is provide an `index.scss`
+* the `collect:sass` gulp task will take care of your **custom styles**, all you have to do is provide an `index.scss`
   which wil be automatically imported in `src/collected.scss`.
+* the `client.js` file should export a simple javascript object with each available operation returning a **promise**.
 
-
+Because all existing widgets are build in this way, you should have a look at them.
 
 
 Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
