@@ -44,7 +44,8 @@
     "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/lodash"
+      "<rootDir>/node_modules/lodash",
+      "<rootDir>/node_modules/moment"
     ]
   },
   "main": "mozaik.js",
