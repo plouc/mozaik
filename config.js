@@ -5,8 +5,15 @@ module.exports = {
         aws: {
             region: 'eu-west-1'
         },
+        jenkins: {
+            baseUrl: 'https://my-jenkins.com',
+            auth: {
+                user:     'me',
+                password: 'me'
+            }
+        },
         github: {
-
+            //token: 'my-github-token'
         }
     },
     rotationDuration: 8000,
