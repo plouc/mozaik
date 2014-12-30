@@ -16,15 +16,6 @@ Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards
 npm install
 ```
 
-### Configure your dashboards
-
-You should read the [configuration section](https://github.com/plouc/mozaik#configuration).
-
-```
-cp config.sample.js config.js
-vim config.js
-```
-
 ### Publish assets and start the app
 
 ```
@@ -39,18 +30,7 @@ node mozaik.js
 ## Configuration
 
 Mozaïk can be configured through a simple js config file `config.js` located at the root folder.
-You have a sample config file `config.sample.js` which you can start from.
-
-```javascript
-module.exports = {
-  dashboards: [
-    {
-      columns: 3,
-      rows:    2
-    }
-  ]
-};
-```
+You should start from the default config file `config.sample.js` and customize it to fit your needs.
 
 ### Grid system
 
@@ -230,6 +210,49 @@ key     | description
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
+
+
+
+
+
+# Extend
+
+You can easily add your own widgets to mozaïk.
+
+## Anatomy of an extension
+
+```
+  |
+  +——+ src/
+     |
+     +——+ ext/
+        |
+        +——+ my-extension/ # your extension root directory
+           |
+           +——+ components/ # React components
+           |  |
+           |  +——— MyComponent.jsx
+           |  +——— register.js
+           |
+           +——+ __tests__/ # React components tests (jest)
+           |  |
+           |  +——— MyComponent-test.js
+           |
+           +——+ scss/ # custom styles (sass)
+           |  |
+           |  +——— _my-component.scss
+           |  +——— index.scss
+           |
+           +——— client.js # server side javascript (used to fetch data)
+```
+
+Note that you do not have to manually import your extension to make it available:
+
+* the `collect:js` gulp task imports the components defined in `my-extension/components/register.js`
+  in `src/collectedComponents`.
+* the `collect:sass` gulp task will take care of your custom styles, all you have to do is provide an `index.scss`
+  which wil be automatically imported in `src/collected.scss`.
+
 
 
 
