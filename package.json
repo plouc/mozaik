@@ -29,9 +29,7 @@
     "superagent": "^0.21.0",
     "superagent-bluebird-promise": "^0.5.1",
     "travis-ci": "^2.0.3",
-    "ws": "^0.6.3"
-  },
-  "devDependencies": {
+    "ws": "^0.6.3",
     "browserify": "^8.0.2",
     "gulp": "^3.8.10",
     "gulp-print": "^1.1.0",
