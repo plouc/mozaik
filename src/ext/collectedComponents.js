@@ -3,6 +3,7 @@
  */
 require('./aws/components/register.js');
 require('./github/components/register.js');
+require('./heroku/components/register.js');
 require('./jenkins/components/register.js');
 require('./sensu/components/register.js');
 require('./travis/components/register.js');

@@ -1,6 +1,8 @@
-module.exports = {
+var config = {
     host: 'localhost',
     port: process.env.PORT || 5000,
+
+    // clients configs
     api: {
         aws: {
             region: 'eu-west-1'
@@ -14,11 +16,20 @@ module.exports = {
         },
         github: {
             //token: 'my-github-token'
+        },
+        heroku: {
+            apiToken: process.env.HEROKU_API_TOKEN
         }
     },
-    rotationDuration: 4000,
+
+    // define duration beetwen each dashboard rotation (ms)
+    rotationDuration: 8000,
+
     dashboards: [
+
+        // first dashboard
         {
+            // 3 x 2 dashboard
             columns: 3,
             rows:    2,
             widgets: [
@@ -29,8 +40,8 @@ module.exports = {
                     x: 0, y: 0
                 },
                 {
-                    type: 'github.pull_requests',
-                    repository: 'plouc/go-gitlab-client',
+                    type: 'heroku.app_info',
+                    app: 'mozaik',
                     columns: 1, rows: 1,
                     x: 1, y: 1
                 },
@@ -57,7 +68,10 @@ module.exports = {
                 }
             ]
         },
+
+        // second dashboard
         {
+            // 3 x 2 dashboard
             columns: 3,
             rows:    2,
             widgets: [
@@ -92,3 +106,5 @@ module.exports = {
         }
     ]
 };
+
+module.exports = config;

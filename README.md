@@ -298,8 +298,8 @@ Note that you do not have to manually import your extension to make it available
 
 * the `collect:js` gulp task imports the **react components** defined in `my-extension/components/register.js`
   in `src/collectedComponents`.
-* the `collect:sass` gulp task will take care of your **custom styles**, all you have to do is provide an `index.scss`
-  which wil be automatically imported in `src/collected.scss`.
+* the `collect:styk` gulp task will take care of your **custom styles**, all you have to do is provide an `index.styl`
+  which wil be automatically imported in `src/collected.styl`.
 * the `client.js` file should export a simple javascript object with each available operation returning a **promise**.
 
 Because all existing widgets are build in this way, you should have a look at them.
@@ -309,7 +309,7 @@ Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
 
 
 
-[widget-count-image]: https://img.shields.io/badge/widgets-x11-yellow.svg?style=flat-square
+[widget-count-image]: https://img.shields.io/badge/widgets-x12-yellow.svg?style=flat-square
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik
