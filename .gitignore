@@ -3,4 +3,6 @@ logs
 .sass-cache
 node_modules
 .idea
-build
+build/mozaik.js
+build/mozaik.css
+build/fonts
