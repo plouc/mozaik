@@ -1,12 +1,14 @@
 .travis__build-history {
-  .travis__build-history__item--created:before {
-    background-color: $unknown-color;
-  }
-  .travis__build-history__item--passed:before {
-    background-color: $success-color;
-  }
-  .travis__build-history__item--errored:before,
-  .travis__build-history__item--failed:before {
-    background-color: $failure-color;
+  &__item {
+    &--created:before {
+      background-color: $unknown-color;
+    }
+    &--passed:before {
+      background-color: $success-color;
+    }
+    &--errored:before,
+    &--failed:before {
+      background-color: $failure-color;
+    }
   }
 }

@@ -11,6 +11,7 @@ $widget-bg-color:                rgb(69, 23, 23);
 $widget-shadow:                  none;
 $widget-border-radius:           0;
 $widget-border:                  none;
+
 // WIDGET — header
 $widget-header-height:           48px;
 $widget-header-bg-color:         transparent;
@@ -20,11 +21,13 @@ $widget-header-shadow:           none;
 $widget-header-border-bottom:    1px solid $main-bg-color;
 $widget-header-border-radius:    0;
 $widget-header-font:             normal normal 100 20px/48px "Roboto Slab", sans-serif;
+
 // WIDGET — header count
 $widget-header-count-bg-color:   $main-bg-color;
 $widget-header-count-txt-color:  hsl(0, 52%, 60%);
 $widget-header-count-shadow:     none;
 $widget-header-count-txt-shadow: none;
+
 // WIDGET — body
 $widget-body-shadow:             none;
 $widget-body-border-radius:      0;
@@ -38,5 +41,5 @@ $failure-color:                  #861810;
 
 
 // CHARTS
-$histogram-bar-bg-color:         darken($widget-bg-color, 2);
+$histogram-bar-bg-color:         lighten($widget-bg-color, 4);
 $chart-axis-txt-color:           $main-txt-color;

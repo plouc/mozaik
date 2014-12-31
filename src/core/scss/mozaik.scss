@@ -6,17 +6,18 @@ $fa-font-path: "fonts";
 
 
 // IMPORT THEME
-@import "themes/beluga/beluga";
-//@import "themes/minimal/minimal";
-//@import "themes/california/california";
-//@import "themes/retro/retro";
-//@import "themes/pastel/pastel";
+//@import "themes/night-blue/night-blue";
+//@import "themes/light-grey/light-grey";
+//@import "themes/yellow/yellow";
+//@import "themes/light-yellow/light-yellow";
+@import "themes/bordeau/bordeau";
 
 
 @import "mixins";
 @import "main";
 @import "components/widget";
 @import "components/list";
+
 
 // IMPORT EXTENSIONS STYLES
 @import "../../ext/collected";

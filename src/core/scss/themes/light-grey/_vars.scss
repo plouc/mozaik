@@ -9,6 +9,7 @@ $widget-spacing:                 10px;
 $widget-bg-color:                transparent;
 $widget-shadow:                  none;
 $widget-border-radius:           0;
+
 // WIDGET — header
 $widget-header-bg-color:         transparent;
 $widget-header-txt-color:        #999999;
@@ -16,11 +17,14 @@ $widget-header-icon-color:       #84c2f6;
 $widget-header-shadow:           none;
 $widget-header-border-bottom:    none;
 $widget-header-border-radius:    3px 3px 0 0;
+
 // WIDGET — header count
-$widget-header-count-bg-color:   #ccc;
-$widget-header-count-txt-color:  #fff;
+$widget-header-count-bg-color:   #fefefe;
+$widget-header-count-txt-color:  #888;
 $widget-header-count-shadow:     none;
 $widget-header-count-txt-shadow: none;
+$widget-header-font:             normal normal 300 22px/46px "Lato", sans-serif;
+
 // WIDGET — body
 $widget-body-border-radius:      2px;
 $widget-body-bg-color:           #fff;

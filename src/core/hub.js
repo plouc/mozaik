@@ -4,8 +4,7 @@ var glob = require('glob');
 
 var apis = {};
 
-var files = glob.sync('src/ext/*/client.js');
-files.forEach(function (file) {
+glob.sync('src/ext/*/client.js').forEach(function (file) {
     var parts = file.split(path.sep);
     var id    = parts[parts.length - 2];
 

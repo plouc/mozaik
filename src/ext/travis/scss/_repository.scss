@@ -6,13 +6,15 @@
       content: " ";
       display: block;
 
-      width:  12px;
-      height: 12px;
+      width:  16px;
+      height: 16px;
 
       position: absolute;
 
-      top:  ($widget-header-height - 12px) / 2;
+      top:  ($widget-header-height - 16px) / 2;
       left: 12px;
+
+      border: 2px solid $widget-bg-color;
 
       border-radius: 100%;
 

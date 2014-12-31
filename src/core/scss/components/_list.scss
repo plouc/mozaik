@@ -33,12 +33,12 @@
       }
     }
 
-    &--passed:before {
-  background-color: $success-color;
-  }
-    &--errored:before,
-  &--failed:before {
-  background-color: $failure-color;
-  }
+    &__time {
+      font-size: 85%;
+      &--inline {
+        display: inline-block;
+        margin-left: 7px;
+      }
+    }
   }
 }
