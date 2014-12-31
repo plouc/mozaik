@@ -15,8 +15,11 @@ var BuildHistoryItem = React.createClass({
 
         return (
             <div className={cssClasses}>
-                #{this.props.build.number} {commitNode}
-                <time className="list__item__time list__item__time--inline">{moment(this.props.build.finished_at).fromNow()}</time>
+                #{this.props.build.number} {commitNode}<br />
+                <time className="list__item__time">
+                    <i className="fa fa-clock-o" />&nbsp;
+                    {moment(this.props.build.finished_at).fromNow()}
+                </time>
             </div>
         );
     }

@@ -24,6 +24,6 @@ describe('Github — UserBadge', function () {
 
     it('display user name', function () {
         var username = TestUtils.findRenderedDOMComponentWithClass(userBadge, 'widget__header');
-        expect(username.getDOMNode().textContent).toEqual('plouc');
+        expect(username.getDOMNode().textContent).toEqual('plouc github user');
     });
 });

@@ -177,7 +177,7 @@ var BuildHistogram = React.createClass({
         return (
             <div>
                 <div className="widget__header">
-                    {this.props.owner}/{this.props.repository} build histogram
+                    <span className="widget__header__subject">{this.props.owner}/{this.props.repository}</span> build histogram
                     <i className="fa fa-bug" />
                 </div>
                 <div className="widget__body">

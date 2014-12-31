@@ -61,7 +61,9 @@ var Repository = React.createClass({
         return (
             <div className={cssClasses}>
                 <div className="widget__header">
-                    <span className="travis__repository__slug">{this.state.repository ? this.state.repository.slug : ''}</span>
+                    <span className="travis__repository__slug">
+                        <span className="widget__header__subject">{this.state.repository ? this.state.repository.slug : ''}</span>
+                    </span>
                     <span className="widget__header__count">
                         {this.state.repository ? '#' + this.state.repository.last_build_number : ''}
                     </span>

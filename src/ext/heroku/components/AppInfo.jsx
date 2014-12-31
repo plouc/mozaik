@@ -38,7 +38,7 @@ var AppInfo = React.createClass({
         return (
             <div>
                 <div className="widget__header">
-                    {this.props.app} heroku app
+                    <span className="widget__header__subject">{this.props.app}</span> heroku app
                 </div>
             </div>
         );
