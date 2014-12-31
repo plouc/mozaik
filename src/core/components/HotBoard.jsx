@@ -28,7 +28,6 @@ var HotBoard = React.createClass({
 
         return (
             <div className="hotboard">
-                {timerNode}
                 {sheetNodes}
             </div>
         );
