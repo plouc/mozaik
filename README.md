@@ -8,6 +8,8 @@
 Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards.
 
 
+Check the [DEMO](http://mozaik.herokuapp.com/)
+
 
 ## Installation
 
