@@ -6,3 +6,4 @@ node_modules
 build/mozaik.js
 build/mozaik.css
 build/fonts
+build/font-awesome.min.css
