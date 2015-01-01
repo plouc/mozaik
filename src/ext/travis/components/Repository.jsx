@@ -43,14 +43,23 @@ var Repository = React.createClass({
         var infoNode   = null;
 
         if (this.state.repository) {
+
+            var statusClass = '';
+            if (this.state.repository.last_build_state === 'passed') {
+                statusClass = 'fa fa-check txt--success';
+            }
+
             infoNode = (
                 <div>
                     <p>{this.state.repository.description}</p>
-                    <ul>
-                        <li>last build execution date: {moment(this.state.repository.last_build_started_at).format()}</li>
-                        <li>last build status: {this.state.repository.last_build_state}</li>
-                        <li>last build duration: <span className="count">{this.state.repository.last_build_duration}s</span></li>
-                        <li>language: {this.state.repository.github_language}</li>
+                    <ul className="list">
+                        <li className="list__item"><i className={statusClass} /> last build status: {this.state.repository.last_build_state}</li>
+                        <li className="list__item">
+                            <i className="fa fa-clock-o" />&nbsp;
+                            last build {moment(this.state.repository.last_build_started_at).fromNow()}&nbsp;
+                            in <span className="count">{this.state.repository.last_build_duration}s</span>
+                        </li>
+                        <li className="list__item"><i className="fa fa-code" /> language: {this.state.repository.github_language}</li>
                     </ul>
                 </div>
             );
