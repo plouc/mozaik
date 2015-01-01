@@ -60,11 +60,16 @@ var config = {
                     x: 1, y: 1
                 },
                 {
+                    type: 'time.clock',
+                    columns: 1, rows: 1,
+                    x: 3, y: 0
+                },
+                {
                     type: 'travis.build_history',
                     owner: 'plouc',
                     repository: 'mozaik',
-                    columns: 1, rows: 3,
-                    x: 3, y: 0
+                    columns: 1, rows: 2,
+                    x: 3, y: 1
                 },
                 {
                     type: 'travis.build_histogram',

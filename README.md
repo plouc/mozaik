@@ -111,6 +111,27 @@ npm test
 
 ## Widgets
 
+### Time
+
+#### Time — Clock
+
+> Not really useful, but every dashboard composition tool must have one :)
+
+##### parameters
+
+*This widget has no parameter*
+
+##### usage
+
+```javascript
+{
+  type: 'time.clock',
+  columns: 1, rows: 1, x: 0, y: 0
+}
+```
+
+
+
 ### Jenkins
 
 #### Jenkins — client
@@ -309,7 +330,7 @@ Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
 
 
 
-[widget-count-image]: https://img.shields.io/badge/widgets-x12-yellow.svg?style=flat-square
+[widget-count-image]: https://img.shields.io/badge/widgets-x13-yellow.svg?style=flat-square
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik

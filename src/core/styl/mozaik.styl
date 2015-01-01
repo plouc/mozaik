@@ -1,23 +1,24 @@
 @require "__vars.styl";
 
-// VENDORS
-//$fa-font-path: "fonts";
-//@import "../../../node_modules/font-awesome/scss/font-awesome";
+/*
+  Available themes:
+   + night-blue
+   + light-grey
+   + yellow
+   + light-yellow
+   + bordeau
+*/
 
+$theme = 'bordeau';
 
-// IMPORT THEME
-//@import "themes/night-blue/night-blue";
-//@import "themes/light-grey/light-grey";
-//@import "themes/yellow/yellow";
-//@import "themes/light-yellow/light-yellow";
-@import "themes/bordeau/bordeau.styl";
-
+@import 'themes/' + $theme + '/_vars.styl';
 
 @import "_mixins.styl";
 @import "_main.styl";
 @import "components/_widget.styl";
 @import "components/_list.styl";
 
-
 // IMPORT EXTENSIONS STYLES
 @import "../../ext/collected.styl";
+
+@import 'themes/' + $theme + '/' + $theme + '.styl';
