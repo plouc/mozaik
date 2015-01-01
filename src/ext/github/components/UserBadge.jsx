@@ -77,7 +77,7 @@ var UserBadge = React.createClass({
             <div>
                 <div className="widget__header">
                     <span className="widget__header__subject">{this.props.user}</span> github user
-                    <i className="fa fa-github" />
+                    <i className="fa fa-github-alt" />
                 </div>
                 {userNode}
             </div>

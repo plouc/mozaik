@@ -43,7 +43,7 @@ var PullRequests = React.createClass({
                     <span className="widget__header__count">
                         {this.state.pullRequests.length}
                     </span>
-                    <i className="fa fa-github" />
+                    <i className="fa fa-github-alt" />
                 </div>
                 <div className="widget__body">
                     {pullRequestNodes}

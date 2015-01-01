@@ -39,7 +39,9 @@ var BuildHistory = React.createClass({
 
     render: function () {
         var buildNodes = this.state.builds.map(function (build) {
-            return (<BuildHistoryItem key={build.id} build={build} />);
+            return (
+                <BuildHistoryItem key={build.id} build={build} />
+            );
         });
 
         return (
