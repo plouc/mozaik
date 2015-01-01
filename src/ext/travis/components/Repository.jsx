@@ -53,7 +53,7 @@ var Repository = React.createClass({
 
             infoNode = (
                 <div>
-                    <p>{this.state.repository.description}</p>
+                    <div className="travis__repository__description">{this.state.repository.description}</div>
                     <ul className="list list--compact">
                         <li className="list__item">
                             <i className={statusClass} /> last build&nbsp;

@@ -1,29 +1,33 @@
 .travis__repository {
   .widget__header {
-    padding-left: 35px;
+    padding-left 35px;
 
     &:before {
-      content: " ";
-      display: block;
+      content " ";
+      display block;
 
-      width:  16px;
-      height: 16px;
+      width  16px;
+      height 16px;
 
-      position: absolute;
+      position absolute;
 
-      top:  (($widget-header-height - 16px) / 2);
-      left: 12px;
+      top  (($widget-header-height - 16px) / 2);
+      left 12px;
 
-      border: 2px solid $widget-bg-color;
+      border 2px solid $widget-bg-color;
 
-      border-radius: 100%;
+      border-radius 100%;
 
-      background-color: #000;
+      background-color #000;
     }
   }
   &--passed {
     .widget__header:before {
-      background-color: $success-color;
+      background-color $success-color;
     }
+  }
+
+  &__description {
+    margin 10px 15px;
   }
 }

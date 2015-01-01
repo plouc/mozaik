@@ -233,6 +233,30 @@ key    | description
 
 ### Travis
 
+#### Travis — Repository
+
+![travis repository](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/travis.repository.png)
+
+> Display travis repo infos
+
+##### parameters
+
+key          | description
+-------------|--------------------------
+`owner`      | *repo owner*
+`repository` | *repo name*
+
+##### usage
+
+```javascript
+{
+  type: 'travis.repository',
+  owner: 'plouc', repository: 'mozaik',
+  columns: 1, rows: 1, x: 0, y: 0
+}
+```
+
+
 #### Travis — Build history
 
 ![travis build history](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/travis.build_history.png)
