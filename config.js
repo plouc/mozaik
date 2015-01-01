@@ -8,7 +8,7 @@ var config = {
     // + yellow
     // + light-yellow
     // + bordeau
-    theme: 'bordeau',
+    theme: 'night-blue',
 
     // clients configs
     api: {
