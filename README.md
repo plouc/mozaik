@@ -136,6 +136,8 @@ npm test
 
 > Not really useful, but every dashboard composition tool must have one :)
 
+![clock](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/time.clock.png)
+
 ##### parameters
 
 *This widget has no parameter*

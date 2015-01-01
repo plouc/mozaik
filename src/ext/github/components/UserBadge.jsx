@@ -1,7 +1,6 @@
 var React            = require('react');
 var Reflux           = require('reflux');
 var _                = require('lodash');
-var PullRequest      = require('./PullRequest.jsx');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
 var UserBadge = React.createClass({
@@ -15,18 +14,24 @@ var UserBadge = React.createClass({
     },
 
     getInitialState: function () {
-        return { user: null };
+        return {
+            user: null
+        };
     },
 
     getApiRequest: function () {
         return {
             id: 'github.user.' + this.props.user,
-            params: { user: this.props.user }
+            params: {
+                user: this.props.user
+            }
         };
     },
 
     onApiData: function (user) {
-        this.setState({ user: user });
+        this.setState({
+            user: user
+        });
     },
 
     render: function () {
