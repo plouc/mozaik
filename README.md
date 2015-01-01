@@ -212,6 +212,8 @@ key   | description
 
 > Show github user badge.
 
+![github user badge](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/github.user_badge.png)
+
 ##### parameters
 
 key    | description
