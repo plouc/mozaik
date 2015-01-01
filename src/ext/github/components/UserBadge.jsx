@@ -43,10 +43,22 @@ var UserBadge = React.createClass({
                         </span>
                     </div>
                     <div className="github__user-badge__info">
-                        <div className="github__user-badge__info__item">public repos: {this.state.user.public_repos}</div>
-                        <div className="github__user-badge__info__item">public gists: {this.state.user.public_gists}</div>
-                        <div className="github__user-badge__info__item">followers: {this.state.user.followers}</div>
-                        <div className="github__user-badge__info__item">following: {this.state.user.following}</div>
+                        <div className="github__user-badge__info__item">
+                            <span className="count">{this.state.user.public_repos}</span>&nbsp;
+                            public repos
+                        </div>
+                        <div className="github__user-badge__info__item">
+                            <span className="count">{this.state.user.public_gists}</span>&nbsp;
+                            public gists
+                        </div>
+                        <div className="github__user-badge__info__item">
+                            <span className="count">{this.state.user.followers}</span>&nbsp;
+                            followers
+                        </div>
+                        <div className="github__user-badge__info__item">
+                            <span className="count">{this.state.user.following}</span>&nbsp;
+                            following
+                        </div>
                         <div className="github__user-badge__info__item">company: {this.state.user.company}</div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ var Repository = React.createClass({
                     <ul>
                         <li>last build execution date: {moment(this.state.repository.last_build_started_at).format()}</li>
                         <li>last build status: {this.state.repository.last_build_state}</li>
-                        <li>last build duration: {this.state.repository.last_build_duration}</li>
+                        <li>last build duration: <span className="count">{this.state.repository.last_build_duration}s</span></li>
                         <li>language: {this.state.repository.github_language}</li>
                     </ul>
                 </div>

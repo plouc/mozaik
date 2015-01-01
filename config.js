@@ -84,13 +84,13 @@ var config = {
                     owner: 'plouc',
                     repository: 'go-gitlab-client',
                     columns: 2, rows: 1,
-                    x: 0, y: 2
+                    x: 1, y: 2
                 },
                 {
                     type: 'heroku.app_info',
                     app: 'protofight',
                     columns: 1, rows: 1,
-                    x: 2, y: 2
+                    x: 0, y: 2
                 }
             ]
         },

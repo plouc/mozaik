@@ -1,5 +1,6 @@
 var React            = require('react');
 var Reflux           = require('reflux');
+var moment           = require('moment');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
 var AppInfo = React.createClass({
@@ -14,7 +15,7 @@ var AppInfo = React.createClass({
 
     getInitialState: function () {
         return {
-            appInfo: []
+            appInfo: null
         };
     },
 
@@ -35,10 +36,23 @@ var AppInfo = React.createClass({
 
     render: function () {
 
+        var infoNode = null;
+        if (this.state.appInfo) {
+            infoNode = (
+                <ul>
+                    <li>created: {moment(this.state.appInfo.created_at).fromNow()}</li>
+                    <li>updated: {moment(this.state.appInfo.updated_at).fromNow()}</li>
+                </ul>
+            );
+        }
+
         return (
             <div>
                 <div className="widget__header">
                     <span className="widget__header__subject">{this.props.app}</span> heroku app
+                </div>
+                <div className="widget__body">
+                    {infoNode}
                 </div>
             </div>
         );
