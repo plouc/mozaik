@@ -39,9 +39,15 @@ var AppInfo = React.createClass({
         var infoNode = null;
         if (this.state.appInfo) {
             infoNode = (
-                <ul>
-                    <li>created: {moment(this.state.appInfo.created_at).fromNow()}</li>
-                    <li>updated: {moment(this.state.appInfo.updated_at).fromNow()}</li>
+                <ul className="list list--compact">
+                    <li className="list__item">
+                        created&nbsp;
+                        <span className="prop__value">{moment(this.state.appInfo.created_at).fromNow()}</span>
+                    </li>
+                    <li className="list__item">
+                        updated&nbsp;
+                        <span className="prop__value">{moment(this.state.appInfo.updated_at).fromNow()}</span>
+                    </li>
                 </ul>
             );
         }

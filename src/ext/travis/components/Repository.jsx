@@ -54,14 +54,20 @@ var Repository = React.createClass({
             infoNode = (
                 <div>
                     <p>{this.state.repository.description}</p>
-                    <ul className="list">
-                        <li className="list__item"><i className={statusClass} /> last build status: {this.state.repository.last_build_state}</li>
+                    <ul className="list list--compact">
+                        <li className="list__item">
+                            <i className={statusClass} /> last build status:&nbsp;
+                            <span className="prop__value">{this.state.repository.last_build_state}</span>
+                        </li>
                         <li className="list__item">
                             <i className="fa fa-clock-o" />&nbsp;
-                            last build {moment(this.state.repository.last_build_started_at).fromNow()}&nbsp;
+                            last build <span className="prop__value">{moment(this.state.repository.last_build_started_at).fromNow()}</span>&nbsp;
                             in <span className="count">{this.state.repository.last_build_duration}s</span>
                         </li>
-                        <li className="list__item"><i className="fa fa-code" /> language: {this.state.repository.github_language}</li>
+                        <li className="list__item">
+                            <i className="fa fa-code" /> language:&nbsp;
+                            <span className="prop__value">{this.state.repository.github_language}</span>
+                        </li>
                     </ul>
                 </div>
             );

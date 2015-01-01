@@ -59,7 +59,10 @@ var UserBadge = React.createClass({
                             <span className="count">{this.state.user.following}</span>&nbsp;
                             following
                         </div>
-                        <div className="github__user-badge__info__item">company: {this.state.user.company}</div>
+                        <div className="github__user-badge__info__item">
+                            company:&nbsp;
+                            <span className="prop__value">{this.state.user.company}</span>
+                        </div>
                     </div>
                 </div>
             );
