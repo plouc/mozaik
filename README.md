@@ -5,7 +5,7 @@
 [![Dependencies][gemnasium-image]][gemnasium-url]
 [![Widgets][widget-count-image]][widget-count-url]
 
-Mozaïk is a tool based on nodejs / reactjs to easily build beautiful dashboards.
+Mozaïk is a tool based on nodejs / react / stylus to easily build beautiful dashboards.
 
 
 Check the [DEMO](http://mozaik.herokuapp.com/)
