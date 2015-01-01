@@ -56,7 +56,7 @@ var Repository = React.createClass({
                     <p>{this.state.repository.description}</p>
                     <ul className="list list--compact">
                         <li className="list__item">
-                            <i className={statusClass} /> last build status:&nbsp;
+                            <i className={statusClass} /> last build&nbsp;
                             <span className="prop__value">{this.state.repository.last_build_state}</span>
                         </li>
                         <li className="list__item">

@@ -10,7 +10,7 @@ $main-margin                    = 30px;
 $widget-spacing                 = 10px;
 $widget-bg-color                = #ede2c6;
 $widget-shadow                  = 0 1px 1px rgba(0, 0, 0, 0.1);
-$widget-radius                  = 3px;
+$widget-border-radius           = 2px;
 
 // WIDGET — header
 $widget-header-bg-color         = #e6d280;
@@ -19,6 +19,7 @@ $widget-header-icon-color       = #ce6c51;
 $widget-header-shadow           = none;
 $widget-header-border-bottom    = none;
 $widget-header-font             = normal normal 700 unquote('15px/42px') "Montserrat", sans-serif;
+$widget-header-border-radius    = 2px 2px 0 0;
 
 // WIDGET — header count
 $widget-header-count-bg-color   = #e5dabe;
@@ -50,3 +51,10 @@ $count-border                   = none;
 // CHARTS
 $histogram-bar-bg-color         = #dcd1b5;
 $chart-axis-txt-color           = #806b3f;
+
+
+
+
+// PROPS
+$prop-key-txt-color            = $main-txt-color;
+$prop-value-txt-color          = darken($widget-header-icon-color, 10);

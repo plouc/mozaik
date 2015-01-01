@@ -48,5 +48,14 @@ describe('Travis — Repository', function () {
 
         expect(repoSlug.getDOMNode().textContent).toEqual('plouc/mozaik');
         expect(repoBuildNumber.getDOMNode().textContent).toEqual('#6');
+
+
+        var infos = TestUtils.scryRenderedDOMComponentsWithClass(repository, 'list__item');
+
+        expect(infos.length).toEqual(3);
+
+        expect(infos[0].getDOMNode().textContent).toContain('last build passed');
+        expect(infos[1].getDOMNode().textContent).toContain('in 53s');
+        expect(infos[2].getDOMNode().textContent).toContain('language: JavaScript');
     });
 });
