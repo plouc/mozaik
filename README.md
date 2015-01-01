@@ -7,6 +7,7 @@
 
 Mozaïk is a tool based on nodejs / react / stylus to easily craft beautiful dashboards.
 
+![preview](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-panorama.png)
 
 Check the [DEMO](http://mozaik.herokuapp.com/)
 
