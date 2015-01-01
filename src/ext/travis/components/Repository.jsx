@@ -47,6 +47,8 @@ var Repository = React.createClass({
             var statusClass = '';
             if (this.state.repository.last_build_state === 'passed') {
                 statusClass = 'fa fa-check txt--success';
+            } else if (this.state.repository.last_build_state === 'started') {
+                statusClass = 'fa fa-play-circle-o';
             }
 
             infoNode = (
