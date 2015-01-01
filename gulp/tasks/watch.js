@@ -3,7 +3,8 @@ var config = require('../config');
 
 gulp.task('watch', function () {
     gulp.watch([
-        config.src + '**/*.styl'
+        config.src + '**/*.styl',
+        './config.js'
     ], ['styl']);
     gulp.watch([
         config.src + '**/*.js',

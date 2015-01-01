@@ -2,6 +2,14 @@ var config = {
     host: 'localhost',
     port: process.env.PORT || 5000,
 
+    // Available themes:
+    // + night-blue
+    // + light-grey
+    // + yellow
+    // + light-yellow
+    // + bordeau
+    theme: 'night-blue',
+
     // clients configs
     api: {
         aws: {

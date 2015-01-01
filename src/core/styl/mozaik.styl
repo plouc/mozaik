@@ -1,24 +1,13 @@
-@require "__vars.styl";
+@require '__vars.styl';
 
-/*
-  Available themes:
-   + night-blue
-   + light-grey
-   + yellow
-   + light-yellow
-   + bordeau
-*/
+@require 'themes/' + $theme + '/_vars.styl';
 
-$theme = 'bordeau';
-
-@import 'themes/' + $theme + '/_vars.styl';
-
-@import "_mixins.styl";
-@import "_main.styl";
-@import "components/_widget.styl";
-@import "components/_list.styl";
+@require '_mixins.styl';
+@require '_main.styl';
+@require 'components/_widget.styl';
+@require 'components/_list.styl';
 
 // IMPORT EXTENSIONS STYLES
-@import "../../ext/collected.styl";
+@require '../../ext/collected.styl';
 
-@import 'themes/' + $theme + '/' + $theme + '.styl';
+@require 'themes/' + $theme + '/' + $theme + '.styl';

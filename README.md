@@ -5,7 +5,7 @@
 [![Dependencies][gemnasium-image]][gemnasium-url]
 [![Widgets][widget-count-image]][widget-count-url]
 
-Mozaïk is a tool based on nodejs / react / stylus to easily build beautiful dashboards.
+Mozaïk is a tool based on nodejs / react / stylus to easily craft beautiful dashboards.
 
 
 Check the [DEMO](http://mozaik.herokuapp.com/)
@@ -68,30 +68,49 @@ You should have the following config:
       columns: 3,
       rows:    2,
       widgets: [
-          {   // A
-              type: 'whatever',
-              columns: 1, rows: 1,
-              x: 0, y: 0
-          },
-          {   // B
-              type: 'whatever',
-              columns: 2, rows: 1,
-              x: 1, y: 0
-          },
-          {  // C
-              type: 'whatever',
-              columns: 2, rows: 1,
-              x: 0, y: 1
-          },
-          {   // D
-              type: 'whatever',
-              columns: 1, rows: 1,
-              x: 2, y: 1
-          }
+        { // A
+          type: 'whatever',
+          columns: 1, rows: 1,
+          x: 0, y: 0
+        },
+        { // B
+          type: 'whatever',
+          columns: 2, rows: 1,
+          x: 1, y: 0
+        },
+        { // C
+          type: 'whatever',
+          columns: 2, rows: 1,
+          x: 0, y: 1
+        },
+        { // D
+          type: 'whatever',
+          columns: 1, rows: 1,
+          x: 2, y: 1
+        }
       ]
     }
   ]
 ```
+
+### Themes
+
+Mozaïk comes with 5 themes, you can set the theme you want with the `theme` key in the config file:
+
+```javascript
+{
+  //…
+  theme: 'yellow',
+  //…
+}
+```
+Available themes:
+
+- bordeau
+- light-grey
+- yellow
+- light-yellow
+- night-blue
 
 
 
