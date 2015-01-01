@@ -27,6 +27,8 @@ gulp publish
 node mozaik.js
 ```
 
+You should now be able to visit your dashboard at [http://localhost:5000](http://localhost:5000)
+
 
 
 
