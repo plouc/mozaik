@@ -23,7 +23,7 @@ var config = {
             }
         },
         github: {
-            //token: 'my-github-token'
+            token: process.env.GITHUB_API_TOKEN
         },
         heroku: {
             apiToken: process.env.HEROKU_API_TOKEN
