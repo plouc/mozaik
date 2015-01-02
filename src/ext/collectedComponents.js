@@ -8,3 +8,4 @@ require('./jenkins/components/register.js');
 require('./sensu/components/register.js');
 require('./time/components/register.js');
 require('./travis/components/register.js');
+require('./weather/components/register.js');

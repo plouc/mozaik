@@ -73,11 +73,20 @@ var config = {
                     x: 3, y: 0
                 },
                 {
+                    type: 'weather.weather',
+                    city: 'Paris',
+                    country: 'FR',
+                    lang: 'en',
+                    limit: 2,
+                    columns: 1, rows: 1,
+                    x: 3, y: 1
+                },
+                {
                     type: 'travis.build_history',
                     owner: 'plouc',
                     repository: 'mozaik',
-                    columns: 1, rows: 2,
-                    x: 3, y: 1
+                    columns: 1, rows: 1,
+                    x: 3, y: 2
                 },
                 {
                     type: 'travis.build_histogram',

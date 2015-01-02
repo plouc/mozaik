@@ -1,0 +1,79 @@
+.weather {
+  &__weather {
+    .widget__body {
+      padding 0 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__current {
+      margin-right 15px;
+    }
+
+    &__temp {
+      &__value {
+        font-size   52px;
+        line-height 52px;
+
+        vertical-align top;
+
+        display inline-block;
+      }
+
+      &__unit {
+        font-size 16px;
+
+        display inline-block;
+
+        margin-top 8px;
+
+        vertical-align top;
+      }
+    }
+
+    &__forecast {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__item {
+        margin-left 10px;
+        &:first-child {
+          margin-left 0;
+        }
+
+        &__min,
+        &__max {
+          display block;
+
+          width 50%;
+
+          font-size 12px;
+
+          float left;
+
+          text-align center;
+
+          line-height 14px;
+        }
+
+        &__description {
+          font-size 14px;
+          display block;
+          text-align center;
+          width 100%;
+        }
+      }
+    }
+
+    /*
+    &__description {
+      position absolute;
+
+      bottom 15px;
+      left   15px;
+    }
+    */
+  }
+}

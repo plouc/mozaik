@@ -381,7 +381,7 @@ Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
 
 
 
-[widget-count-image]: https://img.shields.io/badge/widgets-x13-yellow.svg?style=flat-square
+[widget-count-image]: https://img.shields.io/badge/widgets-x14-yellow.svg?style=flat-square
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik
