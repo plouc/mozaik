@@ -4,6 +4,7 @@ var moment              = require('moment');
 var format              = require('string-template');
 var ApiConsumerMixin    = require('./../../../core/mixins/ApiConsumerMixin');
 var WeatherForecastItem = require('./WeatherForecastItem.jsx');
+var WeatherCodeHelper   = require('./../lib/WeatherCodeHelper');
 
 // see http://openweathermap.org/weather-conditions for `weather.id` meaning
 
@@ -75,19 +76,26 @@ var Weather = React.createClass({
     render: function () {
         var descriptionNode = null;
         var tempNode        = null;
+        var iconNode        = null;
 
         if (this.state.current) {
             if (this.state.current.weather.length > 0) {
+                //{this.state.current.weather[0].id}
                 descriptionNode = (
                     <div className="weather__weather__description">{this.state.current.weather[0].description}</div>
+                );
+
+                var iconClass = 'weather__icon weather__icon--' + WeatherCodeHelper.icon(this.state.current.weather[0].id);
+                iconNode = (
+                    <i className={iconClass} />
                 );
             }
 
             tempNode = (
-                <div className="weather__weather__temp">
+                <span className="weather__weather__temp">
                     <span className="weather__weather__temp__value">{Math.round(this.state.current.main.temp - 273.15)}</span>
                     <span className="weather__weather__temp__unit">°C</span>
-                </div>
+                </span>
             );
         }
 
@@ -103,6 +111,7 @@ var Weather = React.createClass({
                 </div>
                 <div className="widget__body">
                     <div className="weather__weather__current">
+                        {iconNode}
                         {tempNode}
                         {descriptionNode}
                     </div>

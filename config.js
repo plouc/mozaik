@@ -8,7 +8,7 @@ var config = {
     // + yellow
     // + light-yellow
     // + bordeau
-    theme: 'night-blue',
+    theme: 'bordeau',
 
     // clients configs
     api: {
@@ -74,8 +74,8 @@ var config = {
                 },
                 {
                     type: 'weather.weather',
-                    city: 'Paris',
-                    country: 'FR',
+                    city: 'Tokyo',
+                    country: 'JP',
                     lang: 'en',
                     limit: 2,
                     columns: 1, rows: 1,

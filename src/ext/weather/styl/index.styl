@@ -1,4 +1,49 @@
+@font-face {
+  font-family: 'Weather';
+  src: url('fonts/weather.ttf') format('truetype');
+}
+
 .weather {
+
+  &__icon {
+    display: inline-block;
+    font-family "Weather";
+    display inline-block;
+    font-style normal;
+    color #ddd;
+
+    &--clear-sky:before {
+      content "A";
+    }
+
+    &--few-clouds:before,
+    &--scattered-clouds:before {
+      content "D";
+    }
+
+    &--broken-clouds:before,
+    &--overcast-clouds:before {
+      content "P";
+    }
+
+    &--light-rain:before,
+    &--moderate-rain:before {
+      content "F";
+    }
+
+    &--heavy-intensity-rain:before,
+    &--very-heavy-rain:before,
+    &--extreme-rain:before,
+    &--freezing-rain:before,
+    &--light-intensity-shower-rain:before,
+    &--shower-rain:before,
+    &--heavy-intensity-shower-rain:before,
+    &--ragged-shower-rain:before {
+      content "X";
+    }
+  }
+
+
   &__weather {
     .widget__body {
       padding 15px 15px 15px 30px;
@@ -10,6 +55,15 @@
     &__current {
       margin-right 30px;
       align-self: flex-start;
+
+      .weather__icon {
+        font-size 52px;
+
+        height      60px;
+        line-height 60px;
+
+        margin-right 10px;
+      }
     }
 
     &__temp {
@@ -47,9 +101,16 @@
       &__item {
         flex: 1;
 
+        text-align center;
+
         margin-left 15px;
         &:first-child {
           margin-left 0;
+        }
+
+        .weather__icon {
+          font-size 36px;
+          margin-bottom 10px;
         }
 
         &__min,
@@ -61,8 +122,6 @@
           font-size 14px;
 
           float left;
-
-          text-align center;
 
           line-height 16px;
         }
@@ -76,7 +135,6 @@
         &__description {
           font-size 14px;
           display block;
-          text-align center;
           width 100%;
           margin-bottom 9px;
         }
