@@ -44,7 +44,7 @@ var config = {
                 {
                     type: 'github.user_badge',
                     user: 'plouc',
-                    columns: 1, rows: 2,
+                    columns: 1, rows: 1,
                     x: 0, y: 0
                 },
                 {
@@ -79,14 +79,14 @@ var config = {
                     lang: 'en',
                     limit: 2,
                     columns: 1, rows: 1,
-                    x: 3, y: 1
+                    x: 0, y: 1
                 },
                 {
                     type: 'travis.build_history',
                     owner: 'plouc',
                     repository: 'mozaik',
-                    columns: 1, rows: 1,
-                    x: 3, y: 2
+                    columns: 1, rows: 2,
+                    x: 3, y: 1
                 },
                 {
                     type: 'travis.build_histogram',
