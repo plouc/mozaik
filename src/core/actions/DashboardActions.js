@@ -1,9 +1,9 @@
 var Reflux = require('reflux');
 
 var HotBoardActions = Reflux.createActions([
-    'setSheets',
-    'previousSheet',
-    'nextSheet',
+    'setDashboards',
+    'previousDashboard',
+    'nextDashboard',
     'startRotation'
 ]);
 

@@ -100,10 +100,16 @@
       justify-content: center;
       align-items: flex-end;
 
+      min-height 120px;
+
       &__item {
         flex: 1;
 
         text-align center;
+
+        display: flex;
+        justify-content: center;
+        flex-direction column;
 
         margin-left 15px;
         &:first-child {
@@ -113,6 +119,10 @@
         .weather__icon {
           font-size 36px;
           margin-bottom 10px;
+        }
+
+        &__min-max {
+          align-self: flex-end;
         }
 
         &__min,

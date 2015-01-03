@@ -1,10 +1,10 @@
-var React      = require('react');
-var _          = require('lodash');
-var Reflux     = require('reflux');
-var Widget     = require('./Widget.jsx');
-var SheetStore = require('./../stores/SheetStore');
+var React          = require('react');
+var _              = require('lodash');
+var Reflux         = require('reflux');
+var Widget         = require('./Widget.jsx');
+var DashboardStore = require('./../stores/DashboardStore');
 
-var Sheet = React.createClass({
+var Dashboard = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     getInitialState: function () {
@@ -14,7 +14,7 @@ var Sheet = React.createClass({
     },
 
     componentWillMount: function () {
-        this.listenTo(SheetStore, this.onStoreUpdate);
+        this.listenTo(DashboardStore, this.onStoreUpdate);
     },
 
     onStoreUpdate: function (index) {
@@ -54,4 +54,4 @@ var Sheet = React.createClass({
     }
 });
 
-module.exports = Sheet;
+module.exports = Dashboard;

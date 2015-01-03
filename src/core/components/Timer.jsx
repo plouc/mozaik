@@ -1,7 +1,7 @@
-var React      = require('react');
-var Reflux     = require('reflux');
-var config     = require('./../../../config');
-var SheetStore = require('./../stores/SheetStore');
+var React          = require('react');
+var Reflux         = require('reflux');
+var config         = require('./../../../config');
+var DashboardStore = require('./../stores/DashboardStore');
 
 var Timer = React.createClass({
     mixins: [Reflux.ListenerMixin],
@@ -13,7 +13,7 @@ var Timer = React.createClass({
     },
 
     componentWillMount: function () {
-        this.listenTo(SheetStore, this.onStoreUpdate);
+        this.listenTo(DashboardStore, this.onStoreUpdate);
 
         setInterval(function () {
             this.setState({
