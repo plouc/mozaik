@@ -64,6 +64,9 @@ module.exports = {
     remove: function (id) {
         _.forOwn(subscriptions, function (subscription, subscriptionId) {
             subscription.clients = _.without(subscription.clients, id);
+
+            // if there's no more subscribers, clear the interval
+            // to avoid consuming APIs for nothing.
             if (subscription.clients.length === 0 && subscription.timer) {
 
                 console.log('removing interval for %s', subscriptionId);
@@ -110,17 +113,22 @@ module.exports = {
                 currentResponse: null
             };
 
+            // make an immediate call to avoid waiting for the first interval.
             processApiCall(requestId, callFn, request.params);
         }
 
+        // if there is no interval running, create one
         if (!subscriptions[requestId].timer) {
             subscriptions[requestId].timer = setInterval(function () {
                 processApiCall(requestId, callFn, request.params);
             }, 30000);
         }
 
+        // avoid adding a client for the same API call twice
         if (!_.contains(subscriptions[requestId].clients, clientId)) {
             subscriptions[requestId].clients.push(clientId);
+
+            // if there's an available cached response, send it immediately
             if (subscriptions[requestId].cached !== null) {
                 clients[clientId].send(JSON.stringify(subscriptions[requestId].cached));
             }
