@@ -7,7 +7,7 @@ var ws;
 
 var ApiStore = Reflux.createStore({
     init: function () {
-        ws = new WebSocket('ws://' + config.host + ':' + config.port);
+        ws = new WebSocket('ws://' + window.document.location.host);
         ws.onmessage = function (event) {
             console.log(JSON.parse(event.data));
             ApiStore.trigger(JSON.parse(event.data));
