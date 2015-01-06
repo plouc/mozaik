@@ -9,9 +9,9 @@ Mozaïk is a tool based on nodejs / react / stylus to easily craft beautiful das
 
 ![preview](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-panorama.png)
 
-Check the [DEMO](http://mozaik.herokuapp.com/
+Check the [DEMO](http://mozaik.herokuapp.com/)
 
-Visit the [Wiki](https://github.com/plouc/mozaik/wiki)
+Visit the [Wiki](https://github.com/plouc/mozaik/wiki) for further information/doc.
 
 
 
