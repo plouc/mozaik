@@ -10,6 +10,10 @@ var JobBuilds = React.createClass({
         ApiConsumerMixin
     ],
 
+    propTypes: {
+        job: React.PropTypes.string.isRequired
+    },
+
     getInitialState() {
         return {
             builds: []
@@ -19,7 +23,9 @@ var JobBuilds = React.createClass({
     getApiRequest() {
         return {
             id: 'jenkins.job.' + this.props.job,
-            params: { job: this.props.job }
+            params: {
+                job: this.props.job
+            }
         };
     },
 
@@ -37,7 +43,7 @@ var JobBuilds = React.createClass({
         return (
             <div>
                 <div className="widget__header">
-                    Jenkins job build
+                    {this.props.title || 'Jenkins job build'}
                     <span className="widget__header__count">
                         {this.state.builds.length}
                     </span>
