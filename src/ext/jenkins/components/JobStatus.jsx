@@ -35,8 +35,9 @@ var JobStatus = React.createClass({
     },
 
     render() {
-        var iconClasses = 'fa fa-close';
-        var currentStatusNode = null;
+        var iconClasses  = 'fa fa-close';
+        var currentNode  = null;
+        var previousNode = null;
 
         if (this.state.builds.length > 0) {
             var currentBuild = this.state.builds[0];
@@ -46,7 +47,7 @@ var JobStatus = React.createClass({
 
             var statusClasses = 'jenkins__job-status__current__status jenkins__job-status__current__status--' + currentBuild.result.toLowerCase();
 
-            currentStatusNode = (
+            currentNode = (
                 <div className="jenkins__job-status__current">
                     Build #{currentBuild.number}<br />
                     <span className={statusClasses}>
@@ -59,6 +60,17 @@ var JobStatus = React.createClass({
                     </time>
                 </div>
             );
+
+            if (this.state.builds.length > 1) {
+                var previousBuild = this.state.builds[1];
+                previousNode = (
+                    <div className="jenkins__job-status__previous">
+                        previous status were&nbsp;
+                        {previousBuild.result}&nbsp;
+                        {moment(previousBuild.timestamp, 'x').fromNow()}
+                    </div>
+                );
+            }
         }
 
         return (
@@ -68,7 +80,8 @@ var JobStatus = React.createClass({
                     <i className="fa fa-bug" />
                 </div>
                 <div className="widget__body">
-                    {currentStatusNode}
+                    {currentNode}
+                    {previousNode}
                 </div>
             </div>
         );
