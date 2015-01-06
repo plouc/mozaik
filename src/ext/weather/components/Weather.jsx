@@ -14,7 +14,7 @@ var Weather = React.createClass({
         ApiConsumerMixin
     ],
 
-    getDefaultProps: function() {
+    getDefaultProps() {
         return {
             lang: 'en',
             limit: 3
@@ -48,14 +48,14 @@ var Weather = React.createClass({
         ]).isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             current:  null,
             forecast: []
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         var params = {
             city:    this.props.city,
             country: this.props.country,
@@ -69,11 +69,11 @@ var Weather = React.createClass({
         };
     },
 
-    onApiData: function (weather) {
+    onApiData(weather) {
         this.setState(weather);
     },
 
-    render: function () {
+    render() {
         var descriptionNode = null;
         var tempNode        = null;
         var iconNode        = null;
@@ -99,7 +99,7 @@ var Weather = React.createClass({
             );
         }
 
-        var forecastItemNodes = this.state.forecast.map(function (data, i) {
+        var forecastItemNodes = this.state.forecast.map((data, i) => {
             return (<WeatherForecastItem key={i} data={data} />);
         });
 

@@ -18,13 +18,13 @@ var BuildHistogram = React.createClass({
         repository: React.PropTypes.string.isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             builds: []
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'travis.buildHistory.' + this.props.owner + '.' + this.props.repository,
             params: {
@@ -34,13 +34,13 @@ var BuildHistogram = React.createClass({
         };
     },
 
-    onApiData: function (builds) {
+    onApiData(builds) {
         this.setState({
             builds: _.clone(builds).reverse()
         });
     },
 
-    componentDidMount: function () {
+    componentDidMount() {
         var $this = $(this.getDOMNode());
 
         this.$body = $this.find('.widget__body');
@@ -69,7 +69,7 @@ var BuildHistogram = React.createClass({
         ;
     },
 
-    drawGraph: function () {
+    drawGraph() {
         var width  = this.$body.outerWidth();
         var height = this.$body.outerHeight();
 
@@ -105,12 +105,8 @@ var BuildHistogram = React.createClass({
             .scale(y)
             .orient('left');
 
-        x.domain(this.state.builds.map(function (d) {
-            return parseInt(d.number, 10);
-        }));
-        y.domain([0, d3.max(this.state.builds, function (d) {
-            return d.duration;
-        })]);
+        x.domain(this.state.builds.map(d => parseInt(d.number, 10)));
+        y.domain([0, d3.max(this.state.builds, d => d.duration)]);
 
         this.backgroundBarsContainer
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -118,15 +114,11 @@ var BuildHistogram = React.createClass({
         this.backgroundBarsContainer.selectAll('.travis__build-histogram__bar-bg')
             .data(this.state.builds)
             .enter().append('rect')
-            .attr('class', function (d) {
-                return 'travis__build-histogram__bar-bg';
-            })
-            .attr('x', function (d) {
-                return x(d.number);
-            })
+            .attr('class', 'travis__build-histogram__bar-bg')
+            .attr('x', d => x(d.number))
             .attr('width', x.rangeBand())
             .attr('y', 0)
-            .attr('height', function (d) {
+            .attr('height', d => {
                 var height = utilHeight - (utilHeight - y(d.duration)) - 3;
                 return height > 0 ? height : 0;
             });
@@ -154,26 +146,22 @@ var BuildHistogram = React.createClass({
         this.barsContainer.selectAll('.travis__build-histogram__bar')
             .data(this.state.builds)
             .enter().append('rect')
-            .attr('class', function (d) {
+            .attr('class', d => {
                 return 'travis__build-histogram__bar travis__build-histogram__bar--' + d.state;
             })
-            .attr('x', function (d) {
-                return x(d.number);
-            })
+            .attr('x', d => x(d.number))
             .attr('width', x.rangeBand())
-            .attr('y', function (d) {
-                return y(d.duration);
-            })
-            .attr('height', function (d) {
+            .attr('y', d => y(d.duration))
+            .attr('height', d => {
                 return utilHeight - y(d.duration);
             });
     },
 
-    componentDidUpdate: function () {
+    componentDidUpdate() {
         this.drawGraph();
     },
 
-    render: function () {
+    render() {
         return (
             <div>
                 <div className="widget__header">

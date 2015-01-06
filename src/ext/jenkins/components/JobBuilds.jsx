@@ -10,26 +10,28 @@ var JobBuilds = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
-        return { builds: [] };
+    getInitialState() {
+        return {
+            builds: []
+        };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'jenkins.job.' + this.props.job,
             params: { job: this.props.job }
         };
     },
 
-    onApiData: function (builds) {
-        this.setState({ builds: builds });
+    onApiData(builds) {
+        this.setState({
+            builds: builds
+        });
     },
 
-    render: function () {
-        var buildNodes = _.map(this.state.builds, function (build) {
-            return (
-                <JobBuild build={build} key={build.number} />
-            );
+    render() {
+        var buildNodes = _.map(this.state.builds, build => {
+            return (<JobBuild build={build} key={build.number} />);
         });
 
         return (

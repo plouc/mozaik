@@ -14,26 +14,28 @@ var PullRequests = React.createClass({
         repository: React.PropTypes.string.isRequired
     },
 
-    getInitialState: function () {
-        return { pullRequests: [] };
+    getInitialState() {
+        return {
+            pullRequests: []
+        };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'github.pullRequests.' + this.props.repository,
             params: { repository: this.props.repository }
         };
     },
 
-    onApiData: function (pullRequests) {
-        this.setState({ pullRequests: pullRequests });
+    onApiData(pullRequests) {
+        this.setState({
+            pullRequests: pullRequests
+        });
     },
 
-    render: function () {
-        var pullRequestNodes = _.map(this.state.pullRequests, function (pullRequest) {
-            return (
-                <PullRequest key={pullRequest.id} pullRequest={pullRequest} />
-            );
+    render() {
+        var pullRequestNodes = _.map(this.state.pullRequests, pullRequest => {
+            return (<PullRequest key={pullRequest.id} pullRequest={pullRequest} />);
         });
 
         return (

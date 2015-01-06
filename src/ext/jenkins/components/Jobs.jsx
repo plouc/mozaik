@@ -11,23 +11,27 @@ var Jobs = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
-        return { jobs: [] };
+    getInitialState() {
+        return {
+            jobs: []
+        };
     },
 
-    getApiRequest: function () {
-        return { id: 'jenkins.jobs' };
+    getApiRequest() {
+        return {
+            id: 'jenkins.jobs'
+        };
     },
 
-    onApiData: function (jobs) {
-        this.setState({ jobs: jobs });
+    onApiData(jobs) {
+        this.setState({
+            jobs: jobs
+        });
     },
 
-    render: function () {
-        var jobNodes = _.map(this.state.jobs, function (job, index) {
-            return (
-                <JobItem job={job} key={index} />
-            );
+    render() {
+        var jobNodes = _.map(this.state.jobs, (job, index) => {
+            return (<JobItem job={job} key={index} />);
         });
 
         return (

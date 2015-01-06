@@ -13,13 +13,13 @@ var AppInfo = React.createClass({
         app: React.PropTypes.string.isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             appInfo: null
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'heroku.appInfo.' + this.props.app,
             params: {
@@ -28,13 +28,13 @@ var AppInfo = React.createClass({
         };
     },
 
-    onApiData: function (appInfo) {
+    onApiData(appInfo) {
         this.setState({
             appInfo: appInfo
         });
     },
 
-    render: function () {
+    render() {
 
         var infoNode = null;
         if (this.state.appInfo) {

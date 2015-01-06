@@ -18,17 +18,17 @@ var hoursScale   = d3.scale.linear().domain([0, 11 + 59/60]).range([-90, 270]);
 
 var Clock = React.createClass({
 
-    getInitialState: function () {
+    getInitialState() {
         return getCurrentTimeParts();
     },
 
-    componentDidMount: function () {
-        setInterval(function () {
+    componentDidMount() {
+        setInterval(() => {
             this.setState(getCurrentTimeParts());
-        }.bind(this), 1000);
+        }, 1000);
     },
 
-    render: function () {
+    render() {
         var hoursStyle   = {
             transform: 'rotate(' + hoursScale(this.state.hours % 12) + 'deg)'
         };

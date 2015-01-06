@@ -18,7 +18,7 @@ var codes = {
 };
 
 module.exports = {
-    icon: function (code) {
+    icon(code) {
         if (!codes[code]) {
             throw new Error('No icon defined for code "' + code + '"');
         }

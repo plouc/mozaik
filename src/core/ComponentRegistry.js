@@ -1,13 +1,13 @@
 var _components = {};
 
 var ComponentRegistry = {
-    add: function (type, component) {
+    add(type, component) {
         _components[type] = component;
 
         return ComponentRegistry;
     },
 
-    get: function (type) {
+    get(type) {
         if (!_components[type]) {
             throw new Error('No component defined for type "' + type + '"');
         }

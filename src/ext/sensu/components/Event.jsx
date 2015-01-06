@@ -18,7 +18,7 @@ function statusToClass(statusId) {
 }
 
 var Event = React.createClass({
-    render: function () {
+    render() {
         var cssClasses = 'sensu__events__item sensu__events__item--status-';
         cssClasses += statusToClass(this.props.event.check.status);
 

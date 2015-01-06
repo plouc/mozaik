@@ -6,29 +6,29 @@ var DashboardStore = require('./../stores/DashboardStore');
 var Timer = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             completion: 0
         };
     },
 
-    componentWillMount: function () {
+    componentWillMount() {
         this.listenTo(DashboardStore, this.onStoreUpdate);
 
-        setInterval(function () {
+        setInterval(() => {
             this.setState({
                 completion: this.state.completion + 5
             });
-        }.bind(this), 5);
+        }, 5);
     },
 
-    onStoreUpdate: function () {
+    onStoreUpdate() {
         this.setState({
             completion: 0
         });
     },
 
-    render: function () {
+    render() {
         var style = {
             width: (this.state.completion / config.rotationDuration * 100) + '%'
         };

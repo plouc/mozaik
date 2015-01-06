@@ -15,13 +15,13 @@ var Repository = React.createClass({
         repository: React.PropTypes.string.isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             repository: null
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'travis.repository.' + this.props.owner + '.' + this.props.repository,
             params: {
@@ -31,13 +31,13 @@ var Repository = React.createClass({
         };
     },
 
-    onApiData: function (repository) {
+    onApiData(repository) {
         this.setState({
             repository: repository
         });
     },
 
-    render: function () {
+    render() {
 
         var cssClasses = '';
         var infoNode   = null;

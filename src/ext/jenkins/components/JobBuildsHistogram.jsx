@@ -11,22 +11,26 @@ var JobBuildsHistogram = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
-        return { builds: [] };
+    getInitialState() {
+        return {
+            builds: []
+        };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'jenkins.job.' + this.props.job,
             params: { job: this.props.job }
         };
     },
 
-    onApiData: function (builds) {
-        this.setState({ builds: builds.slice(0, 20).reverse() });
+    onApiData(builds) {
+        this.setState({
+            builds: builds.slice(0, 20).reverse()
+        });
     },
 
-    componentDidMount: function () {
+    componentDidMount() {
         var $this = $(this.getDOMNode());
 
         this.$body = $this.find('.widget__body');
@@ -39,7 +43,7 @@ var JobBuildsHistogram = React.createClass({
         this.xAxisContainer.attr('class', 'jenkins__job-build_durations__axis jenkins__job-build_durations__axis--x');
     },
 
-    drawGraph: function () {
+    drawGraph() {
         var width  = this.$body.outerWidth();
         var height = this.$body.outerHeight();
 
@@ -68,10 +72,10 @@ var JobBuildsHistogram = React.createClass({
             .scale(x)
             .orient('bottom');
 
-        x.domain(this.state.builds.map(function (d) {
+        x.domain(this.state.builds.map(d => {
             return d.number;
         }));
-        y.domain([0, d3.max(this.state.builds, function (d) {
+        y.domain([0, d3.max(this.state.builds, d => {
             return d.duration;
         })]);
 
@@ -81,15 +85,13 @@ var JobBuildsHistogram = React.createClass({
         this.backgroundBarsContainer.selectAll('.jenkins__job-build_durations__bar-bg')
             .data(this.state.builds)
         .enter().append('rect')
-            .attr('class', function (d) {
-                return 'jenkins__job-build_durations__bar-bg';
-            })
-            .attr('x', function (d) {
+            .attr('class', 'jenkins__job-build_durations__bar-bg')
+            .attr('x', d => {
                 return x(d.number);
             })
             .attr('width', x.rangeBand())
             .attr('y', 0)
-            .attr('height', function (d) {
+            .attr('height', d => {
                 var height = utilHeight - (utilHeight - y(d.duration)) - 3;
                 return height > 0 ? height : 0;
             });
@@ -112,26 +114,26 @@ var JobBuildsHistogram = React.createClass({
         this.barsContainer.selectAll('.jenkins__job-build_durations__bar')
             .data(this.state.builds)
         .enter().append('rect')
-            .attr('class', function (d) {
+            .attr('class', d => {
                 return 'jenkins__job-build_durations__bar jenkins__job-build_durations__bar--' + d.result.toLowerCase();
             })
-            .attr('x', function (d) {
+            .attr('x', d => {
                 return x(d.number);
             })
             .attr('width', x.rangeBand())
-            .attr('y', function (d) {
+            .attr('y', d => {
                 return y(d.duration);
             })
-            .attr('height', function (d) {
+            .attr('height', d => {
                 return utilHeight - y(d.duration);
             });
     },
 
-    componentDidUpdate: function () {
+    componentDidUpdate() {
         this.drawGraph();
     },
 
-    render: function () {
+    render() {
         return (
             <div>
                 <div className="widget__header">

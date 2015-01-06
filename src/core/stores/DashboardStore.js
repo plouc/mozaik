@@ -7,25 +7,25 @@ var _dashboards   = [];
 var _currentIndex = 0;
 
 var DashboardStore = Reflux.createStore({
-    init: function () {
+    init() {
         this.listenTo(DashboardActions.setDashboards,     this.setDashboards);
         this.listenTo(DashboardActions.previousDashboard, this.previousDashboard);
         this.listenTo(DashboardActions.nextDashboard,     this.nextDashboard);
         this.listenTo(DashboardActions.startRotation,     this.startRotation);
     },
 
-    startRotation: function () {
-        setInterval(function () {
+    startRotation() {
+        setInterval(() => {
             this.nextDashboard();
-        }.bind(this), config.rotationDuration);
+        }, config.rotationDuration);
     },
 
-    previousDashboard: function () {
+    previousDashboard() {
         _currentIndex--;
         this.trigger(_currentIndex);
     },
 
-    nextDashboard: function () {
+    nextDashboard() {
         if (_currentIndex < _dashboards.length - 1) {
             _currentIndex++;
         } else {
@@ -35,8 +35,8 @@ var DashboardStore = Reflux.createStore({
         this.trigger(_currentIndex);
     },
 
-    setDashboards: function (dashboards) {
-        _.forEach(dashboards, function (dashboard, index) {
+    setDashboards(dashboards) {
+        _.forEach(dashboards, (dashboard, index) => {
             dashboard.index = index;
         });
 
@@ -46,7 +46,7 @@ var DashboardStore = Reflux.createStore({
         this.trigger(_currentIndex);
     },
 
-    currentIndex: function () {
+    currentIndex() {
         return _currentIndex;
     }
 });

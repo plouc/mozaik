@@ -4,7 +4,7 @@ var ComponentRegistry = require('./../ComponentRegistry');
 
 
 var Widget = React.createClass({
-    render: function () {
+    render() {
         var style = {
             top:    this.props.y,
             left:   this.props.x,

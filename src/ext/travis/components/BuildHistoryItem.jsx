@@ -2,7 +2,7 @@ var React  = require('react');
 var moment = require('moment');
 
 var BuildHistoryItem = React.createClass({
-    render: function () {
+    render() {
 
         var commitNode = null;
         if (this.props.build.commit) {

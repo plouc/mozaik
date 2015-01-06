@@ -9,20 +9,26 @@ var Instances = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
-        return { instances: [] };
+    getInitialState() {
+        return {
+            instances: []
+        };
     },
 
-    getApiRequest: function () {
-        return { id: 'aws.instances' };
+    getApiRequest() {
+        return {
+            id: 'aws.instances'
+        };
     },
 
-    onApiData: function (instances) {
-        this.setState({ instances: instances });
+    onApiData(instances) {
+        this.setState({
+            instances: instances
+        });
     },
 
-    render: function () {
-        var instanceNodes = _.map(this.state.instances, function (instance) {
+    render() {
+        var instanceNodes = _.map(this.state.instances, instance => {
             var cssClass = 'aws__instance aws__instance--' + instance.state;
 
             return (
@@ -34,18 +40,20 @@ var Instances = React.createClass({
             );
         });
 
-        return <div>
-            <div className="widget__header">
-                AWS instances
-                <span className="widget__header__count">
-                    {this.state.instances.length}
-                </span>
-                <i className="fa fa-hdd-o" />
+        return (
+            <div>
+                <div className="widget__header">
+                    AWS instances
+                    <span className="widget__header__count">
+                        {this.state.instances.length}
+                    </span>
+                    <i className="fa fa-hdd-o" />
+                </div>
+                <div className="widget__body">
+                    {instanceNodes}
+                </div>
             </div>
-            <div className="widget__body">
-                {instanceNodes}
-            </div>
-        </div>
+        );
     }
 });
 

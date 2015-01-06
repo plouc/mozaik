@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Stack = React.createClass({
-    render: function () {
+    render() {
         return (
             <div className="aws__stack">
                 {this.props.stack.StackName}

@@ -10,43 +10,43 @@ var Stacks = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             stacks: []
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'aws.stacks'
         };
     },
 
-    onApiData: function (stacks) {
+    onApiData(stacks) {
         this.setState({
             stacks: stacks
         });
     },
 
-    render: function () {
-        var stackNodes = _.map(this.state.stacks, function (stack) {
-            return (
-                <Stack key={stack.StackId} stack={stack} />
-            );
+    render() {
+        var stackNodes = _.map(this.state.stacks, stack => {
+            return (<Stack key={stack.StackId} stack={stack} />);
         });
 
-        return <div>
-            <div className="widget__header">
-                AWS stacks
-                <span className="widget__header__count">
-                    {this.state.stacks.length}
-                </span>
-                <i className="fa fa-cloud" />
+        return (
+            <div>
+                <div className="widget__header">
+                    AWS stacks
+                    <span className="widget__header__count">
+                        {this.state.stacks.length}
+                    </span>
+                    <i className="fa fa-cloud" />
+                </div>
+                <div className="widget__body">
+                    {stackNodes}
+                </div>
             </div>
-            <div className="widget__body">
-                {stackNodes}
-            </div>
-        </div>
+        );
     }
 });
 

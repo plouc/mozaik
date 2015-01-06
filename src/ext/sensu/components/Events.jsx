@@ -10,23 +10,27 @@ var Events = React.createClass({
         ApiConsumerMixin
     ],
 
-    getInitialState: function () {
-        return { events: [] };
+    getInitialState() {
+        return {
+            events: []
+        };
     },
 
-    getApiRequest: function () {
-        return { id: 'sensu.events' };
+    getApiRequest() {
+        return {
+            id: 'sensu.events'
+        };
     },
 
-    onApiData: function (events) {
-        this.setState({ events: events });
+    onApiData(events) {
+        this.setState({
+            events: events
+        });
     },
 
-    render: function () {
-        var eventNodes = _.map(this.state.events, function (event) {
-            return (
-                <Event key={event.id} event={event} />
-            );
+    render() {
+        var eventNodes = _.map(this.state.events, event => {
+            return (<Event key={event.id} event={event} />);
         });
 
         return (

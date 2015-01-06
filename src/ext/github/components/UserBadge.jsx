@@ -13,13 +13,13 @@ var UserBadge = React.createClass({
         user: React.PropTypes.string.isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             user: null
         };
     },
 
-    getApiRequest: function () {
+    getApiRequest() {
         return {
             id: 'github.user.' + this.props.user,
             params: {
@@ -28,16 +28,14 @@ var UserBadge = React.createClass({
         };
     },
 
-    onApiData: function (user) {
+    onApiData(user) {
         this.setState({
             user: user
         });
     },
 
-    render: function () {
-        var userNode = (
-            <div className="widget__body" />
-        );
+    render() {
+        var userNode = (<div className="widget__body" />);
 
         if (this.state.user) {
             userNode = (

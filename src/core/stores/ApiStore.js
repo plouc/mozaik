@@ -6,15 +6,15 @@ var buffer = [];
 var ws;
 
 var ApiStore = Reflux.createStore({
-    init: function () {
+    init() {
         ws = new WebSocket('ws://' + window.document.location.host);
-        ws.onmessage = function (event) {
+        ws.onmessage = event => {
             console.log(JSON.parse(event.data));
             ApiStore.trigger(JSON.parse(event.data));
         };
 
-        ws.onopen = function () {
-            buffer.forEach(function (request) {
+        ws.onopen = () => {
+            buffer.forEach(request => {
                 ws.send(JSON.stringify(request));
             });
         };
@@ -22,7 +22,7 @@ var ApiStore = Reflux.createStore({
         this.listenTo(ApiActions.get, this.get);
     },
 
-    get: function (id, params) {
+    get(id, params) {
         if (ws.readyState !== WebSocket.OPEN) {
             buffer.push({
                 id:     id,

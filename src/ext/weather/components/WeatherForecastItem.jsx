@@ -2,7 +2,7 @@ var React             = require('react');
 var WeatherCodeHelper = require('./../lib/WeatherCodeHelper');
 
 var WeatherForecastItem = React.createClass({
-    render: function () {
+    render() {
 
         var iconClass = 'weather__icon weather__icon--' + WeatherCodeHelper.icon(this.props.data.weather[0].id);
 

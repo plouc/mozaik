@@ -7,27 +7,27 @@ var DashboardStore = require('./../stores/DashboardStore');
 var Dashboard = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             isCurrent: false
         };
     },
 
-    componentWillMount: function () {
+    componentWillMount() {
         this.listenTo(DashboardStore, this.onStoreUpdate);
     },
 
-    onStoreUpdate: function (index) {
+    onStoreUpdate(index) {
         this.setState({
             isCurrent: index === this.props.dashboard.index
         });
     },
 
-    render: function () {
+    render() {
         var columns = this.props.dashboard.columns;
         var rows    = this.props.dashboard.rows;
 
-        var widgetNodes = _.map(this.props.dashboard.widgets, function (widget, index) {
+        var widgetNodes = _.map(this.props.dashboard.widgets, (widget, index) => {
 
             var props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
                 key:  index,

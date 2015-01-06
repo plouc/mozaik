@@ -4,7 +4,7 @@ var request     = require('superagent');
 var moment      = require('moment');
 
 var JobItem = React.createClass({
-    render: function () {
+    render() {
         var buildNumber = <span>—</span>;
         var statusIcon  = <i className="fa fa-question-circle" />;
         var fromNow     = <time>—</time>;
