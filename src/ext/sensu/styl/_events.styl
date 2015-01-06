@@ -8,52 +8,10 @@
 
     line-height: 22px;
 
-    &:before {
-      content: " ";
-      display: block;
-
-      width:  12px;
-      height: 12px;
-
-      position: absolute;
-
-      top:  14px;
-      left: 12px;
-
-      border-radius: 100%;
-
-      background-color: #000;
-    }
-
-    time {
-      font-size: 14px;
-      .fa {
-        margin-right: 5px;
-      }
-    }
-
     &__output {
       font-size: 14px;
       display: block;
       margin: 7px 0;
-    }
-
-    &--status-ok {
-      &:before {
-        background-color: $success-color;
-      }
-    }
-
-    &--status-warning {
-      &:before {
-        background-color: $warning-color;
-      }
-    }
-
-    &--status-critical {
-      &:before {
-        background-color: $failure-color;
-      }
     }
   }
 }

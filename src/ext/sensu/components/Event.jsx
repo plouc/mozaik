@@ -19,7 +19,7 @@ function statusToClass(statusId) {
 
 var Event = React.createClass({
     render() {
-        var cssClasses = 'sensu__events__item sensu__events__item--status-';
+        var cssClasses = 'list__item list__item--with-status sensu__events__item list__item--with-status--';
         cssClasses += statusToClass(this.props.event.check.status);
 
         return (
@@ -27,8 +27,8 @@ var Event = React.createClass({
                 {this.props.event.client.name}<br />
                 {this.props.event.check.name}<br />
                 <span className="sensu__events__item__output">{this.props.event.check.output}</span>
-                <time>
-                    <i className="fa fa-clock-o" />
+                <time className="list__item__time">
+                    <i className="fa fa-clock-o" />&nbsp;
                     {moment.unix(this.props.event.check.executed).format('YY-MM-DD HH:mm:ss')}
                 </time>
             </div>

@@ -23,15 +23,28 @@ var Events = React.createClass({
     },
 
     onApiData(events) {
+        // if we have an available filter on clients, apply it
+        if (this.props.clientFilter) {
+            events = _.where(events, event => this.props.clientFilter.test(event.client.name));
+        }
+
         this.setState({
             events: events
         });
     },
 
     render() {
-        var eventNodes = _.map(this.state.events, event => {
-            return (<Event key={event.id} event={event} />);
-        });
+        var eventNodes;
+        var iconClass = 'fa fa-smile-o';
+
+        if (this.state.events.length > 0) {
+            eventNodes = _.map(this.state.events, event => {
+                return (<Event key={event.id} event={event} />);
+            });
+            iconClass = 'fa fa-frown-o';
+        } else {
+            eventNodes = (<p className="list__empty-msg">No event found, everything seems fine!</p>);
+        }
 
         return (
             <div>
@@ -40,7 +53,7 @@ var Events = React.createClass({
                     <span className="widget__header__count">
                         {this.state.events.length}
                     </span>
-                    <i className="fa fa-bell-o" />
+                    <i className={iconClass} />
                 </div>
                 <div className="widget__body">
                     {eventNodes}

@@ -4,6 +4,11 @@
   margin:  0;
   padding: 0;
 
+  &__empty-msg {
+    text-align center;
+    margin 30px 15px;
+  }
+
   &__item {
     padding: 7px 15px;
 
@@ -30,6 +35,23 @@
         border-radius: 100%;
 
         background-color: #000;
+      }
+
+      &--aborted:before {
+        background-color $unknown-color;
+      }
+      &--ok:before,
+      &--passed:before,
+      &--success:before {
+        background-color $success-color;
+      }
+      &--warning:before {
+        background-color: $warning-color;
+      }
+      &--critical:before,
+      &--failed:before,
+      &--failure:before {
+        background-color $failure-color;
       }
     }
 
