@@ -72,4 +72,31 @@
       color: darken($main-txt-color, 20);
     }
   }
+
+  &__job-status {
+    .widget__body {
+      display: flex;
+      //justify-content: center;
+      align-items: center;
+      padding-bottom 30px;
+    }
+
+    &__current {
+      margin-left 15px;
+      &__status {
+        font-size 28px;
+        line-height 32px;
+        &--success {
+          color $success-color;
+        }
+        &--failure {
+          color $failure-color;
+        }
+      }
+      &__time {
+        font-size: 13px;
+        color: darken($main-txt-color, 20);
+      }
+    }
+  }
 }
