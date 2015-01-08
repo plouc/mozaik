@@ -121,7 +121,7 @@ module.exports = {
         if (!subscriptions[requestId].timer) {
             subscriptions[requestId].timer = setInterval(function () {
                 processApiCall(requestId, callFn, request.params);
-            }, 30000);
+            }, 100000);
         }
 
         // avoid adding a client for the same API call twice

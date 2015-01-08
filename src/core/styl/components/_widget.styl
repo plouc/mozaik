@@ -1,11 +1,11 @@
 .widget {
   &__wrapper {
-    position: absolute;
+    position absolute;
 
-    top:  0;
-    left: 0;
+    top  0;
+    left 0;
 
-    padding: ($widget-spacing / 2);
+    padding ($widget-spacing / 2);
   }
 
   width:  100%;
@@ -59,12 +59,14 @@
     }
 
     .fa {
-      position: absolute;
+      font-size $widget-header-icon-size;
 
-      top:   12px;
-      right: 15px;
+      position absolute;
 
-      color: $widget-header-icon-color;
+      top   (($widget-header-height - $widget-header-icon-size) / 2);
+      right 15px;
+
+      color $widget-header-icon-color;
     }
   }
 

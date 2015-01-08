@@ -4,7 +4,7 @@ var _      = require('lodash');
 var rename = require('gulp-rename');
 var config = require('../config');
 
-gulp.task('jsmin', ['react'], function () {
+gulp.task('js:min', ['react'], function () {
     return gulp.src(config.dest + '/mozaik.js')
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))

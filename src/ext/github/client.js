@@ -26,5 +26,12 @@ module.exports = {
                 return res.body;
             })
         ;
+    },
+    repositoryContributorsStats: function (params) {
+        return buildApiRequest('https://api.github.com/repos/' + params.repository + '/stats/contributors')
+            .then(function (res) {
+                return res.body;
+            })
+        ;
     }
 };
