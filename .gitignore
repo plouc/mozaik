@@ -4,6 +4,7 @@ logs
 node_modules
 .idea
 build/mozaik.js
+build/mozaik.min.js
 build/mozaik.css
 build/fonts
 build/font-awesome.min.css

@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('publish', ['copy', 'styl', 'react']);
+gulp.task('publish', ['copy', 'styl', 'jsmin']);

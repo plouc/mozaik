@@ -10,5 +10,5 @@ gulp.task('watch', function () {
         config.src + '**/*.js',
         config.src + '**/*.jsx',
         './config.js'
-    ], ['react']);
+    ], ['js:min']);
 });
