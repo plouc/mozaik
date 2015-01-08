@@ -22,6 +22,11 @@ var Instances = React.createClass({
     },
 
     onApiData(instances) {
+        // if we have an available filter on instance name, apply it
+        if (this.props.nameFilter) {
+            instances = _.where(instances, instance => this.props.nameFilter.test(instance.name));
+        }
+
         this.setState({
             instances: instances
         });
