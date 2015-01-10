@@ -5,7 +5,9 @@
 [![Dependencies][gemnasium-image]][gemnasium-url]
 [![Widgets][widget-count-image]][widget-count-url]
 
-Mozaïk is a tool based on nodejs / react / stylus to easily craft beautiful dashboards.
+Mozaïk is a tool based on nodejs / react / d3 / stylus to easily craft beautiful dashboards.
+It ships with several useful widgets (for now, focused enough on CI and monitoring) such as Jenkins, Travis, Sensu…
+You can switch between 5 available themes or [make your own one](https://github.com/plouc/mozaik/wiki/theming)
 
 ![preview](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-panorama.png)
 
