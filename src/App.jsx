@@ -1,7 +1,7 @@
 var React  = require('react');
 var Mozaik = require('./core/components/Mozaik.jsx');
 
-require('./ext/collectedComponents');
+require('./ext/collected');
 
 var config = require('./../config');
 

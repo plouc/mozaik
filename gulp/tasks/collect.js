@@ -15,7 +15,7 @@ gulp.task('collect:js', function (done) {
         lines.push('require(\'.' + path.sep + path.relative('src/ext', file) + '\');');
     });
 
-    fs.writeFile('src/ext/collectedComponents.js', lines.join('\n'), function (err) {
+    fs.writeFile('src/ext/collected.js', lines.join('\n'), function (err) {
         if (err) {
             throw err;
         }
