@@ -8,3 +8,12 @@ build/mozaik.min.js
 build/mozaik.css
 build/fonts
 build/font-awesome.min.css
+src/ext/*
+!src/ext/aws
+!src/ext/github
+!src/ext/heroku
+!src/ext/jenkins
+!src/ext/sensu
+!src/ext/time
+!src/ext/travis
+!src/ext/weather
