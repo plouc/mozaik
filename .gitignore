@@ -3,11 +3,15 @@ logs
 .sass-cache
 node_modules
 .idea
+
+# Ignore generated build files
 build/mozaik.js
 build/mozaik.min.js
 build/mozaik.css
 build/fonts
 build/font-awesome.min.css
+
+# Ignore non default extensions
 src/ext/*
 !src/ext/aws
 !src/ext/github
@@ -17,3 +21,11 @@ src/ext/*
 !src/ext/time
 !src/ext/travis
 !src/ext/weather
+
+# Ignore non default themes
+src/themes/*
+!src/themes/bordeau
+!src/themes/light-grey
+!src/themes/light-yellow
+!src/themes/night-blue
+!src/themes/yellow
