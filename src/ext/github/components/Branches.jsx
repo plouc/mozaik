@@ -1,10 +1,10 @@
 var React            = require('react');
 var Reflux           = require('reflux');
 var _                = require('lodash');
-var PullRequest      = require('./PullRequest.jsx');
+var Branch           = require('./Branch.jsx');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
-var PullRequests = React.createClass({
+var Branches = React.createClass({
     mixins: [
         Reflux.ListenerMixin,
         ApiConsumerMixin
@@ -16,43 +16,49 @@ var PullRequests = React.createClass({
 
     getInitialState() {
         return {
-            pullRequests: []
+            branches: []
         };
     },
 
     getApiRequest() {
         return {
-            id: 'github.pullRequests.' + this.props.repository,
-            params: { repository: this.props.repository }
+            id: 'github.branches.' + this.props.repository,
+            params: {
+                repository: this.props.repository
+            }
         };
     },
 
-    onApiData(pullRequests) {
+    onApiData(branches) {
         this.setState({
-            pullRequests: pullRequests
+            branches: branches
         });
     },
 
     render() {
-        var pullRequestNodes = _.map(this.state.pullRequests, pullRequest => {
-            return <PullRequest key={pullRequest.id} pullRequest={pullRequest} />
-        });
+        var branchNodes = _.map(this.state.branches, branch => <Branch key={branch.name} branch={branch} />);
+
+        var title = (
+            <span>
+                <span className="widget__header__subject">{this.props.repository}</span>&nbsp;branches
+            </span>
+        );
 
         return (
             <div>
                 <div className="widget__header">
-                    Pull requests
+                    {this.props.title ? this.props.title : title}
                     <span className="widget__header__count">
-                        {this.state.pullRequests.length}
+                        {this.state.branches.length}
                     </span>
-                    <i className="fa fa-github-alt" />
+                    <i className="fa fa-code-fork" />
                 </div>
                 <div className="widget__body">
-                    {pullRequestNodes}
+                    {branchNodes}
                 </div>
             </div>
         );
     }
 });
 
-module.exports = PullRequests;
+module.exports = Branches;

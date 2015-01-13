@@ -1,4 +1,6 @@
 var request = require('superagent');
+var Promise = require('bluebird');
+var _       = require('lodash');
 require('superagent-bluebird-promise');
 
 var config = require('./../../../config');
@@ -22,6 +24,24 @@ module.exports = {
     },
     pullRequests: function (params) {
         return buildApiRequest('https://api.github.com/repos/' + params.repository + '/pulls')
+            .then(function (res) {
+                return res.body;
+            })
+        ;
+    },
+    // Be warned that this API call can be heavy enough
+    // because it loads each branch details with an extra call
+    branches: function (params) {
+        return buildApiRequest('https://api.github.com/repos/' + params.repository + '/branches')
+            .then(function (res) {
+                return Promise.all(res.body.map(function (branch) {
+                    return module.exports.branch(_.extend({ branch: branch.name }, params));
+                }));
+            })
+        ;
+    },
+    branch: function (params) {
+        return buildApiRequest('https://api.github.com/repos/' + params.repository + '/branches/' + params.branch)
             .then(function (res) {
                 return res.body;
             })
