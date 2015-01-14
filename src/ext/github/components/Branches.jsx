@@ -4,6 +4,10 @@ var _                = require('lodash');
 var Branch           = require('./Branch.jsx');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
+
+/**
+ * @see https://github.com/plouc/mozaik/wiki/Github-Widgets#github-repository-branches
+ */
 var Branches = React.createClass({
     mixins: [
         Reflux.ListenerMixin,

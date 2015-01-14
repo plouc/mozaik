@@ -4,6 +4,10 @@ var _                         = require('lodash');
 var RepositoryContributorStat = require('./RepositoryContributorStat.jsx');
 var ApiConsumerMixin          = require('./../../../core/mixins/ApiConsumerMixin');
 
+
+/**
+ * @see https://github.com/plouc/mozaik/wiki/Github-Widgets#github-repository-contributors-stats
+ */
 var RepositoryContributorsStats = React.createClass({
     mixins: [
         Reflux.ListenerMixin,

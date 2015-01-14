@@ -3,6 +3,10 @@ var Reflux           = require('reflux');
 var _                = require('lodash');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 
+
+/**
+ * @see https://github.com/plouc/mozaik/wiki/Github-Widgets#github-user-badge
+ */
 var UserBadge = React.createClass({
     mixins: [
         Reflux.ListenerMixin,
