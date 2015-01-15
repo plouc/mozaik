@@ -22,23 +22,27 @@
   border: $widget-border;
 
   &__header {
-    font: $widget-header-font;
+    font $widget-header-font
 
-    height:      $widget-header-height;
-    line-height: $widget-header-height;
+    height      $widget-header-height
+    line-height $widget-header-height
 
-    border-radius: $widget-header-border-radius;
+    border-radius $widget-header-border-radius
 
-    padding: 0 15px;
+    padding 0 $widget-inner-spacing
 
-    position: relative;
+    position relative
 
-    background-color: $widget-header-bg-color;
-    color:            $widget-header-txt-color;
+    background-color $widget-header-bg-color
+    color            $widget-header-txt-color
 
-    border-bottom: $widget-header-border-bottom;
+    border-bottom $widget-header-border-bottom
 
-    box-shadow: $widget-header-shadow;
+    box-shadow $widget-header-shadow
+
+    white-space pre
+
+    overflow hidden
 
     &__count {
       display: inline-block;

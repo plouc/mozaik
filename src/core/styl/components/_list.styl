@@ -1,72 +1,62 @@
-.list {
-  list-style: none;
+.list
+  list-style none
 
-  margin:  0;
-  padding: 0;
+  margin  0
+  padding 0
 
-  &__empty-msg {
-    text-align center;
-    margin 30px 15px;
-  }
+  &__empty-msg
+    text-align center
+    margin 30px 15px
 
-  &__item {
-    padding: 7px 15px;
+  &__item
+    padding $list_item_padding
 
-    line-height: 24px;
+    //line-height 24px
 
-    position: relative;
+    position relative
 
-    &--with-status {
+    &--with-status
 
-      padding: 7px 15px 7px 35px;
+      padding $list_item_with_status_padding
 
-      &:before {
-        content: " ";
-        display: block;
+      &:before
+        content " "
+        display block
 
-        width:  12px;
-        height: 12px;
+        width  $list_item_status_icon_size
+        height $list_item_status_icon_size
 
-        position: absolute;
+        position absolute
 
-        top:  15px;
-        left: 12px;
+        top  $list_item_status_icon_top
+        left $list_item_status_icon_left
 
-        border-radius: 100%;
+        border-radius ($list_item_status_icon_left / 2)
 
-        background-color: #000;
-      }
+        background-color #000
 
-      &--aborted:before {
-        background-color $unknown-color;
-      }
+      &--aborted:before
+        background-color $unknown-color
+
       &--ok:before,
       &--passed:before,
-      &--success:before {
-        background-color $success-color;
-      }
-      &--warning:before {
-        background-color: $warning-color;
-      }
+      &--success:before
+        background-color $success-color
+
+      &--warning:before
+        background-color $warning-color
+
       &--critical:before,
       &--failed:before,
-      &--failure:before {
-        background-color $failure-color;
-      }
-    }
+      &--failure:before
+        background-color $failure-color
 
-    &__time {
-      font-size: 85%;
-      &--inline {
-        display: inline-block;
-        margin-left: 7px;
-      }
-    }
-  }
+    &__time
+      font-size 85%
+      &--inline
+        display inline-block
+        margin-left 7px
 
-  &--compact {
-    .list__item {
-      padding 5px 15px;
-    }
-  }
-}
+  &--compact
+    .list__item
+      padding 5px 15px
