@@ -1,25 +1,42 @@
 var React            = require('react');
+var Reflux           = require('reflux');
 var _                = require('lodash');
 var Dashboard        = require('./Dashboard.jsx');
 var Timer            = require('./Timer.jsx');
 var DashboardActions = require('./../actions/DashboardActions');
+var ConfigStore      = require('./../stores/ConfigStore');
 
 var Mozaik = React.createClass({
-    componentWillMount() {
-        DashboardActions.setDashboards(this.props.config.dashboards);
-        if (this.props.config.dashboards.length > 1) {
-            DashboardActions.startRotation();
+    mixins: [Reflux.ListenerMixin],
+
+    getInitialState() {
+        return {
+            config: null
         }
     },
 
+    componentWillMount() {
+        this.listenTo(ConfigStore, this.onConfigStoreUpdate);
+    },
+
+    onConfigStoreUpdate(config) {
+        this.setState({
+            config: config
+        });
+    },
+
     render() {
-        var dashboardNodes = _.map(this.props.config.dashboards, (dashboard, index) => {
-            return (<Dashboard key={index} dashboard={dashboard} />);
+        if (this.state.config === null) {
+            return null;
+        }
+
+        var dashboardNodes = _.map(this.state.config.dashboards, (dashboard, index) => {
+            return <Dashboard key={index} dashboard={dashboard} />;
         });
 
         var timerNode = null;
-        if (this.props.config.dashboards.length > 1) {
-            timerNode = (<Timer />);
+        if (this.state.config.dashboards.length > 1) {
+            timerNode = <Timer />;
         }
 
         return (

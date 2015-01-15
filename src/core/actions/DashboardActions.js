@@ -1,10 +1,20 @@
 var Reflux = require('reflux');
 
-var HotBoardActions = Reflux.createActions([
+var DashboardActions = Reflux.createActions([
     'setDashboards',
     'previousDashboard',
     'nextDashboard',
     'startRotation'
 ]);
 
-module.exports = HotBoardActions;
+DashboardActions.setDashboards.shouldEmit = function (dashboards) {
+    // starts dashboard rotation if there is more
+    // than one dashboard configured
+    if (dashboards.length > 1) {
+        DashboardActions.startRotation();
+    }
+
+    return true;
+};
+
+module.exports = DashboardActions;

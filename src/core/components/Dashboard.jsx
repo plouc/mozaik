@@ -14,10 +14,10 @@ var Dashboard = React.createClass({
     },
 
     componentWillMount() {
-        this.listenTo(DashboardStore, this.onStoreUpdate);
+        this.listenTo(DashboardStore, this.onDashboardStoreUpdate);
     },
 
-    onStoreUpdate(index) {
+    onDashboardStoreUpdate(index) {
         this.setState({
             isCurrent: index === this.props.dashboard.index
         });

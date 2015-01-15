@@ -1,11 +1,12 @@
-var React  = require('react');
-var Mozaik = require('./core/components/Mozaik.jsx');
+var React         = require('react');
+var Mozaik        = require('./core/components/Mozaik.jsx');
+var ConfigActions = require('./core/actions/ConfigActions');
 
 require('./ext/collected');
 
-var config = require('./../config');
-
 React.render(
-    <Mozaik config={config} />,
+    <Mozaik />,
     document.getElementById('hotboard')
 );
+
+ConfigActions.loadConfig();
