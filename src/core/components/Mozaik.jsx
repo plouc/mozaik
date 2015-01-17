@@ -40,7 +40,7 @@ var Mozaik = React.createClass({
         }
 
         return (
-            <div className="hotboard">
+            <div className="dashboard">
                 {dashboardNodes}
             </div>
         );

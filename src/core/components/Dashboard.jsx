@@ -41,7 +41,7 @@ var Dashboard = React.createClass({
             return React.createElement(Widget, props);
         });
 
-        var cssClasses = 'hotboard__sheet';
+        var cssClasses = 'dashboard__sheet';
         if (this.state.isCurrent) {
             cssClasses += ' _is-current';
         }
