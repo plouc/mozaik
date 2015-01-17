@@ -1,77 +1,72 @@
-.time__clock {
+$time-clock-radius       = 12vmin
+$time-clock-inner-radius = 0.6vmin
 
-  $outer-circle-radius = 75px;
-  $inner-circle-radius = 5px;
+.time__clock
+  &__outer-circle
+    position absolute
 
-  &__outer-circle {
-    position absolute;
+    top  50%
+    left 50%
 
-    top  50%;
-    left 50%;
-
-    background-color transparent;
-    border 2px solid #000;
+    background-color transparent
+    border 0.5vmin solid #000
     
-    border-radius $outer-circle-radius;
+    border-radius $time-clock-radius
 
-    width  ($outer-circle-radius * 2);
-    height ($outer-circle-radius * 2);
+    width  ($time-clock-radius * 2)
+    height ($time-clock-radius * 2)
 
-    margin-top  ($outer-circle-radius * -1);
-    margin-left ($outer-circle-radius * -1);
-  }
+    margin-top  ($time-clock-radius * -1)
+    margin-left ($time-clock-radius * -1)
 
-  &__inner-circle {
-    position absolute;
 
-    top  50%;
-    left 50%;
+  &__inner-circle
+    position absolute
 
-    width  ($inner-circle-radius * 2);
-    height ($inner-circle-radius * 2);
+    top  50%
+    left 50%
 
-    border-radius $inner-circle-radius;
+    width  ($time-clock-inner-radius * 2)
+    height ($time-clock-inner-radius * 2)
 
-    margin-top  ($inner-circle-radius * -1);
-    margin-left ($inner-circle-radius * -1);
+    border-radius $time-clock-inner-radius
 
-    background #000;
-  }
+    margin-top  ($time-clock-inner-radius * -1)
+    margin-left ($time-clock-inner-radius * -1)
 
-  &__brand {
-    position absolute;
+    background #000
 
-    top  63%;
-    left 0;
 
-    width 100%;
+  &__brand
+    position absolute
 
-    text-align center;
+    top  63%
+    left 0
 
-    font-size 12px;
-  }
+    width 100%
 
-  &__hand {
-    width  64px;
-    height 2px;
+    text-align center
 
-    margin-top -1px;
+    font-size 1.6vmin
 
-    background-color #000;
 
-    position absolute;
+  &__hand
+    width  $time-clock-radius * .87
+    height 2px
 
-    top  50%;
-    left 50%;
+    margin-top -1px
 
-    transform-origin left center;
+    background-color #000
 
-    &--hours {
-      width: 46px;
-    }
+    position absolute
 
-    &--seconds {
-      height: 1px;
-    }
-  }
-}
+    top  50%
+    left 50%
+
+    transform-origin left center
+
+    &--hours
+      width $time-clock-radius * .55
+
+    &--seconds
+      height 1px

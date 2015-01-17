@@ -1,18 +1,15 @@
-.time__clock {
-  background-color $widget-header-bg-color;
+.time__clock
+  background-color $widget-header-bg-color
 
-  &__outer-circle {
-    border 3px solid $widget-header-txt-color;
-    background-color $widget-bg-color;
-    box-shadow 0 2px 3px rgba(0, 0, 0, 0.15) inset;
-  }
+  &__outer-circle
+    border-color $widget-header-txt-color
+    background-color $widget-bg-color
+
+    box-shadow 0 2px 3px rgba(0, 0, 0, 0.15) inset
 
   &__inner-circle,
-  &__hand {
-    background-color $widget-header-icon-color;
-  }
+  &__hand
+    background-color $widget-header-icon-color
 
-  &__brand {
-    color darken($widget-header-bg-color, 10);
-  }
-}
+  &__brand
+    color darken($widget-header-bg-color, 10)
