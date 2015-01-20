@@ -8,6 +8,10 @@ var ListTweet = React.createClass({
         return (
             <div className={cssClasses}>
                 {this.props.tweet.text}
+                <div>
+                    <i className="fa fa-retweet" /> {this.props.tweet.retweet_count}&nbsp;
+                    <i className="fa fa-star" /> {this.props.tweet.favorite_count}
+                </div>
             </div>
         );
     }
