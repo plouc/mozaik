@@ -27,7 +27,3 @@ Visit the [Wiki](https://github.com/plouc/mozaik/wiki) for further information/d
 [codeclimate-url]: https://codeclimate.com/github/plouc/mozaik
 [gemnasium-image]: https://img.shields.io/gemnasium/plouc/mozaik.svg?style=flat-square
 [gemnasium-url]: https://gemnasium.com/plouc/mozaik
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/plouc/mozaik/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
