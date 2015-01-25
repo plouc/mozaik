@@ -1,5 +1,4 @@
-var ComponentRegistry = require('./../../../core/ComponentRegistry');
-
-ComponentRegistry
+// Expose 'top-level' components
+require('./../../../core/ComponentRegistry')
     .add('twitter.timeline', require('./Timeline.jsx'))
 ;
