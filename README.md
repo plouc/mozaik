@@ -17,9 +17,8 @@ Check the [DEMO](http://mozaik.herokuapp.com/)
 Visit the [Wiki](https://github.com/plouc/mozaik/wiki) for further information/doc.
 
 
-
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo.png
-[widget-count-image]: https://img.shields.io/badge/widgets-x18-yellow.svg?style=flat-square
+[widget-count-image]: https://img.shields.io/badge/widgets-x19-yellow.svg?style=flat-square
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik
