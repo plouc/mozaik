@@ -1,5 +1,6 @@
 var request = require('superagent');
 require('superagent-bluebird-promise');
+var Promise = require('bluebird');
 
 var config = require('./../../../config');
 
@@ -28,11 +29,47 @@ module.exports = {
             })
         ;
     },
-    view: function (params) {
-        console.log(config.api.jenkins.baseUrl + '/view/' + params.view + '/api/json?pretty=true&depth=1');
-        return buildRequest(config.api.jenkins.baseUrl + '/view/' + params.view + '/api/json?pretty=true&depth=1')
+    jobBuild: function (params) {
+        return buildRequest(config.api.jenkins.baseUrl + '/job/' + params.job + '/' + params.buildNumber + '/api/json?pretty=true')
             .then(function (res) {
                 return res.body;
+            })
+        ;
+    },
+    view: function (params) {
+        return buildRequest(config.api.jenkins.baseUrl + '/view/' + params.view + '/api/json?pretty=true&depth=1')
+            .then(function (res) {
+                var view = res.body;
+                var jobs = view.jobs;
+
+                var builds = [];
+
+                // Fetch builds details
+                jobs.forEach(function (job) {
+                    [
+                        'lastBuild',
+                        'lastFailedBuild',
+                        'lastSuccessfulBuild'
+                    ].forEach(function (buildType) {
+                        if (job[buildType]) {
+                            builds.push(
+                                module.exports.jobBuild({
+                                    job:         job.name,
+                                    buildNumber: job[buildType].number
+                                })
+                                .then(function (build) {
+                                    job[buildType] = build;
+                                })
+                            );
+                        }
+                    });
+                });
+
+                return Promise.all(builds)
+                    .then(function () {
+                        return view;
+                    })
+                ;
             })
         ;
     }

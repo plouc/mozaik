@@ -1,7 +1,12 @@
 .table
-  &__cell
-    padding: 7px 9px
+  width 100%
+
+  border-collapse collapse
+
+  &__row
+    border-top $table-border-h
     &:first-child
-      padding-left 15px;
-    &:last-child
-      padding-right 15px;
+      border-top none
+
+  &__cell
+    padding $table-cell-padding

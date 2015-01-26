@@ -8,7 +8,7 @@ var ViewJobs = React.createClass({
         });
 
         return (
-            <table>
+            <table className="table">
                 {jobNodes}
             </table>
         );
