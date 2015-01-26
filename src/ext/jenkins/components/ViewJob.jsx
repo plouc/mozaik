@@ -1,27 +1,20 @@
-var React = require('react');
+var React                = require('react');
+var moment               = require('moment');
+var ViewJobBuildStatus   = require('./ViewJobBuildStatus.jsx');
+var ViewJobHealthReport  = require('./ViewJobHealthReport.jsx');
+var ViewJobBuildTime     = require('./ViewJobBuildTime.jsx');
+var ViewJobBuildDuration = require('./ViewJobBuildDuration.jsx');
 
 var ViewJob = React.createClass({
     render() {
-        var healthReportNode = <td></td>;
-        if (this.props.job.healthReport.length > 0) {
-            healthReportNode = <td className="table__cell">{this.props.job.healthReport[0].description}</td>
-        }
-
-        var statusNode = <td></td>
-        if (this.props.job.lastBuild) {
-            var statusClasses = 'status__icon status__icon--' + this.props.job.lastBuild.result.toLowerCase();
-            statusNode = (
-                <td className="table__cell">
-                    <span className={statusClasses}>{this.props.job.lastBuild.result}</span>
-                </td>
-            );
-        }
-
         return (
             <tr className="table__row">
-                {statusNode}
+                <ViewJobBuildStatus build={this.props.job.lastBuild} />
                 <td className="table__cell">{this.props.job.displayName}</td>
-                {healthReportNode}
+                <ViewJobHealthReport job={this.props.job} />
+                <ViewJobBuildTime build={this.props.job.lastSuccessfulBuild} />
+                <ViewJobBuildTime build={this.props.job.lastFailedBuild} />
+                <ViewJobBuildDuration build={this.props.job.lastBuild} />
             </tr>
         );
     }
