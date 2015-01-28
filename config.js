@@ -23,7 +23,6 @@ var config = {
             }
         },
         github: {
-            baseUrl: 'https://api.github.com',
             token: process.env.GITHUB_API_TOKEN
         },
         heroku: {
