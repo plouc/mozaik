@@ -1,12 +1,64 @@
 .twitter__hashtags-pie
-  &__legends
+  &__legends__list
     margin  0
     padding 0
 
     list-style none
 
+    display         flex
+    flex-direction  column
+    justify-content space-around
+
+
+    height 100%
+
+  &__container
+    display flex
+
+    &--layout-top
+      flex-direction column-reverse
+
+    &--layout-right
+      flex-direction row
+
+    &--layout-bottom
+      flex-direction column
+
+    &--layout-left
+      flex-direction row-reverse
+
+    &--layout-top,
+    &--layout-bottom
+      .twitter__hashtags-pie__chart,
+      .twitter__hashtags-pie__legends
+        height 50%
+      .twitter__hashtags-pie__chart,
+      .twitter__hashtags-pie__legends
+        width 100%
+
+    &--layout-right,
+    &--layout-left
+      .twitter__hashtags-pie__chart,
+      .twitter__hashtags-pie__legends
+        width 50%
+      .twitter__hashtags-pie__chart,
+      .twitter__hashtags-pie__legends
+        height 100%
+
+  &__chart,
+  &__legends
+    flex 0 1 auto
+
+  &__chart
+    svg
+      width  100%
+      height 100%
+
+  &__legends
+    padding 0 4vmin
+
   &__legend
-    vertical-align middle
+    flex 0 1 auto
 
     &__color
       vertical-align middle

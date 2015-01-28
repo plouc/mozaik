@@ -2,6 +2,7 @@ var React            = require('react');
 var Reflux           = require('reflux');
 var moment           = require('moment');
 var _                = require('lodash');
+var $                = require('jquery');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 var Pie              = require('./../../../core/components/charts/Pie.jsx');
 var HashtagsLegends  = require('./hashtags-pie/HashtagsLegends.jsx');
@@ -12,11 +13,23 @@ var HashtagsPie = React.createClass({
         ApiConsumerMixin
     ],
 
+    getDefaultProps() {
+        return {
+            layout: 'right'
+        };
+    },
+
     propTypes: {
         hashtags: React.PropTypes.arrayOf(React.PropTypes.shape({
             text:  React.PropTypes.string,
             color: React.PropTypes.string
-        })).isRequired
+        })).isRequired,
+        layout: React.PropTypes.oneOf([
+            'top',
+            'right',
+            'bottom',
+            'left'
+        ])
     },
 
     getInitialState() {
@@ -54,15 +67,22 @@ var HashtagsPie = React.createClass({
             };
         });
 
+        var containerClasses = 'widget__body twitter__hashtags-pie__container ';
+        containerClasses    += 'twitter__hashtags-pie__container--layout-' + this.props.layout;
+
         return (
             <div>
                 <div className="widget__header">
                     Twitter hashtags donut
                     <i className="fa fa-twitter" />
                 </div>
-                <div className="widget__body">
-                    <Pie innerRadius={0.6} data={data} width={200} height={200} />
-                    <HashtagsLegends hashtags={this.state.hashtags} />
+                <div className={containerClasses}>
+                    <div className="twitter__hashtags-pie__chart">
+                        <Pie innerRadius={0.6} data={data} />
+                    </div>
+                    <div className="twitter__hashtags-pie__legends">
+                        <HashtagsLegends hashtags={this.state.hashtags} />
+                    </div>
                 </div>
             </div>
         );

@@ -11,7 +11,7 @@ var HashtagsLegends = React.createClass({
 
     render() {
         return (
-            <ul className="twitter__hashtags-pie__legends">
+            <ul className="twitter__hashtags-pie__legends__list">
                 {this.props.hashtags.map(hashtag => <HashtagLegend key={hashtag.normText} hashtag={hashtag} />)}
             </ul>
         );

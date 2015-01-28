@@ -59,8 +59,6 @@ var Pie = React.createClass({
     },
 
     propTypes: {
-        width:              React.PropTypes.number.isRequired,
-        height:             React.PropTypes.number.isRequired,
         spacing:            React.PropTypes.number.isRequired,
         innerRadius:        React.PropTypes.number.isRequired,
         transitionDuration: React.PropTypes.number.isRequired,
@@ -74,10 +72,13 @@ var Pie = React.createClass({
         var prevData = this.paths.data();
         var newData  = pie(this.props.data);
 
-        var minSize = Math.min(this.props.width, this.props.height);
+        var width  = this.getDOMNode().offsetWidth;
+        var height = this.getDOMNode().offsetHeight;
+
+        var minSize = Math.min(width, height);
         var radius  = minSize / 2 - minSize * this.props.spacing;
 
-        this.arcsContainer.attr('transform', `translate(${ this.props.width / 2 },${ this.props.height / 2 })`);
+        this.arcsContainer.attr('transform', `translate(${ width / 2 },${ height / 2 })`);
 
         var arc = d3.svg.arc()
             .outerRadius(radius)
@@ -135,7 +136,7 @@ var Pie = React.createClass({
     },
 
     render() {
-        return <svg width={this.props.width} height={this.props.height} />;
+        return <svg />;
     }
 });
 
