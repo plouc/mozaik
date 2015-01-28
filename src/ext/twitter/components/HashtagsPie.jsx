@@ -4,6 +4,7 @@ var moment           = require('moment');
 var _                = require('lodash');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
 var Pie              = require('./../../../core/components/charts/Pie.jsx');
+var HashtagsLegends  = require('./hashtags-pie/HashtagsLegends.jsx');
 
 var HashtagsPie = React.createClass({
     mixins: [
@@ -61,6 +62,7 @@ var HashtagsPie = React.createClass({
                 </div>
                 <div className="widget__body">
                     <Pie innerRadius={0.6} data={data} width={200} height={200} />
+                    <HashtagsLegends hashtags={this.state.hashtags} />
                 </div>
             </div>
         );
