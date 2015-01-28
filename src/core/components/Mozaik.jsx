@@ -1,10 +1,9 @@
-var React            = require('react');
-var Reflux           = require('reflux');
-var _                = require('lodash');
-var Dashboard        = require('./Dashboard.jsx');
-var Timer            = require('./Timer.jsx');
-var DashboardActions = require('./../actions/DashboardActions');
-var ConfigStore      = require('./../stores/ConfigStore');
+var React       = require('react');
+var Reflux      = require('reflux');
+var _           = require('lodash');
+var Dashboard   = require('./Dashboard.jsx');
+var Timer       = require('./Timer.jsx');
+var ConfigStore = require('./../stores/ConfigStore');
 
 var Mozaik = React.createClass({
     mixins: [Reflux.ListenerMixin],
