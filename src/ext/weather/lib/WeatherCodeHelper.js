@@ -10,6 +10,17 @@ var codes = {
     522: 'heavy-intensity-shower-rain',
     531: 'ragged-shower-rain',
 
+    600: 'light-snow',
+    601: 'snow',
+    602: 'heavy-snow',
+    611: 'sleet',
+    612: 'shower-sleet',
+    615: 'light-rain-and-snow',
+    616: 'rain-and-snow',
+    620: 'light-shower-snow',
+    621: 'shower-snow',
+    622: 'heavy-shower-snow',
+
     800: 'clear-sky',
     801: 'few-clouds',
     802: 'scattered-clouds',
