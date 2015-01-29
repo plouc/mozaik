@@ -14,8 +14,13 @@ function position() {
 var Treemap = React.createClass({
     getDefaultProps() {
         return {
-            transitionDuration: 800
+            transitionDuration: 800,
+            showCount:          false
         };
+    },
+
+    propTypes: {
+        showCount: React.PropTypes.bool.isRequired
     },
 
     d3Render(data) {
@@ -39,12 +44,20 @@ var Treemap = React.createClass({
         var chunks = container.selectAll('.treemap__chunk')
             .data(treemap.nodes(data));
 
-        chunks.enter().append('div')
+        var newChunks = chunks.enter().append('div')
             .attr('class', 'treemap__chunk')
             .call(position)
-            .style('background', function(d) { return d.color; })
+            .style('background', d => d.color)
+            .append('span')
             .text(d => d.label)
         ;
+
+        if (this.props.showCount === true) {
+            newChunks.append('span')
+                .attr('class', 'count')
+                .text(d => d.count)
+            ;
+        }
 
         chunks
             .transition()

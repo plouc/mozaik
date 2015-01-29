@@ -2,9 +2,7 @@
 
 ## …
 
-  - Added jenkins view widget
-  - Added twitter timeline widget
-  - Added twitter hashtags pie widget
-  - Added support for `vmin` css unit for all themes
+  - Added github issue types treemap widget
+  - Added twitter hashtags treemap widget
 
-## v0.1.0-alpha
+## v0.1.0
