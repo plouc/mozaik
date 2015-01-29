@@ -62,7 +62,7 @@ var HashtagsPie = React.createClass({
                     <i className="fa fa-twitter" />
                 </div>
                 <div className="widget__body">
-                    <Treemap data={{ children: data }} />
+                    <Treemap data={{ children: data }} showCount={true} />
                 </div>
             </div>
         );
