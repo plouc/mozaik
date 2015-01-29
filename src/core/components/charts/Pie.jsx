@@ -68,9 +68,13 @@ var Pie = React.createClass({
         })).isRequired
     },
 
-    d3Render() {
+    d3Render(data) {
+        if (!data) {
+            return;
+        }
+
         var prevData = this.paths.data();
-        var newData  = pie(this.props.data);
+        var newData  = pie(data);
 
         var width  = this.getDOMNode().offsetWidth;
         var height = this.getDOMNode().offsetHeight;
@@ -129,8 +133,8 @@ var Pie = React.createClass({
         this.d3Render();
     },
 
-    shouldComponentUpdate() {
-        this.d3Render();
+    shouldComponentUpdate(data) {
+        this.d3Render(data.data);
 
         return false;
     },
