@@ -55,8 +55,6 @@ var HashtagsPie = React.createClass({
             };
         });
 
-        console.log(_.pluck(data, 'count'));
-
         return (
             <div>
                 <div className="widget__header">
