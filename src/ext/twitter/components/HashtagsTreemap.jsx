@@ -3,8 +3,8 @@ var Reflux           = require('reflux');
 var moment           = require('moment');
 var _                = require('lodash');
 var ApiConsumerMixin = require('./../../../core/mixins/ApiConsumerMixin');
-var Pie              = require('./../../../core/components/charts/Pie.jsx');
-var HashtagsLegends  = require('./hashtags-pie/HashtagsLegends.jsx');
+var Treemap          = require('./../../../core/components/charts/Treemap.jsx');
+
 
 var HashtagsPie = React.createClass({
     mixins: [
@@ -12,23 +12,11 @@ var HashtagsPie = React.createClass({
         ApiConsumerMixin
     ],
 
-    getDefaultProps() {
-        return {
-            layout: 'right'
-        };
-    },
-
     propTypes: {
         hashtags: React.PropTypes.arrayOf(React.PropTypes.shape({
             text:  React.PropTypes.string,
             color: React.PropTypes.string
-        })).isRequired,
-        layout: React.PropTypes.oneOf([
-            'top',
-            'right',
-            'bottom',
-            'left'
-        ])
+        })).isRequired
     },
 
     getInitialState() {
@@ -61,27 +49,22 @@ var HashtagsPie = React.createClass({
         var data = _.map(this.state.hashtags, hashtag => {
             return {
                 id:    hashtag.normText,
+                label: `#${ hashtag.text }`,
                 count: hashtag.count,
                 color: hashtag.color
             };
         });
 
-        var containerClasses = 'widget__body twitter__hashtags-pie__container ';
-        containerClasses    += 'twitter__hashtags-pie__container--layout-' + this.props.layout;
+        console.log(_.pluck(data, 'count'));
 
         return (
             <div>
                 <div className="widget__header">
-                    Twitter hashtags donut
+                    Twitter hashtags treemap
                     <i className="fa fa-twitter" />
                 </div>
-                <div className={containerClasses}>
-                    <div className="twitter__hashtags-pie__chart">
-                        <Pie innerRadius={0.6} data={data} />
-                    </div>
-                    <div className="twitter__hashtags-pie__legends">
-                        <HashtagsLegends hashtags={this.state.hashtags} />
-                    </div>
+                <div className="widget__body">
+                    <Treemap data={{ children: data }} />
                 </div>
             </div>
         );
