@@ -34,6 +34,7 @@ module.exports = {
             } else {
                 data.Reservations.forEach(function (reservation) {
                     reservation.Instances.forEach(function (instanceData) {
+						
                         var instance = {
                             id:               instanceData.InstanceId,
                             state:            instanceData.State.Name,
@@ -42,7 +43,9 @@ module.exports = {
                             publicIpAddress:  instanceData.PublicIpAddress || null,
                             vpc:              instanceData.VpcId,
                             loadBalancers:    [],
-                            securityGroups:   []
+                            securityGroups:   [],
+							image: 			  instanceData.ImageId,
+							subnet: 		  instanceData.SubnetId	
                         };
 
                         instanceData.SecurityGroups.forEach(function (sg) {
