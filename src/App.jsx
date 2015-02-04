@@ -6,7 +6,7 @@ require('./ext/collected');
 
 React.render(
     <Mozaik />,
-    document.getElementById('hotboard')
+    document.getElementById('mozaik')
 );
 
 ConfigActions.loadConfig();

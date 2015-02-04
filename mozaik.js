@@ -1,10 +1,22 @@
 var express = require('express');
 var app     = express();
 var _       = require('lodash');
+var swig    = require('swig');
 var hub     = require('./src/core/hub');
 var config  = require('./config');
 
+app.engine('html', swig.renderFile);
 app.use(express.static(__dirname + '/build'));
+app.set('view engine', 'html');
+app.set('views', __dirname + '/templates');
+app.set('view cache', false);
+swig.setDefaults({ cache: false });
+
+app.get('/', function (req, res) {
+    res.render('index', {
+        env: config.env
+    });
+});
 
 app.get('/config', function (req, res) {
     res.send(_.omit(config, 'api'));

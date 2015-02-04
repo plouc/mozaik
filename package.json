@@ -39,6 +39,7 @@
     "string-template": "^0.2.0",
     "superagent": "^0.21.0",
     "superagent-bluebird-promise": "^0.5.1",
+    "swig": "^1.4.2",
     "travis-ci": "^2.0.3",
     "twitter": "^1.0.3",
     "vinyl-source-stream": "^1.0.0",

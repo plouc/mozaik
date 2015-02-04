@@ -4,10 +4,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="font-awesome.min.css">
     <link rel="stylesheet" href="mozaik.css">
-    <title>Mozaïk dasboard</title>
+    <title>Mozaïk dashboard</title>
 </head>
 <body>
-    <div id="hotboard"></div>
+    <div id="mozaik"></div>
+    {% if env === 'prod' %}
     <script src="mozaik.min.js"></script>
+    {% else %}
+    <script src="mozaik.js"></script>
+    {% endif %}
 </body>
 </html>
