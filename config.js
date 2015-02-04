@@ -1,4 +1,5 @@
 var config = {
+    env:  'prod',
     host: 'localhost',
     port: process.env.PORT || 5000,
 
