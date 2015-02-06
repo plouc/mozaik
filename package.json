@@ -10,6 +10,9 @@
     "name": "Raphaël Benitte",
     "url": "https://github.com/plouc"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "homepage": "https://github.com/plouc/mozaik",
   "dependencies": {
     "aws-sdk": "^2.0.17",
