@@ -1,3 +1,6 @@
+// Load environment variables from .env file if available
+require('dotenv').load();
+
 var config = {
     env:  'prod',
     host: 'localhost',

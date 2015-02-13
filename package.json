@@ -19,6 +19,7 @@
     "bluebird": "^2.4.2",
     "browserify": "^8.0.2",
     "d3": "^3.5.2",
+    "dotenv": "^0.5.1",
     "express": "^4.10.6",
     "font-awesome": "^4.2.0",
     "glob": "^4.3.2",
