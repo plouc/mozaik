@@ -34,7 +34,7 @@ module.exports = {
             } else {
                 data.Reservations.forEach(function (reservation) {
                     reservation.Instances.forEach(function (instanceData) {
-                        instances.push({
+                        var instance = {
                             id:               instanceData.InstanceId,
                             state:            instanceData.State.Name,
                             type:             instanceData.InstanceType,
@@ -43,9 +43,31 @@ module.exports = {
                             vpc:              instanceData.VpcId,
                             loadBalancers:    [],
                             securityGroups:   [],
-							image: 			  instanceData.ImageId,
-							subnet: 		  instanceData.SubnetId	
+                            image:            instanceData.ImageId,
+                            subnet:           instanceData.SubnetId	
+                        };
+
+                        instanceData.SecurityGroups.forEach(function (sg) {
+                            instance.securityGroups.push(sg.GroupId);
                         });
+
+                        instance.tags = {};
+                        instanceData.Tags.forEach(function (tag) {
+                            instance.tags[tag.Key.toLowerCase()] = tag.Value;
+                        });
+
+                        instance.name = instance.tags.name || null;
+
+                        instances.push(instance);
+
+                        amis.push(instanceData.ImageId);
+
+                        if (typeof instance.vpc != 'undefined') {
+                            if (!vpcsInstanceIds[instance.vpc]) {
+                                vpcsInstanceIds[instance.vpc] = [];
+                            }
+                            vpcsInstanceIds[instance.vpc].push(instance.id);
+                        }
                     });
                 });
 

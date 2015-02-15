@@ -39,7 +39,7 @@ var Instances = React.createClass({
             return (
                 <div key={instance.id} className={cssClass}>
                     {instance.name}
-					{instance.state} - {instance.type} - {instance.subnet}
+                    {instance.state} - {instance.type} - {instance.subnet}
                     <span  className="aws__instance__id">{instance.id}</span>
                 </div>
             );
