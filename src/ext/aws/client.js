@@ -42,7 +42,9 @@ module.exports = {
                             publicIpAddress:  instanceData.PublicIpAddress || null,
                             vpc:              instanceData.VpcId,
                             loadBalancers:    [],
-                            securityGroups:   []
+                            securityGroups:   [],
+                            image:            instanceData.ImageId,
+                            subnet:           instanceData.SubnetId	
                         };
 
                         instanceData.SecurityGroups.forEach(function (sg) {
