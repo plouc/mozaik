@@ -18,6 +18,8 @@
     "aws-sdk": "^2.0.17",
     "bluebird": "^2.4.2",
     "browserify": "^8.0.2",
+    "chalk": "^0.5.1",
+    "commander": "^2.6.0",
     "d3": "^3.5.2",
     "dotenv": "^0.5.1",
     "express": "^4.10.6",
@@ -47,6 +49,7 @@
     "travis-ci": "^2.0.3",
     "twitter": "^1.0.3",
     "vinyl-source-stream": "^1.0.0",
+    "winston": "^0.9.0",
     "ws": "^0.6.3"
   },
   "jest": {
