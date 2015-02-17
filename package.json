@@ -1,6 +1,6 @@
 {
-  "name": "Mozaik",
-  "version": "0.0.1",
+  "name": "mozaik",
+  "version": "0.0.1-beta",
   "description": "Mozaik dashboard composition tool",
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
   },
   "homepage": "https://github.com/plouc/mozaik",
   "dependencies": {
-    "aws-sdk": "^2.0.17",
     "bluebird": "^2.4.2",
     "browserify": "^8.0.2",
     "chalk": "^0.5.1",
@@ -30,10 +29,10 @@
     "gulp-rename": "^1.2.0",
     "gulp-stylus": "^2.0.0",
     "gulp-uglify": "^1.0.2",
-    "heroku-client": "^1.9.0",
+    "gulp-util": "^3.0.3",
     "jest-cli": "^0.2.1",
     "jquery": "^2.1.3",
-    "lodash": "^2.4.1",
+    "lodash": "^3.2.0",
     "memory-cache": "0.0.5",
     "moment": "^2.8.4",
     "moment-duration-format": "^1.3.0",
@@ -46,8 +45,6 @@
     "superagent": "^0.21.0",
     "superagent-bluebird-promise": "^0.5.1",
     "swig": "^1.4.2",
-    "travis-ci": "^2.0.3",
-    "twitter": "^1.0.3",
     "vinyl-source-stream": "^1.0.0",
     "winston": "^0.9.0",
     "ws": "^0.6.3"
@@ -60,9 +57,15 @@
       "<rootDir>/node_modules/moment"
     ]
   },
-  "main": "mozaik.js",
+  "main": "lib/Mozaik.js",
   "scripts": {
-    "test": "jest",
-    "postinstall": "gulp publish"
+    "test": "jest"
+  },
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp-6to5": "^3.0.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-regex-replace": "^0.2.3",
+    "gulp-strip-debug": "^1.0.2"
   }
 }
