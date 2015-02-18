@@ -12,6 +12,7 @@ var Widget = React.createClass({
             height: this.props.h
         };
 
+        // Pass props to widget component without 'metadata'
         var childProps = _.omit(this.props, ['x', 'y', 'w', 'h', 'type']);
 
         var widget = React.createElement(ComponentRegistry.get(this.props.type), _.extend({}, childProps));

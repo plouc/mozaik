@@ -17,7 +17,7 @@ function Hub(context) {
 }
 
 Hub.prototype.registerApi = function (id, api) {
-    this.apis[id] = api;
+    this.apis[id] = api(this.context);
 
     this.context.logger.info(chalk.yellow('registered API "' + id + '"'));
 };
@@ -55,7 +55,7 @@ Hub.prototype.remove = function (id) {
         }
     }.bind(this));
 
-    delete clients[id];
+    delete this.clients[id];
 
     this.context.logger.info('Client #' + id + ' disconnected');
 };

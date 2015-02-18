@@ -28,7 +28,6 @@ var Dashboard = React.createClass({
         var rows    = this.props.dashboard.rows;
 
         var widgetNodes = _.map(this.props.dashboard.widgets, (widget, index) => {
-
             var props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
                 key:  index,
                 type: widget.type,

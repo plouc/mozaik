@@ -42,14 +42,14 @@ module.exports = function (context) {
     wss.on('connection', function (ws) {
         var clientId = ++currentClientId;
 
-        hub.add(ws, clientId);
+        context.hub.add(ws, clientId);
 
         ws.on('message', function (request) {
-            hub.wire(clientId, JSON.parse(request));
+            context.hub.wire(clientId, JSON.parse(request));
         });
 
         ws.on('close', function () {
-            hub.remove(clientId);
+            context.hub.remove(clientId);
         });
     });
 };

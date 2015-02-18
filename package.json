@@ -25,6 +25,7 @@
     "font-awesome": "^4.2.0",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
+    "gulp-flatten": "0.0.4",
     "gulp-print": "^1.1.0",
     "gulp-rename": "^1.2.0",
     "gulp-stylus": "^2.0.0",
