@@ -1,5 +1,6 @@
 var winston = require('winston');
 var path    = require('path');
+var chalk   = require('chalk');
 var Hub     = require('./Hub');
 
 class Mozaik {
@@ -21,6 +22,21 @@ class Mozaik {
 
     startServer() {
         require('./server')(this);
+    }
+
+    /**
+     * @param {Object} config The convict config schema to validate against
+     */
+    loadApiConfig(config) {
+        // load and validate config
+        config.load(this.config.api);
+
+        try {
+            config.validate();
+        } catch (e) {
+            this.logger.error(chalk.red(e.message));
+            process.exit(1);
+        }
     }
 }
 
