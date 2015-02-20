@@ -12,7 +12,8 @@ gulp.task('lib-clean', function (cb) {
 
 gulp.task('lib-copy', function () {
     return gulp.src([
-            './src/**/*.html'
+            './src/**/*.html',
+            './src/**/*.styl'
         ])
         .pipe(gulp.dest('./lib'))
     ;
