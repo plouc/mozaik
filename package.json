@@ -35,6 +35,7 @@
     "memory-cache": "0.0.5",
     "moment": "^2.8.4",
     "moment-duration-format": "^1.3.0",
+    "moment-timezone": "^0.3.0",
     "react": "^0.12.2",
     "react-tools": "^0.12.2",
     "reactify": "^0.17.1",
