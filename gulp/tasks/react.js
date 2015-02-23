@@ -7,7 +7,7 @@ var config     = require('../config');
 
 gulp.task('react', ['collect:js'], function () {
     var bundler = browserify(config.src + 'App.jsx', {
-        debug: true
+        debug: !config.isProduction()
     });
 
     bundler.transform(reactify, {
