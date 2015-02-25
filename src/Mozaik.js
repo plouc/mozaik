@@ -1,7 +1,7 @@
 var winston = require('winston');
 var path    = require('path');
 var chalk   = require('chalk');
-var Hub     = require('./Hub');
+var Bus     = require('./Bus');
 
 class Mozaik {
     constructor(config) {
@@ -17,7 +17,11 @@ class Mozaik {
         this.baseDir = (config.baseDir || process.cwd()) + path.sep;
         this.rootDir = path.resolve(__dirname);
 
-        this.hub = new Hub(this);
+        this.bus = new Bus(this);
+    }
+
+    repisterApi() {
+
     }
 
     startServer() {

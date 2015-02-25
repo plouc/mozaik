@@ -4,17 +4,21 @@ var chalk   = require('chalk');
 var path    = require('path');
 var _       = require('lodash');
 
-module.exports = function (context) {
-    var config = context.serverConfig;
+/**
+ * @param {Mozaik} mozaik
+ */
+module.exports = function (mozaik) {
+
+    var config = mozaik.serverConfig;
 
     var app = express();
 
-    context.logger.info(chalk.yellow('serving static contents from ' + context.baseDir + 'build'));
-    app.use(express.static(context.baseDir + '/build'));
+    mozaik.logger.info(chalk.yellow('serving static contents from ' + mozaik.baseDir + 'build'));
+    app.use(express.static(mozaik.baseDir + '/build'));
 
     app.engine('html', swig.renderFile);
     app.set('view engine', 'html');
-    app.set('views', path.join(context.rootDir, 'templates'));
+    app.set('views', path.join(mozaik.rootDir, 'templates'));
     app.set('view cache', false);
     swig.setDefaults({
         cache: false
@@ -27,11 +31,11 @@ module.exports = function (context) {
     });
 
     app.get('/config', function (req, res) {
-        res.send(_.omit(context.config, 'api'));
+        res.send(_.omit(mozaik.config, 'api'));
     });
 
     var server = app.listen(config.port, function () {
-        context.logger.info(chalk.yellow('Mozaïk server listening at http://' + config.host + ':' + config.port));
+        mozaik.logger.info(chalk.yellow('Mozaïk server listening at http://' + config.host + ':' + config.port));
     });
 
     var WebSocketServer = require('ws').Server;
@@ -42,14 +46,14 @@ module.exports = function (context) {
     wss.on('connection', function (ws) {
         var clientId = ++currentClientId;
 
-        context.hub.add(ws, clientId);
+        mozaik.bus.addClient(ws, clientId);
 
         ws.on('message', function (request) {
-            context.hub.wire(clientId, JSON.parse(request));
+            mozaik.bus.clientSubscription(clientId, JSON.parse(request));
         });
 
         ws.on('close', function () {
-            context.hub.remove(clientId);
+            mozaik.bus.removeClient(clientId);
         });
     });
 };

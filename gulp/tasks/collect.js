@@ -32,7 +32,7 @@ gulp.task('collect:js', function (done) {
 gulp.task('collect:styl', function (done) {
     gutil.log(chalk.green('Collecting extensions styles'));
 
-    var files = glob.sync(config.root + 'node_modules/mozaik-ext-*/**/index.styl');
+    var files = glob.sync(config.root + 'node_modules/mozaik-ext-*/styl/index.styl');
 
     var lines = [
         '/**',

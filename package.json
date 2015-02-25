@@ -1,6 +1,6 @@
 {
   "name": "mozaik",
-  "version": "0.0.8-beta",
+  "version": "0.0.9-beta",
   "description": "Mozaik dashboard composition tool",
   "repository": {
     "type": "git",
@@ -65,6 +65,16 @@
   },
   "main": "lib/Mozaik.js",
   "scripts": {
-    "test": "jest"
+    "test": "gulp lib && mocha ./tests"
+  },
+  "devDependencies": {
+    "babel": "^4.3.0",
+    "chai": "^2.0.0",
+    "jest": "^0.1.37",
+    "jest-cli": "^0.2.2",
+    "mocha": "^2.1.0",
+    "mockery": "^1.4.0",
+    "react-tools": "^0.12.2",
+    "sinon": "^1.12.2"
   }
 }
