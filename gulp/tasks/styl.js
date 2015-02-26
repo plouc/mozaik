@@ -10,6 +10,7 @@ gulp.task('styl', ['collect:styl'], function () {
     return gulp
         .src(config.mozaikLib + 'styl/mozaik.styl')
         .pipe(stylus({
+            'include css': true,
             use: function (style) {
                 style.define('$theme', 'night-blue');
             }
