@@ -1,4 +1,7 @@
 module.exports = {
     src:  './src/',
-    dest: './build/'
+    dest: './build/',
+    isProduction: function(file) {
+        return process.env.NODE_ENV === 'production';
+    }
 };
