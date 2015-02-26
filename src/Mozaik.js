@@ -20,10 +20,6 @@ class Mozaik {
         this.bus = new Bus(this);
     }
 
-    repisterApi() {
-
-    }
-
     startServer() {
         require('./server')(this);
     }

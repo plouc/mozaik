@@ -98,5 +98,134 @@ describe('Bus', function () {
             mockedMozaik.logger.info.getCall(0).args[0].should.eql('Client #test_client connected');
             mockedMozaik.logger.info.getCall(1).args[0].should.eql('Client #test_client disconnected');
         });
+
+        it('should cleanup subscription and remove interval', function () {
+
+        });
+    });
+
+
+    describe('.clientSubscription()', function () {
+        var apiSpy;
+
+        it('should log an error if there is no existing client having given id', function () {
+            apiSpy = { fetch: sinon.spy() };
+            bus.registerApi('test_api', function () { return apiSpy });
+
+            bus.clientSubscription('test_client');
+
+            mockedMozaik.logger.error.calledOnce.should.be.true;
+            mockedMozaik.logger.error.getCall(0).args[0].should.eql('Unable to find a client with id "test_client"');
+        });
+
+        it('should throw and log an error if the request id is invalid', function () {
+            apiSpy = { fetch: sinon.spy() };
+            bus.registerApi('test_api', function () { return apiSpy });
+
+            bus.addClient({}, 'test_client');
+
+            (function () {
+                bus.clientSubscription('test_client', { id: 'test_api' });
+            }).should.throw('Invalid request id "test_api", should be something like \'api_id.method\'');
+
+            apiSpy.fetch.notCalled.should.eql(true, 'Api method should not be called');
+
+            mockedMozaik.logger.error.calledOnce.should.be.true;
+            mockedMozaik.logger.error.getCall(0).args[0].should.eql('Invalid request id "test_api", should be something like \'api_id.method\'');
+        });
+
+        it('should throw and log an error if there is no existing api for given request id', function () {
+            apiSpy = { fetch: sinon.spy() };
+            bus.registerApi('test_api', function () { return apiSpy });
+
+            bus.addClient({}, 'test_client');
+
+            (function () {
+                bus.clientSubscription('test_client', { id: 'invalid_api.invalid_method' });
+            }).should.throw('Unable to find API matching id "invalid_api"');
+
+            apiSpy.fetch.notCalled.should.eql(true, 'Api method should not be called');
+
+            mockedMozaik.logger.error.calledOnce.should.be.true;
+            mockedMozaik.logger.error.getCall(0).args[0].should.eql('Unable to find API matching id "invalid_api"');
+        });
+
+        it('should throw and log an error if the api method does not exists', function () {
+            apiSpy = { fetch: sinon.spy() };
+            bus.registerApi('test_api', function () { return apiSpy });
+
+            bus.addClient({}, 'test_client');
+
+            (function () {
+                bus.clientSubscription('test_client', { id: 'test_api.invalid_method' });
+            }).should.throw('Unable to find API method matching "invalid_method"');
+
+            apiSpy.fetch.notCalled.should.eql(true, 'Api method should not be called');
+
+            mockedMozaik.logger.error.calledOnce.should.be.true;
+            mockedMozaik.logger.error.getCall(0).args[0].should.eql('Unable to find API method matching "invalid_method"');
+        });
+    });
+
+
+    describe('.processApiCall()', function () {
+        var api_stub;
+        var then_stub, catch_stub;
+        var api_params;
+
+        it('should log api call', function () {
+            api_stub   = sinon.stub();
+            then_stub  = sinon.stub();
+            catch_stub = sinon.stub();
+
+            then_stub.returns({ 'catch': catch_stub });
+            api_stub.returns({ then: then_stub });
+
+            bus.processApiCall('test_api.test_method', api_stub);
+
+            mockedMozaik.logger.info.calledOnce.should.be.true;
+            mockedMozaik.logger.info.getCall(0).args[0].should.eql('Calling "test_api.test_method"');
+        });
+
+        it('should call api', function () {
+            api_stub   = sinon.stub();
+            then_stub  = sinon.stub();
+            catch_stub = sinon.stub();
+
+            then_stub.returns({ 'catch': catch_stub });
+            api_stub.returns({ then: then_stub });
+
+            api_params = { api_param: 'api_param' };
+
+            bus.processApiCall('test_api.test_method', api_stub, api_params);
+
+            api_stub.calledOnce.should.eql(true, 'should have called the given api method');
+            api_stub.getCall(0).args[0].should.eql(api_params);
+        });
+
+        it('should cache result', function () {
+            bus.subscriptions['test_api.test_method'] = {
+                clients: []
+            };
+
+            api_stub   = sinon.stub();
+            then_stub  = sinon.stub();
+            catch_stub = sinon.stub();
+
+            then_stub.yields('sample_data').returns({ 'catch': catch_stub });
+            api_stub.returns({ then: then_stub });
+
+            bus.processApiCall('test_api.test_method', api_stub);
+
+            bus.subscriptions['test_api.test_method'].should.have.property('cached');
+            bus.subscriptions['test_api.test_method'].cached.should.eql({
+                id:   'test_api.test_method',
+                body: 'sample_data'
+            });
+        });
+
+        it('should log error when the api call result in an error', function () {
+
+        });
     });
 });

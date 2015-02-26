@@ -59,31 +59,42 @@ class Bus {
      * @param {Object} request
      */
     clientSubscription(clientId, request) {
-        var requestId = request.id;
-        var parts     = requestId.split('.');
-
-        if (!this.apis[parts[0]]) {
-            this._mozaik.logger.error('Unable to find API matching id "' + parts[0] + '"');
+        if (!_.has(this.clients, clientId)) {
+            this._mozaik.logger.error(`Unable to find a client with id "${ clientId }"`);
 
             return;
         }
 
-        var api = this.apis[parts[0]];
-        if (!api[parts[1]]) {
-            this._mozaik.logger.error('Unable to find API call matching "' + parts[1] + '"');
+        var requestId = request.id;
+        var parts     = requestId.split('.');
+        if (parts.length !== 2) {
+            var errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
+            this._mozaik.logger.error(chalk.red(errMsg));
+            throw new Error(errMsg);
+        }
 
-            return;
+        if (!_.has(this.apis, parts[0])) {
+            var errMsg = `Unable to find API matching id "${ parts[0] }"`;
+            this._mozaik.logger.error(chalk.red(errMsg));
+            throw new Error(errMsg);
+        }
+
+        var api = this.apis[parts[0]];
+        if (!_.has(api, parts[1])) {
+            var errMsg = `Unable to find API method matching "${ parts[1] }"`;
+            this._mozaik.logger.error(chalk.red(errMsg));
+            throw new Error(errMsg);
         }
 
         var callFn = api[parts[1]];
 
         if (!this.subscriptions[requestId]) {
-            this._mozaik.logger.info('adding subscription ' + requestId);
-
             this.subscriptions[requestId] = {
                 clients:         [],
                 currentResponse: null
             };
+
+            this._mozaik.logger.info(`Added subscription "${ requestId }"`);
 
             // make an immediate call to avoid waiting for the first interval.
             this.processApiCall(requestId, callFn, request.params);
@@ -139,7 +150,7 @@ class Bus {
      * @param {Object}   params
      */
     processApiCall(id, callFn, params) {
-        this._mozaik.logger.info('calling ' + id);
+        this._mozaik.logger.info(`Calling "${ id }"`);
 
         callFn(params)
             .then(data => {
