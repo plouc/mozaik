@@ -69,12 +69,13 @@
   },
   "devDependencies": {
     "babel": "^4.3.0",
-    "chai": "^2.0.0",
     "jest": "^0.1.37",
     "jest-cli": "^0.2.2",
     "mocha": "^2.1.0",
     "mockery": "^1.4.0",
     "react-tools": "^0.12.2",
+    "rewire": "^2.3.1",
+    "should": "^5.0.1",
     "sinon": "^1.12.2"
   }
 }

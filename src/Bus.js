@@ -24,7 +24,7 @@ class Bus {
      * @param {Object} api
      */
     registerApi(id, api) {
-        if (this.apis[id]) {
+        if (_.has(this.apis, id)) {
             var errMsg = `API "${ id }" already registered`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
@@ -38,10 +38,15 @@ class Bus {
     /**
      * Register a new client.
      *
-     * @param client
-     * @param id
+     * @param {Object} client
+     * @param {String} id
      */
     addClient(client, id) {
+        if (_.has(this.clients, id)) {
+            var errMsg = `Client with id "${ id }" already exists`;
+            this._mozaik.logger.error(chalk.red(errMsg));
+            throw new Error(errMsg);
+        }
         this.clients[id] = client;
 
         this._mozaik.logger.info('Client #' + id + ' connected');
@@ -50,8 +55,8 @@ class Bus {
     /**
      * Add a subscription for the given client (client <-> API call).
      *
-     * @param clientId
-     * @param request
+     * @param {String} clientId
+     * @param {Object} request
      */
     clientSubscription(clientId, request) {
         var requestId = request.id;
