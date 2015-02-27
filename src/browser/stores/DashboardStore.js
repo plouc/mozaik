@@ -1,22 +1,32 @@
 var Reflux           = require('reflux');
 var _                = require('lodash');
 var DashboardActions = require('./../actions/DashboardActions');
+var ConfigStore      = require('./ConfigStore');
 
-var _dashboards   = [];
-var _currentIndex = 0;
+var _dashboards      = [];
+var _currentIndex    = 0;
+var _config          = null;
+var _timer           = null;
 
 var DashboardStore = Reflux.createStore({
     init() {
         this.listenTo(DashboardActions.setDashboards,     this.setDashboards);
         this.listenTo(DashboardActions.previousDashboard, this.previousDashboard);
         this.listenTo(DashboardActions.nextDashboard,     this.nextDashboard);
-        this.listenTo(DashboardActions.startRotation,     this.startRotation);
+        this.listenTo(ConfigStore,                        this.setConfig);
     },
 
-    startRotation() {
-        setInterval(() => {
-            this.nextDashboard();
-        }, 4000);
+    setConfig(config) {
+        _config = _.pick(config, 'rotationDuration');
+        this.start();
+    },
+
+    start() {
+        if (_config.rotationDuration && _dashboards.length > 0 && _timer === null) {
+            _timer = setInterval(() => {
+                this.nextDashboard();
+            }, _config.rotationDuration);
+        }
     },
 
     previousDashboard() {
@@ -41,6 +51,8 @@ var DashboardStore = Reflux.createStore({
 
         _dashboards   = dashboards;
         _currentIndex = 0;
+
+        this.start();
 
         this.trigger(_currentIndex);
     },
