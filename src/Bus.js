@@ -67,7 +67,7 @@ class Bus {
 
         var requestId = request.id;
         var parts     = requestId.split('.');
-        if (parts.length !== 2) {
+        if (parts.length < 2) {
             var errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
