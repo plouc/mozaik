@@ -20,14 +20,19 @@
     "chalk": "^0.5.1",
     "commander": "^2.6.0",
     "d3": "^3.5.2",
+    "del": "^1.1.1",
     "dotenv": "^0.5.1",
     "express": "^4.10.6",
     "font-awesome": "^4.2.0",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
+    "gulp-6to5": "^3.0.0",
     "gulp-flatten": "0.0.4",
+    "gulp-plumber": "^0.6.6",
     "gulp-print": "^1.1.0",
+    "gulp-regex-replace": "^0.2.3",
     "gulp-rename": "^1.2.0",
+    "gulp-strip-debug": "^1.0.2",
     "gulp-stylus": "^2.0.0",
     "gulp-uglify": "^1.0.2",
     "gulp-util": "^3.0.3",
@@ -48,12 +53,7 @@
     "swig": "^1.4.2",
     "vinyl-source-stream": "^1.0.0",
     "winston": "^0.9.0",
-    "ws": "^0.6.3",
-    "del": "^1.1.1",
-    "gulp-6to5": "^3.0.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-regex-replace": "^0.2.3",
-    "gulp-strip-debug": "^1.0.2"
+    "ws": "^0.6.3"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
@@ -65,10 +65,13 @@
   },
   "main": "lib/Mozaik.js",
   "scripts": {
+    "eslint": "eslint ./src/*",
     "test": "gulp lib && mocha ./tests"
   },
   "devDependencies": {
     "babel": "^4.3.0",
+    "babel-eslint": "^1.0.6",
+    "eslint": "^0.15.1",
     "jest": "^0.1.37",
     "jest-cli": "^0.2.2",
     "mocha": "^2.1.0",

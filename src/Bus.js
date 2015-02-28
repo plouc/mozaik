@@ -67,21 +67,22 @@ class Bus {
 
         var requestId = request.id;
         var parts     = requestId.split('.');
+        var errMsg;
         if (parts.length < 2) {
-            var errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
+            errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
         if (!_.has(this.apis, parts[0])) {
-            var errMsg = `Unable to find API matching id "${ parts[0] }"`;
+            errMsg = `Unable to find API matching id "${ parts[0] }"`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
         var api = this.apis[parts[0]];
         if (!_.has(api, parts[1])) {
-            var errMsg = `Unable to find API method matching "${ parts[1] }"`;
+            errMsg = `Unable to find API method matching "${ parts[1] }"`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
@@ -181,7 +182,4 @@ class Bus {
     }
 }
 
-
 module.exports = Bus;
-
-

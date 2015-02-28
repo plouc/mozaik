@@ -1,18 +1,17 @@
 var ComponentRegistry = require('./component-registry');
 
 module.exports = {
-    add:      ComponentRegistry.add,
-    addBatch: ComponentRegistry.addBatch,
-    get:      ComponentRegistry.get,
-    list:     ComponentRegistry.list,
-
-    Mixin: {
+    add:       ComponentRegistry.add,
+    addBatch:  ComponentRegistry.addBatch,
+    get:       ComponentRegistry.get,
+    list:      ComponentRegistry.list,
+    Mixin:     {
         ApiConsumer: require('./mixins/ApiConsumerMixin')
     },
-    Store: {
+    Store:     {
         Api: require('./stores/ApiStore')
     },
-    Actions: {
+    Actions:   {
         Api:    require('./actions/ApiActions'),
         Config: require('./actions/ConfigActions')
     },
