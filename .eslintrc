@@ -1,0 +1,20 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node":    true
+    },
+    "rules": {
+        "strict":               0,
+        "quotes":               "single",
+        "indent":               4,
+        "no-multi-spaces":      false,
+        "no-underscore-dangle": false,
+        "eol-last":             [0],
+        "key-spacing":          [2, {
+            "align":       "value",
+            "beforeColon": false,
+            "afterColon":  true
+        }]
+    }
+}

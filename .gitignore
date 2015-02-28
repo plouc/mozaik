@@ -1,28 +1,8 @@
 logs
 *.log
-.sass-cache
 node_modules
 .idea
-.env
-
-# Ignore generated build files
-build/mozaik.js
-build/mozaik.min.js
-build/mozaik.css
-build/fonts
-build/font-awesome.min.css
-
-# Ignore non default extensions
-src/ext/*
-!src/ext/aws
-!src/ext/github
-!src/ext/heroku
-!src/ext/jenkins
-!src/ext/sensu
-!src/ext/time
-!src/ext/travis
-!src/ext/twitter
-!src/ext/weather
+lib
 
 # Ignore non default themes
 src/themes/*

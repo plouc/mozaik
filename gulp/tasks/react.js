@@ -5,7 +5,7 @@ var source     = require('vinyl-source-stream');
 var config     = require('../config');
 
 
-gulp.task('react', ['collect:js'], function () {
+gulp.task('react', [], function () {
     var bundler = browserify(config.src + 'App.jsx', {
         debug: true
     });

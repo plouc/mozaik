@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/mozaik.css">
+    <title>Mozaïk dashboard</title>
+</head>
+<body>
+    <div id="mozaik"></div>
+    {% if env === 'prod' %}
+    <script src="mozaik.min.js"></script>
+    {% else %}
+    <script src="mozaik.js"></script>
+    {% endif %}
+</body>
+</html>

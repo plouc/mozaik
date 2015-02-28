@@ -16,6 +16,32 @@ Check the [DEMO](http://mozaik.herokuapp.com/)
 
 Visit the [Wiki](https://github.com/plouc/mozaik/wiki) for further information/doc.
 
+## Installation/Usage
+
+### Using demo repo
+
+You can start with the demo dashboard, look at the instructions on the dedicated repository https://github.com/plouc/mozaik-demo.
+
+### Using yeoman generator
+
+You also have a yeoman generator available to start with to build your own dashboard:
+
+#### Init
+
+```bash
+yo mozaik
+npm install
+```
+
+#### Configure
+
+Just edit the `config.js` file and add widgets.
+
+#### Run
+
+```bash
+node app.js
+```
 
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
 [widget-count-image]: https://img.shields.io/badge/widgets-x21-green.svg?style=flat-square
