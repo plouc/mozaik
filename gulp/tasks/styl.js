@@ -4,9 +4,10 @@ var stylus    = require('gulp-stylus');
 var gutil     = require('gulp-util');
 var chalk     = require('chalk');
 var config    = require('../config');
-var appConfig = require(path.join(config.root, 'config.js'));
 
 gulp.task('styl', ['collect:styl'], function () {
+    var appConfig = require(path.join(config.root, 'config.js'));
+
     gutil.log(chalk.green('Compiling stylus code using theme \'' + appConfig.theme + '\''));
 
     return gulp
