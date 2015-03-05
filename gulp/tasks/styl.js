@@ -19,6 +19,10 @@ gulp.task('styl', ['collect:styl'], function (done) {
         theme = mozaikThemePath;
     }
 
+    if (fs.existsSync(path.join(theme, '_vars.styl')) === false || fs.existsSync(path.join(theme, 'index.styl')) == false) {
+        return done(new Error(chalk.red('Please make sure your theme contains both \'_vars.styl\' and \'index.styl\' files (path: ' + theme + ')')));
+    }
+
     gutil.log(chalk.green('Compiling stylus code using theme \'' + theme + '\''));
 
     return gulp
