@@ -26,7 +26,8 @@ module.exports = function (mozaik) {
 
     app.get('/', function (req, res) {
         res.render('index', {
-            env: config.env
+            env:      config.env,
+            appTitle: mozaik.config.appTitle || 'Mozaïk'
         });
     });
 
