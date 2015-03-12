@@ -31,10 +31,6 @@ gulp.task('copy:imgs', function () {
     ;
 });
 
-gulp.task('watch:fonts', function () {
-    return gulp.watch(fontsPaths, ['copy:fonts']);
-});
-
 gulp.task('copy:styles', function () {
     gutil.log(chalk.green('Copying styles'));
 
