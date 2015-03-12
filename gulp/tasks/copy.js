@@ -4,16 +4,35 @@ var gutil   = require('gulp-util');
 var flatten = require('gulp-flatten');
 var chalk   = require('chalk');
 
+var fontsPaths = [
+    config.mozaikRoot + 'node_modules/font-awesome/fonts/*',
+    config.root + 'node_modules/mozaik-ext-*/assets/fonts/*',
+    config.root + 'themes/*/assets/fonts/*',
+    config.mozaikLib + 'themes/*/assets/fonts/*'
+];
+
 gulp.task('copy:fonts', function () {
     gutil.log(chalk.green('Copying fonts'));
 
-    return gulp.src([
-            config.mozaikRoot + 'node_modules/font-awesome/fonts/*',
-            config.root + 'node_modules/mozaik-ext-*/assets/fonts/*'
-        ])
+    return gulp.src(fontsPaths)
         .pipe(flatten())
         .pipe(gulp.dest(config.dest + 'fonts'))
     ;
+});
+
+gulp.task('copy:imgs', function () {
+    return gulp.src([
+            config.root + 'node_modules/mozaik-ext-*/assets/imgs/*',
+            config.root + 'themes/*/assets/imgs/*',
+            config.mozaikLib + 'themes/*/assets/imgs/*'
+        ])
+        .pipe(flatten())
+        .pipe(gulp.dest(config.dest + 'imgs'))
+    ;
+});
+
+gulp.task('watch:fonts', function () {
+    return gulp.watch(fontsPaths, ['copy:fonts']);
 });
 
 gulp.task('copy:styles', function () {
@@ -27,4 +46,4 @@ gulp.task('copy:styles', function () {
     ;
 });
 
-gulp.task('copy', ['copy:fonts', 'copy:styles']);
+gulp.task('copy', ['copy:fonts', 'copy:styles', 'copy:imgs']);
