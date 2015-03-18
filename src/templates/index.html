@@ -2,16 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/mozaik.css">
+    <link rel="stylesheet" href="{{assetsBaseUrl}}css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{assetsBaseUrl}}css/mozaik.css">
     <title>{{ appTitle }}</title>
 </head>
 <body>
     <div id="mozaik"></div>
     {% if env === 'prod' %}
-    <script src="mozaik.min.js"></script>
+    <script src="{{assetsBaseUrl}}mozaik.min.js"></script>
     {% else %}
-    <script src="mozaik.js"></script>
+    <script src="{{assetsBaseUrl}}mozaik.js"></script>
     {% endif %}
 </body>
 </html>

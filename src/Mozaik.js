@@ -14,6 +14,10 @@ class Mozaik {
             port: config.port
         };
 
+        this.config.appTitle         = this.config.appTitle      || 'Mozaïk';
+        this.config.assetsBaseUrl    = this.config.assetsBaseUrl || '';
+        this.config.useWssConnection = !!this.config.useWssConnection;
+
         this.baseDir = (config.baseDir || process.cwd()) + path.sep;
         this.rootDir = path.resolve(__dirname);
 

@@ -21,6 +21,8 @@ gulp.task('copy:fonts', function () {
 });
 
 gulp.task('copy:imgs', function () {
+    gutil.log(chalk.green('Copying images from extensions and themes'));
+
     return gulp.src([
             config.root + 'node_modules/mozaik-ext-*/assets/imgs/*',
             config.root + 'themes/*/assets/imgs/*',
