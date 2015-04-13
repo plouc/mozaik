@@ -5,42 +5,116 @@
 [![Dependencies][gemnasium-image]][gemnasium-url]
 [![Widgets][widget-count-image]][widget-count-url]
 
-Mozaïk is a tool based on nodejs / react / d3 / stylus to easily craft beautiful dashboards.
-It ships with several useful [widgets](https://github.com/plouc/mozaik/wiki/widgets) (for now, focused on CI and monitoring) such as Jenkins, Travis, Sensu…
-You can switch between 5 available themes or [make your own one](https://github.com/plouc/mozaik/wiki/theming).
-One of its handy feature is to be able to make a *rotation* between several dashboards with a single [config file](https://github.com/plouc/mozaik/wiki/configuration).
+Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft beautiful dashboards. [See demo](http://mozaik.herokuapp.com/)
 
-![preview](https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-panorama.png)
+![preview](https://raw.githubusercontent.com/juhamust/mozaik/readme/preview.png)
 
-Check the [DEMO](http://mozaik.herokuapp.com/)
+**Features:**
+
+- Scalable layout
+- Themes support
+- Extendable by modules
+- Grid positining
+- Optimized backend communication
+- Rotation support (with smooth transition)
+
+## Getting started
+
+Easy way to get started is using the demo dashboard. Look at the instructions on the dedicated repository https://github.com/plouc/mozaik-demo.
+
+Alternatively, use provided [Yeoman generator][generator-mozaik-url] available to start with new dashboard or widget:
+
+```shell
+npm install -g yo gulp generator-mozaik
+yo mozaik
+npm install
+gulp publish
+node app.js
+```
 
 Visit the [Wiki](https://github.com/plouc/mozaik/wiki) for further information/doc.
 
-## Installation/Usage
+## Widgets
 
-### Using demo repo
+Widgets are maintained as separate modules, thus available via [mozaik-ext-name in npm.js](https://www.npmjs.com/search?q=mozaik). To install an extension:
 
-You can start with the demo dashboard, look at the instructions on the dedicated repository https://github.com/plouc/mozaik-demo.
+- Install modules from [npmjs][npmjs-url]:
 
-### Using yeoman generator
+  ```shell
+  npm install --save mozaik-ext-example
+  ```
 
-You also have a yeoman generator available to start with to build your own dashboard:
+- Register widgets by adding to dashboard ``src/App.jsx``:
 
-#### Init
+  ```javascript
+  mozaik.addBatch('example', require('mozaik-ext-example'));
+  ```
 
-```bash
-yo mozaik
-npm install
-```
+  Configure size, widget placement and params in `config.js`:
 
-#### Configure
+  ```javascript
 
-Just edit the `config.js` file and add widgets.
+  module.exports = {
+    // ...
+    dashboards: [
+      // Dashboard 1
+      {
+        columns: 2, rows: 2,
+        widgets: [
+          {
+            type: 'example.widget_name', // WidgetName -> widget_name
+            param1: 'value1', // See widget documentation
+            columns: 1, rows: 1, // Size
+            x: 0, y: 0 // Position
+          }
+        ]
+      }
+    ]
+  }
+  ```
 
-#### Run
+- If widget needs to communicate with backend (see widget documentation), register its client api by adding to dashboard `app.js`:
 
-```bash
-node app.js
+  ```javascript
+  mozaik.bus.registerApi('example',
+    require('mozaik-ext-example/client')
+  );
+  ```
+
+  If client api requires configuration, it is provided in dashboard's `config.js`:
+
+  ```javascript
+
+  module.exports = {
+    env: process.env.NODE_ENV || 'production',
+    host: 'localhost',
+    port: process.env.PORT || 5000,
+
+    // Server-side client configuration.
+    // By convention, the name follow the module
+    api: {
+      example: {
+        foo: 'bar'
+      },
+    }
+
+    // ...
+  }
+  ```
+
+- (Re)build the dashboard:
+
+  ```shell
+  gulp publish
+  ```
+
+## Themes
+
+Mozaïk dashboard comes with 5 themes and makes it easy to [develop your own theme](https://github.com/plouc/mozaik/wiki/theming). Set theme name in `config.js`:
+
+```javascript
+// Options: bordeau, night-blue, light-grey, light-yellow, yellow
+theme: 'night-blue'
 ```
 
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
@@ -52,3 +126,5 @@ node app.js
 [codeclimate-url]: https://codeclimate.com/github/plouc/mozaik
 [gemnasium-image]: https://img.shields.io/gemnasium/plouc/mozaik.svg?style=flat-square
 [gemnasium-url]: https://gemnasium.com/plouc/mozaik
+[npmjs-url]: https://www.npmjs.com
+[generator-mozaik-url]: https://www.npmjs.com/package/generator-mozaik
