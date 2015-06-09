@@ -20,6 +20,8 @@ Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft
 
 ## Getting started
 
+[![Join the chat at https://gitter.im/plouc/mozaik](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/plouc/mozaik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Easy way to get started is using the demo dashboard. Look at the instructions on the dedicated repository https://github.com/plouc/mozaik-demo.
 
 Alternatively, use provided [Yeoman generator][generator-mozaik-url] available to start with new dashboard or widget:
