@@ -10,6 +10,7 @@ class Mozaik {
         this.config = config;
 
         this.serverConfig = {
+            env:  config.env,
             host: config.host,
             port: config.port
         };
