@@ -1,10 +1,10 @@
-var gulp         = require('gulp')
-    , del        = require('del')
-    , rename     = require('gulp-rename')
-    , toFive     = require("gulp-6to5")
-    , plumber    = require('gulp-plumber')
-    , replace    = require('gulp-regex-replace')
-    , stripDebug = require('gulp-strip-debug');
+var gulp       = require('gulp');
+var del        = require('del');
+var rename     = require('gulp-rename');
+var toFive     = require("gulp-6to5");
+var plumber    = require('gulp-plumber');
+var replace    = require('gulp-regex-replace');
+var stripDebug = require('gulp-strip-debug');
 
 gulp.task('lib-clean', function (cb) {
     del('./lib', cb);

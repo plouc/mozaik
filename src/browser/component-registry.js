@@ -1,11 +1,28 @@
-var _ = require('lodash');
+import _ from 'lodash';
 
 var _components = {};
 
-var ComponentRegistry = {
-    addBatch(ns, components) {
-        _.forOwn(components, function (component, id) {
-            ComponentRegistry.add(`${ ns }.${ _.snakeCase(id) }`, component);
+const ComponentRegistry = {
+    /**
+     * Register multiple extensions components.
+     *
+     * @param {Object} extensions
+     */
+    addExtensions(extensions) {
+        _.forOwn(extensions, (components, extensionId) => {
+            ComponentRegistry.addExtension(extensionId, components)
+        });
+    },
+
+    /**
+     * Register an extension components.
+     *
+     * @param {String} extensionId
+     * @param {Object} components
+     */
+    addExtension(extensionId, components) {
+        _.forOwn(components, (component, id) => {
+            ComponentRegistry.add(`${ extensionId }.${ _.snakeCase(id) }`, component);
         });
     },
 
@@ -28,4 +45,4 @@ var ComponentRegistry = {
     }
 };
 
-module.exports = ComponentRegistry;
+export default ComponentRegistry;

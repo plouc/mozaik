@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('default', ['publish']);
+gulp.task('default', ['build']);

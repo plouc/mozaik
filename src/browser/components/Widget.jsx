@@ -1,23 +1,29 @@
-var React             = require('react');
-var _                 = require('lodash');
-var ComponentRegistry = require('./../component-registry');
+import React             from 'react';
+import _                 from 'lodash';
+import ComponentRegistry from './../component-registry';
 
 
-var Widget = React.createClass({
+export default React.createClass({
+    displayName: 'Widget',
+
     render() {
-        var style = {
-            top:    this.props.y,
-            left:   this.props.x,
-            width:  this.props.w,
-            height: this.props.h
+        let { type, x, y, w, h } = this.props;
+
+        let style = {
+            top:    y,
+            left:   x,
+            width:  w,
+            height: h
         };
 
         // Pass props to widget component without 'metadata'
-        var childProps = _.omit(this.props, ['x', 'y', 'w', 'h', 'type']);
+        let childProps = _.omit(this.props, ['x', 'y', 'w', 'h', 'type']);
 
-        var widget = React.createElement(ComponentRegistry.get(this.props.type), _.extend({}, childProps));
+        // Pick component from registry and instantiate with filtered props
+        let widget = React.createElement(ComponentRegistry.get(type), _.extend({}, childProps));
 
-        var cssClass = 'widget ' + this.props.type.replace('_', '-').replace('.', '__');
+        // Set class according to component type
+        let cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
 
         return (
             <div className="widget__wrapper" style={style}>
@@ -28,5 +34,3 @@ var Widget = React.createClass({
         );
     }
 });
-
-module.exports = Widget;

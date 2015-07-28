@@ -1,11 +1,11 @@
 var gulp       = require('gulp');
-var browserify = require('browserify');
-var reactify   = require('reactify');
 var uglify     = require('gulp-uglify');
 var source     = require('vinyl-source-stream');
 var buffer     = require('vinyl-buffer');
 var rename     = require('gulp-rename');
 var watchify   = require('watchify');
+var browserify = require('browserify');
+var babelify   = require('babelify');
 var gutil      = require('gulp-util');
 var chalk      = require('chalk');
 var config     = require('../config');
@@ -21,8 +21,7 @@ function getBundler(isDev) {
         fullPaths:    true // for watchify
     });
 
-    bundler.transform(reactify, {
-        es6: true
+    bundler.transform(babelify, {
     });
 
     return bundler;
@@ -50,7 +49,7 @@ gulp.task('watch:js', function () {
         .pipe(gulp.dest(config.dest))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min'}))
         .pipe(gulp.dest(config.dest))
     ;
 });
@@ -88,7 +87,7 @@ gulp.task('js:dev', function () {
 gulp.task('js', ['js:dev'], function () {
     return gulp.src(config.dest + '/mozaik.js')
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(config.dest))
     ;
 });

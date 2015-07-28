@@ -1,7 +1,8 @@
-var ApiStore   = require('./../stores/ApiStore');
-var ApiActions = require('./../actions/ApiActions');
+import ApiStore   from './../stores/ApiStore';
+import ApiActions from './../actions/ApiActions';
 
-var ApiConsumerMixin = {
+
+const ApiConsumerMixin = {
     componentWillMount() {
         this.apiRequest = this.getApiRequest();
         this.listenTo(ApiStore, this._onApiData);
@@ -18,4 +19,4 @@ var ApiConsumerMixin = {
     }
 };
 
-module.exports = ApiConsumerMixin;
+export default ApiConsumerMixin;

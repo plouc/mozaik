@@ -103,9 +103,10 @@ class Bus {
 
         // if there is no interval running, create one
         if (!this.subscriptions[requestId].timer) {
+            console.log('Setting timer');
             this.subscriptions[requestId].timer = setInterval(() => {
                 this.processApiCall(requestId, callFn, request.params);
-            }, 100000);
+            }, 10000);
         }
 
         // avoid adding a client for the same API call twice
