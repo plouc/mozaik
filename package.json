@@ -19,7 +19,7 @@
   "dependencies": {
     "babelify": "^6.1.3",
     "browserify": "^8.0.2",
-    "chalk": "^0.5.1",
+    "chalk": "^1.x'",
     "del": "^1.1.1",
     "dotenv": "^0.5.1",
     "express": "^4.10.6",
