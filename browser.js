@@ -1,1 +1,3 @@
-module.exports = require('./lib/browser');
+import Mozaik from './src/browser';
+
+export { Mozaik as default };

@@ -1,25 +1,28 @@
-var ComponentRegistry = require('./component-registry');
+import ComponentRegistry from './component-registry';
+import ApiConsumerMixin  from './mixins/ApiConsumerMixin';
+import ApiStore          from './stores/ApiStore';
+import ApiActions        from './actions/ApiActions';
+import ConfigActions     from './actions/ConfigActions';
+import MozaikComponent   from './components/Mozaik.jsx';
+import PieComponent      from './components/charts/Pie.jsx';
+import TreemapComponent  from './components/charts/Treemap.jsx';
 
 
-module.exports = {
-    add:            ComponentRegistry.add,
-    addExtensions:  ComponentRegistry.addExtensions,
-    addExtension:   ComponentRegistry.addExtension,
-    get:            ComponentRegistry.get,
-    list:           ComponentRegistry.list,
-    Mixin:     {
-        ApiConsumer: require('./mixins/ApiConsumerMixin')
+export default {
+    Registry: ComponentRegistry,
+    Mixin: {
+        ApiConsumer: ApiConsumerMixin
     },
-    Store:     {
-        Api: require('./stores/ApiStore')
+    Store: {
+        Api: ApiStore
     },
     Actions:   {
-        Api:    require('./actions/ApiActions'),
-        Config: require('./actions/ConfigActions')
+        Api:    ApiActions,
+        Config: ConfigActions
     },
     Component: {
-        Mozaik:  require('./components/Mozaik.jsx'),
-        Pie:     require('./components/charts/Pie.jsx'),
-        Treemap: require('./components/charts/Treemap.jsx')
+        Mozaik:  MozaikComponent,
+        Pie:     PieComponent,
+        Treemap: TreemapComponent
     }
 };

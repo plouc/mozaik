@@ -1,10 +1,10 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var DashboardActions = Reflux.createActions([
+const DashboardActions = Reflux.createActions([
     'setDashboards',
     'previousDashboard',
     'nextDashboard',
     'startRotation'
 ]);
 
-module.exports = DashboardActions;
+export { DashboardActions as default };

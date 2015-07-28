@@ -5,6 +5,5 @@ module.exports = {
     mozaikRoot: path.resolve(path.join(__dirname, '..')) + path.sep,
     src:        path.resolve(path.join(process.cwd(), 'src')) + path.sep,
     mozaikSrc:  path.resolve(path.join(__dirname, '..', 'src')) + path.sep,
-    dest:       path.resolve(path.join(process.cwd(), 'build')) + path.sep,
-    mozaikLib:  path.resolve(path.join(__dirname, '..', 'lib')) + path.sep
+    dest:       path.resolve(path.join(process.cwd(), 'build')) + path.sep
 };

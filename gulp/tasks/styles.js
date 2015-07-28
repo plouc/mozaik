@@ -14,7 +14,7 @@ gulp.task('styles:dev', ['collect:styles'], function (done) {
     var appConfig = require(path.join(config.root, 'config.js'));
     var theme     = appConfig.theme;
 
-    var mozaikThemePath = config.mozaikLib + path.join('themes', theme);
+    var mozaikThemePath = config.mozaikSrc + path.join('themes', theme);
     var customThemePath = config.root + path.join('themes', theme);
 
     if (fs.existsSync(customThemePath)) {
@@ -30,7 +30,7 @@ gulp.task('styles:dev', ['collect:styles'], function (done) {
     gutil.log(chalk.green('Compiling stylus code using theme \'' + theme + '\''));
 
     return gulp
-        .src(config.mozaikLib + 'styl/mozaik.styl')
+        .src(config.mozaikSrc + 'styl/mozaik.styl')
         .pipe(stylus({
             'include css': true,
             use: function (style) {

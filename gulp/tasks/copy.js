@@ -8,7 +8,7 @@ var fontsPaths = [
     config.mozaikRoot + 'node_modules/font-awesome/fonts/*',
     config.root + 'node_modules/mozaik-ext-*/assets/fonts/*',
     config.root + 'themes/*/assets/fonts/*',
-    config.mozaikLib + 'themes/*/assets/fonts/*'
+    config.mozaikSrc + 'themes/*/assets/fonts/*'
 ];
 
 gulp.task('copy:fonts', function () {
@@ -26,7 +26,7 @@ gulp.task('copy:imgs', function () {
     return gulp.src([
             config.root + 'node_modules/mozaik-ext-*/assets/imgs/*',
             config.root + 'themes/*/assets/imgs/*',
-            config.mozaikLib + 'themes/*/assets/imgs/*'
+            config.mozaikSrc + 'themes/*/assets/imgs/*'
         ])
         .pipe(flatten())
         .pipe(gulp.dest(config.dest + 'imgs'))

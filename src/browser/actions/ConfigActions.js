@@ -1,7 +1,7 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var ConfigActions = Reflux.createActions([
+const ConfigActions = Reflux.createActions([
     'loadConfig'
 ]);
 
-module.exports = ConfigActions;
+export { ConfigActions as default };

@@ -8,8 +8,8 @@ function stylesWatcher(devMode) {
     var task      = devMode ? 'styles:dev' : 'styles';
 
     return gulp.watch([
-        config.mozaikLib + path.join('styl', '**', '*'),                           // mozaïk base styles
-        config.mozaikLib + path.join('themes', theme, '**', '*'),                  // mozaïk themes
+        config.mozaikSrc + path.join('styl', '**', '*'),                           // mozaïk base styles
+        config.mozaikSrc + path.join('themes', theme, '**', '*'),                  // mozaïk themes
         config.root + path.join('themes', theme, '**', '*'),                       // custom themes
         config.root + path.join('node_modules', 'mozaik-ext-*', 'styl', '**', '*') // extensions styles
     ], [task]);

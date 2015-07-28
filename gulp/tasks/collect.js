@@ -25,7 +25,7 @@ gulp.task('collect:styles', function (done) {
         lines.push('@require "' + path.relative(config.mozaikSrc + 'ext', file) + '";');
     });
 
-    fs.writeFile(config.mozaikLib + 'ext/collected.styl', lines.join('\n'), function (err) {
+    fs.writeFile(config.mozaikSrc + 'ext/collected.styl', lines.join('\n'), function (err) {
         if (err) {
             throw err;
         }

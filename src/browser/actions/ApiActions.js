@@ -1,7 +1,7 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
-var ApiActions = Reflux.createActions([
+const ApiActions = Reflux.createActions([
     'get'
 ]);
 
-module.exports = ApiActions;
+export { ApiActions as default };
