@@ -3,6 +3,7 @@ logs
 node_modules
 .idea
 lib
+npm-debug.log
 
 # Ignore non default themes
 src/themes/*

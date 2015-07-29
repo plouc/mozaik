@@ -1,5 +1,5 @@
-import React from 'react';
-import d3    from 'd3';
+import React, { Component, PropTypes } from 'react';
+import d3                              from 'd3';
 
 
 function position() {
@@ -11,24 +11,13 @@ function position() {
 }
 
 
-var Treemap = React.createClass({
-    getDefaultProps() {
-        return {
-            transitionDuration: 800,
-            showCount:          false
-        };
-    },
-
-    propTypes: {
-        showCount: React.PropTypes.bool.isRequired
-    },
-
+class Treemap extends Component {
     d3Render(data) {
         if (!data) {
             return;
         }
 
-        var el = this.getDOMNode();
+        var el = React.findDOMNode(this);
 
         var width  = el.offsetWidth;
         var height = el.offsetHeight;
@@ -42,7 +31,8 @@ var Treemap = React.createClass({
         var container = d3.select(el);
 
         var chunks = container.selectAll('.treemap__chunk')
-            .data(treemap.nodes(data));
+            .data(treemap.nodes(data))
+        ;
 
         var newChunks = chunks.enter().append('div')
             .attr('class', 'treemap__chunk')
@@ -52,7 +42,9 @@ var Treemap = React.createClass({
             .text(d => d.label)
         ;
 
-        if (this.props.showCount === true) {
+        let { showCount, transitionDuration } = this.props;
+
+        if (showCount === true) {
             newChunks.append('span')
                 .attr('class', 'count')
                 .text(d => d.count)
@@ -61,16 +53,16 @@ var Treemap = React.createClass({
 
         chunks
             .transition()
-            .duration(this.props.transitionDuration)
+            .duration(transitionDuration)
             .call(position)
         ;
-    },
+    }
 
     shouldComponentUpdate(data) {
         this.d3Render(data.data);
 
         return false;
-    },
+    }
 
     render() {
         var style = {
@@ -78,8 +70,19 @@ var Treemap = React.createClass({
             height: '100%'
         };
 
-        return <div className="treemap" style={style} />;
+        return (
+            <div ref="container" className="treemap" style={style} />
+        );
     }
-});
+}
 
-module.exports = Treemap;
+Treemap.propTypes = {
+    showCount: PropTypes.bool.isRequired
+};
+
+Treemap.defaultProps = {
+    transitionDuration: 800,
+    showCount:          false
+};
+
+export { Treemap as default };

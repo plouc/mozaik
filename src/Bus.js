@@ -1,5 +1,4 @@
-var chalk = require('chalk');
-var _     = require('lodash');
+import _ from 'lodash';
 
 
 class Bus {
