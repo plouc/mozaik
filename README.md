@@ -30,7 +30,7 @@ Alternatively, use provided [Yeoman generator][generator-mozaik-url] available t
 npm install -g yo gulp generator-mozaik
 yo mozaik
 npm install
-gulp publish
+gulp build
 node app.js
 ```
 
@@ -49,7 +49,9 @@ Widgets are maintained as separate modules, thus available via [mozaik-ext-name 
 - Register widgets by adding to dashboard ``src/App.jsx``:
 
   ```javascript
-  mozaik.addBatch('example', require('mozaik-ext-example'));
+  import mozaikExampleComponents from 'mozaik-ext-example';
+
+  Mozaik.Registry.addExtension('example', mozaikExampleComponents);
   ```
 
   Configure size, widget placement and params in `config.js`:
@@ -61,13 +63,13 @@ Widgets are maintained as separate modules, thus available via [mozaik-ext-name 
     dashboards: [
       // Dashboard 1
       {
-        columns: 2, rows: 2,
+        columns: 2, rows: 2, // Dashboard grid layout
         widgets: [
           {
             type: 'example.widget_name', // WidgetName -> widget_name
-            param1: 'value1', // See widget documentation
-            columns: 1, rows: 1, // Size
-            x: 0, y: 0 // Position
+            param1: 'value1',            // See widget documentation
+            columns: 1, rows: 1,         // Size
+            x: 0, y: 0                   // Position
           }
         ]
       }
@@ -107,7 +109,7 @@ Widgets are maintained as separate modules, thus available via [mozaik-ext-name 
 - (Re)build the dashboard:
 
   ```shell
-  gulp publish
+  gulp build
   ```
 
 ## Themes

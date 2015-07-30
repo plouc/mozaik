@@ -68,6 +68,6 @@
   },
   "scripts": {
     "eslint": "eslint ./src/*",
-    "test": "gulp lib && mocha ./tests"
+    "test": "mocha --compilers js:babel/register tests/**/*.test.js"
   }
 }

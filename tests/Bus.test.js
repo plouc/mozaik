@@ -1,19 +1,19 @@
-var should  = require('should');
-var sinon   = require('sinon');
-var mockery = require('mockery');
+import should  from 'should';
+import sinon   from 'sinon';
+import mockery from 'mockery';
 
 var sandbox = sinon.sandbox.create();
 var mockedMozaik;
 var Bus, bus;
 
 
-describe('Bus', function () {
+describe('Bus', () => {
 
-    before(function () {
+    before(() => {
         mockery.enable();
     });
 
-    beforeEach(function () {
+    beforeEach(() => {
         mockedMozaik = {
             logger: {
                 info:  sinon.spy(),
@@ -23,20 +23,20 @@ describe('Bus', function () {
 
         mockery.registerAllowables([
             'lodash',
-            '../lib/Bus',
+            '../src/Bus',
             './chalk-mock'
         ]);
         mockery.registerMock('chalk', require('./chalk-mock'));
-        Bus = require('../lib/Bus');
+        Bus = require('../src/Bus');
         bus = new Bus(mockedMozaik);
     });
 
-    afterEach(function () {
+    afterEach(() => {
         sandbox.verifyAndRestore();
         mockery.deregisterAll();
     });
 
-    after(function () {
+    after(() => {
         mockery.disable();
     });
 

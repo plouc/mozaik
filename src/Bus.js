@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import _     from 'lodash';
+import chalk from 'chalk';
 
 
 class Bus {
