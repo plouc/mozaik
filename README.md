@@ -124,8 +124,8 @@ theme: 'night-blue'
 
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
 [widget-count-image]: https://img.shields.io/badge/widgets-x21-green.svg?style=flat-square
-[npm-image]: https://img.shields.io/npm/v/restnest.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/restnest
+[npm-image]: https://img.shields.io/npm/v/mozaik.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/mozaik
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik
