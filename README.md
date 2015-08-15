@@ -1,6 +1,7 @@
 ![MOZAÏK][logo]
 
 [![Travis CI][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
 [![Quality][codeclimate-image]][codeclimate-url]
 [![Dependencies][gemnasium-image]][gemnasium-url]
 [![Widgets][widget-count-image]][widget-count-url]
@@ -123,6 +124,8 @@ theme: 'night-blue'
 
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
 [widget-count-image]: https://img.shields.io/badge/widgets-x21-green.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/restnest.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/restnest
 [widget-count-url]: https://github.com/plouc/mozaik/tree/master/src/ext
 [travis-image]: https://img.shields.io/travis/plouc/mozaik.svg?style=flat-square
 [travis-url]: https://travis-ci.org/plouc/mozaik
