@@ -44,6 +44,16 @@
 <meta name="twitter:description">
     <!-- Google Analytics -->
     
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-58405125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
 
 </head>
 
@@ -88,180 +98,211 @@
 
   <div id="container">
     <div class="sub-header">
-  <div class="wrapper">
-    <h1 class="page-title">Extensions</h1>
-    <div class="page-baseline">Extend Mozaïk with custom extensions</div>
-  </div>
+    <div class="wrapper">
+        <h1 class="page-title">Extensions</h1>
+        <div class="page-baseline">Extend Mozaïk with custom extensions</div>
+    </div>
 </div>
 <div id="content-wrap">
-  <div class="wrapper">
-    <div class="inner">
-      <!--
-      <header id="plugin-list-header">
-        <h1 id="plugin-list-title">Extensions</h1>
-        <input type="search" id="plugin-search-input" placeholder="Search">
-        <div id="plugin-list-count">9 items</div>
-      </header>
-      -->
-      <ul id="plugin-list">
+    <div class="wrapper">
+        <div class="inner">
+            <div>
+                <strong>Mozaïk</strong> widgets are maintained as separate modules,
+                available as mozaik-ext-&lt;name&gt; npm module.
+                Below is a list of some already existing extensions.
+            </div>
+            <div class="extensions">
+                
+                    <div class="extension">
+    <a href="https://github.com/SC5/mozaik-ext-analytics" class="extension_name" target="_blank">mozaik-ext-analytics</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-analytics">
+            <img alt="mozaik-ext-analytics NPM version" src="https://img.shields.io/npm/v/mozaik-ext-analytics.svg?style=flat-square">
+        </a>
         
-          <li class="plugin on">
-  <a href="https://github.com/SC5/mozaik-ext-analytics" class="plugin-name" target="_blank">mozaik-ext-analytics</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-analytics">
-      <img alt="mozaik-ext-analytics NPM version" src="https://img.shields.io/npm/v/mozaik-ext-analytics.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Google analytics widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#google" class="plugin-tag">google</a>
-    
-      <a href="#analytics" class="plugin-tag">analytics</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/swissmanu/mozaik-ext-bamboo" class="plugin-name" target="_blank">mozaik-ext-bamboo</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-bamboo">
-      <img alt="mozaik-ext-bamboo NPM version" src="https://img.shields.io/npm/v/mozaik-ext-bamboo.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Bamboo widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#bamboo" class="plugin-tag">bamboo</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/SC5/mozaik-ext-analytics" class="plugin-name" target="_blank">mozaik-ext-calendar</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-calendar">
-      <img alt="mozaik-ext-calendar NPM version" src="https://img.shields.io/npm/v/mozaik-ext-calendar.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Google calendar widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#google" class="plugin-tag">google</a>
-    
-      <a href="#calendar" class="plugin-tag">calendar</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-github" class="plugin-name" target="_blank">mozaik-ext-github</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-github">
-      <img alt="mozaik-ext-github NPM version" src="https://img.shields.io/npm/v/mozaik-ext-github.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Github widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#github" class="plugin-tag">github</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-heroku" class="plugin-name" target="_blank">mozaik-ext-heroku</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-heroku">
-      <img alt="mozaik-ext-heroku NPM version" src="https://img.shields.io/npm/v/mozaik-ext-heroku.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Heroku widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#heroku" class="plugin-tag">heroku</a>
-    
-      <a href="#deploy" class="plugin-tag">deploy</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-jenkins" class="plugin-name" target="_blank">mozaik-ext-jenkins</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-jenkins">
-      <img alt="mozaik-ext-jenkins NPM version" src="https://img.shields.io/npm/v/mozaik-ext-jenkins.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Jenkins widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#jenkins" class="plugin-tag">jenkins</a>
-    
-      <a href="#ci" class="plugin-tag">ci</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-time" class="plugin-name" target="_blank">mozaik-ext-time</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-time">
-      <img alt="mozaik-ext-time NPM version" src="https://img.shields.io/npm/v/mozaik-ext-time.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Time widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#time" class="plugin-tag">time</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-travis" class="plugin-name" target="_blank">mozaik-ext-travis</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-travis">
-      <img alt="mozaik-ext-travis NPM version" src="https://img.shields.io/npm/v/mozaik-ext-travis.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Travis widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#travis" class="plugin-tag">travis</a>
-    
-      <a href="#ci" class="plugin-tag">ci</a>
-    
-  </div>
-</li>
-
-        
-          <li class="plugin on">
-  <a href="https://github.com/plouc/mozaik-ext-weather" class="plugin-name" target="_blank">mozaik-ext-weather</a>
-  <div>
-    <a href="https://www.npmjs.com/package/mozaik-ext-weather">
-      <img alt="mozaik-ext-weather NPM version" src="https://img.shields.io/npm/v/mozaik-ext-weather.svg?style=flat-square">
-    </a>
-  </div>
-  <p class="plugin-desc">Weather widgets for Mozaïk.</p>
-  <div class="plugin-tag-list">
-    
-      <a href="#weather" class="plugin-tag">weather</a>
-    
-  </div>
-</li>
-
-        
-      </ul>
     </div>
-  </div>
+    <p class="extension_desc">Google analytics widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#google" class="extension_tag">google</a>
+        
+            <a href="#analytics" class="extension_tag">analytics</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/swissmanu/mozaik-ext-bamboo" class="extension_name" target="_blank">mozaik-ext-bamboo</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-bamboo">
+            <img alt="mozaik-ext-bamboo NPM version" src="https://img.shields.io/npm/v/mozaik-ext-bamboo.svg?style=flat-square">
+        </a>
+        
+    </div>
+    <p class="extension_desc">Bamboo widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#bamboo" class="extension_tag">bamboo</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/SC5/mozaik-ext-analytics" class="extension_name" target="_blank">mozaik-ext-calendar</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-calendar">
+            <img alt="mozaik-ext-calendar NPM version" src="https://img.shields.io/npm/v/mozaik-ext-calendar.svg?style=flat-square">
+        </a>
+        
+    </div>
+    <p class="extension_desc">Google calendar widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#google" class="extension_tag">google</a>
+        
+            <a href="#calendar" class="extension_tag">calendar</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-github" class="extension_name" target="_blank">mozaik-ext-github</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-github">
+            <img alt="mozaik-ext-github NPM version" src="https://img.shields.io/npm/v/mozaik-ext-github.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-github">
+                <img alt="mozaik-ext-github build status" src="https://img.shields.io/travis/plouc/mozaik-ext-github.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Github widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#github" class="extension_tag">github</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-heroku" class="extension_name" target="_blank">mozaik-ext-heroku</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-heroku">
+            <img alt="mozaik-ext-heroku NPM version" src="https://img.shields.io/npm/v/mozaik-ext-heroku.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-heroku">
+                <img alt="mozaik-ext-heroku build status" src="https://img.shields.io/travis/plouc/mozaik-ext-heroku.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Heroku widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#heroku" class="extension_tag">heroku</a>
+        
+            <a href="#deploy" class="extension_tag">deploy</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-jenkins" class="extension_name" target="_blank">mozaik-ext-jenkins</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-jenkins">
+            <img alt="mozaik-ext-jenkins NPM version" src="https://img.shields.io/npm/v/mozaik-ext-jenkins.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-jenkins">
+                <img alt="mozaik-ext-jenkins build status" src="https://img.shields.io/travis/plouc/mozaik-ext-jenkins.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Jenkins widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#jenkins" class="extension_tag">jenkins</a>
+        
+            <a href="#ci" class="extension_tag">ci</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-time" class="extension_name" target="_blank">mozaik-ext-time</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-time">
+            <img alt="mozaik-ext-time NPM version" src="https://img.shields.io/npm/v/mozaik-ext-time.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-time">
+                <img alt="mozaik-ext-time build status" src="https://img.shields.io/travis/plouc/mozaik-ext-time.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Time widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#time" class="extension_tag">time</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-travis" class="extension_name" target="_blank">mozaik-ext-travis</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-travis">
+            <img alt="mozaik-ext-travis NPM version" src="https://img.shields.io/npm/v/mozaik-ext-travis.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-travis">
+                <img alt="mozaik-ext-travis build status" src="https://img.shields.io/travis/plouc/mozaik-ext-travis.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Travis widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#travis" class="extension_tag">travis</a>
+        
+            <a href="#ci" class="extension_tag">ci</a>
+        
+    </div>
+</div>
+
+                
+                    <div class="extension">
+    <a href="https://github.com/plouc/mozaik-ext-weather" class="extension_name" target="_blank">mozaik-ext-weather</a>
+    <div>
+        <a href="https://www.npmjs.com/package/mozaik-ext-weather">
+            <img alt="mozaik-ext-weather NPM version" src="https://img.shields.io/npm/v/mozaik-ext-weather.svg?style=flat-square">
+        </a>
+        
+            <a href="https://travis-ci.org/plouc/mozaik-ext-weather">
+                <img alt="mozaik-ext-weather build status" src="https://img.shields.io/travis/plouc/mozaik-ext-weather.svg?style=flat-square">
+            </a>
+        
+    </div>
+    <p class="extension_desc">Weather widgets for Mozaïk.</p>
+    <div class="extension_tags">
+        
+            <a href="#weather" class="extension_tag">weather</a>
+        
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
 </div>
 <script>window.SEARCH_INDEX = {"version":"0.5.12","fields":[{"name":"name","boost":10},{"name":"tags","boost":50},{"name":"description","boost":1}],"ref":"id","documentStore":{"store":{"0":["analyt","ext","googl","mozaik","mozaïk","widget"],"1":["bamboo","ext","mozaik","mozaïk","widget"],"2":["calendar","ext","googl","mozaik","mozaïk","widget"],"3":["ext","github","mozaik","mozaïk","widget"],"4":["deploy","ext","heroku","mozaik","mozaïk","widget"],"5":["ci","ext","jenkin","mozaik","mozaïk","widget"],"6":["ext","mozaik","mozaïk","time","widget"],"7":["ci","ext","mozaik","mozaïk","travi","widget"],"8":["ext","mozaik","mozaïk","weather","widget"]},"length":9},"tokenStore":{"root":{"docs":{},"a":{"docs":{},"n":{"docs":{},"a":{"docs":{},"l":{"docs":{},"y":{"docs":{},"t":{"docs":{"0":{"ref":0,"tf":28.583333333333332}}}}}}}},"e":{"docs":{},"x":{"docs":{},"t":{"docs":{"0":{"ref":0,"tf":3.333333333333333},"1":{"ref":1,"tf":3.333333333333333},"2":{"ref":2,"tf":3.333333333333333},"3":{"ref":3,"tf":3.333333333333333},"4":{"ref":4,"tf":3.333333333333333},"5":{"ref":5,"tf":3.333333333333333},"6":{"ref":6,"tf":3.333333333333333},"7":{"ref":7,"tf":3.333333333333333},"8":{"ref":8,"tf":3.333333333333333}}}}},"g":{"docs":{},"o":{"docs":{},"o":{"docs":{},"g":{"docs":{},"l":{"docs":{"0":{"ref":0,"tf":25.25},"2":{"ref":2,"tf":25.25}}}}}},"i":{"docs":{},"t":{"docs":{},"h":{"docs":{},"u":{"docs":{},"b":{"docs":{"3":{"ref":3,"tf":53.66666666666667}}}}}}}},"m":{"docs":{},"o":{"docs":{},"z":{"docs":{},"a":{"docs":{},"i":{"docs":{},"k":{"docs":{"0":{"ref":0,"tf":3.333333333333333},"1":{"ref":1,"tf":3.333333333333333},"2":{"ref":2,"tf":3.333333333333333},"3":{"ref":3,"tf":3.333333333333333},"4":{"ref":4,"tf":3.333333333333333},"5":{"ref":5,"tf":3.333333333333333},"6":{"ref":6,"tf":3.333333333333333},"7":{"ref":7,"tf":3.333333333333333},"8":{"ref":8,"tf":3.333333333333333}}}},"ï":{"docs":{},"k":{"docs":{"0":{"ref":0,"tf":0.25},"1":{"ref":1,"tf":0.3333333333333333},"2":{"ref":2,"tf":0.25},"3":{"ref":3,"tf":0.3333333333333333},"4":{"ref":4,"tf":0.3333333333333333},"5":{"ref":5,"tf":0.3333333333333333},"6":{"ref":6,"tf":0.3333333333333333},"7":{"ref":7,"tf":0.3333333333333333},"8":{"ref":8,"tf":0.3333333333333333}}}}}}}},"w":{"docs":{},"i":{"docs":{},"d":{"docs":{},"g":{"docs":{},"e":{"docs":{},"t":{"docs":{"0":{"ref":0,"tf":0.25},"1":{"ref":1,"tf":0.3333333333333333},"2":{"ref":2,"tf":0.25},"3":{"ref":3,"tf":0.3333333333333333},"4":{"ref":4,"tf":0.3333333333333333},"5":{"ref":5,"tf":0.3333333333333333},"6":{"ref":6,"tf":0.3333333333333333},"7":{"ref":7,"tf":0.3333333333333333},"8":{"ref":8,"tf":0.3333333333333333}}}}}}},"e":{"docs":{},"a":{"docs":{},"t":{"docs":{},"h":{"docs":{},"e":{"docs":{},"r":{"docs":{"8":{"ref":8,"tf":53.66666666666667}}}}}}}}},"b":{"docs":{},"a":{"docs":{},"m":{"docs":{},"b":{"docs":{},"o":{"docs":{},"o":{"docs":{"1":{"ref":1,"tf":53.66666666666667}}}}}}}},"c":{"docs":{},"a":{"docs":{},"l":{"docs":{},"e":{"docs":{},"n":{"docs":{},"d":{"docs":{},"a":{"docs":{},"r":{"docs":{"2":{"ref":2,"tf":28.583333333333332}}}}}}}}},"i":{"docs":{"5":{"ref":5,"tf":25},"7":{"ref":7,"tf":25}}}},"d":{"docs":{},"e":{"docs":{},"p":{"docs":{},"l":{"docs":{},"o":{"docs":{},"y":{"docs":{"4":{"ref":4,"tf":25}}}}}}}},"h":{"docs":{},"e":{"docs":{},"r":{"docs":{},"o":{"docs":{},"k":{"docs":{},"u":{"docs":{"4":{"ref":4,"tf":28.666666666666664}}}}}}}},"j":{"docs":{},"e":{"docs":{},"n":{"docs":{},"k":{"docs":{},"i":{"docs":{},"n":{"docs":{"5":{"ref":5,"tf":28.666666666666664}}}}}}}},"t":{"docs":{},"i":{"docs":{},"m":{"docs":{},"e":{"docs":{"6":{"ref":6,"tf":53.66666666666667}}}}},"r":{"docs":{},"a":{"docs":{},"v":{"docs":{},"i":{"docs":{"7":{"ref":7,"tf":28.666666666666664}}}}}}}},"length":50},"corpusTokens":["analyt","bamboo","calendar","ci","deploy","ext","github","googl","heroku","jenkin","mozaik","mozaïk","time","travi","weather","widget"],"pipeline":["trimmer","stopWordFilter","stemmer"]}</script>
 
