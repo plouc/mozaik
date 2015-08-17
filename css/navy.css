@@ -215,7 +215,7 @@ body {
   text-indent: 101%;
   white-space: nowrap;
   overflow: hidden;
-  background: url("/mozaik-logo.png");
+  background: url("/mozaik/mozaik-logo.png");
   background-repeat: no-repeat;
   background-position: 0 10px;
   -webkit-background-size: contain;
