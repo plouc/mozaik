@@ -1152,6 +1152,7 @@ a.article-title:hover {
 }
 .extension_name {
   font-family: 'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
   font-weight: bold;
   color: #333;
   background: #a2e7da;
@@ -1161,8 +1162,17 @@ a.article-title:hover {
   padding: 13px 20px;
   display: block;
 }
-.extension_name:hover {
-  background: #b6ece2;
+.extension_name img {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+}
+.extension_link {
+  color: #444;
+  line-height: 1em;
+  text-decoration: none;
+}
+.extension_link:hover {
   color: #000;
 }
 .extension_desc {
@@ -1172,7 +1182,7 @@ a.article-title:hover {
 .extension_tags {
   border-top: 1px solid #222;
   line-height: 1em;
-  padding: 7px 20px;
+  padding: 7px 20px 10px 20px;
 }
 .extension_tags:before,
 .extension_tags:after {
