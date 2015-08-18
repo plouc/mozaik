@@ -248,10 +248,6 @@ body {
 .main-nav_link {
   color: #333;
   text-decoration: none;
-  -webkit-transition: color 0.2s;
-  -moz-transition: color 0.2s;
-  -ms-transition: color 0.2s;
-  transition: color 0.2s;
   font-family: 'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -259,6 +255,10 @@ body {
   display: inline-block;
   padding: 0 15px;
   line-height: 50px;
+  -webkit-transition: all 200ms;
+  -moz-transition: all 200ms;
+  -ms-transition: all 200ms;
+  transition: all 200ms;
 }
 .main-nav_link:hover {
   color: #000;
@@ -1073,7 +1073,7 @@ a.article-title:hover {
   color: #a2e7da;
 }
 .extensions {
-  margin: 20px -20px;
+  margin: 30px -20px;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -1113,9 +1113,11 @@ a.article-title:hover {
   }
 }
 .extensions_intro {
-  margin: 20px -20px 0 -20px;
+  margin: 30px -20px 0 -20px;
   text-align: left;
   font-weight: 700;
+  padding-left: 20px;
+  border-left: 3px solid #ccc;
 }
 .extension {
   background: #333;
@@ -1709,6 +1711,13 @@ pre .javascript .function {
     -webkit-justify-content: space-around;
     justify-content: space-around;
   }
+}
+.themes_intro {
+  margin: 30px 0 0 0;
+  text-align: left;
+  font-weight: 700;
+  padding-left: 20px;
+  border-left: 3px solid #ccc;
 }
 .theme {
   margin-bottom: 20px;
