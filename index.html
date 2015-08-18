@@ -24,8 +24,8 @@
     <meta name="msapplication-TileColor" content="#2f83cd">
     <meta name="msapplication-TileImage" content="/mozaik/icon/mstile-144x144.png">
     <!-- CSS -->
-    <!-- build:css build/css/navy.css -->
-    <link rel="stylesheet" href="/mozaik/css/navy.css" type="text/css">
+    <!-- build:css build/css/mozaik.css -->
+    <link rel="stylesheet" href="/mozaik/css/mozaik.css" type="text/css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -58,58 +58,48 @@
 
 <body>
   <header id="header">
-  <div id="header-inner" class="wrapper">
-    <h1 id="logo-wrap">
-      <a href="/" id="logo">Mozaïk</a>
-    </h1>
-    <nav id="main-nav">
-      <ul>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/docs" class="main-nav-link">docs</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/extensions" class="main-nav-link">extensions</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/themes" class="main-nav-link">themes</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/news" class="main-nav-link">news</a>
-          </li>
-        
-        <li class="main-nav-item">
-          <a href="https://github.com/plouc/mozaik" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
-        </li>
-      </ul>
-    </nav>
-    <a id="mobile-nav-toggle">
-      <span class="mobile-nav-toggle-bar"></span>
-      <span class="mobile-nav-toggle-bar"></span>
-      <span class="mobile-nav-toggle-bar"></span>
-    </a>
-    <a id="mobile-search-btn" class="st-search-launcher"></a>
-  </div>
+    <div id="header-inner" class="wrapper">
+        <h1 id="logo-wrap">
+            <a href="/" id="logo">Mozaïk</a>
+        </h1>
+        <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link">docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">news</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
+                        <i class="fa fa-github-alt"></i>
+                        -->
+                        Github
+                    </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+        <a id="mobile-nav-toggle">
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+        </a>
+        <a id="mobile-search-btn" class="st-search-launcher"></a>
+    </div>
 </header>
 
   <div id="container">
     <header id="banner" class="wrapper">
-  <div class="inner">
-    <h2 id="banner-title"></h2>
-    <div id="banner-share"><!-- GitHub Star -->
-<iframe src="https://ghbtns.com/github-btn.html?user=plouc&repo=mozaik&type=star&count=true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
-<!-- GitHub fork -->
-<iframe src="https://ghbtns.com/github-btn.html?user=plouc&repo=mozaik&type=fork&count=true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
-</div>
-  </div>
-</header>
-<div id="content-wrap">
-  <div class="wrapper">
     <div class="inner">
-      <div class="features">
+        <h2 id="banner-title"></h2>
+    </div>
+</header>
+<div class="banner-share">
+    <div class="banner-share_wrapper">
+        <!-- GitHub Star -->
+        <iframe src="https://ghbtns.com/github-btn.html?user=plouc&repo=mozaik&type=star&count=true"
+            frameborder="0" scrolling="0" width="100px" height="20px">
+        </iframe>
+        <!-- GitHub fork -->
+        <iframe src="https://ghbtns.com/github-btn.html?user=plouc&repo=mozaik&type=fork&count=true"
+            frameborder="0" scrolling="0" width="100px" height="20px">
+        </iframe>
+    </div>
+</div>
+
+<div id="content-wrap">
+    <div class="wrapper">
+        <div class="inner">
+            <h2 class="features_title">Features</h2>
+            <div class="features">
     
         <div class="feature">
             <h2 class="feature_title">
@@ -191,11 +181,11 @@
     
 </div>
 
-      <div id="intro-get-started-wrap">
-        <a href="docs/" id="intro-get-started-link">Get started</a>
-      </div>
+            <div id="intro-get-started-wrap">
+                <a href="docs/" id="intro-get-started-link">Get started</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
     <footer id="footer" class="wrapper">

@@ -24,8 +24,8 @@
     <meta name="msapplication-TileColor" content="#2f83cd">
     <meta name="msapplication-TileImage" content="/mozaik/icon/mstile-144x144.png">
     <!-- CSS -->
-    <!-- build:css build/css/navy.css -->
-    <link rel="stylesheet" href="/mozaik/css/navy.css" type="text/css">
+    <!-- build:css build/css/mozaik.css -->
+    <link rel="stylesheet" href="/mozaik/css/mozaik.css" type="text/css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -59,41 +59,22 @@
 
 <body>
   <header id="header">
-  <div id="header-inner" class="wrapper">
-    <h1 id="logo-wrap">
-      <a href="/" id="logo">Mozaïk</a>
-    </h1>
-    <nav id="main-nav">
-      <ul>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/docs" class="main-nav-link">docs</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/extensions" class="main-nav-link">extensions</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/themes" class="main-nav-link">themes</a>
-          </li>
-        
-          <li class="main-nav-item">
-            <a href="/mozaik/news" class="main-nav-link">news</a>
-          </li>
-        
-        <li class="main-nav-item">
-          <a href="https://github.com/plouc/mozaik" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
-        </li>
-      </ul>
-    </nav>
-    <a id="mobile-nav-toggle">
-      <span class="mobile-nav-toggle-bar"></span>
-      <span class="mobile-nav-toggle-bar"></span>
-      <span class="mobile-nav-toggle-bar"></span>
-    </a>
-    <a id="mobile-search-btn" class="st-search-launcher"></a>
-  </div>
+    <div id="header-inner" class="wrapper">
+        <h1 id="logo-wrap">
+            <a href="/" id="logo">Mozaïk</a>
+        </h1>
+        <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link">docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">news</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
+                        <i class="fa fa-github-alt"></i>
+                        -->
+                        Github
+                    </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+        <a id="mobile-nav-toggle">
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+        </a>
+        <a id="mobile-search-btn" class="st-search-launcher"></a>
+    </div>
 </header>
 
   <div id="container">
@@ -106,21 +87,23 @@
 <div id="content-wrap">
     <div class="wrapper">
         <div class="inner">
-            <div>
+            <div class="extensions_intro">
                 <strong>Mozaïk</strong> widgets are maintained as separate modules,
-                available as mozaik-ext-&lt;name&gt; npm module.
+                available as mozaik-ext-&lt;name&gt; npm packages.<br/>
                 Below is a list of some already existing extensions.
             </div>
             <div class="extensions">
                 
                     <div class="extension">
     <a href="https://github.com/SC5/mozaik-ext-analytics" class="extension_name" target="_blank">mozaik-ext-analytics</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-analytics">
             <img alt="mozaik-ext-analytics NPM version" src="https://img.shields.io/npm/v/mozaik-ext-analytics.svg?style=flat-square">
         </a>
         
     </div>
+    -->
     <p class="extension_desc">Google analytics widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -134,12 +117,14 @@
                 
                     <div class="extension">
     <a href="https://github.com/swissmanu/mozaik-ext-bamboo" class="extension_name" target="_blank">mozaik-ext-bamboo</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-bamboo">
             <img alt="mozaik-ext-bamboo NPM version" src="https://img.shields.io/npm/v/mozaik-ext-bamboo.svg?style=flat-square">
         </a>
         
     </div>
+    -->
     <p class="extension_desc">Bamboo widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -151,12 +136,14 @@
                 
                     <div class="extension">
     <a href="https://github.com/SC5/mozaik-ext-analytics" class="extension_name" target="_blank">mozaik-ext-calendar</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-calendar">
             <img alt="mozaik-ext-calendar NPM version" src="https://img.shields.io/npm/v/mozaik-ext-calendar.svg?style=flat-square">
         </a>
         
     </div>
+    -->
     <p class="extension_desc">Google calendar widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -170,6 +157,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-github" class="extension_name" target="_blank">mozaik-ext-github</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-github">
             <img alt="mozaik-ext-github NPM version" src="https://img.shields.io/npm/v/mozaik-ext-github.svg?style=flat-square">
@@ -180,6 +168,7 @@
             </a>
         
     </div>
+    -->
     <p class="extension_desc">Github widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -191,6 +180,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-heroku" class="extension_name" target="_blank">mozaik-ext-heroku</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-heroku">
             <img alt="mozaik-ext-heroku NPM version" src="https://img.shields.io/npm/v/mozaik-ext-heroku.svg?style=flat-square">
@@ -201,6 +191,7 @@
             </a>
         
     </div>
+    -->
     <p class="extension_desc">Heroku widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -214,6 +205,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-jenkins" class="extension_name" target="_blank">mozaik-ext-jenkins</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-jenkins">
             <img alt="mozaik-ext-jenkins NPM version" src="https://img.shields.io/npm/v/mozaik-ext-jenkins.svg?style=flat-square">
@@ -224,6 +216,7 @@
             </a>
         
     </div>
+    -->
     <p class="extension_desc">Jenkins widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -237,6 +230,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-time" class="extension_name" target="_blank">mozaik-ext-time</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-time">
             <img alt="mozaik-ext-time NPM version" src="https://img.shields.io/npm/v/mozaik-ext-time.svg?style=flat-square">
@@ -247,6 +241,7 @@
             </a>
         
     </div>
+    -->
     <p class="extension_desc">Time widgets for Mozaïk.</p>
     <div class="extension_tags">
         
@@ -258,6 +253,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-travis" class="extension_name" target="_blank">mozaik-ext-travis</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-travis">
             <img alt="mozaik-ext-travis NPM version" src="https://img.shields.io/npm/v/mozaik-ext-travis.svg?style=flat-square">
@@ -268,7 +264,8 @@
             </a>
         
     </div>
-    <p class="extension_desc">Travis widgets for Mozaïk.</p>
+    -->
+    <p class="extension_desc">Travis widgets for Mozaïk</p>
     <div class="extension_tags">
         
             <a href="#travis" class="extension_tag">travis</a>
@@ -281,6 +278,7 @@
                 
                     <div class="extension">
     <a href="https://github.com/plouc/mozaik-ext-weather" class="extension_name" target="_blank">mozaik-ext-weather</a>
+    <!--
     <div>
         <a href="https://www.npmjs.com/package/mozaik-ext-weather">
             <img alt="mozaik-ext-weather NPM version" src="https://img.shields.io/npm/v/mozaik-ext-weather.svg?style=flat-square">
@@ -291,6 +289,7 @@
             </a>
         
     </div>
+    -->
     <p class="extension_desc">Weather widgets for Mozaïk.</p>
     <div class="extension_tags">
         
