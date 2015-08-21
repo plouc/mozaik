@@ -12,3 +12,4 @@ src/themes/*
 !src/themes/light-yellow
 !src/themes/night-blue
 !src/themes/yellow
+!src/themes/snow
