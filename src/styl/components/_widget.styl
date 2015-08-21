@@ -9,13 +9,14 @@
   width  100%
   height 100%
   background $widget-bg-color
-  border-radius: $widget-border-radius
+  border-radius $widget-border-radius
   box-shadow $widget-shadow
   border $widget-border
 
   &__header
     position relative
     overflow hidden
+    font $widget-header-font
     height      $widget-header-height
     line-height $widget-header-height
     border-radius $widget-header-border-radius
@@ -24,7 +25,6 @@
     color            $widget-header-txt-color
     border-bottom $widget-header-border-bottom
     box-shadow $widget-header-shadow
-    font $widget-header-font
     white-space pre
 
     &__count
