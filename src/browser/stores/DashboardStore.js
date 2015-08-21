@@ -22,7 +22,7 @@ var DashboardStore = Reflux.createStore({
     },
 
     start() {
-        if (_config.rotationDuration && _dashboards.length > 0 && _timer === null) {
+        if (_config.rotationDuration && _dashboards.length > 1 && _timer === null) {
             _timer = setInterval(() => {
                 this.nextDashboard();
             }, _config.rotationDuration);
