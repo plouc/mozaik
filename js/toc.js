@@ -1,32 +1,62 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  var header       = document.getElementById('header');
-  var container    = document.getElementById('container');
-  var toc          = document.getElementById('article-toc');
-  var tocTop       = document.getElementById('article-toc-top');
-  var headerHeight = header.clientHeight;
+    var $container = $('#container');
+    var $window    = $(window);
 
-  if (!toc) return;
+    var $sidebar = $('.sidebar');
+    var $strata  = $container.find('.page_content > .strata > .strata_in');
+    if ($sidebar.length === 1) {
+        var stickySidebar = new Waypoint.Sticky({
+            element: $sidebar,
+            context: $container,
+            handler: function () {
+                var right = $window.width() - $strata.offset().left - $strata.width();
 
-  function updateSidebarPosition () {
-    var scrollTop = container.scrollTop;
-
-    if (scrollTop > headerHeight){
-      toc.classList.add('fixed');
-    } else {
-      toc.classList.remove('fixed');
+                this.$element.css('right', right)
+            }
+        });
     }
-  }
 
-  container.addEventListener('scroll', function () {
-    window.requestAnimationFrame(updateSidebarPosition);
-  });
+    var $article    = $('.article');
+    var $toc        = $('.toc');
+    var anchorLinks = [];
 
-  updateSidebarPosition();
+    function highlightToc() {
+        anchorLinks.sort(function (a, b) {
+            return a.pos - b.pos;
+        });
+        $toc.find('.toc-link').removeClass('_is-current');
+        if (anchorLinks.length > 0) {
+            anchorLinks[0].el.addClass('_is-current');
+        }
+    }
 
-  tocTop.addEventListener('click', function (e) {
-    e.preventDefault();
-    container.scrollTop = 0;
-  });
+    if ($article.length === 1 && $toc.length > 0) {
+        var $headers = $article.find('h1,h2,h3,h4,h5,h6');
+        $headers.each(function (i) {
+            var anchorId = this.id;
+            var $link    = $toc.find('.toc-link[href="#' + anchorId + '"]');
+            if ($link.length >= 0) {
+                var inview = new Waypoint.Inview({
+                    element: this,
+                    context: $container,
+                    enter: (function (pos) {
+                        return function () {
+                            anchorLinks.push({ pos: pos, el: $link });
+                            highlightToc();
+                        };
+                    })(i),
+                    exit: (function (pos) {
+                        return function () {
+                            anchorLinks = anchorLinks.filter(function (anchorLink) {
+                                return anchorLink.pos !== pos;
+                            });
+                            highlightToc();
+                        };
+                    })(i)
+                });
+            }
+        });
+    }
 })();
