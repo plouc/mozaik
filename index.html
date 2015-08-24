@@ -27,7 +27,7 @@
     <!-- build:css build/css/mozaik.css -->
     <link rel="stylesheet" href="/mozaik/css/mozaik.css" type="text/css">
     <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- RSS -->
     <link rel="alternative" href="/mozaik/atom.xml" title="Mozaïk" type="application/atom+xml">
@@ -57,31 +57,40 @@
 </head>
 
 <body>
-  <header id="header">
-    <div id="header-inner" class="wrapper">
-        <h1 id="logo-wrap">
-            <a href="/mozaik/" id="logo">Mozaïk</a>
-        </h1>
-        <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link">docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">news</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
-                        <i class="fa fa-github-alt"></i>
-                        -->
-                        Github
-                    </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
-        <a id="mobile-nav-toggle">
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-        </a>
-        <a id="mobile-search-btn" class="st-search-launcher"></a>
+    <header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="/mozaik/" id="logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link">Docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
+                            <i class="fa fa-github-alt"></i>
+                            -->
+                            Github
+                        </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
     </div>
 </header>
 
-  <div id="container">
-    <header id="banner" class="wrapper">
-    <div class="inner">
-        <h2 id="banner-title"></h2>
+    <div id="container">
+        <div class="strata_out index_banner">
+    <div class="strata">
+        <div class="strata_in">
+            <p class="index_banner_intro">
+                    Mozaïk is a tool based on nodejs / react / d3 / stylus to easily craft beautiful dashboards.
+                </p><div id="intro-get-started-wrap"><a class="index_banner_link" href="http://mozaik.herokuapp.com/" target="_blank">demo</a><a class="index_banner_link" href="/mozaik/docs">get started</a></div>
+            <!--
+            <h2 id="banner-title"></h2>
+            -->
+        </div>
     </div>
-</header>
+</div>
 <div class="banner-share">
     <div class="banner-share_wrapper">
         <!-- GitHub Star -->
@@ -95,15 +104,17 @@
     </div>
 </div>
 
-<div id="content-wrap">
-    <div class="wrapper">
-        <div class="inner">
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
             <h2 class="features_title">Features</h2>
             <div class="features">
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-extendable.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-arrows-alt"></i>
                 Scalable layout
             </h2>
             <div class="feature_desc">
@@ -114,8 +125,10 @@
         </div>
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-themes.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-paint-brush"></i>
                 Themes support
             </h2>
             <div class="feature_desc">
@@ -128,8 +141,10 @@
         </div>
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-extendable.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-cubes"></i>
                 Extendable by modules
             </h2>
             <div class="feature_desc">
@@ -142,8 +157,10 @@
         </div>
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-positioning.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-th"></i>
                 Grid positioning
             </h2>
             <div class="feature_desc">
@@ -156,8 +173,10 @@
         </div>
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-backend.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-exchange"></i>
                 Optimized backend communication
             </h2>
             <div class="feature_desc">
@@ -168,8 +187,10 @@
         </div>
     
         <div class="feature">
+            <div class="feature_pic">
+                <img src="/mozaik/mozaik-icon-extendable.png"/>
+            </div>
             <h2 class="feature_title">
-                <i class="fa fa-clone"></i>
                 Multi dashboards
             </h2>
             <div class="feature_desc">
@@ -181,37 +202,59 @@
     
 </div>
 
-            <div id="intro-get-started-wrap">
-                <a href="docs/" id="intro-get-started-link">getting started</a>
-            </div>
         </div>
     </div>
 </div>
 
-    <footer id="footer" class="wrapper">
-  <div class="inner">
-    <div id="footer-copyright">
-      &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+        <footer id="footer" class="strata_out">
+    <div class="strata">
+        <div class="strata_in">
+            <div id="footer-copyright">
+              &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
-  </div>
-  <div id="mobile-nav-dimmer"></div>
-  <nav id="mobile-nav">
-  <div id="mobile-nav-inner">
-    <ul id="mobile-nav-list">
-      
-      <li class="mobile-nav-item">
-        <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
-      </li>
-    </ul>
-    
-  </div>
+    </div>
+    <div id="mobile-nav-dimmer"></div>
+    <nav id="mobile-nav">
+    <div id="mobile-nav-inner">
+        <ul id="mobile-nav-list">
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/docs" class="mobile-nav-link">Docs</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/extensions" class="mobile-nav-link">Extensions</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/themes" class="mobile-nav-link">Themes</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/news" class="mobile-nav-link">News</a>
+                </li>
+            
+            <li class="mobile-nav-item">
+                <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="mobile-nav-link">Demo</a>
+            </li>
+        </ul>
+        
+    </div>
 </nav>
 
-  <!-- Scripts -->
+    <!-- Scripts -->
 <!-- build:js build/js/main.js -->
+<script src="/mozaik/js/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="/mozaik/js/jquery.waypoints.js" type="text/javascript"></script>
+<script src="/mozaik/js/sticky.js" type="text/javascript"></script>
+<script src="/mozaik/js/inview.js" type="text/javascript"></script>
 <script src="/mozaik/js/toc.js" type="text/javascript"></script>
 <script src="/mozaik/js/mobile_nav.js" type="text/javascript"></script>
 <!-- endbuild -->

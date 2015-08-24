@@ -27,7 +27,7 @@
     <!-- build:css build/css/mozaik.css -->
     <link rel="stylesheet" href="/mozaik/css/mozaik.css" type="text/css">
     <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- RSS -->
     <link rel="alternative" href="/mozaik/atom.xml" title="Mozaïk" type="application/atom+xml">
@@ -64,98 +64,116 @@ Let see how to define it:
 </head>
 
 <body>
-  <header id="header">
-    <div id="header-inner" class="wrapper">
-        <h1 id="logo-wrap">
-            <a href="/mozaik/" id="logo">Mozaïk</a>
-        </h1>
-        <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link _is-active">docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">news</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
-                        <i class="fa fa-github-alt"></i>
-                        -->
-                        Github
-                    </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
-        <a id="mobile-nav-toggle">
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-        </a>
-        <a id="mobile-search-btn" class="st-search-launcher"></a>
+    <header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="/mozaik/" id="logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link _is-active">Docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
+                            <i class="fa fa-github-alt"></i>
+                            -->
+                            Github
+                        </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
     </div>
 </header>
 
-  <div id="container">
-    <div class="sub-header">
-  <div class="wrapper">
-    <h1 class="page-title">Configuration</h1>
-    
-      <div class="page-baseline">Configure Mozaïk</div>
-    
-  </div>
+    <div id="container">
+        <div class="strata_out sub-header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 class="page-title">Configuration</h1>
+            
+                <div class="page-baseline">Configure Mozaïk</div>
+            
+        </div>
+    </div>
 </div>
-<div id="content-wrap">
-  <div id="content" class="wrapper">
-    <div id="content-inner">
-      <article class="article-container" itemscope itemtype="http://schema.org/Article">
-        <div class="article-inner">
-          <div class="article">
-            <div class="inner">
-              <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                <p><strong>config.js</strong> is the main <strong>Mozaïk</strong> config, it’s where you configure your dashboards.<br>It must be located at the root of your main <strong>Mozaïk</strong> project directory.</p>
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article">
+                    <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                        <p><strong>config.js</strong> is the main <strong>Mozaïk</strong> config, it’s where you configure your dashboards.<br>It must be located at the root of your main <strong>Mozaïk</strong> project directory.</p>
 <p>Let see how to define it:</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/mozaik-demo/config.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// because we use plain js file, the config object must be exported</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    host: <span class="string">'localhost'</span>, <span class="comment">// Mozaïk host</span></span><br><span class="line">    port: <span class="number">5000</span>,        <span class="comment">// Mozaïk port</span></span><br><span class="line"></span><br><span class="line">    theme: <span class="string">'nigh-blue'</span>, <span class="comment">// Mozaïk theme to use</span></span><br><span class="line"></span><br><span class="line">    rotationDuration: <span class="number">8000</span>, <span class="comment">// Mozaïk dashboard rotation interval (ms)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Dashboards definition</span></span><br><span class="line">    dashboards: [</span><br><span class="line">        <span class="comment">// first dashboard</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// defines dashboard grid: 4 x 3</span></span><br><span class="line">            columns: <span class="number">4</span>, rows: <span class="number">3</span>,</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// a second dashboard</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// defines dashboard grid: 5 x 4</span></span><br><span class="line">            columns: <span class="number">5</span>, rows: <span class="number">4</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-              </div>
-              <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2015-08-18T07:17:13.000Z" itemprop="dateModified">page.last_updated</time>
-                <a href="index.html" class="article-footer-prev" title="sidebar.docs.Setup"><i class="fa fa-chevron-left"></i><span>page.prev</span></a><a href="grid-system.html" class="article-footer-next" title="sidebar.docs.Grid system"><span>page.next</span><i class="fa fa-chevron-right"></i></a>
-              </footer>
-              
+                    </div>
+                    <footer class="article-footer">
+                        <time class="article-footer-updated" datetime="2015-08-18T07:17:13.000Z" itemprop="dateModified">Last updated: 2015-08-18</time>
+                        <a href="index.html" class="article-footer-prev" title="Setup"><i class="fa fa-angle-left"></i><span>Setup</span></a><a href="grid-system.html" class="article-footer-next" title="Grid system"><span>Grid system</span><i class="fa fa-angle-right"></i></a>
+                    </footer>
+                    
 
-            </div>
-          </div>
-          <aside id="article-toc" role="navigation">
-            <div id="article-toc-inner">
-              <strong class="sidebar-title">page.contents</strong>
-              
-              <a href="#" id="article-toc-top">page.back_to_top</a>
-            </div>
-          </aside>
-        </div>
-      </article>
-      <aside class="sidebar" role="navigation">
-    <div class="inner"><strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link">Setup</a><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link current">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a></div>
+                </div>
+            </article>
+            <aside class="sidebar" role="navigation">
+    <strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link">Setup</a><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link current">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a>
 </aside>
 
+        </div>
     </div>
-  </div>
 </div>
 
-    <footer id="footer" class="wrapper">
-  <div class="inner">
-    <div id="footer-copyright">
-      &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+        <footer id="footer" class="strata_out">
+    <div class="strata">
+        <div class="strata_in">
+            <div id="footer-copyright">
+              &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
-  </div>
-  <div id="mobile-nav-dimmer"></div>
-  <nav id="mobile-nav">
-  <div id="mobile-nav-inner">
-    <ul id="mobile-nav-list">
-      
-      <li class="mobile-nav-item">
-        <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
-      </li>
-    </ul>
-    
-      <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link">Setup</a><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link current">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
-    
-  </div>
+    </div>
+    <div id="mobile-nav-dimmer"></div>
+    <nav id="mobile-nav">
+    <div id="mobile-nav-inner">
+        <ul id="mobile-nav-list">
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/docs" class="mobile-nav-link _is-active">Docs</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/extensions" class="mobile-nav-link">Extensions</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/themes" class="mobile-nav-link">Themes</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/news" class="mobile-nav-link">News</a>
+                </li>
+            
+            <li class="mobile-nav-item">
+                <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="mobile-nav-link">Demo</a>
+            </li>
+        </ul>
+        
+            <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link">Setup</a><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link current">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
+        
+    </div>
 </nav>
 
-  <!-- Scripts -->
+    <!-- Scripts -->
 <!-- build:js build/js/main.js -->
+<script src="/mozaik/js/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="/mozaik/js/jquery.waypoints.js" type="text/javascript"></script>
+<script src="/mozaik/js/sticky.js" type="text/javascript"></script>
+<script src="/mozaik/js/inview.js" type="text/javascript"></script>
 <script src="/mozaik/js/toc.js" type="text/javascript"></script>
 <script src="/mozaik/js/mobile_nav.js" type="text/javascript"></script>
 <!-- endbuild -->

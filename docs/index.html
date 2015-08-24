@@ -27,7 +27,7 @@
     <!-- build:css build/css/mozaik.css -->
     <link rel="stylesheet" href="/mozaik/css/mozaik.css" type="text/css">
     <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- RSS -->
     <link rel="alternative" href="/mozaik/atom.xml" title="Mozaïk" type="application/atom+xml">
@@ -67,43 +67,45 @@ Publish assets (js/css)">
 </head>
 
 <body>
-  <header id="header">
-    <div id="header-inner" class="wrapper">
-        <h1 id="logo-wrap">
-            <a href="/mozaik/" id="logo">Mozaïk</a>
-        </h1>
-        <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link _is-active">docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">news</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
-                        <i class="fa fa-github-alt"></i>
-                        -->
-                        Github
-                    </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
-        <a id="mobile-nav-toggle">
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-            <span class="mobile-nav-toggle-bar"></span>
-        </a>
-        <a id="mobile-search-btn" class="st-search-launcher"></a>
+    <header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="/mozaik/" id="logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/mozaik/docs" class="main-nav_link _is-active">Docs</a></li><li class="main-nav_item"><a href="/mozaik/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/mozaik/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/mozaik/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
+                            <i class="fa fa-github-alt"></i>
+                            -->
+                            Github
+                        </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
     </div>
 </header>
 
-  <div id="container">
-    <div class="sub-header">
-  <div class="wrapper">
-    <h1 class="page-title">Getting started</h1>
-    
-      <div class="page-baseline">Have Mozaïk up and running in minutes</div>
-    
-  </div>
+    <div id="container">
+        <div class="strata_out sub-header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 class="page-title">Getting started</h1>
+            
+                <div class="page-baseline">Have Mozaïk up and running in minutes</div>
+            
+        </div>
+    </div>
 </div>
-<div id="content-wrap">
-  <div id="content" class="wrapper">
-    <div id="content-inner">
-      <article class="article-container" itemscope itemtype="http://schema.org/Article">
-        <div class="article-inner">
-          <div class="article">
-            <div class="inner">
-              <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                <h2 id="Sample_Repo" class="article-heading">Sample Repo<a class="article-anchor" href="#Sample_Repo" aria-hidden="true"></a></h2><p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo" target="_blank" rel="external">demo dashboard</a>.</p>
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article">
+                    <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                        <h2 id="Sample_Repo" class="article-heading">Sample Repo<a class="article-anchor" href="#Sample_Repo" aria-hidden="true"></a></h2><p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo" target="_blank" rel="external">demo dashboard</a>.</p>
 <h3 id="Clone_the_repo">Clone the repo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:plouc/mozaik-demo.git</span><br></pre></td></tr></table></figure>
 <h3 id="Install_packages">Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> mozaik-demo</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <h3 id="Publish_assets_(js/css)">Publish assets (js/css)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gulp build</span><br></pre></td></tr></table></figure>
@@ -115,58 +117,74 @@ Publish assets (js/css)">
 <p><strong>Mozaïk</strong> can be configured through a simple js config file <code>config.js</code> located at the root folder.<br>You should start from the default config file and customize it to fit your needs.</p>
 <h2 id="Docker" class="article-heading">Docker<a class="article-anchor" href="#Docker" aria-hidden="true"></a></h2><p><strong>Mozaïk</strong> provides a docker image</p>
 
-              </div>
-              <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2015-08-18T09:17:11.000Z" itemprop="dateModified">page.last_updated</time>
-                <a href="config-file.html" class="article-footer-next" title="sidebar.docs.config.js"><span>page.next</span><i class="fa fa-chevron-right"></i></a>
-              </footer>
-              
+                    </div>
+                    <footer class="article-footer">
+                        <time class="article-footer-updated" datetime="2015-08-18T09:17:11.000Z" itemprop="dateModified">Last updated: 2015-08-18</time>
+                        <a href="config-file.html" class="article-footer-next" title="config.js"><span>config.js</span><i class="fa fa-angle-right"></i></a>
+                    </footer>
+                    
 
-            </div>
-          </div>
-          <aside id="article-toc" role="navigation">
-            <div id="article-toc-inner">
-              <strong class="sidebar-title">page.contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone_the_repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install_packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish_assets_(js/css)"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_github_tokens_in_a_-env_file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_the_app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman_generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol>
-              <a href="#" id="article-toc-top">page.back_to_top</a>
-            </div>
-          </aside>
-        </div>
-      </article>
-      <aside class="sidebar" role="navigation">
-    <div class="inner"><strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link current">Setup</a><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a></div>
+                </div>
+            </article>
+            <aside class="sidebar" role="navigation">
+    <strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone_the_repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install_packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish_assets_(js/css)"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_github_tokens_in_a_-env_file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_the_app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman_generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a>
 </aside>
 
+        </div>
     </div>
-  </div>
 </div>
 
-    <footer id="footer" class="wrapper">
-  <div class="inner">
-    <div id="footer-copyright">
-      &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+        <footer id="footer" class="strata_out">
+    <div class="strata">
+        <div class="strata_in">
+            <div id="footer-copyright">
+              &copy; 2015 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
-  </div>
-  <div id="mobile-nav-dimmer"></div>
-  <nav id="mobile-nav">
-  <div id="mobile-nav-inner">
-    <ul id="mobile-nav-list">
-      
-      <li class="mobile-nav-item">
-        <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
-      </li>
-    </ul>
-    
-      <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link current">Setup</a><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
-    
-  </div>
+    </div>
+    <div id="mobile-nav-dimmer"></div>
+    <nav id="mobile-nav">
+    <div id="mobile-nav-inner">
+        <ul id="mobile-nav-list">
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/docs" class="mobile-nav-link _is-active">Docs</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/extensions" class="mobile-nav-link">Extensions</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/themes" class="mobile-nav-link">Themes</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/mozaik/news" class="mobile-nav-link">News</a>
+                </li>
+            
+            <li class="mobile-nav-item">
+                <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="mobile-nav-link">Demo</a>
+            </li>
+        </ul>
+        
+            <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone_the_repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install_packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish_assets_(js/css)"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_github_tokens_in_a_-env_file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_the_app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman_generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
+        
+    </div>
 </nav>
 
-  <!-- Scripts -->
+    <!-- Scripts -->
 <!-- build:js build/js/main.js -->
+<script src="/mozaik/js/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="/mozaik/js/jquery.waypoints.js" type="text/javascript"></script>
+<script src="/mozaik/js/sticky.js" type="text/javascript"></script>
+<script src="/mozaik/js/inview.js" type="text/javascript"></script>
 <script src="/mozaik/js/toc.js" type="text/javascript"></script>
 <script src="/mozaik/js/mobile_nav.js" type="text/javascript"></script>
 <!-- endbuild -->
