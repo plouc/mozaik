@@ -150,8 +150,8 @@ const Pie = React.createClass({
         this.svg           = d3.select(React.findDOMNode(this.refs.svg));
         this.arcsContainer = this.svg.append('g').attr('class', 'arcs');
         this.paths         = this.arcsContainer.selectAll('path');
-        this.shadow        = this.svg.append('g').attr('class', 'shadow');
-        this.shadowCircle  = this.shadow.append('circle').attr('fill', 'none').attr('stroke', '#000000').attr('opacity', 0.35).style('mix-blend-mode', 'overlay');
+        this.shadow        = this.svg.append('g').attr('class', 'pie_shadow');
+        this.shadowCircle  = this.shadow.append('circle');
     },
 
     shouldComponentUpdate(data) {
