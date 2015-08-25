@@ -8,26 +8,39 @@
     float left
     width  60%
     height 100%
+    &_wrapper
+      width  100%
+      height 100%
 
   &_shadow
     fill none
     stroke #000000
     opacity 0.35
     mix-blend-mode overlay
+    mix-blend-mode overlay
 
   &_legends
     float left
     width  40%
     height 100%
-    padding 1vmin 0
-    display         flex
-    flex-direction  column
-    justify-content center
+    padding 2vmin
+    display -webkit-flex
+    display flex
+    -webkit-flex-direction column
+    flex-direction         column
+    -webkit-justify-content center
+    justify-content         center
 
     &_item
+      position relative
       display block
       white-space pre
       margin-bottom 0.6vmin
+      width 100%
+
+      &_count
+        position absolute
+        right 0
 
       &_color
         display inline-block
@@ -42,9 +55,12 @@
     left 0
     width  100%
     height 100%
-    display         flex
-    align-items     center
-    justify-content center
+    display -webkit-flex
+    display flex
+    -webkit-align-items center
+    align-items         center
+    -webkit-justify-content center
+    justify-content         center
 
   &_count
     line-height 1em
