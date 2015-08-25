@@ -1,5 +1,7 @@
-var React = require('react');
-var d3    = require('d3');
+import React, { PropTypes } from 'react';
+import d3                   from 'd3';
+import PieLegends           from './PieLegends.jsx';
+import PieCount             from './PieCount.jsx';
 
 // This component d3 code was heavily
 // inspired from https://gist.github.com/mbostock/1346410
@@ -17,7 +19,7 @@ var pie = d3.layout.pie()
 
 // Try to get a neighbor arc, otherwise, returns null
 function findNeighborArc(i, prevData, newData, key) {
-    var d;
+    let d;
     return (d = findPreceding(i, prevData, newData, key)) ? { startAngle: d.endAngle,   endAngle: d.endAngle   }
          : (d = findFollowing(i, prevData, newData, key)) ? { startAngle: d.startAngle, endAngle: d.startAngle }
          : null;
@@ -48,23 +50,29 @@ function findFollowing(i, prevData, newData, key) {
 }
 
 
-var Pie = React.createClass({
+const Pie = React.createClass({
     getDefaultProps() {
         return {
             innerRadius:        0,
             spacing:            0.1,
             data:               [],
-            transitionDuration: 600
+            transitionDuration: 600,
+            shadow:             false
         };
     },
 
     propTypes: {
-        spacing:            React.PropTypes.number.isRequired,
-        innerRadius:        React.PropTypes.number.isRequired,
-        transitionDuration: React.PropTypes.number.isRequired,
-        data:               React.PropTypes.arrayOf(React.PropTypes.shape({
-            count: React.PropTypes.number,
-            color: React.PropTypes.string
+        spacing:            PropTypes.number.isRequired,
+        innerRadius:        PropTypes.number.isRequired,
+        transitionDuration: PropTypes.number.isRequired,
+        count:              PropTypes.number,
+        countUnit:          PropTypes.string,
+        countLabel:         PropTypes.string,
+        shadow:             PropTypes.bool.isRequired,
+        data:               PropTypes.arrayOf(React.PropTypes.shape({
+            id:    PropTypes.isRequired,
+            count: PropTypes.number,
+            color: PropTypes.string
         })).isRequired
     },
 
@@ -73,20 +81,32 @@ var Pie = React.createClass({
             return;
         }
 
+        let { innerRadius, spacing, transitionDuration } = this.props;
+
+
         var prevData = this.paths.data();
         var newData  = pie(data);
 
-        var width  = this.getDOMNode().offsetWidth;
-        var height = this.getDOMNode().offsetHeight;
+        var wrapper = React.findDOMNode(this.refs.wrapper);
+        var width   = wrapper.offsetWidth;
+        var height  = wrapper.offsetHeight;
 
-        var minSize = Math.min(width, height);
-        var radius  = minSize / 2 - minSize * this.props.spacing;
+        this.svg.attr({
+            width:  width,
+            height: height
+        });
 
+        let minSize  = Math.min(width, height);
+        let radius   = minSize / 2 - minSize * spacing;
+        let radiusIn = radius * innerRadius;
+
+        this.shadowCircle.attr('r', radiusIn + radius * (1 - innerRadius) / 4).attr('stroke-width', radius * (1 - innerRadius) / 2);
         this.arcsContainer.attr('transform', `translate(${ width / 2 },${ height / 2 })`);
+        this.shadow.attr('transform', `translate(${ width / 2 },${ height / 2 })`);
 
         var arc = d3.svg.arc()
             .outerRadius(radius)
-            .innerRadius(radius * this.props.innerRadius)
+            .innerRadius(radiusIn)
         ;
 
         this.paths = this.paths.data(newData, key);
@@ -110,39 +130,59 @@ var Pie = React.createClass({
         }
 
         this.paths.exit()
-            .datum(function(d, i) {
+            .datum(function (d, i) {
                 return findNeighborArc(i, prevData, newData, key) || d;
             })
             .transition()
-            .duration(this.props.transitionDuration)
+            .duration(transitionDuration)
             .attrTween('d', arcTween)
             .remove()
         ;
 
         this.paths.transition()
-            .duration(this.props.transitionDuration)
+            .duration(transitionDuration)
             .attrTween('d', arcTween)
+            .attr('fill', d => d.data.color)
         ;
     },
 
     componentDidMount() {
-        this.svg           = d3.select(this.getDOMNode());
+        this.svg           = d3.select(React.findDOMNode(this.refs.svg));
         this.arcsContainer = this.svg.append('g').attr('class', 'arcs');
         this.paths         = this.arcsContainer.selectAll('path');
-
-        this.d3Render();
+        this.shadow        = this.svg.append('g').attr('class', 'shadow');
+        this.shadowCircle  = this.shadow.append('circle').attr('fill', 'none').attr('stroke', '#000000').attr('opacity', 0.35).style('mix-blend-mode', 'overlay');
     },
 
     shouldComponentUpdate(data) {
         this.d3Render(data.data);
 
-        return false;
+        return true;
     },
 
     render() {
-        return <svg />;
+        let { data, count, countUnit, countLabel } = this.props;
+
+        let overlay = null;
+        if (count !== undefined) {
+            overlay = (
+                <div className="pie_overlay">
+                    <PieCount count={count} unit={countUnit} label={countLabel}/>
+                </div>
+            );
+        }
+
+        return (
+            <div className="pie">
+                <div className="pie_chart" ref="wrapper">
+                    <svg ref="svg"/>
+                    {overlay}
+                </div>
+                <PieLegends legends={data}/>
+            </div>
+        );
     }
 });
 
 
-module.exports = Pie;
+export {Pie as default};
