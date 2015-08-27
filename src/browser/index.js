@@ -5,6 +5,7 @@ import ApiActions        from './actions/ApiActions';
 import ConfigActions     from './actions/ConfigActions';
 import MozaikComponent   from './components/Mozaik.jsx';
 import PieComponent      from './components/charts/Pie.jsx';
+import GaugeComponent    from './components/charts/Gauge.jsx';
 import TreemapComponent  from './components/charts/Treemap.jsx';
 
 
@@ -23,6 +24,7 @@ export default {
     Component: {
         Mozaik:  MozaikComponent,
         Pie:     PieComponent,
+        Gauge:   GaugeComponent,
         Treemap: TreemapComponent
     }
 };

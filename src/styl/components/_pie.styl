@@ -8,20 +8,45 @@
     float left
     width  60%
     height 100%
+    &_wrapper
+      width  100%
+      height 100%
+
+  &_shadow
+    path
+      fill #000000
+      opacity 0.15
+      mix-blend-mode multiply
+
+  &_light
+    display none
+    path
+      fill #fff
+      opacity 0.25
+      mix-blend-mode screen
 
   &_legends
     float left
     width  40%
     height 100%
-    padding 1vmin 0
-    display         flex
-    flex-direction  column
-    justify-content center
+    padding 2vmin
+    display -webkit-flex
+    display flex
+    -webkit-flex-direction column
+    flex-direction         column
+    -webkit-justify-content center
+    justify-content         center
 
     &_item
+      position relative
       display block
       white-space pre
       margin-bottom 0.6vmin
+      width 100%
+
+      &_count
+        position absolute
+        right 0
 
       &_color
         display inline-block
@@ -36,9 +61,12 @@
     left 0
     width  100%
     height 100%
-    display         flex
-    align-items     center
-    justify-content center
+    display -webkit-flex
+    display flex
+    -webkit-align-items center
+    align-items         center
+    -webkit-justify-content center
+    justify-content         center
 
   &_count
     line-height 1em
@@ -50,3 +78,9 @@
     &_label
       display block
       margin-top 1vmin
+
+  &_hand
+    &_anchor
+      fill #000
+    &_line
+      fill #000

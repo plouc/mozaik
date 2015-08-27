@@ -103,7 +103,7 @@ class Bus {
 
         // if there is no interval running, create one
         if (!this.subscriptions[requestId].timer) {
-            console.log('Setting timer');
+            this._mozaik.logger.info(`Setting timer for "${ requestId }"`);
             this.subscriptions[requestId].timer = setInterval(() => {
                 this.processApiCall(requestId, callFn, request.params);
             }, 10000);
