@@ -68,6 +68,6 @@
   },
   "scripts": {
     "eslint": "eslint ./src/*",
-    "test": "mocha --compilers js:babel/register tests/**/*.test.js"
+    "test": "mocha --opts mocha.opts ./tests/**/*.test.js"
   }
 }

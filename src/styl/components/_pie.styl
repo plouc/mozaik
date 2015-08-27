@@ -13,11 +13,17 @@
       height 100%
 
   &_shadow
-    fill none
-    stroke #000000
-    opacity 0.35
-    mix-blend-mode overlay
-    mix-blend-mode overlay
+    path
+      fill #000000
+      opacity 0.15
+      mix-blend-mode multiply
+
+  &_light
+    display none
+    path
+      fill #fff
+      opacity 0.25
+      mix-blend-mode screen
 
   &_legends
     float left
@@ -72,3 +78,9 @@
     &_label
       display block
       margin-top 1vmin
+
+  &_hand
+    &_anchor
+      fill #000
+    &_line
+      fill #000
