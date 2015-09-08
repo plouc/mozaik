@@ -91,7 +91,7 @@ Widgets are maintained as separate modules, thus available via [mozaik-ext-name 
   ```javascript
 
   module.exports = {
-    env: process.env.NODE_ENV || 'production',
+    env: process.env.MOZAIK_ENV || 'prod',
     host: 'localhost',
     port: process.env.PORT || 5000,
 
