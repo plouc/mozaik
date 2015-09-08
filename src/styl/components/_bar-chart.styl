@@ -1,0 +1,32 @@
+.bar-chart
+  &_wrapper
+    width  100%
+    height 100%
+
+  &_axis
+    &_legend
+      font-size $chart-tick-txt-size
+      fill $chart-axis-txt-color
+
+    text
+      font-size $chart-tick-txt-size
+      fill $chart-axis-txt-color
+
+    line
+      fill none
+      stroke $chart-axis-tick-color
+      shape-rendering crispEdges
+
+    path
+      display none
+
+    &--y
+      .tick
+        line
+          stroke $chart-grid-line-color
+          stroke-dasharray 1 2
+          stroke-width 1px
+
+        &:first-child
+          line
+            display none

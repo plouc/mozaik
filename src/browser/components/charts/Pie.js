@@ -205,4 +205,4 @@ class Pie {
 }
 
 
-export {Pie as default};
+export { Pie as default };
