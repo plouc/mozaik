@@ -2,6 +2,7 @@ var winston = require('winston');
 var path    = require('path');
 var chalk   = require('chalk');
 var Bus     = require('./Bus');
+var express = require('express');
 
 class Mozaik {
     constructor(config) {
@@ -24,8 +25,13 @@ class Mozaik {
         this.bus = new Bus(this);
     }
 
-    startServer() {
-        require('./server')(this);
+    /**
+     * @param  {Express} app
+     */
+    startServer(app) {
+        app = app || express();
+
+        require('./server')(this, app);
     }
 
     /**

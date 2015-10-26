@@ -6,12 +6,11 @@ var _       = require('lodash');
 
 /**
  * @param {Mozaik} mozaik
+ * @param {Express} app
  */
-module.exports = function (mozaik) {
+module.exports = function (mozaik, app) {
 
     var config = mozaik.serverConfig;
-
-    var app = express();
 
     mozaik.logger.info(chalk.yellow('serving static contents from ' + mozaik.baseDir + 'build'));
     app.use(express.static(mozaik.baseDir + '/build'));
