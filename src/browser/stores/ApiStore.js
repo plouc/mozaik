@@ -16,7 +16,12 @@ var ApiStore = Reflux.createStore({
             proto = 'wss';
         }
 
-        ws = new WebSocket(`${ proto }://${ window.document.location.host }`);
+        var port = 80;
+        if (config.wsPort > 0) {
+          port = config.wsPort;
+        }
+
+        ws = new WebSocket(`${ proto }://${ window.document.location.host }:${ port }`);
         ws.onmessage = event => {
             ApiStore.trigger(JSON.parse(event.data));
         };
