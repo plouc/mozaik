@@ -3,7 +3,6 @@ import chalk from 'chalk';
 
 
 class Bus {
-
     /**
      * @constructor
      * @param {Mozaik} mozaik
@@ -43,13 +42,13 @@ class Bus {
      */
     addClient(client, id) {
         if (_.has(this.clients, id)) {
-            var errMsg = `Client with id "${ id }" already exists`;
+            const errMsg = `Client with id "${ id }" already exists`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
         this.clients[id] = client;
 
-        this._mozaik.logger.info('Client #' + id + ' connected');
+        this._mozaik.logger.info(`Client #${id} connected`);
     }
 
     /**
@@ -65,9 +64,9 @@ class Bus {
             return;
         }
 
-        var requestId = request.id;
-        var parts     = requestId.split('.');
-        var errMsg;
+        const requestId = request.id;
+        const parts     = requestId.split('.');
+        let errMsg;
         if (parts.length < 2) {
             errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
             this._mozaik.logger.error(chalk.red(errMsg));
@@ -132,8 +131,7 @@ class Bus {
             // if there's no more subscribers, clear the interval
             // to avoid consuming APIs for nothing.
             if (subscription.clients.length === 0 && subscription.timer) {
-
-                this._mozaik.logger.info('removing interval for ' + subscriptionId);
+                this._mozaik.logger.info(`removing interval for ${subscriptionId}`);
 
                 clearInterval(subscription.timer);
                 delete subscription.timer;
@@ -142,7 +140,7 @@ class Bus {
 
         delete this.clients[id];
 
-        this._mozaik.logger.info('Client #' + id + ' disconnected');
+        this._mozaik.logger.info(`Client #${id} disconnected`);
     }
 
     /**
@@ -152,30 +150,30 @@ class Bus {
      * @param {Object}   params
      */
     processApiCall(id, callFn, params) {
-        this._mozaik.logger.info(`Calling "${ id }"`);
+        this._mozaik.logger.info(`Calling "${id}"`);
 
         callFn(params)
             .then(data => {
-                var message = {
-                    id:   id,
+                const message = {
+                    id,
                     body: data
                 };
 
                 this.subscriptions[id].cached = message;
 
-                this.subscriptions[id].clients.forEach(function (clientId) {
+                this.subscriptions[id].clients.forEach((clientId) => {
                     this.clients[clientId].send(JSON.stringify(message));
-                }.bind(this));
+                });
             })
             .catch(err => {
-                this._mozaik.logger.error(id + ' - status code: ' + (err.status || err.statusCode));
+                this._mozaik.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`));
             })
         ;
     }
 
     listApis() {
-        var apis = [];
-        _.forOwn(this.apis, function (api, id) {
+        const apis = [];
+        _.forOwn(this.apis, (api, id) => {
             apis.push(id);
         });
 
@@ -183,4 +181,4 @@ class Bus {
     }
 }
 
-module.exports = Bus;
+export default Bus;
