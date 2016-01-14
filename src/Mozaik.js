@@ -1,8 +1,8 @@
-var winston = require('winston');
-var path    = require('path');
-var chalk   = require('chalk');
-var Bus     = require('./Bus');
-var express = require('express');
+import winston from 'winston';
+import path    from 'path';
+import chalk   from 'chalk';
+import Bus     from './Bus';
+import express from 'express';
 
 class Mozaik {
     constructor(config) {
@@ -50,4 +50,4 @@ class Mozaik {
     }
 }
 
-module.exports = Mozaik;
+export default Mozaik;
