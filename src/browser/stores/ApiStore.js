@@ -1,27 +1,32 @@
-var Reflux      = require('reflux');
-var ApiActions  = require('./../actions/ApiActions');
-var ConfigStore = require('./ConfigStore');
+import Reflux      from 'reflux';
+import ApiActions  from './../actions/ApiActions';
+import ConfigStore from './ConfigStore';
 
-var buffer = [];
-var ws     = null;
+const buffer = [];
+let ws = null;
 
-var ApiStore = Reflux.createStore({
+const ApiStore = Reflux.createStore({
     init() {
         this.listenTo(ConfigStore, this.initWs);
     },
 
     initWs(config) {
-        var proto = 'ws';
+        let proto = 'ws';
         if (config.useWssConnection === true) {
             proto = 'wss';
         }
 
-        var port = 80;
-        if (config.wsPort > 0) {
+        let port = window.document.location.port;
+        if (config.wsPort !== undefined) {
           port = config.wsPort;
         }
 
-        ws = new WebSocket(`${ proto }://${ window.document.location.host }:${ port }`);
+        let wsUrl = `${proto}://${window.document.location.hostname}`;
+        if (port && port !== '') {
+            wsUrl = `${wsUrl}:${port}`;
+        }
+
+        ws = new WebSocket(wsUrl);
         ws.onmessage = event => {
             ApiStore.trigger(JSON.parse(event.data));
         };
@@ -51,4 +56,4 @@ var ApiStore = Reflux.createStore({
     }
 });
 
-module.exports = ApiStore;
+export default ApiStore;
