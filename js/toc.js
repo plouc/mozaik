@@ -3,8 +3,21 @@
 
     var $container = $('#container');
     var $window    = $(window);
+    var $sidebar   = $('.sidebar');
+    var $header    = $('.header');
+    var $subHeader = $('.sub-header');
 
-    var $sidebar = $('.sidebar');
+    var subHeaderInview = new Waypoint.Inview({
+        element: $subHeader,
+        context: $container,
+        enter:   function () {
+            $header.removeClass('header_compact');
+        },
+        exited:  function () {
+            $header.addClass('header_compact');
+        }
+    });
+
     var $strata  = $container.find('.page_content > .strata > .strata_in');
     if ($sidebar.length === 1) {
         var stickySidebar = new Waypoint.Sticky({
