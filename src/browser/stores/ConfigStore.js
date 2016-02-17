@@ -7,7 +7,7 @@ var ConfigStore = Reflux.createStore({
     listenables: ConfigActions,
 
     loadConfig() {
-        request.get('/config')
+        request.get('./config')
             .end((err, res) => {
                 var config = res.body;
 
