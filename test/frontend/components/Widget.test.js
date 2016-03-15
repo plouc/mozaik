@@ -9,7 +9,9 @@ import mockery     from 'mockery';
 let Widget;
 let componentRegistryStub;
 
-describe('Widget component', () => {
+describe('Widget component', function () {
+    this.timeout(5000);
+
     before(() => {
         mockery.enable({
             warnOnReplace:      false,
@@ -36,7 +38,7 @@ describe('Widget component', () => {
         mockery.disable();
     });
 
-    it(`should render as many widgets as the 'dashboard.widgets' prop have`, () => {
+    it('should render a component matching given type', () => {
         const widget = {
             type:   'test_widget',
             x:      '0%',
@@ -49,7 +51,40 @@ describe('Widget component', () => {
 
         expect(componentRegistryStub.calledOnce).toEqual(true);
         expect(componentRegistryStub.calledWithExactly(widget.type)).toEqual(true);
-        //const widgets = wrapper.find(Widget);
-        //expect(widgets.length).toEqual(dashboard.widgets.length);
+        const widgetContainer = wrapper.find('.widget');
+        expect(widgetContainer.children().length).toEqual(1);
+    });
+
+    it('should only pass extra props to created component', () => {
+        const widget = {
+            type:   'test_widget',
+            x:      '0%',
+            y:      '0%',
+            width:  '50%',
+            height: '50%',
+            extra:  'extra_test'
+        };
+
+        const wrapper = shallow(<Widget {...widget} />);
+
+        const widgetContainer = wrapper.find('.widget');
+        expect(widgetContainer.children().length).toEqual(1);
+        expect(widgetContainer.children().at(0).props()).toEqual({ extra: widget.extra });
+    });
+
+    it('should add a custom css class for widget type', () => {
+        const widget = {
+            type:   'test_widget.test',
+            x:      '0%',
+            y:      '0%',
+            width:  '50%',
+            height: '50%',
+            extra:  'extra_test'
+        };
+
+        const wrapper = shallow(<Widget {...widget} />);
+
+        const widgetContainer = wrapper.find('.widget');
+        expect(widgetContainer.prop('className')).toContain('test-widget__test');
     });
 });

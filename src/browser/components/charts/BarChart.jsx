@@ -1,12 +1,27 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM                        from 'react-dom';
 import BarChart                        from './BarChart';
 
 
 class BarChartComponent extends Component {
+    static displayName = 'BarChartComponent';
+
+    static propTypes = {
+        data:    PropTypes.arrayOf(PropTypes.shape({
+            abscissValue:  PropTypes.number,
+            ordinateValue: PropTypes.string
+        })).isRequired,
+        options: PropTypes.object.isRequired
+    };
+
+    static defaultProps = {
+        data: []
+    };
+
     componentDidMount() {
         let { options } = this.props;
 
-        this.barChart = new BarChart(React.findDOMNode(this.refs.svg), options);
+        this.barChart = new BarChart(ReactDOM.findDOMNode(this.refs.svg), options);
     }
 
     shouldComponentUpdate(data) {
@@ -14,7 +29,7 @@ class BarChartComponent extends Component {
             return false;
         }
 
-        let wrapper = React.findDOMNode(this);
+        let wrapper = ReactDOM.findDOMNode(this);
 
         this.barChart
             .size(wrapper.offsetWidth, wrapper.offsetHeight)
@@ -34,15 +49,5 @@ class BarChartComponent extends Component {
     }
 }
 
-BarChartComponent.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        abscissValue:  PropTypes.number,
-        ordinateValue: PropTypes.string
-    })).isRequired
-};
 
-BarChartComponent.defaultProps = {
-    data: []
-};
-
-export { BarChartComponent as default };
+export default BarChartComponent;

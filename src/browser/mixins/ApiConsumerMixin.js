@@ -19,4 +19,5 @@ const ApiConsumerMixin = {
     }
 };
 
-export { ApiConsumerMixin as default };
+
+export default ApiConsumerMixin;

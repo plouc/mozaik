@@ -124,7 +124,7 @@ class Bus {
      *
      * @param id
      */
-     removeClient(id) {
+    removeClient(id) {
         _.forOwn(this.subscriptions, (subscription, subscriptionId) => {
             subscription.clients = _.without(subscription.clients, id);
 

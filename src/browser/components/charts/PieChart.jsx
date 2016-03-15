@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM                        from 'react-dom';
 import Pie                             from './Pie';
 
 
@@ -6,7 +7,7 @@ class PieChart extends Component {
     componentDidMount() {
         let { innerRadius, spacing, transitionDuration } = this.props;
 
-        this.pie = new Pie(React.findDOMNode(this.refs.svg), {
+        this.pie = new Pie(ReactDOM.findDOMNode(this.refs.svg), {
             donutRatio:         innerRadius,
             spacing:            spacing,
             transitionDuration: transitionDuration
@@ -18,7 +19,7 @@ class PieChart extends Component {
             return false;
         }
 
-        let wrapper = React.findDOMNode(this);
+        let wrapper = ReactDOM.findDOMNode(this);
 
         this.pie
             .size(wrapper.offsetWidth, wrapper.offsetHeight)
@@ -55,4 +56,5 @@ PieChart.defaultProps = {
     data:               []
 };
 
-export { PieChart as default };
+
+export default PieChart;

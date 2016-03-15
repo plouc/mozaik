@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM                        from 'react-dom';
 import Pie                             from './Pie';
 
 
@@ -6,7 +7,7 @@ class Gauge extends Component {
     componentDidMount() {
         let { spacing, donutRatio, handAnchorRatio, handLengthRatio, transitionDuration } = this.props;
 
-        this.pie = new Pie(React.findDOMNode(this.refs.svg), {
+        this.pie = new Pie(ReactDOM.findDOMNode(this.refs.svg), {
             spacing:            spacing,
             donutRatio:         donutRatio,
             handAnchorRatio:    handAnchorRatio,
@@ -21,7 +22,7 @@ class Gauge extends Component {
     shouldComponentUpdate(data) {
         let { ranges, value } = data;
 
-        let wrapper = React.findDOMNode(this);
+        let wrapper = ReactDOM.findDOMNode(this);
 
         this.pie
             .size(wrapper.offsetWidth, wrapper.offsetHeight)
@@ -67,4 +68,4 @@ Gauge.defaultProps = {
     transitionDuration: 600
 };
 
-export { Gauge as default };
+export default Gauge;

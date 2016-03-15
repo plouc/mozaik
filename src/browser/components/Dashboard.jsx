@@ -12,6 +12,7 @@ class Dashboard extends Component {
 
     static propTypes = {
         dashboard: PropTypes.shape({
+            index:   PropTypes.number.isRequired,
             columns: PropTypes.number.isRequired,
             rows:    PropTypes.number.isRequired,
             widgets: PropTypes.arrayOf(PropTypes.shape({
@@ -37,8 +38,10 @@ class Dashboard extends Component {
     }
 
     onDashboardStoreUpdate(index) {
+        const { dashboard } = this.props;
+
         this.setState({
-            isCurrent: index === this.props.dashboard.index
+            isCurrent: index === dashboard.index
         });
     }
 
@@ -49,10 +52,10 @@ class Dashboard extends Component {
             const props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
                 key:    index,
                 type:   widget.type,
-                x:      (widget.x       / columns * 100) + '%',
-                y:      (widget.y       / rows    * 100) + '%',
-                width:  (widget.columns / columns * 100) + '%',
-                height: (widget.rows    / rows    * 100) + '%'
+                x:      `${(widget.x       / columns * 100)}%`,
+                y:      `${(widget.y       / rows    * 100)}%`,
+                width:  `${(widget.columns / columns * 100)}%`,
+                height: `${(widget.rows    / rows    * 100)}%`
             });
 
             return React.createElement(Widget, props);

@@ -56,4 +56,4 @@ Pie.defaultProps = {
 };
 
 
-export {Pie as default};
+export default Pie;

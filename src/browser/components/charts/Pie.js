@@ -160,7 +160,7 @@ class Pie {
     }
 
     static degreesToRadians(degrees) {
-    	return degrees * Math.PI / 180;
+        return degrees * Math.PI / 180;
     }
 
     // Return computed arc data key
@@ -205,4 +205,4 @@ class Pie {
 }
 
 
-export { Pie as default };
+export default Pie;

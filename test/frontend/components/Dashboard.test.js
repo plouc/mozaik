@@ -10,6 +10,7 @@ import Dashboard   from '../../../src/browser/components/Dashboard.jsx';
 describe('Dashboard component', () => {
     it(`should render as many widgets as the 'dashboard.widgets' prop have`, () => {
         const dashboard = {
+            index:   0,
             columns: 3,
             rows:    2,
             widgets: [
@@ -26,6 +27,7 @@ describe('Dashboard component', () => {
 
     it('should convert position and sizing to percent based values', () => {
         const dashboard = {
+            index:   0,
             columns: 2,
             rows:    2,
             widgets: [
@@ -50,6 +52,7 @@ describe('Dashboard component', () => {
 
     it('should not pass down widget columns/rows values', () => {
         const dashboard = {
+            index:   0,
             columns: 2,
             rows:    2,
             widgets: [
@@ -69,6 +72,7 @@ describe('Dashboard component', () => {
 
     it(`should add extra class if 'isCurrent' is true`, () => {
         const dashboard = {
+            index:   0,
             columns: 2,
             rows:    2,
             widgets: []

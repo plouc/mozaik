@@ -11,12 +11,12 @@ class PieCount extends Component {
 
         let unitNode = null;
         if (unit !== undefined) {
-            unitNode = <span className="pie_count_unit">{unit}</span>
+            unitNode = <span className="pie_count_unit">{unit}</span>;
         }
 
         let labelNode = null;
         if (label !== undefined) {
-            labelNode = <span className="pie_count_label">{label}</span>
+            labelNode = <span className="pie_count_label">{label}</span>;
         }
 
         return (
@@ -36,4 +36,4 @@ PieCount.propTypes = {
     label: PropTypes.string
 };
 
-export { PieCount as default };
+export default PieCount;

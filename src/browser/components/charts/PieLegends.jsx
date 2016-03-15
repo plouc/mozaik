@@ -13,7 +13,7 @@ class PieLegends extends Component {
             return (
                 <span key={legend.id} className="pie_legends_item">
                     <span className="pie_legends_item_color" style={{ background: legend.color }}/>
-                    <span className="pie_legends_item_count">{ legend.count }</span>
+                    <span className="pie_legends_item_count">{legend.count}</span>
                     {legend.label}
                 </span>
             );
@@ -32,4 +32,5 @@ PieLegends.propTypes = {
     legends: PropTypes.array.isRequired
 };
 
-export { PieLegends as default };
+
+export default PieLegends;

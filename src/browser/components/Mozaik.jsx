@@ -1,42 +1,40 @@
-import React, { Component } from 'react';
-import Reflux               from 'reflux';
-import Dashboard            from './Dashboard.jsx';
-import Timer                from './Timer.jsx';
-import ConfigStore          from './../stores/ConfigStore';
+import React, { Component, PropTypes } from 'react';
+import reactMixin                      from 'react-mixin';
+import { ListenerMixin }               from 'reflux';
+import Dashboard                       from './Dashboard.jsx';
+import Timer                           from './Timer.jsx';
+import ConfigStore                     from './../stores/ConfigStore';
 
 
-const Mozaik = React.createClass({
-    mixins: [Reflux.ListenerMixin],
+class Mozaik extends Component {
+    static displayName = 'Mozaik';
 
-    getInitialState() {
-        return {
-            config: null
-        }
-    },
+    constructor(props) {
+        super(props);
+
+        this.state = { config: null };
+    }
 
     componentWillMount() {
         this.listenTo(ConfigStore, this.onConfigStoreUpdate);
-    },
+    }
 
     onConfigStoreUpdate(config) {
-        this.setState({
-            config: config
-        });
-    },
+        this.setState({ config });
+    }
 
     render() {
-        console.log('Mozaik.render()', this.state);
-
-        if (this.state.config === null) {
+        const { config } = this.state;
+        if (config === null) {
             return null;
         }
 
-        var dashboardNodes = this.state.config.dashboards.map((dashboard, index) => {
-            return <Dashboard key={index} dashboard={dashboard} />;
-        });
+        const dashboardNodes = config.dashboards.map((dashboard, index) => (
+            <Dashboard key={index} dashboard={dashboard} />
+        ));
 
-        var timerNode = null;
-        if (this.state.config.dashboards.length > 1) {
+        let timerNode = null;
+        if (config.dashboards.length > 1) {
             timerNode = <Timer />;
         }
 
@@ -46,9 +44,9 @@ const Mozaik = React.createClass({
             </div>
         );
     }
-});
+}
 
-Mozaik.displayName = 'Mozaik';
+reactMixin(Mozaik.prototype, ListenerMixin);
 
 
 export default Mozaik;

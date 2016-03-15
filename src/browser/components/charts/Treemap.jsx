@@ -1,23 +1,36 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM                        from 'react-dom';
 import d3                              from 'd3';
 
 
 function position() {
-    this.style('left',   d => { return d.x + 'px';                   })
-        .style('top',    d => { return d.y + 'px';                   })
-        .style('width',  d => { return Math.max(0, d.dx - 1) + 'px'; })
-        .style('height', d => { return Math.max(0, d.dy - 1) + 'px'; })
+    this.style('left',   d => `${d.x}px`                   )
+        .style('top',    d => `${d.y}px`                   )
+        .style('width',  d => `${Math.max(0, d.dx - 1)}px` )
+        .style('height', d => `${Math.max(0, d.dy - 1)}px` )
     ;
 }
 
 
 class Treemap extends Component {
+    static displayName = 'Treemap';
+
+    static propTypes = {
+        transitionDuration: PropTypes.number.isRequired,
+        showCount:          PropTypes.bool.isRequired
+    };
+
+    static defaultProps = {
+        transitionDuration: 800,
+        showCount:          false
+    };
+
     d3Render(data) {
         if (!data) {
             return;
         }
 
-        var el = React.findDOMNode(this);
+        var el = ReactDOM.findDOMNode(this);
 
         var width  = el.offsetWidth;
         var height = el.offsetHeight;
@@ -76,13 +89,5 @@ class Treemap extends Component {
     }
 }
 
-Treemap.propTypes = {
-    showCount: PropTypes.bool.isRequired
-};
 
-Treemap.defaultProps = {
-    transitionDuration: 800,
-    showCount:          false
-};
-
-export { Treemap as default };
+export default Treemap;

@@ -236,10 +236,10 @@ class BarChart {
 
         let customBarAttributes = {};
         if (barClass !== null) {
-            customBarAttributes['class'] = barClass;
+            customBarAttributes.class = barClass;
         }
         if (barColor !== null) {
-            customBarAttributes['fill'] = barColor;
+            customBarAttributes.fill = barColor;
         }
 
         barParts.enter().append('rect')
