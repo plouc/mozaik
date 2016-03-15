@@ -1,6 +1,6 @@
 {
   "name": "mozaik",
-  "version": "1.0.10",
+  "version": "1.2.0",
   "description": "Mozaik dashboard composition tool",
   "repository": {
     "type": "git",
@@ -11,63 +11,48 @@
     "url": "https://github.com/plouc"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/plouc/mozaik",
   "main": "src/Mozaik.js",
   "dependencies": {
-    "babelify": "^6.1.3",
     "bluebird": "^2.4.2",
-    "browserify": "^8.0.2",
     "chalk": "^1.1.0",
+    "classnames": "2.2.3",
     "d3": "^3.5.2",
-    "del": "^1.1.1",
-    "dotenv": "^0.5.1",
     "express": "^4.10.6",
     "font-awesome": "^4.2.0",
-    "glob": "^4.3.2",
-    "gulp": "^3.8.10",
-    "gulp-flatten": "0.0.4",
-    "gulp-rename": "^1.2.0",
-    "gulp-strip-debug": "^1.0.2",
-    "gulp-stylus": "^2.0.0",
-    "gulp-uglify": "^1.0.2",
-    "gulp-util": "^3.0.3",
-    "jquery": "^2.1.3",
-    "lodash": "^3.2.0",
-    "memory-cache": "0.0.5",
-    "reflux": "^0.2.5",
+    "lodash": "4.6.1",
+    "react": "0.14.7",
+    "react-dom": "0.14.7",
+    "react-mixin": "3.0.3",
+    "reflux": "0.4.0",
     "request": "^2.51.0",
     "superagent": "^0.21.0",
-    "superagent-bluebird-promise": "^0.6.0",
     "swig": "^1.4.2",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.4.0",
     "winston": "^0.9.0",
     "ws": "1.0.1"
   },
   "devDependencies": {
-    "babel": "^4.3.0",
-    "babel-eslint": "^1.0.6",
+    "babel-core": "6.7.2",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-0": "6.5.0",
+    "babel-register": "6.7.2",
+    "enzyme": "2.1.0",
     "eslint": "^0.15.1",
-    "mocha": "^2.1.0",
+    "expect": "1.15.2",
+    "mocha": "2.4.5",
     "mockery": "^1.4.0",
+    "react-addons-test-utils": "0.14.7",
     "rewire": "^2.3.1",
     "should": "^5.0.1",
     "sinon": "^1.12.2"
   },
-  "peerDependencies": {
-    "react": "^0.13.3"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "scripts": {
-    "eslint": "eslint ./src/*",
-    "test": "mocha --opts mocha.opts ./tests/**/*.test.js"
+    "eslint": "eslint --ext .js --ext .jsx ./src/*",
+    "test": "mocha --opts mocha.opts"
   }
 }

@@ -2,8 +2,10 @@ import Reflux      from 'reflux';
 import ApiActions  from './../actions/ApiActions';
 import ConfigStore from './ConfigStore';
 
+
 const buffer = [];
 let ws = null;
+
 
 const ApiStore = Reflux.createStore({
     init() {
@@ -22,9 +24,13 @@ const ApiStore = Reflux.createStore({
         }
 
         let wsUrl = `${proto}://${window.document.location.hostname}`;
+        console.log(wsUrl);
+
         if (port && port !== '') {
             wsUrl = `${wsUrl}:${port}`;
         }
+
+        console.log(wsUrl);
 
         ws = new WebSocket(wsUrl);
         ws.onmessage = event => {
@@ -49,11 +55,17 @@ const ApiStore = Reflux.createStore({
             return;
         }
 
+        console.log('sending', {
+            id:     id,
+            params: params || {}
+        });
+
         ws.send(JSON.stringify({
             id:     id,
             params: params || {}
         }));
     }
 });
+
 
 export default ApiStore;

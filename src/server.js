@@ -1,15 +1,16 @@
-import express from 'express';
-import swig    from 'swig';
-import chalk   from 'chalk';
-import path    from 'path';
-import _       from 'lodash';
+import express                       from 'express';
+import swig                          from 'swig';
+import chalk                         from 'chalk';
+import path                          from 'path';
+import _                             from 'lodash';
+import { Server as WebSocketServer } from 'ws';
+
 
 /**
  * @param {Mozaik} mozaik
  * @param {Express} app
  */
 export default function (mozaik, app) {
-
     const config = mozaik.serverConfig;
 
     mozaik.logger.info(chalk.yellow(`serving static contents from ${mozaik.baseDir}build`));
@@ -39,12 +40,13 @@ export default function (mozaik, app) {
         mozaik.logger.info(chalk.yellow(`Mozaïk server listening at http://${config.host}:${config.port}`));
     });
 
-    const WebSocketServer = require('ws').Server;
-    const wss             = new WebSocketServer({ server: server });
+    const wss = new WebSocketServer({
+        server: server
+    });
 
     let currentClientId = 0;
 
-    wss.on('connection', (ws) => {
+    wss.on('connection', ws => {
         const clientId = ++currentClientId;
 
         mozaik.bus.addClient(ws, clientId);

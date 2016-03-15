@@ -1,36 +1,39 @@
-import React             from 'react';
-import _                 from 'lodash';
-import ComponentRegistry from './../component-registry';
+import React, { Component, PropTypes } from 'react';
+import ComponentRegistry               from './../component-registry';
 
 
-export default React.createClass({
-    displayName: 'Widget',
+const Widget = ({ type, x, y, width, height, ...childProps }) => {
+    const style = {
+        top:  y,
+        left: x,
+        width,
+        height
+    };
 
-    render() {
-        let { type, x, y, w, h } = this.props;
+    // Pick component from registry and instantiate with filtered props
+    const widget = React.createElement(ComponentRegistry.get(type), childProps);
 
-        let style = {
-            top:    y,
-            left:   x,
-            width:  w,
-            height: h
-        };
+    // Set class according to component type
+    const cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
 
-        // Pass props to widget component without 'metadata'
-        let childProps = _.omit(this.props, ['x', 'y', 'w', 'h', 'type']);
-
-        // Pick component from registry and instantiate with filtered props
-        let widget = React.createElement(ComponentRegistry.get(type), _.extend({}, childProps));
-
-        // Set class according to component type
-        let cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
-
-        return (
-            <div className="widget__wrapper" style={style}>
-                <div className={cssClass}>
-                    {widget}
-                </div>
+    return (
+        <div className="widget__wrapper" style={style}>
+            <div className={cssClass}>
+                {widget}
             </div>
-        );
-    }
-});
+        </div>
+    );
+};
+
+Widget.displayName = 'Widget';
+
+Widget.propTypes = {
+    type:   PropTypes.string.isRequired,
+    x:      PropTypes.string.isRequired,
+    y:      PropTypes.string.isRequired,
+    width:  PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired
+};
+
+
+export default Widget;

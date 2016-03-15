@@ -1,11 +1,11 @@
-var React       = require('react');
-var Reflux      = require('reflux');
-var _           = require('lodash');
-var Dashboard   = require('./Dashboard.jsx');
-var Timer       = require('./Timer.jsx');
-var ConfigStore = require('./../stores/ConfigStore');
+import React, { Component } from 'react';
+import Reflux               from 'reflux';
+import Dashboard            from './Dashboard.jsx';
+import Timer                from './Timer.jsx';
+import ConfigStore          from './../stores/ConfigStore';
 
-var Mozaik = React.createClass({
+
+const Mozaik = React.createClass({
     mixins: [Reflux.ListenerMixin],
 
     getInitialState() {
@@ -25,11 +25,13 @@ var Mozaik = React.createClass({
     },
 
     render() {
+        console.log('Mozaik.render()', this.state);
+
         if (this.state.config === null) {
             return null;
         }
 
-        var dashboardNodes = _.map(this.state.config.dashboards, (dashboard, index) => {
+        var dashboardNodes = this.state.config.dashboards.map((dashboard, index) => {
             return <Dashboard key={index} dashboard={dashboard} />;
         });
 
@@ -46,4 +48,7 @@ var Mozaik = React.createClass({
     }
 });
 
-module.exports = Mozaik;
+Mozaik.displayName = 'Mozaik';
+
+
+export default Mozaik;
