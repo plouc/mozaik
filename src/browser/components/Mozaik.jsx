@@ -1,3 +1,6 @@
+import 'font-awesome/less/font-awesome.less';
+import './../../styl/mozaik.styl';
+
 import React, { Component, PropTypes } from 'react';
 import reactMixin                      from 'react-mixin';
 import { ListenerMixin }               from 'reflux';
@@ -5,9 +8,6 @@ import Dashboard                       from './Dashboard.jsx';
 import Settings                        from './Settings.jsx';
 import ConfigStore                     from './../stores/ConfigStore';
 import SettingsStore                   from './../stores/SettingsStore';
-
-
-import './../../styl/mozaik.styl';
 
 
 class Mozaik extends Component {
