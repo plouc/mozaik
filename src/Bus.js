@@ -109,7 +109,7 @@ class Bus {
         }
 
         // avoid adding a client for the same API call twice
-        if (!_.contains(this.subscriptions[requestId].clients, clientId)) {
+        if (!_.includes(this.subscriptions[requestId].clients, clientId)) {
             this.subscriptions[requestId].clients.push(clientId);
 
             // if there's an available cached response, send it immediately

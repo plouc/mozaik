@@ -8,7 +8,7 @@ let mockedMozaik;
 let Bus, bus;
 
 
-describe('Bus', () => {
+describe('Mozaïk | Bus', () => {
     before(() => {
         mockery.enable({
             warnOnReplace:      false,

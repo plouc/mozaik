@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300|Open+Sans:400italic,400,300,700");
+
+$theme-bordeau = {
+  // GENERIC
+  main-bg-color:  rgb(40, 18, 18),
+  main-txt-color: hsl(6, 26%, 67%),
+  main-margin:    6vmin,
+  main-font:      unquote("normal normal 400 2vmin/3vmin 'Open sans', sans-serif"),
+  
+  // WIDGET
+  widget-spacing:       2px,
+  widget-bg-color:      rgb(69, 23, 23),
+  widget-border-radius: 0,
+  
+  // WIDGET — header
+  widget-header-height:        5vmin,
+  widget-header-bg-color:      transparent,
+  widget-header-txt-color:     hsl(10, 60%, 90%),
+  widget-header-icon-color:    hsl(0, 52%, 60%),
+  widget-header-shadow:        none,
+  widget-header-border-bottom: 1px solid rgb(40, 18, 18),
+  widget-header-border-radius: 0,
+  widget-header-font:          unquote("normal normal 100 2.5vmin 'Roboto Slab', sans-serif"),
+  
+  // WIDGET — header count
+  widget-header-count-bg-color:  rgb(40, 18, 18),
+  widget-header-count-txt-color: hsl(0, 52%, 60%),
+  
+  // WIDGET — body
+  widget-body-border-radius: 0,
+  widget-body-bg-color:      transparent,
+  
+  // COUNT
+  count-bg-color:      lighten(rgb(69, 23, 23), 4),
+  count-txt-color:     hsl(0, 52%, 60%),
+  count-border-radius: 2px,
+  
+  // TABLE
+  table-border-h: 1px solid rgb(40, 18, 18),
+  
+  // Meaningful colors
+  unknown-color: #7e706d,
+  success-color: #50a3b2,
+  failure-color: #a31c12,
+  
+  // CHARTS
+  histogram-bar-bg-color: lighten(rgb(69, 23, 23), 4),
+  chart-axis-txt-color:   hsl(6, 26%, 67%),
+  
+  // PROPS
+  prop-key-txt-color:   hsl(6, 26%, 67%),
+  prop-value-txt-color: lighten(hsl(6, 26%, 67%), 13)
+}

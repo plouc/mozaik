@@ -24,13 +24,9 @@ const ApiStore = Reflux.createStore({
         }
 
         let wsUrl = `${proto}://${window.document.location.hostname}`;
-        console.log(wsUrl);
-
         if (port && port !== '') {
             wsUrl = `${wsUrl}:${port}`;
         }
-
-        console.log(wsUrl);
 
         ws = new WebSocket(wsUrl);
         ws.onmessage = event => {
@@ -42,6 +38,7 @@ const ApiStore = Reflux.createStore({
                 ws.send(JSON.stringify(request));
             });
         };
+
         this.listenTo(ApiActions.get, this.get);
     },
 
@@ -54,11 +51,6 @@ const ApiStore = Reflux.createStore({
 
             return;
         }
-
-        console.log('sending', {
-            id:     id,
-            params: params || {}
-        });
 
         ws.send(JSON.stringify({
             id:     id,

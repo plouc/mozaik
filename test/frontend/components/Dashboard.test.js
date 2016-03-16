@@ -7,7 +7,7 @@ import Widget      from '../../../src/browser/components/Widget.jsx';
 import Dashboard   from '../../../src/browser/components/Dashboard.jsx';
 
 
-describe('Dashboard component', () => {
+describe('Mozaïk | Dashboard component', () => {
     it(`should render as many widgets as the 'dashboard.widgets' prop have`, () => {
         const dashboard = {
             index:   0,

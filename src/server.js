@@ -47,6 +47,8 @@ export default function (mozaik, app) {
     let currentClientId = 0;
 
     wss.on('connection', ws => {
+        console.log('WS connection !');
+
         const clientId = ++currentClientId;
 
         mozaik.bus.addClient(ws, clientId);

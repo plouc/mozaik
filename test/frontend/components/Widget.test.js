@@ -9,7 +9,7 @@ import mockery     from 'mockery';
 let Widget;
 let componentRegistryStub;
 
-describe('Widget component', function () {
+describe('Mozaïk | Widget component', function () {
     this.timeout(5000);
 
     before(() => {
