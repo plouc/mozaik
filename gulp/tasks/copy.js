@@ -6,6 +6,7 @@ var chalk   = require('chalk');
 
 var fontsPaths = [
     config.mozaikRoot + 'node_modules/font-awesome/fonts/*',
+    config.root + 'node_modules/font-awesome/fonts/*',
     config.root + 'node_modules/mozaik-ext-*/assets/fonts/*',
     config.root + 'themes/*/assets/fonts/*',
     config.mozaikSrc + 'themes/*/assets/fonts/*'
@@ -37,7 +38,8 @@ gulp.task('copy:styles', function () {
     gutil.log(chalk.green('Copying styles'));
 
     return gulp.src([
-            config.mozaikRoot + 'node_modules/font-awesome/css/font-awesome.min.css'
+            config.mozaikRoot + 'node_modules/font-awesome/css/font-awesome.min.css',
+            config.root + 'node_modules/font-awesome/css/font-awesome.min.css'
         ])
         .pipe(flatten())
         .pipe(gulp.dest(config.dest + 'css'))
