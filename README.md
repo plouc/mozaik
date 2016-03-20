@@ -15,7 +15,7 @@ Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft
 - Scalable layout
 - Themes support
 - Extendable by modules
-- Grid positining
+- Grid positioning
 - Optimized backend communication
 - Rotation support (with smooth transition)
 
