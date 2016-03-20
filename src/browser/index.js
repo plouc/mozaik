@@ -12,13 +12,13 @@ import BarChartComponent from './components/charts/BarChart.jsx';
 
 export default {
     Registry: ComponentRegistry,
-    Mixin: {
+    Mixin:    {
         ApiConsumer: ApiConsumerMixin
     },
     Store: {
         Api: ApiStore
     },
-    Actions:   {
+    Actions: {
         Api:    ApiActions,
         Config: ConfigActions
     },

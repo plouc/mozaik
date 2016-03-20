@@ -22,6 +22,7 @@ function getBundler(isDev) {
     });
 
     bundler.transform(babelify, {
+        presets: ['es2015', 'react']
     });
 
     return bundler;

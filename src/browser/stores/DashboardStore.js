@@ -1,14 +1,16 @@
-var Reflux           = require('reflux');
-var _                = require('lodash');
-var DashboardActions = require('./../actions/DashboardActions');
-var ConfigStore      = require('./ConfigStore');
+import Reflux           from 'reflux';
+import _                from 'lodash';
+import DashboardActions from './../actions/DashboardActions';
+import ConfigStore      from './ConfigStore';
+
 
 var _dashboards      = [];
 var _currentIndex    = 0;
 var _config          = null;
 var _timer           = null;
 
-var DashboardStore = Reflux.createStore({
+
+const DashboardStore = Reflux.createStore({
     init() {
         this.listenTo(DashboardActions.setDashboards,     this.setDashboards);
         this.listenTo(DashboardActions.previousDashboard, this.previousDashboard);
@@ -62,4 +64,5 @@ var DashboardStore = Reflux.createStore({
     }
 });
 
-module.exports = DashboardStore;
+
+export default DashboardStore;

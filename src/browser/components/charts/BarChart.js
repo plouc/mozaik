@@ -123,7 +123,7 @@ class BarChart {
         });
 
         computed.forEach(d => {
-            d.maxX = _.max(_.pluck(d.ys, 'y1'));
+            d.maxX = _.max(d.ys.map(y => y.y1));
 
             if (mode === BarChart.MODE_STACKED) {
                 d.ys.sort((a, b) => a.y1 - b.y1);
@@ -184,11 +184,11 @@ class BarChart {
 
         this.xScale
             .rangeRoundBands([0, innerWidth], xPadding)
-            .domain(_.pluck(this.computedData, 'x'))
+            .domain(this.computedData.map(d => d.x))
         ;
         this.yScale
             .rangeRound([innerHeight, 0])
-            .domain([0, _.max(_.pluck(this.computedData, 'maxX'))])
+            .domain([0, _.max(this.computedData.map(d => d.maxX))])
         ;
 
         let { yTickFormat } = this.options;
@@ -236,10 +236,10 @@ class BarChart {
 
         let customBarAttributes = {};
         if (barClass !== null) {
-            customBarAttributes['class'] = barClass;
+            customBarAttributes['class'] = barClass; // eslint-disable-line dot-notation
         }
         if (barColor !== null) {
-            customBarAttributes['fill'] = barColor;
+            customBarAttributes.fill = barColor;
         }
 
         barParts.enter().append('rect')
@@ -278,4 +278,4 @@ BarChart.MODE_STACKED = 'stacked';
 BarChart.MODE_PACKED  = 'packed';
 
 
-export { BarChart as default };
+export default BarChart;

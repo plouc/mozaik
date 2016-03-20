@@ -1,56 +1,78 @@
-var React          = require('react');
-var _              = require('lodash');
-var Reflux         = require('reflux');
-var Widget         = require('./Widget.jsx');
-var DashboardStore = require('./../stores/DashboardStore');
+import React, { Component, PropTypes } from 'react';
+import reactMixin                      from 'react-mixin';
+import classNames                      from 'classnames';
+import _                               from 'lodash';
+import { ListenerMixin }               from 'reflux';
+import Widget                          from './Widget.jsx';
+import DashboardStore                  from './../stores/DashboardStore';
 
-var Dashboard = React.createClass({
-    mixins: [Reflux.ListenerMixin],
 
-    getInitialState() {
-        return {
+class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             isCurrent: false
         };
-    },
+    }
 
     componentWillMount() {
         this.listenTo(DashboardStore, this.onDashboardStoreUpdate);
-    },
+    }
 
     onDashboardStoreUpdate(index) {
+        const { dashboard } = this.props;
+
         this.setState({
-            isCurrent: index === this.props.dashboard.index
+            isCurrent: index === dashboard.index
         });
-    },
+    }
 
     render() {
-        var columns = this.props.dashboard.columns;
-        var rows    = this.props.dashboard.rows;
+        const { dashboard: { columns, rows, widgets } } = this.props;
 
-        var widgetNodes = _.map(this.props.dashboard.widgets, (widget, index) => {
-            var props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
-                key:  index,
-                type: widget.type,
-                w:    (widget.columns / columns * 100) + '%',
-                h:    (widget.rows    / rows    * 100) + '%',
-                x:    (widget.x       / columns * 100) + '%',
-                y:    (widget.y       / rows    * 100) + '%'
+        const widgetNodes = widgets.map((widget, index) => {
+            const props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
+                key:    index,
+                type:   widget.type,
+                x:      `${(widget.x       / columns * 100)}%`,
+                y:      `${(widget.y       / rows    * 100)}%`,
+                width:  `${(widget.columns / columns * 100)}%`,
+                height: `${(widget.rows    / rows    * 100)}%`
             });
 
             return React.createElement(Widget, props);
         });
 
-        var cssClasses = 'dashboard__sheet';
-        if (this.state.isCurrent) {
-            cssClasses += ' _is-current';
-        }
+        const { isCurrent } = this.state;
+        const classes = classNames('dashboard__sheet', { '_is-current': isCurrent });
 
         return (
-            <div className={cssClasses}>
+            <div className={classes}>
                 {widgetNodes}
             </div>
         );
     }
-});
+}
 
-module.exports = Dashboard;
+Dashboard.displayName = 'Dashboard';
+
+Dashboard.propTypes = {
+    dashboard: PropTypes.shape({
+        index:   PropTypes.number.isRequired,
+        columns: PropTypes.number.isRequired,
+        rows:    PropTypes.number.isRequired,
+        widgets: PropTypes.arrayOf(PropTypes.shape({
+            type:    PropTypes.string.isRequired,
+            x:       PropTypes.number.isRequired,
+            y:       PropTypes.number.isRequired,
+            columns: PropTypes.number.isRequired,
+            rows:    PropTypes.number.isRequired
+        })).isRequired
+    }).isRequired
+};
+
+reactMixin(Dashboard.prototype, ListenerMixin);
+
+
+export default Dashboard;

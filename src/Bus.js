@@ -105,11 +105,11 @@ class Bus {
             this._mozaik.logger.info(`Setting timer for "${ requestId }"`);
             this.subscriptions[requestId].timer = setInterval(() => {
                 this.processApiCall(requestId, callFn, request.params);
-            }, 10000);
+            }, 100000);
         }
 
         // avoid adding a client for the same API call twice
-        if (!_.contains(this.subscriptions[requestId].clients, clientId)) {
+        if (!_.includes(this.subscriptions[requestId].clients, clientId)) {
             this.subscriptions[requestId].clients.push(clientId);
 
             // if there's an available cached response, send it immediately
@@ -124,7 +124,7 @@ class Bus {
      *
      * @param id
      */
-     removeClient(id) {
+    removeClient(id) {
         _.forOwn(this.subscriptions, (subscription, subscriptionId) => {
             subscription.clients = _.without(subscription.clients, id);
 

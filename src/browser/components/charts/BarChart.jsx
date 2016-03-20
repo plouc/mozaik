@@ -14,7 +14,7 @@ class BarChartComponent extends Component {
             return false;
         }
 
-        let wrapper = React.findDOMNode(this);
+        const wrapper = React.findDOMNode(this);
 
         this.barChart
             .size(wrapper.offsetWidth, wrapper.offsetHeight)
@@ -35,7 +35,8 @@ class BarChartComponent extends Component {
 }
 
 BarChartComponent.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
+    options: PropTypes.object.isRequired,
+    data:    PropTypes.arrayOf(PropTypes.shape({
         abscissValue:  PropTypes.number,
         ordinateValue: PropTypes.string
     })).isRequired
@@ -45,4 +46,5 @@ BarChartComponent.defaultProps = {
     data: []
 };
 
-export { BarChartComponent as default };
+
+export default BarChartComponent;

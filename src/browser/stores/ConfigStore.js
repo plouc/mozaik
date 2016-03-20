@@ -1,17 +1,22 @@
-var Reflux           = require('reflux');
-var ConfigActions    = require('./../actions/ConfigActions');
-var DashboardActions = require('./../actions/DashboardActions');
-var request          = require('superagent');
+import Reflux           from 'reflux';
+import ConfigActions    from './../actions/ConfigActions';
+import DashboardActions from './../actions/DashboardActions';
+import request          from 'superagent';
 
-var ConfigStore = Reflux.createStore({
+
+const ConfigStore = Reflux.createStore({
     listenables: ConfigActions,
 
     loadConfig() {
         request.get('/config')
             .end((err, res) => {
-                var config = res.body;
+                if (err) {
+                    console.error(err);
+                }
 
-                this.trigger(res.body);
+                const config = res.body;
+
+                this.trigger(config);
 
                 DashboardActions.setDashboards(config.dashboards);
             })
@@ -19,4 +24,5 @@ var ConfigStore = Reflux.createStore({
     }
 });
 
-module.exports = ConfigStore;
+
+export default ConfigStore;
