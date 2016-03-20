@@ -92,8 +92,8 @@ class Pie {
             this.handLine.attr('d', line([
                 { x: -radius * handAnchorRatio,       y: 0 },
                 { x: -radius * (handAnchorRatio / 4), y: -radius * handLengthRatio },
-                { x:  radius * (handAnchorRatio / 4), y: -radius * handLengthRatio },
-                { x:  radius * handAnchorRatio,       y: 0 }
+                { x:  radius * (handAnchorRatio / 4), y: -radius * handLengthRatio },  // eslint-disable-line key-spacing
+                { x:  radius * handAnchorRatio,       y: 0 }                           // eslint-disable-line key-spacing
             ]));
         }
 
@@ -160,7 +160,7 @@ class Pie {
     }
 
     static degreesToRadians(degrees) {
-    	return degrees * Math.PI / 180;
+        return degrees * Math.PI / 180;
     }
 
     // Return computed arc data key
@@ -205,4 +205,4 @@ class Pie {
 }
 
 
-export { Pie as default };
+export default Pie;

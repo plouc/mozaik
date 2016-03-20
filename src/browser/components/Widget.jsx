@@ -1,29 +1,27 @@
-import React             from 'react';
-import _                 from 'lodash';
-import ComponentRegistry from './../component-registry';
+import React, { Component, PropTypes } from 'react';
+import _                               from 'lodash';
+import ComponentRegistry               from './../component-registry';
 
 
-export default React.createClass({
-    displayName: 'Widget',
-
+class Widget extends Component {
     render() {
-        let { type, x, y, w, h } = this.props;
+        const { type, x, y, width, height } = this.props;
 
-        let style = {
-            top:    y,
-            left:   x,
-            width:  w,
-            height: h
+        const style = {
+            top:  y,
+            left: x,
+            width,
+            height
         };
 
-        // Pass props to widget component without 'metadata'
-        let childProps = _.omit(this.props, ['x', 'y', 'w', 'h', 'type']);
+        // Pass props to widget component without 'metadata
+        const childProps = _.omit(this.props, ['type', 'x', 'y', 'width', 'height']);
 
         // Pick component from registry and instantiate with filtered props
-        let widget = React.createElement(ComponentRegistry.get(type), _.extend({}, childProps));
+        const widget = React.createElement(ComponentRegistry.get(type), childProps);
 
         // Set class according to component type
-        let cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
+        const cssClass = `widget ${ type.replace('_', '-').replace('.', '__') }`;
 
         return (
             <div className="widget__wrapper" style={style}>
@@ -33,4 +31,17 @@ export default React.createClass({
             </div>
         );
     }
-});
+}
+
+Widget.displayName = 'Widget';
+
+Widget.propTypes = {
+    type:   PropTypes.string.isRequired,
+    x:      PropTypes.string.isRequired,
+    y:      PropTypes.string.isRequired,
+    width:  PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired
+};
+
+
+export default Widget;

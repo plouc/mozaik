@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
 
+
 const DashboardActions = Reflux.createActions([
     'setDashboards',
     'previousDashboard',
@@ -7,4 +8,5 @@ const DashboardActions = Reflux.createActions([
     'startRotation'
 ]);
 
-export { DashboardActions as default };
+
+export default DashboardActions;

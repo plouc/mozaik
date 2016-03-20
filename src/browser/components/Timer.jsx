@@ -1,15 +1,15 @@
-var React          = require('react');
-var Reflux         = require('reflux');
-var DashboardStore = require('./../stores/DashboardStore');
+import React, { Component, PropTypes } from 'react';
+import reactMixin                      from 'react-mixin';
+import { ListenerMixin }               from 'reflux';
+import DashboardStore                  from './../stores/DashboardStore';
 
-var Timer = React.createClass({
-    mixins: [Reflux.ListenerMixin],
 
-    getInitialState() {
-        return {
-            completion: 0
-        };
-    },
+class Timer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { completion: 0 };
+    }
 
     componentWillMount() {
         this.listenTo(DashboardStore, this.onStoreUpdate);
@@ -19,17 +19,16 @@ var Timer = React.createClass({
                 completion: this.state.completion + 5
             });
         }, 5);
-    },
+    }
 
     onStoreUpdate() {
-        this.setState({
-            completion: 0
-        });
-    },
+        this.setState({ completion: 0 });
+    }
 
     render() {
-        var style = {
-            width: (this.state.completion / 200 * 100) + '%'
+        const { completion } = this.state;
+        const style = {
+            width: `${completion / 200 * 100}%`
         };
 
         return (
@@ -38,6 +37,11 @@ var Timer = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Timer;
+Timer.displayName = 'Timer';
+
+reactMixin(Timer.prototype, ListenerMixin);
+
+
+export default Timer;

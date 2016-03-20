@@ -2,21 +2,17 @@ import React, { Component, PropTypes } from 'react';
 
 
 class PieCount extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        let { count, unit, label } = this.props;
+        const { count, unit, label } = this.props;
 
         let unitNode = null;
         if (unit !== undefined) {
-            unitNode = <span className="pie_count_unit">{unit}</span>
+            unitNode = <span className="pie_count_unit">{unit}</span>;
         }
 
         let labelNode = null;
         if (label !== undefined) {
-            labelNode = <span className="pie_count_label">{label}</span>
+            labelNode = <span className="pie_count_label">{label}</span>;
         }
 
         return (
@@ -36,4 +32,5 @@ PieCount.propTypes = {
     label: PropTypes.string
 };
 
-export { PieCount as default };
+
+export default PieCount;

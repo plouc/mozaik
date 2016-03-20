@@ -18,7 +18,7 @@ const ApiStore = Reflux.createStore({
 
         let port = window.document.location.port;
         if (config.wsPort !== undefined) {
-          port = config.wsPort;
+            port = config.wsPort;
         }
 
         let wsUrl = `${proto}://${window.document.location.hostname}`;
@@ -57,5 +57,6 @@ const ApiStore = Reflux.createStore({
         }));
     }
 });
+
 
 export default ApiStore;
