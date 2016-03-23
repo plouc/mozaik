@@ -35,7 +35,7 @@ export default function (mozaik, app) {
         res.send(_.omit(mozaik.config, 'api'));
     });
 
-    const server = app.listen(config.port, config.host, () => {
+    const server = app.use(connect.static('public')).listen(config.port, config.host, () => {
         mozaik.logger.info(chalk.yellow(`Mozaïk server listening at http://${config.host}:${config.port}`));
     });
 
