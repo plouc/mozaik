@@ -8,6 +8,15 @@
 > - [Internal]
 > - [Polish]
 
+## v1.0.13 (2016-04-02)
+
+* **New Feature**
+ * `Dashboard`: [#70](https://github.com/plouc/mozaik/pull/70) Add optional title to dashboard.
+ 
+* **Bug Fix**
+ * `build`: [#69](https://github.com/plouc/mozaik/pull/69) Update watchify to prevent segment fault errors.
+ * `websockets`: [#68](https://github.com/plouc/mozaik/pull/68) Fixing unexpected end of input console error.
+
 ## v1.0.12 (2016-03-23)
 
 * **Bug Fix**
