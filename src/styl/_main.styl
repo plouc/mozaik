@@ -1,61 +1,32 @@
 html, body
   font $main-font
-
   background $main-bg-color
   color      $main-txt-color
-
+  margin 0
   height 100%
   width  100%
-
   overflow hidden
 
 *, *:before, *:after
   box-sizing border-box
 
-#hotboard {
-  position: absolute;
+.histogram
+  &__axis
+    &__legend
+      font-size 14px
+      fill $chart-axis-txt-color
 
-  top:    ($main-margin - $widget-spacing / 2);
-  right:  ($main-margin - $widget-spacing / 2);
-  bottom: ($main-margin - $widget-spacing / 2);
-  left:   ($main-margin - $widget-spacing / 2);
-}
+h1, h2, h3, h4, h5, h6
+  font-family "Montserrat", sans-serif
+  text-transform uppercase
+  font-weight 400
 
-.histogram {
-  &__axis {
-    &__legend {
-      font-size: 14px;
-      fill: $chart-axis-txt-color;
-    }
-  }
-}
+.txt--success
+  color $success-color
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  font-weight: 400;
-}
+.prop
+  &__key
+    color $prop-key-txt-color
 
-.txt--success {
-  color $success-color;
-}
-
-.prop {
-  &__key {
-    color: $prop-key-txt-color;
-  }
-  &__value {
-    color: $prop-value-txt-color;
-  }
-}
-
-.dashboard__title {
-  color: $main-title-color;
-  font: $main-title-font;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 1vmin 3vmin;
-  height: 10vmin;
-}
+  &__value
+    color $prop-value-txt-color
