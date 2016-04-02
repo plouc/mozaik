@@ -28,9 +28,9 @@ const ApiStore = Reflux.createStore({
 
         ws = new WebSocket(wsUrl);
         ws.onmessage = event => {
-          if (event.data !== '') {
-            ApiStore.trigger(JSON.parse(event.data));
-          }
+            if (event.data !== '') {
+                ApiStore.trigger(JSON.parse(event.data));
+            }
         };
 
         ws.onopen = () => {
