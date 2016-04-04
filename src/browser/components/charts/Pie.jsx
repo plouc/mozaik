@@ -6,13 +6,17 @@ import PieChart                        from './PieChart.jsx';
 
 class Pie extends Component {
     render() {
-        let { data, spacing, innerRadius, transitionDuration, count, countUnit, countLabel } = this.props;
+        const { data, spacing, innerRadius, transitionDuration, count, countUnit, countLabel } = this.props;
 
         let overlay = null;
         if (count !== undefined) {
             overlay = (
                 <div className="pie_overlay">
-                    <PieCount count={count} unit={countUnit} label={countLabel}/>
+                    <PieCount
+                        count={count}
+                        unit={countUnit}
+                        label={countLabel}
+                    />
                 </div>
             );
         }

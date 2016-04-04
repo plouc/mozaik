@@ -10,7 +10,7 @@ const ComponentRegistry = {
      */
     addExtensions(extensions) {
         _.forOwn(extensions, (components, extensionId) => {
-            ComponentRegistry.addExtension(extensionId, components)
+            ComponentRegistry.addExtension(extensionId, components);
         });
     },
 
@@ -34,7 +34,7 @@ const ComponentRegistry = {
 
     get(type) {
         if (!_components[type]) {
-            throw new Error('No component defined for type "' + type + '"');
+            throw new Error(`No component defined for type "${type}"`);
         }
 
         return _components[type];
@@ -44,5 +44,6 @@ const ComponentRegistry = {
         return _components;
     }
 };
+
 
 export default ComponentRegistry;

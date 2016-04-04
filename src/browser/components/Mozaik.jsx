@@ -1,42 +1,36 @@
-var React       = require('react');
-var Reflux      = require('reflux');
-var _           = require('lodash');
-var Dashboard   = require('./Dashboard.jsx');
-var Timer       = require('./Timer.jsx');
-var ConfigStore = require('./../stores/ConfigStore');
+import React, { Component, PropTypes } from 'react';
+import reactMixin                      from 'react-mixin';
+import { ListenerMixin }               from 'reflux';
+import Dashboard                       from './Dashboard.jsx';
+import ConfigStore                     from './../stores/ConfigStore';
 
-var Mozaik = React.createClass({
-    mixins: [Reflux.ListenerMixin],
 
-    getInitialState() {
-        return {
-            config: null
-        }
-    },
+class Mozaik extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { config: null };
+    }
 
     componentWillMount() {
         this.listenTo(ConfigStore, this.onConfigStoreUpdate);
-    },
+    }
 
     onConfigStoreUpdate(config) {
-        this.setState({
-            config: config
-        });
-    },
+        this.setState({ config });
+    }
 
     render() {
-        if (this.state.config === null) {
+        const { config } = this.state;
+        if (config === null) {
             return null;
         }
 
-        var dashboardNodes = _.map(this.state.config.dashboards, (dashboard, index) => {
-            return <Dashboard key={index} dashboard={dashboard} />;
-        });
+        const dashboardNodes = config.dashboards.map((dashboard, index) => (
+            <Dashboard key={index} dashboard={dashboard} />
+        ));
 
-        var timerNode = null;
-        if (this.state.config.dashboards.length > 1) {
-            timerNode = <Timer />;
-        }
+        const { theme } = this.state;
 
         return (
             <div className="dashboard">
@@ -44,6 +38,11 @@ var Mozaik = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Mozaik;
+Mozaik.displayName = 'Mozaik';
+
+reactMixin(Mozaik.prototype, ListenerMixin);
+
+
+export default Mozaik;

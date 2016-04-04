@@ -3,10 +3,10 @@ import d3                              from 'd3';
 
 
 function position() {
-    this.style('left',   d => { return d.x + 'px';                   })
-        .style('top',    d => { return d.y + 'px';                   })
-        .style('width',  d => { return Math.max(0, d.dx - 1) + 'px'; })
-        .style('height', d => { return Math.max(0, d.dy - 1) + 'px'; })
+    this.style('left',   d => `${d.x}px`                   )
+        .style('top',    d => `${d.y}px`                   )
+        .style('width',  d => `${Math.max(0, d.dx - 1)}px` )
+        .style('height', d => `${Math.max(0, d.dy - 1)}px` )
     ;
 }
 
@@ -17,24 +17,24 @@ class Treemap extends Component {
             return;
         }
 
-        var el = React.findDOMNode(this);
+        const el = React.findDOMNode(this);
 
-        var width  = el.offsetWidth;
-        var height = el.offsetHeight;
+        const width  = el.offsetWidth;
+        const height = el.offsetHeight;
 
-        var treemap = d3.layout.treemap()
+        const treemap = d3.layout.treemap()
             .size([width, height])
             .sticky(true)
             .value(d => d.count)
         ;
 
-        var container = d3.select(el);
+        const container = d3.select(el);
 
-        var chunks = container.selectAll('.treemap__chunk')
+        const chunks = container.selectAll('.treemap__chunk')
             .data(treemap.nodes(data))
         ;
 
-        var newChunks = chunks.enter().append('div')
+        const newChunks = chunks.enter().append('div')
             .attr('class', 'treemap__chunk')
             .call(position)
             .style('background', d => d.color)
@@ -42,7 +42,7 @@ class Treemap extends Component {
             .text(d => d.label)
         ;
 
-        let { showCount, transitionDuration } = this.props;
+        const { showCount, transitionDuration } = this.props;
 
         if (showCount === true) {
             newChunks.append('span')
@@ -65,7 +65,7 @@ class Treemap extends Component {
     }
 
     render() {
-        var style = {
+        const style = {
             width:  '100%',
             height: '100%'
         };
@@ -76,8 +76,11 @@ class Treemap extends Component {
     }
 }
 
+Treemap.displayName = 'Treemap';
+
 Treemap.propTypes = {
-    showCount: PropTypes.bool.isRequired
+    transitionDuration: PropTypes.number.isRequired,
+    showCount:          PropTypes.bool.isRequired
 };
 
 Treemap.defaultProps = {
@@ -85,4 +88,5 @@ Treemap.defaultProps = {
     showCount:          false
 };
 
-export { Treemap as default };
+
+export default Treemap;
