@@ -1,10 +1,10 @@
 ![MOZAÏK][logo]
 
+[![License][license-image]][license-url]
 [![Travis CI][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
 [![Quality][codeclimate-image]][codeclimate-url]
 [![Dependencies][gemnasium-image]][gemnasium-url]
-[![Widgets][widget-count-image]][widget-count-url]
 
 Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft beautiful dashboards. [See demo](http://mozaik.herokuapp.com/)
 
@@ -122,6 +122,8 @@ Mozaïk dashboard comes with 5 themes and makes it easy to [develop your own the
 theme: 'night-blue'
 ```
 
+[license-image]: https://img.shields.io/github/license/plouc/mozaik.svg?style=flat-square
+[license-url]: https://github.com/plouc/mozaik/blob/master/LICENSE.md
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
 [widget-count-image]: https://img.shields.io/badge/widgets-x21-green.svg?style=flat-square
 [npm-image]: https://img.shields.io/npm/v/mozaik.svg?style=flat-square
