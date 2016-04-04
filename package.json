@@ -54,7 +54,7 @@
     "reflux": "0.4.0",
     "request": "^2.51.0",
     "superagent": "1.8.3",
-    "superagent-bluebird-promise": "3.0.0"
+    "superagent-bluebird-promise": "3.0.0",
     "swig": "^1.4.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
