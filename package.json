@@ -1,6 +1,6 @@
 {
   "name": "mozaik",
-  "version": "1.1.0-alpha.1",
+  "version": "1.1.0-rc.1",
   "description": "Mozaik dashboard composition tool",
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
     "react"
   ],
   "dependencies": {
-    "bluebird": "^2.4.2",
+    "bluebird": "3.3.4",
     "browserify": "^8.0.2",
     "chalk": "^1.1.0",
     "classnames": "2.2.3",
@@ -53,8 +53,8 @@
     "react-mixin": "3.0.4",
     "reflux": "0.4.0",
     "request": "^2.51.0",
-    "superagent": "^0.21.0",
-    "superagent-bluebird-promise": "^0.6.0",
+    "superagent": "1.8.3",
+    "superagent-bluebird-promise": "3.0.0"
     "swig": "^1.4.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
