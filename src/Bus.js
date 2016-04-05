@@ -24,7 +24,7 @@ class Bus {
      */
     registerApi(id, api) {
         if (_.has(this.apis, id)) {
-            var errMsg = `API "${ id }" already registered`;
+            const errMsg = `API "${ id }" already registered`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
@@ -79,14 +79,14 @@ class Bus {
             throw new Error(errMsg);
         }
 
-        var api = this.apis[parts[0]];
+        const api = this.apis[parts[0]];
         if (!_.has(api, parts[1])) {
             errMsg = `Unable to find API method matching "${ parts[1] }"`;
             this._mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
-        var callFn = api[parts[1]];
+        const callFn = api[parts[1]];
 
         if (!this.subscriptions[requestId]) {
             this.subscriptions[requestId] = {
@@ -105,7 +105,7 @@ class Bus {
             this._mozaik.logger.info(`Setting timer for "${ requestId }"`);
             this.subscriptions[requestId].timer = setInterval(() => {
                 this.processApiCall(requestId, callFn, request.params);
-            }, 100000);
+            }, 2000);
         }
 
         // avoid adding a client for the same API call twice
@@ -178,6 +178,10 @@ class Bus {
         });
 
         return apis;
+    }
+
+    clientCount() {
+        return _.keys(this.clients).length;
     }
 }
 
