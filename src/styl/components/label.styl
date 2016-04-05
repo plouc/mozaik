@@ -5,11 +5,14 @@
   color            $label-txt-color
   white-space pre
   border-radius $label-border-radius
+  border $label-border
 
   &__group
     display flex
+    border $label-border
 
     .label
+      border 0
       border-radius 0
 
     *
@@ -38,8 +41,8 @@
 
     &:first-child
       left 0
-      border-right 1px solid $label-sep-color
+      border-right $label-border
 
     &:last-child
       right 0
-      border-left 1px solid $label-sep-color
+      border-left $label-border
