@@ -1,0 +1,48 @@
+.label
+  display inline-block
+  padding $label-padding
+  background-color $label-bg-color
+  color            $label-txt-color
+  white-space pre
+  border-radius $label-border-radius
+  border $label-border
+
+  &__group
+    display flex
+    border $label-border
+
+    .label
+      border 0
+      border-radius 0
+
+    *
+      border-left $label-sep-border
+
+    *:first-child
+      border-left 0
+      border-radius $label-border-radius 0 0 $label-border-radius
+
+    *:last-child
+      border-radius 0 $label-border-radius $label-border-radius 0
+
+    &--full
+      display flex
+      align-items stretch
+      align-content stretch
+
+      .label
+        flex-grow 1
+
+  &__addon
+    padding $label-padding
+    white-space pre
+    background-color $label-addon-bg-color
+    color            $label-addon-txt-color
+
+    &:first-child
+      left 0
+      border-right $label-border
+
+    &:last-child
+      right 0
+      border-left $label-border

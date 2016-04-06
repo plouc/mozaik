@@ -27,7 +27,7 @@ describe('Mozaïk | Bus', () => {
         };
 
         Bus = require('../../src/Bus').default;
-        bus = new Bus(mockedMozaik);
+        bus = Bus(mockedMozaik);
     });
 
     afterEach(() => {
@@ -69,7 +69,7 @@ describe('Mozaïk | Bus', () => {
         it('should add a client to the current list', () => {
             bus.addClient({}, 'test_client');
 
-            expect(bus.clients['test_client']).toExist(`'test_client' has not been added to the client list`);
+            expect(bus.listClients()['test_client']).toExist(`'test_client' has not been added to the client list`);
 
             expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
             expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual('Client #test_client connected');
@@ -91,10 +91,10 @@ describe('Mozaïk | Bus', () => {
     describe('removeClient()', () => {
         it('should remove a registered client from the current list', () => {
             bus.addClient({}, 'test_client');
-            expect(bus.clients['test_client']).toExist();
+            expect(bus.listClients()['test_client']).toExist();
 
             bus.removeClient('test_client');
-            expect(bus.clients['test_client']).toNotExist();
+            expect(bus.listClients()['test_client']).toNotExist();
 
             expect(mockedMozaik.logger.info.calledTwice).toEqual(true, 'logger.info() have not been called  twice');
             expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual('Client #test_client connected');
@@ -168,6 +168,19 @@ describe('Mozaïk | Bus', () => {
     });
 
 
+    describe('clientCount()', () => {
+        it('should return the number of connected clients', () => {
+            expect(bus.clientCount()).toEqual(0);
+
+            bus.addClient({}, 'client_a');
+            bus.addClient({}, 'client_b');
+            bus.addClient({}, 'client_c');
+
+            expect(bus.clientCount()).toEqual(3);
+        });
+    });
+
+
     describe('processApiCall()', () => {
         let api_stub;
         let then_stub, catch_stub;
@@ -204,7 +217,7 @@ describe('Mozaïk | Bus', () => {
         });
 
         it('should cache result', () => {
-            bus.subscriptions['test_api.test_method'] = {
+            bus.listSubscriptions()['test_api.test_method'] = {
                 clients: []
             };
 
@@ -217,8 +230,8 @@ describe('Mozaïk | Bus', () => {
 
             bus.processApiCall('test_api.test_method', api_stub);
 
-            expect(bus.subscriptions['test_api.test_method'].cached).toExist;
-            expect(bus.subscriptions['test_api.test_method'].cached).toEqual({
+            expect(bus.listSubscriptions()['test_api.test_method'].cached).toExist;
+            expect(bus.listSubscriptions()['test_api.test_method'].cached).toEqual({
                 id:   'test_api.test_method',
                 body: 'sample_data'
             });

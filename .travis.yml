@@ -3,6 +3,8 @@ node_js:
   - '0.12'
   - '4'
   - '5'
+before_install:
+  - npm install -g npm
 script:
   - npm run eslint
   - npm test

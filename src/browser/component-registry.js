@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-var _components = {};
+const registry = {};
 
 const ComponentRegistry = {
     /**
@@ -27,21 +27,21 @@ const ComponentRegistry = {
     },
 
     add(type, component) {
-        _components[type] = component;
+        registry[type] = component;
 
         return ComponentRegistry;
     },
 
     get(type) {
-        if (!_components[type]) {
+        if (!registry[type]) {
             throw new Error(`No component defined for type "${type}"`);
         }
 
-        return _components[type];
+        return registry[type];
     },
 
     list() {
-        return _components;
+        return registry;
     }
 };
 

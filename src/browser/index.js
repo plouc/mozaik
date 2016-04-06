@@ -8,6 +8,10 @@ import PieComponent      from './components/charts/Pie.jsx';
 import GaugeComponent    from './components/charts/Gauge.jsx';
 import TreemapComponent  from './components/charts/Treemap.jsx';
 import BarChartComponent from './components/charts/BarChart.jsx';
+import Inspector         from './components/Inspector.jsx';
+
+
+ComponentRegistry.add('mozaik.inspector', Inspector);
 
 
 export default {

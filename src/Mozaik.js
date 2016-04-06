@@ -4,6 +4,7 @@ import chalk   from 'chalk';
 import Bus     from './Bus';
 import express from 'express';
 import server  from './server';
+import CoreApi from './CoreApi';
 
 
 class Mozaik {
@@ -24,7 +25,9 @@ class Mozaik {
         this.baseDir = (config.baseDir || process.cwd()) + path.sep;
         this.rootDir = path.resolve(__dirname);
 
-        this.bus = new Bus(this);
+        this.bus = Bus(this);
+        
+        this.bus.registerApi('mozaik', CoreApi);
     }
 
     /**

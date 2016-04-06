@@ -11,7 +11,8 @@
     "url": "https://github.com/plouc"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "0.12.x",
+    "npm": ">=3.0.0"
   },
   "licenses": [
     {
