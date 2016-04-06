@@ -25,7 +25,7 @@ class Mozaik {
         this.baseDir = (config.baseDir || process.cwd()) + path.sep;
         this.rootDir = path.resolve(__dirname);
 
-        this.bus = new Bus(this);
+        this.bus = Bus(this);
         
         this.bus.registerApi('mozaik', CoreApi);
     }

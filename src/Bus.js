@@ -2,18 +2,16 @@ import _     from 'lodash';
 import chalk from 'chalk';
 
 
-class Bus {
-    /**
-     * @constructor
-     * @param {Mozaik} mozaik
-     */
-    constructor(mozaik) {
-        this._mozaik = mozaik;
+/**
+ * @param {Mozaik} mozaik
+ * @returns {*}
+ * @constructor
+ */
+const Bus = mozaik => {
 
-        this.apis          = {};
-        this.clients       = {};
-        this.subscriptions = {};
-    }
+    const apis          = {};
+    const clients       = {};
+    const subscriptions = {};
 
     /**
      * Register a new API
@@ -22,17 +20,17 @@ class Bus {
      * @param {String} id
      * @param {Object} api
      */
-    registerApi(id, api) {
-        if (_.has(this.apis, id)) {
+    const registerApi = (id, api) => {
+        if (_.has(apis, id)) {
             const errMsg = `API "${ id }" already registered`;
-            this._mozaik.logger.error(chalk.red(errMsg));
+            mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
-        this.apis[id] = api(this._mozaik);
+        apis[id] = api(mozaik);
 
-        this._mozaik.logger.info(chalk.yellow(`registered API "${ id }"`));
-    }
+        mozaik.logger.info(chalk.yellow(`registered API "${ id }"`));
+    };
 
     /**
      * Register a new client.
@@ -40,15 +38,68 @@ class Bus {
      * @param {Object} client
      * @param {String} id
      */
-    addClient(client, id) {
-        if (_.has(this.clients, id)) {
+    const addClient = (client, id) => {
+        if (_.has(clients, id)) {
             const errMsg = `Client with id "${ id }" already exists`;
-            this._mozaik.logger.error(chalk.red(errMsg));
+            mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
-        this.clients[id] = client;
 
-        this._mozaik.logger.info(`Client #${id} connected`);
+        clients[id] = client;
+
+        mozaik.logger.info(`Client #${id} connected`);
+    };
+
+    /**
+     * Remove a client.
+     *
+     * @param id
+     */
+    const removeClient = (id) => {
+        _.forOwn(subscriptions, (subscription, subscriptionId) => {
+            subscription.clients = _.without(subscription.clients, id);
+
+            // if there's no more subscribers, clear the interval
+            // to avoid consuming APIs for nothing.
+            if (subscription.clients.length === 0 && subscription.timer) {
+                mozaik.logger.info(`removing interval for ${subscriptionId}`);
+
+                clearInterval(subscription.timer);
+                delete subscription.timer;
+            }
+        });
+
+        delete clients[id];
+
+        mozaik.logger.info(`Client #${id} disconnected`);
+    }
+
+    /**
+     *
+     * @param {String}   id
+     * @param {Function} callFn
+     * @param {Object}   params
+     */
+    const processApiCall = (id, callFn, params) => {
+        mozaik.logger.info(`Calling "${id}"`);
+
+        callFn(params)
+            .then(data => {
+                const message = {
+                    id,
+                    body: data
+                };
+
+                subscriptions[id].cached = message;
+
+                subscriptions[id].clients.forEach((clientId) => {
+                    clients[clientId].send(JSON.stringify(message));
+                });
+            })
+            .catch(err => {
+                mozaik.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`));
+            })
+        ;
     }
 
     /**
@@ -57,9 +108,9 @@ class Bus {
      * @param {String} clientId
      * @param {Object} request
      */
-    clientSubscription(clientId, request) {
-        if (!_.has(this.clients, clientId)) {
-            this._mozaik.logger.error(`Unable to find a client with id "${ clientId }"`);
+    const clientSubscription = (clientId, request) => {
+        if (!_.has(clients, clientId)) {
+            mozaik.logger.error(`Unable to find a client with id "${ clientId }"`);
 
             return;
         }
@@ -69,120 +120,105 @@ class Bus {
         let errMsg;
         if (parts.length < 2) {
             errMsg = `Invalid request id "${ requestId }", should be something like 'api_id.method'`;
-            this._mozaik.logger.error(chalk.red(errMsg));
+            mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
-        if (!_.has(this.apis, parts[0])) {
+        if (!_.has(apis, parts[0])) {
             errMsg = `Unable to find API matching id "${ parts[0] }"`;
-            this._mozaik.logger.error(chalk.red(errMsg));
+            mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
-        const api = this.apis[parts[0]];
+        const api = apis[parts[0]];
         if (!_.has(api, parts[1])) {
             errMsg = `Unable to find API method matching "${ parts[1] }"`;
-            this._mozaik.logger.error(chalk.red(errMsg));
+            mozaik.logger.error(chalk.red(errMsg));
             throw new Error(errMsg);
         }
 
         const callFn = api[parts[1]];
 
-        if (!this.subscriptions[requestId]) {
-            this.subscriptions[requestId] = {
+        if (!subscriptions[requestId]) {
+            subscriptions[requestId] = {
                 clients:         [],
                 currentResponse: null
             };
 
-            this._mozaik.logger.info(`Added subscription "${ requestId }"`);
+            mozaik.logger.info(`Added subscription "${ requestId }"`);
 
             // make an immediate call to avoid waiting for the first interval.
-            this.processApiCall(requestId, callFn, request.params);
+            processApiCall(requestId, callFn, request.params);
         }
 
         // if there is no interval running, create one
-        if (!this.subscriptions[requestId].timer) {
-            this._mozaik.logger.info(`Setting timer for "${ requestId }"`);
-            this.subscriptions[requestId].timer = setInterval(() => {
-                this.processApiCall(requestId, callFn, request.params);
+        if (!subscriptions[requestId].timer) {
+            mozaik.logger.info(`Setting timer for "${ requestId }"`);
+            subscriptions[requestId].timer = setInterval(() => {
+                processApiCall(requestId, callFn, request.params);
             }, 2000);
         }
 
         // avoid adding a client for the same API call twice
-        if (!_.includes(this.subscriptions[requestId].clients, clientId)) {
-            this.subscriptions[requestId].clients.push(clientId);
+        if (!_.includes(subscriptions[requestId].clients, clientId)) {
+            subscriptions[requestId].clients.push(clientId);
 
             // if there's an available cached response, send it immediately
-            if (this.subscriptions[requestId].cached !== null) {
-                this.clients[clientId].send(JSON.stringify(this.subscriptions[requestId].cached));
+            if (subscriptions[requestId].cached !== null) {
+                clients[clientId].send(JSON.stringify(subscriptions[requestId].cached));
             }
         }
-    }
+    };
 
     /**
-     * Remove a client.
+     * List registered API ids.
      *
-     * @param id
+     * @returns {Array}
      */
-    removeClient(id) {
-        _.forOwn(this.subscriptions, (subscription, subscriptionId) => {
-            subscription.clients = _.without(subscription.clients, id);
-
-            // if there's no more subscribers, clear the interval
-            // to avoid consuming APIs for nothing.
-            if (subscription.clients.length === 0 && subscription.timer) {
-                this._mozaik.logger.info(`removing interval for ${subscriptionId}`);
-
-                clearInterval(subscription.timer);
-                delete subscription.timer;
-            }
+    const listApis = () => {
+        const apiIds = [];
+        _.forOwn(apis, (api, id) => {
+            apiIds.push(id);
         });
 
-        delete this.clients[id];
-
-        this._mozaik.logger.info(`Client #${id} disconnected`);
-    }
+        return apiIds;
+    };
 
     /**
+     * Returns connected clients.
      *
-     * @param {String}   id
-     * @param {Function} callFn
-     * @param {Object}   params
+     * @returns {Object}
      */
-    processApiCall(id, callFn, params) {
-        this._mozaik.logger.info(`Calling "${id}"`);
+    const listClients = () => clients;
 
-        callFn(params)
-            .then(data => {
-                const message = {
-                    id,
-                    body: data
-                };
+    /**
+     * Returns current subscriptions.
+     *
+     * @returns {Object}
+     */
+    const listSubscriptions = () => subscriptions;
 
-                this.subscriptions[id].cached = message;
+    /**
+     * Returns number of connected clients.
+     *
+     * @returns {Number}
+     */
+    const clientCount = () => {
+        return _.keys(clients).length;
+    };
 
-                this.subscriptions[id].clients.forEach((clientId) => {
-                    this.clients[clientId].send(JSON.stringify(message));
-                });
-            })
-            .catch(err => {
-                this._mozaik.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`));
-            })
-        ;
-    }
+    return {
+        registerApi,
+        addClient,
+        removeClient,
+        listClients,
+        processApiCall,
+        clientSubscription,
+        listSubscriptions,
+        listApis,
+        clientCount
+    };
+};
 
-    listApis() {
-        const apis = [];
-        _.forOwn(this.apis, (api, id) => {
-            apis.push(id);
-        });
-
-        return apis;
-    }
-
-    clientCount() {
-        return _.keys(this.clients).length;
-    }
-}
 
 export default Bus;
