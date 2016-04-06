@@ -23,6 +23,9 @@ describe('Mozaïk | Bus', () => {
             logger: {
                 info:  sinon.spy(),
                 error: sinon.spy()
+            },
+            config: {
+                apisPollInterval: 15000
             }
         };
 

@@ -8,6 +8,7 @@ import chalk from 'chalk';
  * @constructor
  */
 const Bus = mozaik => {
+    const { apisPollInterval } = mozaik.config;
 
     const apis          = {};
     const clients       = {};
@@ -156,7 +157,7 @@ const Bus = mozaik => {
             mozaik.logger.info(`Setting timer for "${ requestId }"`);
             subscriptions[requestId].timer = setInterval(() => {
                 processApiCall(requestId, callFn, request.params);
-            }, 2000);
+            }, apisPollInterval);
         }
 
         // avoid adding a client for the same API call twice
