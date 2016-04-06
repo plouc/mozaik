@@ -25,12 +25,12 @@
     <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
     <!-- CSS -->
     <!-- build:css build/css/mozaik.css -->
-    <link rel="stylesheet" href="/css/mozaik.css" type="text/css">
+    <link rel="stylesheet" href="/css/mozaik.css">
     <!-- endbuild -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- RSS -->
-    <link rel="alternative" href="/atom.xml" title="Mozaïk" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Mozaïk">
     <!-- Open Graph -->
     <meta name="description" content="Sample RepoThe easiest way to get started is by using the demo dashboard.
 Clone the repogit clone git@github.com:plouc/mozaik-demo.git
@@ -105,17 +105,17 @@ Publish assets (js/css)">
             <article class="article-container" itemscope itemtype="http://schema.org/Article">
                 <div class="article">
                     <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                        <h2 id="Sample_Repo" class="article-heading">Sample Repo<a class="article-anchor" href="#Sample_Repo" aria-hidden="true"></a></h2><p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo" target="_blank" rel="external">demo dashboard</a>.</p>
-<h3 id="Clone_the_repo">Clone the repo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:plouc/mozaik-demo.git</span><br></pre></td></tr></table></figure>
-<h3 id="Install_packages">Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> mozaik-demo</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<h3 id="Publish_assets_(js/css)">Publish assets (js/css)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gulp build</span><br></pre></td></tr></table></figure>
-<h3 id="Add_github_tokens_in_a_-env_file">Add github tokens in a <code>.env</code> file</h3><p>This step is optional, it’s useful if you want to bypass github api rate limit.</p>
-<figure class="highlight fix"><table><tr><td class="code"><pre><span class="line"><span class="attribute">GITHUB_API_TOKEN</span>=<span class="string">xxxxx</span></span><br></pre></td></tr></table></figure>
-<h3 id="Run_the_app">Run the app</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
-<h2 id="Yeoman_generator" class="article-heading">Yeoman generator<a class="article-anchor" href="#Yeoman_generator" aria-hidden="true"></a></h2><p>Alternatively, use provided <a href="https://www.npmjs.com/package/generator-mozaik" target="_blank" rel="external">Yeoman generator</a> available to start with new dashboard or widget:</p>
+                        <h2 id="Sample-Repo" class="article-heading"><a href="#Sample-Repo" class="headerlink" title="Sample Repo"></a>Sample Repo<a class="article-anchor" href="#Sample-Repo" aria-hidden="true"></a></h2><p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo" target="_blank" rel="external">demo dashboard</a>.</p>
+<h3 id="Clone-the-repo"><a href="#Clone-the-repo" class="headerlink" title="Clone the repo"></a>Clone the repo</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:plouc/mozaik-demo.git</span><br></pre></td></tr></table></figure>
+<h3 id="Install-packages"><a href="#Install-packages" class="headerlink" title="Install packages"></a>Install packages</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> mozaik-demo</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="Publish-assets-js-css"><a href="#Publish-assets-js-css" class="headerlink" title="Publish assets (js/css)"></a>Publish assets (js/css)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gulp build</span><br></pre></td></tr></table></figure>
+<h3 id="Add-github-tokens-in-a-env-file"><a href="#Add-github-tokens-in-a-env-file" class="headerlink" title="Add github tokens in a .env file"></a>Add github tokens in a <code>.env</code> file</h3><p>This step is optional, it’s useful if you want to bypass github api rate limit.</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">GITHUB_API_TOKEN</span>=xxxxx</span><br></pre></td></tr></table></figure>
+<h3 id="Run-the-app"><a href="#Run-the-app" class="headerlink" title="Run the app"></a>Run the app</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+<h2 id="Yeoman-generator" class="article-heading"><a href="#Yeoman-generator" class="headerlink" title="Yeoman generator"></a>Yeoman generator<a class="article-anchor" href="#Yeoman-generator" aria-hidden="true"></a></h2><p>Alternatively, use provided <a href="https://www.npmjs.com/package/generator-mozaik" target="_blank" rel="external">Yeoman generator</a> available to start with new dashboard or widget:</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -g yo gulp generator-mozaik</span><br><span class="line">yo mozaik</span><br><span class="line">npm install</span><br><span class="line">gulp build</span><br><span class="line">node app.js</span><br></pre></td></tr></table></figure>
 <p><strong>Mozaïk</strong> can be configured through a simple js config file <code>config.js</code> located at the root folder.<br>You should start from the default config file and customize it to fit your needs.</p>
-<h2 id="Docker" class="article-heading">Docker<a class="article-anchor" href="#Docker" aria-hidden="true"></a></h2><p><em>coming soon</em></p>
+<h2 id="Docker" class="article-heading"><a href="#Docker" class="headerlink" title="Docker"></a>Docker<a class="article-anchor" href="#Docker" aria-hidden="true"></a></h2><p><em>coming soon</em></p>
 
                     </div>
                     <footer class="article-footer">
@@ -127,7 +127,7 @@ Publish assets (js/css)">
                 </div>
             </article>
             <aside class="sidebar" role="navigation">
-    <strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone_the_repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install_packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish_assets_(js/css)"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_github_tokens_in_a_-env_file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_the_app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman_generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a>
+    <strong class="sidebar-title">Getting started</strong><a href="index.html" class="sidebar-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone-the-repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish-assets-js-css"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-github-tokens-in-a-env-file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-the-app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman-generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="sidebar-title">Configuration</strong><a href="config-file.html" class="sidebar-link">config.js</a><a href="grid-system.html" class="sidebar-link">Grid system</a><a href="theme.html" class="sidebar-link">Theme</a><a href="widgets.html" class="sidebar-link">Widgets</a>
 </aside>
 
         </div>
@@ -174,19 +174,19 @@ Publish assets (js/css)">
             </li>
         </ul>
         
-            <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample_Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone_the_repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install_packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish_assets_(js/css)"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_github_tokens_in_a_-env_file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_the_app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman_generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
+            <strong class="mobile-nav-title">Getting started</strong><a href="index.html" class="mobile-nav-link current">Setup</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Repo"><span class="toc-text">Sample Repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clone-the-repo"><span class="toc-text">Clone the repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-packages"><span class="toc-text">Install packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Publish-assets-js-css"><span class="toc-text">Publish assets (js/css)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-github-tokens-in-a-env-file"><span class="toc-text">Add github tokens in a .env file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-the-app"><span class="toc-text">Run the app</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yeoman-generator"><span class="toc-text">Yeoman generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a></li></ol><strong class="mobile-nav-title">Configuration</strong><a href="config-file.html" class="mobile-nav-link">config.js</a><a href="grid-system.html" class="mobile-nav-link">Grid system</a><a href="theme.html" class="mobile-nav-link">Theme</a><a href="widgets.html" class="mobile-nav-link">Widgets</a>
         
     </div>
 </nav>
 
     <!-- Scripts -->
 <!-- build:js build/js/main.js -->
-<script src="/js/jquery-2.1.4.js" type="text/javascript"></script>
-<script src="/js/jquery.waypoints.js" type="text/javascript"></script>
-<script src="/js/sticky.js" type="text/javascript"></script>
-<script src="/js/inview.js" type="text/javascript"></script>
-<script src="/js/toc.js" type="text/javascript"></script>
-<script src="/js/mobile_nav.js" type="text/javascript"></script>
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/jquery.waypoints.js"></script>
+<script src="/js/sticky.js"></script>
+<script src="/js/inview.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
 <!-- endbuild -->
 <script src="//cdn.jsdelivr.net/retinajs/1.1.0/retina.min.js" async></script>
 
