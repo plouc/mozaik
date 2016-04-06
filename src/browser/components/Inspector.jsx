@@ -10,6 +10,12 @@ const SECONDS_PER_MINUTE = 60;
 const SECONDS_PER_HOUR   = SECONDS_PER_MINUTE * 60;
 const SECONDS_PER_DAY    = SECONDS_PER_HOUR * 24;
 
+/**
+ * Format uptime (seconds) to human readable output.
+ *
+ * @param {Number} uptime
+ * @returns {string}
+ */
 const formatUptime = uptime => {
     let parts     = [];
     let remaining = Math.round(uptime);
