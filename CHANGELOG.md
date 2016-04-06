@@ -12,7 +12,7 @@
 ## v1.2.1 (2016-04-06)
 
 * **New Feature**
- * `Bus`: [#75](https://github.com/plouc/mozaik-ext-travis/pull/75) Add ability to define custom apis poll interval.
+ * `Bus`: [#75](https://github.com/plouc/mozaik/pull/75) Add ability to define custom apis poll interval.
 
 
 ## v1.2.0 (2016-04-06)
