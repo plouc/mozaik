@@ -9,6 +9,20 @@
 > - [Polish]
 
 
+## v1.2.0 (2016-04-06)
+
+* **New Feature**
+ * `mozaik.inspector`: [#74](https://github.com/plouc/mozaik-ext-travis/pull/74) Add Mozaïk Inspector widget.
+ * `Bus`: [#74](https://github.com/plouc/mozaik-ext-travis/pull/74) Add `clientCount()` method on Bus to return connected clients count.
+ 
+* **Bug Fix**
+ * `gulp`: [d5dc3ed](https://github.com/plouc/mozaik/commit/d5dc3edcff30d897ab9506646bf11daa9340bf73) Fix styles watcher.
+
+* **Internal**
+ * `Bus`: [ba4a24a](https://github.com/plouc/mozaik/commit/ba4a24ad94213bcdb89c3f7d3086a5b4900a6659) Move Mozaïk `Bus` to simple function.
+ * `npm`: [f64592a](https://github.com/plouc/mozaik/commit/f64592ae6d89c26f9c4a83eacfcf37f71b59921c) Enforce `npm@3` usage.
+
+
 ## v1.1.0 (2016-04-04)
 
 * **Internal**
