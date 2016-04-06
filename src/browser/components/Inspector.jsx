@@ -6,6 +6,34 @@ import ComponentRegistry               from './../component-registry';
 import ApiConsumerMixin                from './../mixins/ApiConsumerMixin';
 import InspectorItem                   from './InspectorItem.jsx';
 
+const SECONDS_PER_MINUTE = 60;
+const SECONDS_PER_HOUR   = SECONDS_PER_MINUTE * 60;
+const SECONDS_PER_DAY    = SECONDS_PER_HOUR * 24;
+
+const formatUptime = uptime => {
+    let parts     = [];
+    let remaining = Math.round(uptime);
+
+    if (remaining > SECONDS_PER_DAY) {
+        parts.push(`${Math.floor(remaining / SECONDS_PER_DAY)}d`);
+        remaining = remaining % SECONDS_PER_DAY;
+    }
+
+    if (remaining > SECONDS_PER_HOUR) {
+        parts.push(`${Math.floor(remaining / SECONDS_PER_HOUR)}h`);
+        remaining = remaining % SECONDS_PER_HOUR;
+    }
+
+    if (remaining > SECONDS_PER_MINUTE) {
+        parts.push(`${Math.floor(remaining / SECONDS_PER_MINUTE)}mn`);
+        remaining = remaining % SECONDS_PER_MINUTE;
+    }
+
+    parts.push(`${remaining}s`);
+
+    return parts.join(' ');
+};
+
 
 class Inspector extends Component {
     constructor(props) {
@@ -33,7 +61,7 @@ class Inspector extends Component {
         if (info) {
             items.push(<InspectorItem key="apis" label="APIs" icon="plug" count={info.apis.length} />);
             items.push(<InspectorItem key="clients" label="connected clients" icon="user" count={info.clientCount} />);
-            items.push(<InspectorItem key="uptime" label={`uptime ${info.uptime}`} icon="clock-o" />);
+            items.push(<InspectorItem key="uptime" label={`uptime: ${formatUptime(info.uptime)}`} icon="clock-o" />);
         }
 
         return (
