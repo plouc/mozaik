@@ -168,6 +168,19 @@ describe('Mozaïk | Bus', () => {
     });
 
 
+    describe('clientCount()', () => {
+        it('should return the number of connected clients', () => {
+            expect(bus.clientCount()).toEqual(0);
+
+            bus.addClient({}, 'client_a');
+            bus.addClient({}, 'client_b');
+            bus.addClient({}, 'client_c');
+
+            expect(bus.clientCount()).toEqual(3);
+        });
+    });
+
+
     describe('processApiCall()', () => {
         let api_stub;
         let then_stub, catch_stub;
