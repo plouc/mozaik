@@ -72,7 +72,7 @@ const Bus = mozaik => {
         delete clients[id];
 
         mozaik.logger.info(`Client #${id} disconnected`);
-    }
+    };
 
     /**
      *
@@ -100,7 +100,7 @@ const Bus = mozaik => {
                 mozaik.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`));
             })
         ;
-    }
+    };
 
     /**
      * Add a subscription for the given client (client <-> API call).
