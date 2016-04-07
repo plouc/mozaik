@@ -9,6 +9,15 @@
 > - [Polish]
 
 
+## v1.3.0 (2016-04-07)
+
+* **New Feature**
+ * `Bus`: [#76](https://github.com/plouc/mozaik/pull/76) Add ability to define 'push' apis.
+
+* **Bug Fix**
+ * `gulp`: [39a2667](https://github.com/plouc/mozaik/commit/39a2667cf53ae448eaf859364a984a263e7d9c13) Fix inspector component uptime formatting
+
+
 ## v1.2.1 (2016-04-06)
 
 * **New Feature**
