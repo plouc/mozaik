@@ -20,17 +20,17 @@ const formatUptime = uptime => {
     let parts     = [];
     let remaining = Math.round(uptime);
 
-    if (remaining > SECONDS_PER_DAY) {
+    if (remaining >= SECONDS_PER_DAY) {
         parts.push(`${Math.floor(remaining / SECONDS_PER_DAY)}d`);
         remaining = remaining % SECONDS_PER_DAY;
     }
 
-    if (remaining > SECONDS_PER_HOUR) {
+    if (remaining >= SECONDS_PER_HOUR) {
         parts.push(`${Math.floor(remaining / SECONDS_PER_HOUR)}h`);
         remaining = remaining % SECONDS_PER_HOUR;
     }
 
-    if (remaining > SECONDS_PER_MINUTE) {
+    if (remaining >= SECONDS_PER_MINUTE) {
         parts.push(`${Math.floor(remaining / SECONDS_PER_MINUTE)}mn`);
         remaining = remaining % SECONDS_PER_MINUTE;
     }
