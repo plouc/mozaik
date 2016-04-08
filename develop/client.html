@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <title>Extension clients | Mozaïk</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Canonical links -->
+    <link rel="canonical" href="http://mozaik.rocks/develop/client.html">
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2f83cd">
+    <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+    <!-- CSS -->
+    <!-- build:css build/css/mozaik.css -->
+    <link rel="stylesheet" href="/css/mozaik.css">
+    <!-- endbuild -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- RSS -->
+    <link rel="alternate" href="/atom.xml" title="Mozaïk">
+    <!-- Open Graph -->
+    <meta name="description" content="When to use itWhen developing a Mozaïk extension, you’ll probably have to fetch data from external services, for example retrieve entities through an API, querying a database…
+For now there is only on">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Extension clients">
+<meta property="og:url" content="http://mozaik.rocks/develop/client.html">
+<meta property="og:site_name" content="Mozaïk">
+<meta property="og:description" content="When to use itWhen developing a Mozaïk extension, you’ll probably have to fetch data from external services, for example retrieve entities through an API, querying a database…
+For now there is only on">
+<meta property="og:updated_time" content="2016-04-07T05:45:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Extension clients">
+<meta name="twitter:description" content="When to use itWhen developing a Mozaïk extension, you’ll probably have to fetch data from external services, for example retrieve entities through an API, querying a database…
+For now there is only on">
+    <!-- Google Analytics -->
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-58405125-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+</head>
+
+<body>
+    <header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="/" class="header_logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/usage" class="main-nav_link">Usage</a></li><li class="main-nav_item"><a href="/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/develop" class="main-nav_link _is-active">Develop</a></li><li class="main-nav_item"><a href="/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link">
+                            Github
+                        </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
+    </div>
+</header>
+
+    <div id="container">
+        <div class="strata_out sub-header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 class="page-title">Extension clients</h1>
+            
+                <div class="page-baseline">How to craft connected widgets</div>
+            
+        </div>
+    </div>
+</div>
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article">
+                    <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                        <h2 id="When-to-use-it" class="article-heading"><a href="#When-to-use-it" class="headerlink" title="When to use it"></a>When to use it<a class="article-anchor" href="#When-to-use-it" aria-hidden="true"></a></h2><p>When developing a Mozaïk extension, you’ll probably have to fetch data from external services, for example retrieve entities through an API, querying a database…</p>
+<p>For now there is only one extension which doesn’t require a client, <a href="https://github.com/plouc/mozaik-ext-time" target="_blank" rel="external"><code>mozaik-ext-time</code></a>.</p>
+<p>So to communicate with thoses external services, Mozaïk provides a simple way to feed your components, using a <a href="https://github.com/plouc/mozaik/blob/master/src/Bus.js" target="_blank" rel="external"><strong>Bus</strong></a> on the server side, and a <a href="https://github.com/plouc/mozaik/blob/master/src/browser/mixins/ApiConsumerMixin.js" target="_blank" rel="external"><strong>mixin</strong></a> on the frontend to easily notify your widgets when some fresh data is fetched from the server.</p>
+<h2 id="The-big-picture" class="article-heading"><a href="#The-big-picture" class="headerlink" title="The big picture"></a>The big picture<a class="article-anchor" href="#The-big-picture" aria-hidden="true"></a></h2><p><em>Crafting schema…</em></p>
+<h2 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it"></a>How to use it<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h2><p>When you create an extension, you provide a set of widgets (React components). Those widgets can use the <a href="https://github.com/plouc/mozaik/blob/master/src/browser/mixins/ApiConsumerMixin.js" target="_blank" rel="external"><strong>ApiConsumerMixin</strong></a> to tell Mozaïk they need data from a client.</p>
+<h3 id="Creating-a-connected-component"><a href="#Creating-a-connected-component" class="headerlink" title="Creating a connected component"></a>Creating a connected component</h3><p>We’ll create an imaginary component named <code>ClientConsumer</code> for an imaginary extension named <code>mozaik-ext-sample</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// mozaik-ext-sample/src/components/ClientConsumer.jsx</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> reactMixin           <span class="keyword">from</span> <span class="string">'react-mixin'</span>;    <span class="comment">// to be able to use Mixins on es6 classes</span></span><br><span class="line"><span class="keyword">import</span> &#123; ListenerMixin &#125;    <span class="keyword">from</span> <span class="string">'reflux'</span>;         <span class="comment">// see https://github.com/reflux/refluxjs#convenience-mixin-for-react</span></span><br><span class="line"><span class="keyword">import</span> Mozaik               <span class="keyword">from</span> <span class="string">'mozaik/browser'</span>; <span class="comment">// Mozaïk browser utilities</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientConsumer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">// we extend the constructor to set a default state </span></span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">this</span>.state = &#123; count: <span class="number">0</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Before the component is mounted, the mixin will search for this method on the component.</span></span><br><span class="line">    <span class="comment">// This method MUST return an object with an `id` property.</span></span><br><span class="line">    <span class="comment">// It tells Mozaïk that this component is interested in data coming from `sample` generated with `sampleMethod`</span></span><br><span class="line">    <span class="comment">// The `id` MUST be unique across all Mozaïk extensions.</span></span><br><span class="line">    getApiRequest() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; id: <span class="string">'sample.sampleMethod'</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// This method is automatically invoked each time the `sample.sampleMethod` has fetched some data. </span></span><br><span class="line">    <span class="comment">// This assumes your method will return an object containing a `count` property.</span></span><br><span class="line">    onApiData(data) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123; count: data.count &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; count &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// apply the mixins on the component</span></span><br><span class="line">reactMixin(ClientConsumer.prototype, ListenerMixin);</span><br><span class="line">reactMixin(ClientConsumer.prototype, Mozaik.Mixin.ApiConsumer);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ClientConsumer;</span><br></pre></td></tr></table></figure>
+<p>Simple rules to define request id:</p>
+<ul>
+<li>use the name of your extension for the first part, so here we used <code>sample</code> because our extension is <code>mozaik-ext-sample</code></li>
+<li>use the name of the client’s method you want to call for the second part, here we’re interested in data produced by <code>sampleMethod</code></li>
+</ul>
+<h3 id="Creating-a-client"><a href="#Creating-a-client" class="headerlink" title="Creating a client"></a>Creating a client</h3><p>Now we have our connected widget ready to receive data from our extension’s client, so let’s create it.</p>
+<p>A client must be a single exported function which returns an <strong>object whose keys correspond to all available operations</strong>.<br>All operations <strong>must return a Promise</strong>, for this simple example, it’s not really useful, but most of the time, you’ll be performing asynchronous operations.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// mozaik-ext-sample/src/client.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="built_in">Promise</span> <span class="keyword">from</span> <span class="string">'bluebird'</span>; <span class="comment">// use bluebird for simplicity, you should also use a Promise polyfill</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// When Mozaïk instanciate a client, it pass the mozaik instance to it,</span></span><br><span class="line"><span class="comment">// it's usefull to use the builtin Mozaïk logger for example.</span></span><br><span class="line"><span class="comment">// This function MUST return an object whose keys correspond to all available operations.</span></span><br><span class="line"><span class="keyword">const</span> client = mozaik =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">// Remember the request id `sample.sampleMethod`.</span></span><br><span class="line">        <span class="comment">// This function MUST return a promise.</span></span><br><span class="line">        sampleMethod() &#123;</span><br><span class="line">            <span class="comment">// each time this method is invoked, we increment the count by 1</span></span><br><span class="line">            count += <span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(&#123; count &#125;); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> client;</span><br></pre></td></tr></table></figure>
+                    </div>
+                    <footer class="article-footer">
+                        <time class="article-footer-updated" datetime="2016-04-07T05:45:39.000Z" itemprop="dateModified">Last updated: 2016-04-07</time>
+                        <a href="extension-anatomy.html" class="article-footer-prev" title="Anatomy of an extension"><i class="fa fa-angle-left"></i><span>Anatomy of an extension</span></a><a href="client-poll-mode.html" class="article-footer-next" title="Poll mode"><span>Poll mode</span><i class="fa fa-angle-right"></i></a>
+                    </footer>
+                    
+
+                </div>
+            </article>
+            <aside class="sidebar" role="navigation">
+    <strong class="sidebar-title">Basics</strong><a href="extension-anatomy.html" class="sidebar-link">Anatomy of an extension</a><strong class="sidebar-title">Extension clients</strong><a href="client.html" class="sidebar-link current">About extension clients</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#When-to-use-it"><span class="toc-text">When to use it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-big-picture"><span class="toc-text">The big picture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use-it"><span class="toc-text">How to use it</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-connected-component"><span class="toc-text">Creating a connected component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-client"><span class="toc-text">Creating a client</span></a></li></ol></li></ol><a href="client-poll-mode.html" class="sidebar-link">Poll mode</a><a href="client-push-mode.html" class="sidebar-link">Push mode</a>
+</aside>
+
+        </div>
+    </div>
+</div>
+
+        <footer id="footer" class="strata_out">
+    <div class="strata">
+        <div class="strata_in">
+            <div id="footer-copyright">
+                <a href="https://github.com/plouc/mozaik">Mozaïk</a> |  Distributed under MIT License |
+                crafted by <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a> aka <a href="https://github.com/plouc">plouc</a> |
+                Found an issue with the docs? Report it <a href="https://github.com/plouc/mozaik-website/issues/new">here</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    <div id="mobile-nav-dimmer"></div>
+    <nav id="mobile-nav">
+    <div id="mobile-nav-inner">
+        <ul id="mobile-nav-list">
+            
+                <li class="mobile-nav-item">
+                    <a href="/usage" class="mobile-nav-link">Usage</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/extensions" class="mobile-nav-link">Extensions</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/themes" class="mobile-nav-link">Themes</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/develop" class="mobile-nav-link _is-active">Develop</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/news" class="mobile-nav-link">News</a>
+                </li>
+            
+            <li class="mobile-nav-item">
+                <a href="https://github.com/plouc/mozaik" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="mobile-nav-link">Demo</a>
+            </li>
+        </ul>
+        
+            <strong class="mobile-nav-title">Basics</strong><a href="extension-anatomy.html" class="mobile-nav-link">Anatomy of an extension</a><strong class="mobile-nav-title">Extension clients</strong><a href="client.html" class="mobile-nav-link current">About extension clients</a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#When-to-use-it"><span class="toc-text">When to use it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-big-picture"><span class="toc-text">The big picture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use-it"><span class="toc-text">How to use it</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-connected-component"><span class="toc-text">Creating a connected component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-client"><span class="toc-text">Creating a client</span></a></li></ol></li></ol><a href="client-poll-mode.html" class="mobile-nav-link">Poll mode</a><a href="client-push-mode.html" class="mobile-nav-link">Push mode</a>
+        
+    </div>
+</nav>
+
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/jquery.waypoints.js"></script>
+<script src="/js/sticky.js"></script>
+<script src="/js/inview.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<script src="/js/mozaik.js"></script>
+<!-- endbuild -->
+<!-- <script src="//cdn.jsdelivr.net/retinajs/1.1.0/retina.min.js" async></script> -->
+
+
+</body>
+</html>

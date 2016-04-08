@@ -56,9 +56,7 @@
             <h1 id="logo-wrap">
                 <a href="/" class="header_logo">Mozaïk</a>
             </h1>
-            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/docs" class="main-nav_link">Docs</a></li><li class="main-nav_item"><a href="/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link"><!--
-                            <i class="fa fa-github-alt"></i>
-                            -->
+            <nav class="main-nav"><ul><li class="main-nav_item"><a href="/usage" class="main-nav_link">Usage</a></li><li class="main-nav_item"><a href="/extensions" class="main-nav_link">Extensions</a></li><li class="main-nav_item"><a href="/themes" class="main-nav_link">Themes</a></li><li class="main-nav_item"><a href="/develop" class="main-nav_link">Develop</a></li><li class="main-nav_item"><a href="/news" class="main-nav_link">News</a></li><li class="main-nav_item"><a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_link">
                             Github
                         </a></li><li class="main-nav_item main-nav_item-demo"><a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_link main-nav_link-demo">demo</a></li></ul></nav>
             <a id="mobile-nav-toggle">
@@ -77,7 +75,7 @@
         <div class="strata_in">
             <p class="index_banner_intro">
                     Mozaïk is a tool based on nodejs / react / d3 / stylus to easily craft beautiful dashboards.
-                </p><div id="intro-get-started-wrap"><a class="index_banner_link" href="http://mozaik.herokuapp.com/" target="_blank">demo</a><a class="index_banner_link" href="/docs">get started</a></div>
+                </p><div id="intro-get-started-wrap"><a class="index_banner_link" href="http://mozaik.herokuapp.com/" target="_blank">demo</a><a class="index_banner_link" href="/usage">get started</a></div>
             <!--
             <h2 id="banner-title"></h2>
             -->
@@ -102,99 +100,135 @@
         <div class="strata_in">
             <h2 class="features_title">Features</h2>
             <div class="features">
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-extendable.png"/>
-            </div>
-            <h2 class="feature_title">
-                Scalable layout
-            </h2>
-            <div class="feature_desc">
-                <p><strong>Mozaïk</strong> dashboards support multiple devices through adaptive layout.<br>You can either put your dashboard on a big screen in the open space, or consult it on your smartphone.</p>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-extendable.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Scalable layout
+                        </h2>
+                        <div class="feature_desc">
+                            <p><strong>Mozaïk</strong> dashboards support multiple devices through adaptive layout.<br>You can either put your dashboard on a big screen in the open space, or consult it on your smartphone.</p>
 
+                            
+                        </div>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-themes.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Themes support
+                        </h2>
+                        <div class="feature_desc">
+                            <p><strong>Mozaïk</strong> dashboard comes with 6 themes and makes it easy to develop your own theme.</p>
+
+                            
+                                <a class="feature_more" href="/themes">more</a>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-extendable.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Extendable by modules
+                        </h2>
+                        <div class="feature_desc">
+                            <p><strong>Mozaïk</strong> widgets are maintained as separate modules, thus available via mozaik-ext-&lt;name&gt; in npm.js.</p>
+
+                            
+                                <a class="feature_more" href="/extensions">more</a>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-positioning.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Grid positioning
+                        </h2>
+                        <div class="feature_desc">
+                            <p><strong>Mozaïk</strong> provides a simple way to define your dashboard layout using a grid system.</p>
+
+                            
+                                <a class="feature_more" href="/usage/grid-system.html">more</a>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-backend.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Optimized backend communication
+                        </h2>
+                        <div class="feature_desc">
+                            <p>Most extensions need to communicate with APIs. <strong>Mozaïk</strong> eases this by providing a backend, which handles API calls and pushes data to widgets through websockets.</p>
+
+                            
+                                <a class="feature_more" href="/develop/client.html">more</a>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="feature_pic">
+                            <img src="/mozaik-icon-extendable.png"/>
+                        </div>
+                        <h2 class="feature_title">
+                            Multi dashboards
+                        </h2>
+                        <div class="feature_desc">
+                            <p>Sometimes, a single dashboard is not enough. <strong>Mozaïk</strong> allows multiple dashboards with a smooth transition.</p>
+
+                            
+                        </div>
+                    </div>
                 
             </div>
         </div>
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-themes.png"/>
-            </div>
-            <h2 class="feature_title">
-                Themes support
-            </h2>
-            <div class="feature_desc">
-                <p><strong>Mozaïk</strong> dashboard comes with 6 themes and makes it easy to develop your own theme.</p>
-
-                
-                    <a class="feature_more" href="/themes">more</a>
-                
-            </div>
-        </div>
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-extendable.png"/>
-            </div>
-            <h2 class="feature_title">
-                Extendable by modules
-            </h2>
-            <div class="feature_desc">
-                <p><strong>Mozaïk</strong> widgets are maintained as separate modules, thus available via mozaik-ext-&lt;name&gt; in npm.js.</p>
-
-                
-                    <a class="feature_more" href="/extensions">more</a>
-                
-            </div>
-        </div>
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-positioning.png"/>
-            </div>
-            <h2 class="feature_title">
-                Grid positioning
-            </h2>
-            <div class="feature_desc">
-                <p><strong>Mozaïk</strong> provides a simple way to define your dashboard layout using a grid system.</p>
-
-                
-                    <a class="feature_more" href="/docs/grid-system.html">more</a>
-                
-            </div>
-        </div>
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-backend.png"/>
-            </div>
-            <h2 class="feature_title">
-                Optimized backend communication
-            </h2>
-            <div class="feature_desc">
-                <p>Most extensions need to communicate with APIs. <strong>Mozaïk</strong> eases this by providing a backend, which handles API calls and pushes data to widgets through websockets.</p>
-
-                
-            </div>
-        </div>
-    
-        <div class="feature">
-            <div class="feature_pic">
-                <img src="/mozaik-icon-extendable.png"/>
-            </div>
-            <h2 class="feature_title">
-                Multi dashboards
-            </h2>
-            <div class="feature_desc">
-                <p>Sometimes, a single dashboard is not enough. <strong>Mozaïk</strong> allows multiple dashboards with a smooth transition.</p>
-
-                
-            </div>
-        </div>
-    
+    </div>
 </div>
 
+<div class="strata_out references">
+    <div class="strata">
+        <div class="strata_in">
+            <h2 class="references_title">Who's using it</h2>
+            <div class="references_wrapper">
+                
+                    <a class="references_item" href="http://jolicode.com/" title="JoliCode">
+                        <img src="/images/jolicode.svg" alt="JoliCode"/>
+                    </a>
+                
+                    <a class="references_item" href="https://labs.icelandair.com" title="Icelandair Digital Labs">
+                        <img src="/images/icelandair.svg" alt="Icelandair Digital Labs"/>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="strata_out use-cases">
+    <div class="strata">
+        <div class="strata_in">
+            <h2 class="use-cases_title">Use cases</h2>
+            
+                <a class="use-cases_item" href="https://developer.ibm.com/clouddataservices/2015/12/01/humans-vs-apache-spark-building-our-rock-paper-scissors-game/">
+                    Mozaïk meets Apache Spark, Rock-Paper-Scissors!
+                </a>
+            
+                <a class="use-cases_item" href="http://jolicode.com/blog/joliday-2015-avec-de-la-sciure-de-l-etain-et-des-lego">
+                    JoliDashboard at Jolicode, serious geeks having fun with Mozaïk
+                </a>
+            
         </div>
     </div>
 </div>
@@ -203,7 +237,9 @@
     <div class="strata">
         <div class="strata_in">
             <div id="footer-copyright">
-              &copy; 2016 <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a>
+                <a href="https://github.com/plouc/mozaik">Mozaïk</a> |  Distributed under MIT License |
+                crafted by <a href="http://rbenitte.com" target="_blank">Raphaël Benitte</a> aka <a href="https://github.com/plouc">plouc</a> |
+                Found an issue with the docs? Report it <a href="https://github.com/plouc/mozaik-website/issues/new">here</a>
             </div>
         </div>
     </div>
@@ -216,7 +252,7 @@
         <ul id="mobile-nav-list">
             
                 <li class="mobile-nav-item">
-                    <a href="/docs" class="mobile-nav-link">Docs</a>
+                    <a href="/usage" class="mobile-nav-link">Usage</a>
                 </li>
             
                 <li class="mobile-nav-item">
@@ -225,6 +261,10 @@
             
                 <li class="mobile-nav-item">
                     <a href="/themes" class="mobile-nav-link">Themes</a>
+                </li>
+            
+                <li class="mobile-nav-item">
+                    <a href="/develop" class="mobile-nav-link">Develop</a>
                 </li>
             
                 <li class="mobile-nav-item">
@@ -248,10 +288,12 @@
 <script src="/js/jquery.waypoints.js"></script>
 <script src="/js/sticky.js"></script>
 <script src="/js/inview.js"></script>
+<script src="/js/slick.min.js"></script>
 <script src="/js/toc.js"></script>
 <script src="/js/mobile_nav.js"></script>
+<script src="/js/mozaik.js"></script>
 <!-- endbuild -->
-<script src="//cdn.jsdelivr.net/retinajs/1.1.0/retina.min.js" async></script>
+<!-- <script src="//cdn.jsdelivr.net/retinajs/1.1.0/retina.min.js" async></script> -->
 
 
 </body>
