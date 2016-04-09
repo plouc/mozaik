@@ -17,42 +17,22 @@
     <meta name="msapplication-TileColor" content="#2f83cd">
     <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
     <!-- CSS -->
-    <!-- build:css build/css/mozaik.css -->
-    <link rel="stylesheet" href="/css/mozaik.css">
-    <!-- endbuild -->
+    <link rel="stylesheet" href="/build/css/mozaik-69d84f3549.css">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- RSS -->
     <link rel="alternate" href="/atom.xml" title="Mozaïk">
     <!-- Open Graph -->
-    <meta name="description" content="ConfigurationYou can set the theme you want with the theme key in the config file:
-&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;
-Available themesMozaïk comes with 6 themes:
-
-bordeau
-light-grey
-light-yellow">
+    <meta name="description" content="ConfigurationYou can set the theme you want with the theme key in the config file:&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;Available themesMozaïk comes with 6 themes:bordeaulight-greylight-yellownight-">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Configuration">
 <meta property="og:url" content="http://mozaik.rocks/usage/theme.html">
 <meta property="og:site_name" content="Mozaïk">
-<meta property="og:description" content="ConfigurationYou can set the theme you want with the theme key in the config file:
-&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;
-Available themesMozaïk comes with 6 themes:
-
-bordeau
-light-grey
-light-yellow">
+<meta property="og:description" content="ConfigurationYou can set the theme you want with the theme key in the config file:&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;Available themesMozaïk comes with 6 themes:bordeaulight-greylight-yellownight-">
 <meta property="og:updated_time" content="2016-01-15T12:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Configuration">
-<meta name="twitter:description" content="ConfigurationYou can set the theme you want with the theme key in the config file:
-&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;
-Available themesMozaïk comes with 6 themes:
-
-bordeau
-light-grey
-light-yellow">
+<meta name="twitter:description" content="ConfigurationYou can set the theme you want with the theme key in the config file:&amp;#123;  //…  theme: &apos;yellow&apos;,  //…&amp;#125;Available themesMozaïk comes with 6 themes:bordeaulight-greylight-yellownight-">
     <!-- Google Analytics -->
     
 <script>
@@ -105,30 +85,7 @@ light-yellow">
             <article class="article-container" itemscope itemtype="http://schema.org/Article">
                 <div class="article">
                     <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                        <h2 id="Configuration" class="article-heading"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration<a class="article-anchor" href="#Configuration" aria-hidden="true"></a></h2><p>You can set the theme you want with the <code>theme</code> key in the config file:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">  theme: <span class="string">'yellow'</span>,</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Available-themes"><a href="#Available-themes" class="headerlink" title="Available themes"></a>Available themes</h3><p>Mozaïk comes with 6 themes:</p>
-<ul>
-<li>bordeau</li>
-<li>light-grey</li>
-<li>light-yellow</li>
-<li>night-blue</li>
-<li>snow</li>
-<li>yellow</li>
-</ul>
-<p>Take a look at the theme gallery</p>
-<h2 id="Creating-a-custom-theme" class="article-heading"><a href="#Creating-a-custom-theme" class="headerlink" title="Creating a custom theme"></a>Creating a custom theme<a class="article-anchor" href="#Creating-a-custom-theme" aria-hidden="true"></a></h2><p>Mozaïk eases the creation of a custom theme by providing a bunch of customizable variables.<br>To create your theme you’ll have to follow this directory layout:</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">your-mozaik-app/ <span class="comment"># root Mozaïk app directory, if you used the demo repository, should be 'mozaik-demo'</span></span><br><span class="line">  build/</span><br><span class="line">  src/</span><br><span class="line">  themes/         <span class="comment"># custom themes directory</span></span><br><span class="line">    <span class="keyword">my</span>-theme/     <span class="comment"># your theme, name must match config key</span></span><br><span class="line">      _vars.styl  <span class="comment"># theme variables</span></span><br><span class="line">      index.styl  <span class="comment"># theme overrides</span></span><br></pre></td></tr></table></figure>
-<p>So, you have to create <code>themes</code> and <code>my-theme</code> directories and <code>_vars.styl</code>, <code>index.styl</code> files.<br>Your theme can now be used by setting <code>theme</code> config key to <strong>my-theme</strong>.</p>
-<p>The theme compilation run in two phases:</p>
-<ol>
-<li>loads Mozaïk core styles using the stylus variables defined in <code>_vars.styl</code></li>
-<li>loads overrides defined in <code>index.styl</code></li>
-</ol>
-<p>You should take a look at <a href="https://github.com/plouc/mozaik/tree/master/src/themes/night-blue" target="_blank" rel="external">an existing theme</a> to see how it’s built.</p>
-<h3 id="vars-styl"><a href="#vars-styl" class="headerlink" title="_vars.styl"></a>_vars.styl</h3><p>As seen previously, this file contains variables availables in core Mozaïk styles, for an exhaustive list of them, see <a href="https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl" target="_blank" rel="external">this file</a>.<br>You don’t have to set all variables, if one is not set, default value defined in <a href="https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl" target="_blank" rel="external">this file</a> will be used.</p>
-<h3 id="index-styl"><a href="#index-styl" class="headerlink" title="index.styl"></a>index.styl</h3><p>This file contains overrides, it differs from <code>_vars.styl</code> because it’s completely independent from Mozaïk core styles.<br>If you want to customize a certain widget or if you don’t find a variable which fit your needs, you should put your rules there.</p>
-
+                        <h2 id="Configuration" class="article-heading"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration<a class="article-anchor" href="#Configuration" aria-hidden="true"></a></h2><p>You can set the theme you want with the <code>theme</code> key in the config file:</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">  theme: <span class="string">'yellow'</span>,</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Available-themes"><a href="#Available-themes" class="headerlink" title="Available themes"></a>Available themes</h3><p>Mozaïk comes with 6 themes:</p><ul><li>bordeau</li><li>light-grey</li><li>light-yellow</li><li>night-blue</li><li>snow</li><li>yellow</li></ul><p>Take a look at the theme gallery</p><h2 id="Creating-a-custom-theme" class="article-heading"><a href="#Creating-a-custom-theme" class="headerlink" title="Creating a custom theme"></a>Creating a custom theme<a class="article-anchor" href="#Creating-a-custom-theme" aria-hidden="true"></a></h2><p>Mozaïk eases the creation of a custom theme by providing a bunch of customizable variables.<br>To create your theme you’ll have to follow this directory layout:</p><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">your-mozaik-app/ <span class="comment"># root Mozaïk app directory, if you used the demo repository, should be 'mozaik-demo'</span></span><br><span class="line">  build/</span><br><span class="line">  src/</span><br><span class="line">  themes/         <span class="comment"># custom themes directory</span></span><br><span class="line">    <span class="keyword">my</span>-theme/     <span class="comment"># your theme, name must match config key</span></span><br><span class="line">      _vars.styl  <span class="comment"># theme variables</span></span><br><span class="line">      index.styl  <span class="comment"># theme overrides</span></span><br></pre></td></tr></table></figure><p>So, you have to create <code>themes</code> and <code>my-theme</code> directories and <code>_vars.styl</code>, <code>index.styl</code> files.<br>Your theme can now be used by setting <code>theme</code> config key to <strong>my-theme</strong>.</p><p>The theme compilation run in two phases:</p><ol><li>loads Mozaïk core styles using the stylus variables defined in <code>_vars.styl</code></li><li>loads overrides defined in <code>index.styl</code></li></ol><p>You should take a look at <a href="https://github.com/plouc/mozaik/tree/master/src/themes/night-blue" target="_blank" rel="external">an existing theme</a> to see how it’s built.</p><h3 id="vars-styl"><a href="#vars-styl" class="headerlink" title="_vars.styl"></a>_vars.styl</h3><p>As seen previously, this file contains variables availables in core Mozaïk styles, for an exhaustive list of them, see <a href="https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl" target="_blank" rel="external">this file</a>.<br>You don’t have to set all variables, if one is not set, default value defined in <a href="https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl" target="_blank" rel="external">this file</a> will be used.</p><h3 id="index-styl"><a href="#index-styl" class="headerlink" title="index.styl"></a>index.styl</h3><p>This file contains overrides, it differs from <code>_vars.styl</code> because it’s completely independent from Mozaïk core styles.<br>If you want to customize a certain widget or if you don’t find a variable which fit your needs, you should put your rules there.</p>
                     </div>
                     <footer class="article-footer">
                         <time class="article-footer-updated" datetime="2016-01-15T12:00:00.000Z" itemprop="dateModified">Last updated: 2016-01-15</time>
@@ -198,16 +155,7 @@ light-yellow">
 </nav>
 
     <!-- Scripts -->
-<!-- build:js build/js/main.js -->
-<script src="/js/jquery-2.1.4.js"></script>
-<script src="/js/jquery.waypoints.js"></script>
-<script src="/js/sticky.js"></script>
-<script src="/js/inview.js"></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/toc.js"></script>
-<script src="/js/mobile_nav.js"></script>
-<script src="/js/mozaik.js"></script>
-<!-- endbuild -->
+<script src="/build/js/main-ce5599e5c9.js"></script>
 <!-- <script src="//cdn.jsdelivr.net/retinajs/1.1.0/retina.min.js" async></script> -->
 
 
