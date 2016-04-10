@@ -1,97 +1,100 @@
 // GENERIC
-$main-bg-color                  = #fff
-$main-txt-color                 = #555
-$main-margin                    = 1vmin
-$main-font                      = normal normal 400 unquote("2.4vmin/3.6vmin") "Open sans", sans-serif
+$main-bg-color                     = default('$main-bg-color', #fff)
+$main-txt-color                    = default('$main-txt-color', #555)
+$main-margin                       = default('$main-margin', 1vmin)
+$main-font                         = default('$main-font', unquote("normal normal 400 2.4vmin/3.6vmin 'Open sans', sans-serif"))
+$card-bg-color                     = default('$card-bg-color', $main-bg-color)
 
 // DASHBOARD
-$dashboard-header-height        = 8vmin
-$dashboard-header-txt-color     = #eee
-$dashboard-header-font          = normal normal 400 unquote("4vmin/8vmin") "Open sans", sans-serif
+$dashboard-header-height           = default('$dashboard-header-height', 8vmin)
+$dashboard-header-txt-color        = default('$dashboard-header-txt-color', $main-txt-color)
+$dashboard-header-font             = default('$dashboard-header-font', $main-font)
 
 // WIDGET
-$widget-spacing                 = 1.6vmin
-$widget-bg-color                = #fff
-$widget-shadow                  = none
-$widget-border                  = none
-$widget-inner-spacing           = 2vmin
+$widget-spacing                    = default('$widget-spacing', 1.6vmin)
+$widget-bg-color                   = default('$widget-bg-color', $card-bg-color)
+$widget-shadow                     = default('$widget-shadow', none)
+$widget-border                     = default('$widget-border', 0)
+$widget-border-radius              = default('$widget-border-radius', 0)
+$widget-inner-spacing              = default('$widget-inner-spacing', 2vmin)
 
 // WIDGET — header
-$widget-header-height           = 6vmin
-$widget-header-border           = none
-$widget-header-bg-color         = $main-bg-color
-$widget-header-txt-color        = $main-txt-color
-$widget-header-icon-color       = $main-txt-color
-$widget-header-icon-size        = 3vmin
-$widget-header-shadow           = none
-$widget-header-border-bottom    = none
-$widget-header-border-radius    = 0
-$widget-header-font             = normal normal 400 unquote('15px/42px') sans-serif
-
-// WIDGET — header count
-$widget-header-count-bg-color      = $main-bg-color
-$widget-header-count-txt-color     = $main-txt-color
-$widget-header-count-shadow        = none
-$widget-header-count-txt-shadow    = none
-$widget-header-count-border        = none
-$widget-header-count-border-radius = 2px
-$widget-header-count-padding       = 0.8vmin 1vmin
-
-// WIDGET — body
-$widget-body-border             = none
-$widget-body-border-radius      = 0
-$widget-body-bg-color           = transparent
-$widget-body-shadow             = none
-
-
-// LIST
-$list_item_padding              = 1.5vmin 2vmin
-$list_item_with_status_padding  = 1.5vmin 2vmin 1.5vmin 4.5vmin
-$list_item_status_icon_top      = 2.3vmin
-$list_item_status_icon_left     = 2vmin
-$list_item_status_icon_size     = 1.5vmin
-
-
-// TABLE
-$table-cell-padding             = 1.5vmin 2vmin
-$table-border-h                 = 1px solid #000
-
+$widget-header-height              = default('$widget-header-height', 6vmin)
+$widget-header-border              = default('$widget-header-border', 0)
+$widget-header-bg-color            = default('$widget-header-bg-color', $card-bg-color)
+$widget-header-txt-color           = default('$widget-header-txt-color', $main-txt-color)
+$widget-header-icon-color          = default('$widget-header-icon-color', $widget-header-txt-color)
+$widget-header-icon-size           = default('$widget-header-icon-size', 3vmin)
+$widget-header-shadow              = default('$widget-header-shadow', none)
+$widget-header-border-bottom       = default('$widget-header-border-bottom', 0)
+$widget-header-border-radius       = default('$widget-header-border-radius', $widget-border-radius $widget-border-radius 0 0)
+$widget-header-font                = default('$widget-header-font', $main-font)
 
 // COUNT
-$count-padding                  = 0.4vmin 1.4vmin
-$count-font-size                = 2.4vmin
-$count-bg-color                 = $main-bg-color
-$count-txt-color                = $main-txt-color
-$count-border-radius            = 0
-$count-border                   = none
+$count-bg-color                    = default('$count-bg-color', transparent)
+$count-txt-color                   = default('$count-txt-color', $main-txt-color)
+$count-font-size                   = default('$count-font-size', 2.4vmin)
+$count-border                      = default('$count-border', 0)
+$count-border-radius               = default('$count-border-radius', 0)
+$count-padding                     = default('$count-padding', 0.4vmin 1.4vmin)
 
+// WIDGET — header count
+$widget-header-count-bg-color      = default('$widget-header-count-bg-color', $count-bg-color)
+$widget-header-count-txt-color     = default('$widget-header-count-txt-color', $count-txt-color)
+$widget-header-count-shadow        = default('$widget-header-count-shadow', none)
+$widget-header-count-txt-shadow    = default('$widget-header-count-txt-shadow', none)
+$widget-header-count-border        = default('$widget-header-count-border', $count-border)
+$widget-header-count-border-radius = default('$widget-header-count-border-radius', $count-border-radius)
+$widget-header-count-padding       = default('$widget-header-count-padding', $count-padding)
+
+// WIDGET — body
+$widget-body-border                = default('$widget-body-border', 0)
+$widget-body-border-radius         = default('$widget-body-border-radius', 0 0 $widget-border-radius $widget-border-radius)
+$widget-body-bg-color              = default('$widget-body-bg-color', $widget-bg-color)
+$widget-body-shadow                = default('$widget-body-shadow', none)
+
+// LIST
+$list_item_padding                 = default('$list_item_padding', 1.5vmin 2vmin)
+$list_item_with_status_padding     = default('$list_item_with_status_padding', 1.5vmin 2vmin 1.5vmin 4.5vmin)
+$list_item_status_icon_top         = default('$list_item_status_icon_top', 2.3vmin)
+$list_item_status_icon_left        = default('$list_item_status_icon_left', 2vmin)
+$list_item_status_icon_size        = default('$list_item_status_icon_size', 1.5vmin)
+
+// TABLE
+$table-cell-padding                = default('$table-cell-padding', 1.5vmin 2vmin)
+$table-border-h                    = default('$table-border-h', 1px solid #000)
 
 // LABEL
-$label-padding                  = 0.4vmin 1.4vmin
-$label-font-size                = 1.8vmin
-$label-bg-color                 = $main-bg-color
-$label-txt-color                = $main-txt-color
-$label-addon-bg-color           = $label-bg-color
-$label-addon-txt-color          = $label-txt-color
-$label-border-radius            = 0
-$label-border                   = 0
+$label-padding                     = default('$label-padding', 0.4vmin 1.4vmin)
+$label-font-size                   = default('$label-font-size', 1.8vmin)
+$label-bg-color                    = default('$label-bg-color', transparent)
+$label-txt-color                   = default('$label-txt-color', $main-txt-color)
+$label-addon-bg-color              = default('$label-addon-bg-color', $label-bg-color)
+$label-addon-txt-color             = default('$label-addon-txt-color', $label-txt-color)
+$label-border-radius               = default('$label-border-radius', 0)
+$label-border                      = default('$label-border', 0)
 
+// NOTIFICATIONS
+$notifications-padding             = default('$notifications-padding', 1.4vmin 2vmin 1.4vmin 2.8vmin)
+$notifications-bg-color            = default('$notifications-bg-color', $card-bg-color)
+$notifications-txt-color           = default('$notifications-txt-color', $main-txt-color)
+$notifications-shadow              = default('$notifications-shadow', 0 1px 1px rgba(0, 0, 0, 0.35))
+$notifications-marker-width        = default('$notifications-marker-width', 0.8vmin)
 
 // Meaningful colors
-$unknown-color                  = #495b71
-$success-color                  = #2ac256
-$warning-color                  = #d1be65
-$failure-color                  = #de1500
-
+$unknown-color                     = default('$unknown-color', #495b71)
+$success-color                     = default('$success-color', #30b366)
+$warning-color                     = default('$warning-color', #d1be65)
+$failure-color                     = default('$failure-color', #d53721)
 
 // CHARTS
-$histogram-bar-bg-color         = #ddd
-$chart-axis-txt-color           = $main-txt-color
-$chart-tick-txt-size            = 1.2vmin
-$chart-axis-tick-color          = $main-txt-color
-$chart-grid-line-color          = $main-txt-color
-
+$chart-elements-color              = default('$chart-elements-color', $main-txt-color)
+$histogram-bar-bg-color            = default('$histogram-bar-bg-color', $chart-elements-color)
+$chart-axis-txt-color              = default('$chart-axis-txt-color', $chart-elements-color)
+$chart-tick-txt-size               = default('$chart-tick-txt-size', 1.2vmin)
+$chart-axis-tick-color             = default('$chart-axis-tick-color', $chart-elements-color)
+$chart-grid-line-color             = default('$chart-grid-line-color', $chart-elements-color)
 
 // PROPS
-$prop-key-txt-color             = $main-txt-color
-$prop-value-txt-color           = $main-txt-color
+$prop-key-txt-color                = default('$prop-key-txt-color', $main-txt-color)
+$prop-value-txt-color              = default('$prop-value-txt-color', $main-txt-color)
