@@ -2,7 +2,6 @@
 import _                     from 'lodash';
 import expect                from 'expect';
 import sinon                 from 'sinon';
-import mockery               from 'mockery';
 import { expectTriggers }    from '../../helpers/storeHelper';
 import { getFakeTimerCount } from '../../helpers/timersHelper';
 

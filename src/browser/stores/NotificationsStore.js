@@ -2,9 +2,9 @@ import Reflux               from 'reflux';
 import _                    from 'lodash';
 import NotificationsActions from './../actions/NotificationsActions';
 
+
 let currentId     = 0;
 let notifications = [];
-const timers      = {};
 
 export const NOTIFICATION_STATUS_SUCCESS = 'success';
 export const NOTIFICATION_STATUS_WARNING = 'warning';
@@ -12,7 +12,7 @@ export const NOTIFICATION_STATUS_ERROR   = 'error';
 
 const NOTIFICATION_DEFAULT_TTL = 5000;
 
-
+const timers     = {};
 const clearTimer = (id) => {
     if (timers[id]) {
         clearTimeout(timers[id]);
