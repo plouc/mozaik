@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,200,800|Montserrat:400,700")
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,400,600,800|Montserrat:400,700")
 
 // GENERIC
 $main-bg-color                  = #1e2430
@@ -23,7 +23,6 @@ $widget-header-txt-color        = #eedba5
 $widget-header-icon-color       = #e0c671
 $widget-header-shadow           = 0 1px 0 #495b71 inset
 $widget-header-border-bottom    = 1px solid #253246
-$widget-header-border-radius    = 2px 2px 0 0
 $widget-header-font             = normal normal 400 1.6vmin "Montserrat", sans-serif
 
 // WIDGET — header count
@@ -35,14 +34,11 @@ $widget-header-count-border     = none
 
 // WIDGET — body
 $widget-body-border             = none
-$widget-body-border-radius      = 0 0 2px 2px
 $widget-body-bg-color           = transparent
 $widget-body-shadow             = none
 
-
 // TABLE
 $table-border-h                 = 1px solid #253246
-
 
 // COUNT
 $count-padding                  = 3px 7px
@@ -51,7 +47,6 @@ $count-txt-color                = $main-txt-color
 $count-border-radius            = 2px
 $count-border                   = none
 
-
 // LABEL
 $label-bg-color                 = #212e41
 $label-txt-color                = $widget-header-txt-color
@@ -59,6 +54,10 @@ $label-addon-bg-color           = #1e2836
 $label-addon-txt-color          = $widget-header-txt-color
 $label-border-radius            = 2px
 
+// NOTIFICATIONS
+$notifications-bg-color         = lighten($widget-header-bg-color, 5)
+$notifications-txt-color        = $widget-header-txt-color
+$notifications-shadow           = 0 1px 1px rgba(0, 0, 0, 0.85)
 
 // Meaningful color
 $unknown-color                  = #495b71
@@ -66,11 +65,9 @@ $success-color                  = #4ec2b4
 $warning-color                  = #d1be65
 $failure-color                  = #de5029
 
-
 // CHART
+$chart-elements-color           = lighten($widget-bg-color, 40)
 $histogram-bar-bg-color         = lighten($widget-bg-color, 7)
-$chart-axis-txt-color           = lighten($widget-bg-color, 40)
-
 
 // PROPS
 $prop-key-txt-color             = $main-txt-color

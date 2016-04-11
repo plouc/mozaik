@@ -8,12 +8,16 @@
   border $label-border
 
   &__group
-    display flex
+    display inline-flex
     border $label-border
+    border-radius $label-border-radius
+    align-items stretch
+    align-content stretch
 
     .label
       border 0
       border-radius 0
+      flex-grow 1
 
     *
       border-left $label-sep-border
@@ -24,14 +28,6 @@
 
     *:last-child
       border-radius 0 $label-border-radius $label-border-radius 0
-
-    &--full
-      display flex
-      align-items stretch
-      align-content stretch
-
-      .label
-        flex-grow 1
 
   &__addon
     padding $label-padding
