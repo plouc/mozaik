@@ -1,0 +1,31 @@
+.notifications
+  position absolute
+  top   ($main-margin + $widget-spacing * 2)
+  right ($main-margin + $widget-spacing * 2)
+  z-index 10000
+  width 25%
+
+  &__item
+    position relative
+    margin-bottom 1.4vmin
+    padding $notifications-padding
+    background $notifications-bg-color
+    color      $notifications-txt-color
+    box-shadow $notifications-shadow
+
+    &:before
+      position absolute
+      content ' '
+      top    0
+      left   0
+      bottom 0
+      width $notifications-marker-width
+
+    &--success:before
+      background $success-color
+
+    &--warning:before
+      background $warning-color
+
+    &--error:before
+      background $failure-color

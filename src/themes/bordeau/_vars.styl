@@ -5,6 +5,7 @@ $main-bg-color                  = rgb(40, 18, 18)
 $main-txt-color                 = hsl(6, 26%, 67%)
 $main-margin                    = 4vmin
 $main-font                      = normal normal 400 unquote("2vmin/3vmin") "Open sans", sans-serif
+$card-bg-color                  = rgb(69, 23, 23)
 
 // DASHBOARD
 $dashboard-header-height        = 6vmin
@@ -13,56 +14,42 @@ $dashboard-header-font          = normal normal 300 unquote("2.6vmin/6vmin") "Ro
 
 // WIDGET
 $widget-spacing                 = 0.4vmin
-$widget-bg-color                = rgb(69, 23, 23)
-$widget-border-radius           = 0
 
 // WIDGET — header
-$widget-header-bg-color         = transparent
 $widget-header-txt-color        = hsl(10, 60%, 90%)
 $widget-header-icon-color       = hsl(0, 52%, 60%)
-$widget-header-shadow           = none
 $widget-header-border-bottom    = 1px solid $main-bg-color
-$widget-header-border-radius    = 0
 $widget-header-font             = normal normal 100 2.5vmin "Roboto Slab", sans-serif
 
-// WIDGET — header count
-$widget-header-count-bg-color   = $main-bg-color
-$widget-header-count-txt-color  = hsl(0, 52%, 60%)
-
-// WIDGET — body
-$widget-body-border-radius      = 0
-$widget-body-bg-color           = transparent
-
-
 // COUNT
-$count-bg-color                 = lighten($widget-bg-color, 4)
+$count-bg-color                 = lighten($card-bg-color, 4)
 $count-txt-color                = hsl(0, 52%, 60%)
 $count-border-radius            = 2px
 
+// WIDGET — header count
+$widget-header-count-bg-color   = $main-bg-color
 
 // LABEL
-$label-bg-color                 = lighten($widget-bg-color, 5)
+$label-bg-color                 = lighten($card-bg-color, 5)
 $label-txt-color                = $widget-header-txt-color
 $label-addon-bg-color           = $main-bg-color
 $label-addon-txt-color          = $widget-header-icon-color
 $label-border-radius            = 2px
 
+$notifications-bg-color         = lighten($card-bg-color, 7)
 
 // TABLE
 $table-border-h                 = 1px solid $main-bg-color
-
 
 // Meaningful colors
 $unknown-color                  = #7e706d;
 $success-color                  = #50a3b2;
 $failure-color                  = #a31c12;
 
-
 // CHARTS
-$histogram-bar-bg-color        = lighten($widget-bg-color, 4);
-$chart-axis-txt-color          = $main-txt-color;
-
+$histogram-bar-bg-color        = lighten($card-bg-color, 4)
+$chart-axis-txt-color          = $main-txt-color
 
 // PROPS
-$prop-key-txt-color            = $main-txt-color;
-$prop-value-txt-color          = lighten($main-txt-color, 13);
+$prop-key-txt-color            = $main-txt-color
+$prop-value-txt-color          = lighten($main-txt-color, 13)

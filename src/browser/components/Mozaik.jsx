@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import reactMixin                      from 'react-mixin';
 import { ListenerMixin }               from 'reflux';
 import Dashboard                       from './Dashboard.jsx';
-import ConfigStore                     from './../stores/ConfigStore';
+import Notifications                   from './Notifications.jsx';
+import ConfigStore                     from '../stores/ConfigStore';
 
 
 class Mozaik extends Component {
@@ -35,6 +36,7 @@ class Mozaik extends Component {
         return (
             <div className="dashboard">
                 {dashboardNodes}
+                <Notifications />
             </div>
         );
     }
