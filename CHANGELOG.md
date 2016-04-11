@@ -9,6 +9,16 @@
 > - [Polish]
 
 
+## v1.4.0 (2016-04-12)
+
+* **New Feature**
+ * `ws`: [#77](https://github.com/plouc/mozaik/pull/77) Add ability to automatically reconnect websockets.
+ * `notifications`: [5a0bea9](https://github.com/plouc/mozaik/commit/5a0bea974be433701af8365d2fb5e66aaef94457) Add notifications support.
+
+* **Polish**
+ * `styles`: [6d577dc](https://github.com/plouc/mozaik/commit/6d577dc771915a19fe6b8a326f7059e8e33b091b) Change the way stylus var are defined in order to have more concise themes.
+
+
 ## v1.3.0 (2016-04-07)
 
 * **New Feature**
