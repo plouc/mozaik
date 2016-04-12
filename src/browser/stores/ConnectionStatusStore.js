@@ -29,7 +29,7 @@ const ConnectionStatusStore = Reflux.createStore({
     listenables: ConnectionStatusActions,
 
     getState() {
-        return { status, retry, countrdown };
+        return { status, retry, countdown };
     },
 
     setStatus(newStatus) {
