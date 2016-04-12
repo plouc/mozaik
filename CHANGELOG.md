@@ -9,6 +9,12 @@
 > - [Polish]
 
 
+## v1.4.1 (2016-04-12)
+
+* **Bug Fix**
+ * `ws`: [5c3f0be](https://github.com/plouc/mozaik/commit/5c3f0becb607ad782193a509d8802ca2473ea965) fix typo in ConnectionStatusStore.
+
+
 ## v1.4.0 (2016-04-12)
 
 * **New Feature**
