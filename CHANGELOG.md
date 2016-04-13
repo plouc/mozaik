@@ -9,6 +9,15 @@
 > - [Polish]
 
 
+## v1.4.2 (2016-04-13)
+
+* **New Feature**
+ * `themes`: [4de8fa5](https://github.com/plouc/mozaik/commit/4de8fa542b68d8ea0ff415e766a46d45e470f237) Add new **harlequin** theme.
+
+* **Polish**
+ * `charts`: [7a73927](https://github.com/plouc/mozaik/commit/7a7392705b462893a9d97c528d0f93af01c13d0f) Improve pie and gauge components.
+
+
 ## v1.4.1 (2016-04-12)
 
 * **Bug Fix**
