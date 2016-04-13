@@ -9,6 +9,12 @@
 > - [Polish]
 
 
+## v1.4.3 (2016-04-13)
+
+* **Polish**
+ * `packages`: [c1f00c5](https://github.com/plouc/mozaik/commit/c1f00c52f7a86a51edc9f3d08f0188ffe35a8621) Upgrade outdated packages.
+
+
 ## v1.4.2 (2016-04-13)
 
 * **New Feature**
