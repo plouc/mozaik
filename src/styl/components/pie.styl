@@ -8,22 +8,24 @@
     float left
     width  60%
     height 100%
+
     &_wrapper
       width  100%
       height 100%
 
-  &_shadow
-    path
-      fill #000000
-      opacity 0.15
-      mix-blend-mode multiply
+  &_outline
+    fill         $pie-chart-outline-fill
+    stroke       $pie-chart-outline-stroke
+    stroke-width $pie-chart-outline-stroke-width
 
-  &_light
-    display none
-    path
-      fill #fff
-      opacity 0.25
-      mix-blend-mode screen
+  &_svg_legend
+    rect, path
+      fill   $pie-svg-legend-bg-color
+      stroke none
+
+    text
+      font-size 1.6vmin
+      fill $pie-svg-legend-txt-color
 
   &_legends
     float left
@@ -79,8 +81,10 @@
       display block
       margin-top 1vmin
 
-  &_hand
-    &_anchor
-      fill #000
-    &_line
-      fill #000
+  &_gauge
+    &_needle
+      &_base
+        fill $pie-gauge-needle-color
+
+      &_arrow
+        fill $pie-gauge-needle-color

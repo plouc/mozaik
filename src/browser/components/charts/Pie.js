@@ -4,13 +4,12 @@ import _  from 'lodash';
 
 class Pie {
     constructor(element, options) {
-        this.svg             = d3.select(element);
-        this.arcsContainer   = this.svg.append('g').attr('class', 'arcs');
-        this.paths           = this.arcsContainer.selectAll('path');
-        this.shadowContainer = this.svg.append('g').attr('class', 'pie_shadow');
-        this.shadowPath      = this.shadowContainer.append('path');
-        this.lightContainer = this.svg.append('g').attr('class', 'pie_light');
-        this.lightPath      = this.lightContainer.append('path');
+        this.svg              = d3.select(element);
+        this.arcsContainer    = this.svg.append('g').attr('class', 'arcs');
+        this.paths            = this.arcsContainer.selectAll('.pie_slice');
+        this.arcsOutline      = this.arcsContainer.append('path').attr('class', 'pie_outline');
+        this.legendsContainer = this.svg.append('g').attr('class', 'pie_svg_legends');
+        this.legends          = this.legendsContainer.selectAll('.pie_svg_legend');
 
         this.options = _.merge({
             sort:            null,
@@ -18,15 +17,22 @@ class Pie {
             handAnchorRatio: 0.03,
             handLengthRatio: 0.7,
             startAngle:      0,
-            endAngle:        360
+            endAngle:        360,
+            spacing:         _.merge({
+                top:    10,
+                right:  10,
+                bottom: 10,
+                left:   10
+            }, options.spacing || {})
         }, options);
 
-        let { sort, gauge, padAngle, startAngle, endAngle } = this.options;
+        const { sort, gauge, padAngle, startAngle, endAngle } = this.options;
 
         if (gauge === true) {
-            this.hand       = this.svg.append('g').attr('class', 'pie_hand');
-            this.handAnchor = this.hand.append('circle').attr('class', 'pie_hand_anchor');
-            this.handLine   = this.hand.append('path').attr('class', 'pie_hand_line');
+            this.hand       = this.svg.append('g').attr('class', 'pie_gauge_needle');
+            this.handAnchor = this.hand.append('circle').attr('class', 'pie_gauge_anchor');
+            this.handBase   = this.hand.append('circle').attr('class', 'pie_gauge_needle_base');
+            this.handLine   = this.hand.append('path').attr('class', 'pie_gauge_needle_arrow');
             this.angleScale = d3.scale.linear().range([startAngle, endAngle]);
         }
 
@@ -52,7 +58,7 @@ class Pie {
         return this;
     }
 
-    draw(data, gaugeVal) {
+    draw(data, gaugeVal, legends = []) {
         let prevData = this.paths.data();
         let newData  = this.pie(data);
 
@@ -61,32 +67,44 @@ class Pie {
             height: this.height
         });
 
-        let { donutRatio, spacing, transitionDuration, gauge } = this.options;
+        let { spacing, donutRatio, transitionDuration, gauge } = this.options;
 
-        let centerX     = this.width  / 2;
-        let centerY     = this.height / 2;
-        let minSize     = Math.min(this.width, this.height);
-        let radius      = minSize / 2 - minSize * spacing;
+        const utilWidth  = this.width  - spacing.left - spacing.right;
+        const utilHeight = this.height - spacing.top  - spacing.bottom;
+
+        if (utilWidth < 1 || utilHeight < 1) {
+            return;
+        }
+
+        let centerX     = utilWidth  / 2 + spacing.left;
+        let centerY     = utilHeight / 2 + spacing.top;
+        let minSize     = Math.min(utilWidth, utilHeight);
+        let radius      = minSize / 2;
         let innerRadius = radius * donutRatio;
+
+        const line = d3.svg.line()
+            .x(d => d.x)
+            .y(d => d.y)
+        ;
 
         if (gauge === true) {
             if (gaugeVal === undefined) {
                 throw 'Pie: gauge value is undefined and gauge option is set to true';
             }
 
-            let { handLengthRatio, handAnchorRatio } = this.options;
+            const { handLengthRatio, handAnchorRatio } = this.options;
 
-            let totalCount = d3.sum(data, d => d.count);
+            const totalCount = d3.sum(data, d => d.count);
             this.angleScale.domain([0, totalCount]);
 
             this.hand
-                .attr('transform', `translate(${ centerX },${ centerY }) rotate(${ this.angleScale(Math.min(gaugeVal, totalCount)) } 0 0)`)
+                .attr('transform', `translate(${ centerX },${ centerY })`)
             ;
-            this.handAnchor.attr('r', radius * handAnchorRatio);
+            this.handBase.attr('r', radius * handAnchorRatio);
 
-            var line = d3.svg.line()
-                .x(d => d.x)
-                .y(d => d.y)
+            this.handLine.transition()
+                .duration(transitionDuration)
+                .attr('transform', `rotate(${ this.angleScale(Math.min(gaugeVal, totalCount)) } 0 0)`)
             ;
 
             this.handLine.attr('d', line([
@@ -96,22 +114,6 @@ class Pie {
                 { x:  radius * handAnchorRatio,       y: 0 }                           // eslint-disable-line key-spacing
             ]));
         }
-
-        let shadowArc = d3.svg.arc()
-            .outerRadius(radius * (donutRatio + (1 - donutRatio) / 8))
-            .innerRadius(innerRadius)
-        ;
-
-        this.shadowContainer.attr('transform', `translate(${ centerX },${ centerY })`);
-        this.shadowPath.attr('d', shadowArc({ startAngle: this.pie.startAngle(), endAngle: this.pie.endAngle() }));
-
-        let lightArc = d3.svg.arc()
-            .outerRadius(radius)
-            .innerRadius(radius * (donutRatio + (1 - donutRatio) / 8 * 7))
-        ;
-
-        this.lightContainer.attr('transform', `translate(${ centerX },${ centerY })`);
-        this.lightPath.attr('d', lightArc({ startAngle: this.pie.startAngle(), endAngle: this.pie.endAngle() }));
 
         let arc = d3.svg.arc()
             .outerRadius(radius)
@@ -123,11 +125,17 @@ class Pie {
         this.paths = this.paths.data(newData, Pie.dataKey);
 
         this.paths.enter().append('path')
+            .attr('class', 'pie_slice')
             .each(function (d, i) {
                 this._current = Pie.findNeighborArc(i, prevData, newData) || d;
             })
             .attr('fill', d => d.data.color)
         ;
+
+        this.arcsOutline.attr('d', arc({
+            startAngle: Pie.degreesToRadians(this.options.startAngle),
+            endAngle:   Pie.degreesToRadians(this.options.endAngle)
+        }));
 
         // Store the displayed angles in _current.
         // Then, interpolate from _current to the new angles.
@@ -156,11 +164,82 @@ class Pie {
             .attr('fill', d => d.data.color)
         ;
 
+        // —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+        // legends
+        // —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+        let legendsArc = d3.svg.arc()
+            .innerRadius(radius + 24)
+            .outerRadius(radius + 24)
+        ;
+
+        this.legendsContainer.attr('transform', `translate(${ centerX },${ centerY })`);
+
+        this.legends = this.legends.data(this.pie(legends));
+
+        this.legends.enter().append('g')
+            .attr('class', 'pie_svg_legend')
+            .each(function (d) {
+                const elem = d3.select(this);
+                elem.append('path')
+                    .attr('d', line([
+                        { x: -9, y:  0 }, // eslint-disable-line key-spacing
+                        { x:  9, y:  0 }, // eslint-disable-line key-spacing
+                        { x:  0, y: 18 }  // eslint-disable-line key-spacing
+                    ]));
+                ;
+                elem.append('rect')
+                    .attr('rx', 3)
+                    .attr('ry', 3)
+                ;
+                elem.append('text')
+                    .attr('alignment-baseline', 'middle')
+                ;
+            })
+        ;
+
+        this.legends
+            .attr('transform', (d) => {
+                d.startAngle = d.endAngle;
+                const centroid = legendsArc.centroid(d);
+                d.x = centroid[0];
+                d.y = centroid[1];
+
+                return `translate(${d.x}, ${d.y})`;
+            })
+            .each(function (d) {
+                const elem = d3.select(this);
+                const legendText = elem.select('text')
+                    .style('text-anchor', Math.abs(d.x) < 30 ? 'middle' : (d.x < 0 ? 'end' : 'start'))
+                    .text(d.data.label)
+                ;
+
+                const textBBox = legendText[0][0].getBBox();
+
+                const angle = Pie.radiansToDegrees(d.startAngle);
+                elem.select('path')
+                    .attr('transform', `rotate(${angle} 0 0)`)
+                ;
+
+                elem.select('rect')
+                    .attr('x',      textBBox.x      - 8)
+                    .attr('y',      textBBox.y      - 3)
+                    .attr('width',  textBBox.width  + 16)
+                    .attr('height', textBBox.height + 6)
+                ;
+            })
+        ;
+
+        this.legends.exit().remove();
+
         return this;
     }
 
     static degreesToRadians(degrees) {
         return degrees * Math.PI / 180;
+    }
+
+    static radiansToDegrees(radians) {
+        return 180 * radians / Math.PI;
     }
 
     // Return computed arc data key

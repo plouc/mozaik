@@ -44,7 +44,7 @@
     "del": "^1.1.1",
     "dotenv": "^0.5.1",
     "express": "^4.10.6",
-    "font-awesome": "^4.2.0",
+    "font-awesome": "4.5.0",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
     "gulp-flatten": "0.0.4",

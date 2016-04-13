@@ -42,7 +42,7 @@ Pie.propTypes = {
     count:              PropTypes.number,
     countUnit:          PropTypes.string,
     countLabel:         PropTypes.string,
-    spacing:            PropTypes.number.isRequired,
+    spacing:            PropTypes.object.isRequired,
     innerRadius:        PropTypes.number.isRequired,
     transitionDuration: PropTypes.number.isRequired,
     data:               PropTypes.arrayOf(PropTypes.shape({
@@ -54,10 +54,15 @@ Pie.propTypes = {
 
 Pie.defaultProps = {
     innerRadius:        0,
-    spacing:            0.1,
     transitionDuration: 600,
-    data:               []
+    data:               [],
+    spacing:            {
+        top:    30,
+        right:  30,
+        bottom: 30,
+        left:   30
+    }
 };
 
 
-export {Pie as default};
+export default Pie;

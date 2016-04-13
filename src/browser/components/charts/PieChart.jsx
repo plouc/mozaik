@@ -38,7 +38,7 @@ class PieChart extends Component {
 }
 
 PieChart.propTypes = {
-    spacing:            PropTypes.number.isRequired,
+    spacing:            PropTypes.object.isRequired,
     innerRadius:        PropTypes.number.isRequired,
     transitionDuration: PropTypes.number.isRequired,
     data:               PropTypes.arrayOf(PropTypes.shape({
@@ -49,7 +49,7 @@ PieChart.propTypes = {
 };
 
 PieChart.defaultProps = {
-    spacing:            0.1,
+    spacing:            {},
     innerRadius:        0,
     transitionDuration: 600,
     data:               []

@@ -11,8 +11,6 @@
   &__item
     padding $list_item_padding
 
-    //line-height 24px
-
     position relative
 
     &--with-status
@@ -20,7 +18,7 @@
       padding $list_item_with_status_padding
 
       &:before
-        content " "
+        content ' '
         display block
 
         width  $list_item_status_icon_size
@@ -35,21 +33,33 @@
 
         background-color #000
 
-      &--aborted:before
-        background-color $unknown-color
+      &--aborted,
+      &--pending
+        &:before
+          background-color $unknown-color
 
-      &--ok:before,
-      &--passed:before,
-      &--success:before
-        background-color $success-color
+      &--ok,
+      &--passed,
+      &--success
+        &:before
+          background-color $success-color
 
-      &--warning:before
-        background-color $warning-color
+      &--warning,
+      &--running
+        &:before
+          background-color $warning-color
 
-      &--critical:before,
-      &--failed:before,
-      &--failure:before
-        background-color $failure-color
+      &--running
+        &:before
+          animation-name pulse-opacity
+          animation-duration 1000ms
+          animation-iteration-count infinite
+
+      &--critical,
+      &--failed,
+      &--failure
+        &:before
+          background-color $failure-color
 
     &__time
       font-size 85%

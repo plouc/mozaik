@@ -4,34 +4,45 @@ import Pie                             from './Pie';
 
 class Gauge extends Component {
     componentDidMount() {
-        let { spacing, donutRatio, handAnchorRatio, handLengthRatio, transitionDuration } = this.props;
+        const { spacing, donutRatio, handAnchorRatio, handLengthRatio, transitionDuration } = this.props;
 
         this.pie = new Pie(React.findDOMNode(this.refs.svg), {
-            spacing:            spacing,
-            donutRatio:         donutRatio,
-            handAnchorRatio:    handAnchorRatio,
-            handLengthRatio:    handLengthRatio,
-            transitionDuration: transitionDuration,
-            gauge:              true,
-            startAngle:         -120,
-            endAngle:           120
+            spacing,
+            donutRatio,
+            handAnchorRatio,
+            handLengthRatio,
+            transitionDuration,
+            gauge:      true,
+            startAngle: -120,
+            endAngle:   120
         });
     }
 
     shouldComponentUpdate(data) {
-        let { ranges, value } = data;
+        const { ranges, value } = data;
+        const { enableLegends } = this.props;
 
-        let wrapper = React.findDOMNode(this);
+        const wrapper = React.findDOMNode(this);
+        let legends   = [];
+        if (enableLegends) {
+            legends = ranges.map((range, id) => ({
+                id,
+                label: range.upperBound,
+                count: id === 0 ? range.upperBound : (range.upperBound - ranges[id -1].upperBound)
+            }));
+        }
 
         this.pie
             .size(wrapper.offsetWidth, wrapper.offsetHeight)
-            .draw(ranges.map((range, i) => {
-                return {
-                    id:    i,
+            .draw(
+                ranges.map((range, id) => ({
+                    id,
                     color: range.color,
-                    count: i === 0 ? range.upperBound : (range.upperBound - ranges[i -1].upperBound)
-                };
-            }), value)
+                    count: id === 0 ? range.upperBound : (range.upperBound - ranges[id -1].upperBound)
+                })),
+                value,
+                legends
+            )
         ;
 
         return false;
@@ -47,24 +58,29 @@ class Gauge extends Component {
 }
 
 Gauge.propTypes = {
-    spacing:            PropTypes.number.isRequired,
+    spacing:            PropTypes.object.isRequired,
     donutRatio:         PropTypes.number.isRequired,
     handAnchorRatio:    PropTypes.number.isRequired,
     handLengthRatio:    PropTypes.number.isRequired,
     transitionDuration: PropTypes.number.isRequired,
     value:              PropTypes.number.isRequired,
+    enableLegends:      PropTypes.bool.isRequired,
     ranges:             PropTypes.arrayOf(PropTypes.shape({
         upperBound: PropTypes.number.isRequired,
         color:      PropTypes.string.isRequired
     })).isRequired
 };
 
+Gauge.displayName = 'Gauge';
+
 Gauge.defaultProps = {
-    spacing:            0.1,
+    spacing:            {},
     donutRatio:         0.7,
     handAnchorRatio:    0.05,
     handLengthRatio:    0.85,
-    transitionDuration: 600
+    transitionDuration: 600,
+    enableLegends:      true
 };
 
-export { Gauge as default };
+
+export default Gauge;
