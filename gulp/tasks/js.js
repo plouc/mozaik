@@ -1,77 +1,85 @@
-var gulp       = require('gulp');
-var uglify     = require('gulp-uglify');
-var source     = require('vinyl-source-stream');
-var buffer     = require('vinyl-buffer');
-var rename     = require('gulp-rename');
-var watchify   = require('watchify');
-var browserify = require('browserify');
-var babelify   = require('babelify');
-var gutil      = require('gulp-util');
-var chalk      = require('chalk');
-var config     = require('../config');
+var gulp        = require('gulp');
+var uglify      = require('gulp-uglify');
+var source      = require('vinyl-source-stream');
+var buffer      = require('vinyl-buffer');
+var rename      = require('gulp-rename');
+var watchify    = require('watchify');
+var browserify  = require('browserify');
+var resolutions = require('browserify-resolutions');
+var babelify    = require('babelify');
+var gutil       = require('gulp-util');
+var chalk       = require('chalk');
+var _           = require('lodash');
+var config      = require('../config');
 
 
 function getBundler(isDev) {
-    var bundler = browserify({
-        entries:      [config.src + 'App.jsx'],
-        extensions:   ['.js', '.jsx'],
-        debug:        isDev,
-        cache:        {},  // for watchify
-        packageCache: {},  // for watchify
-        fullPaths:    true // for watchify
+    var opts = _.assign({}, watchify.args, {
+        entries:    [config.src + 'App.jsx'],
+        extensions: ['.js', '.jsx'],
+        debug:      isDev,
+        fullPaths:  isDev
     });
 
-    bundler.transform(babelify, {
-        presets: ['es2015', 'react']
-    });
+    return browserify(opts)
+        .plugin(resolutions, [
+            'react',
+            'mozaik',
+            'lodash',
+            'react-mixin',
+            'convict',
+            'd3',
+            'classnames',
+            'bluebird',
+            'moment'
+        ])
+        .transform(babelify, { presets: ['es2015', 'react'] })
+    ;
+}
 
-    return bundler;
+function bundle(bundler, isDev) {
+    var b = bundler
+        .bundle()
+        .on('error', function (err) {
+            gutil.log(chalk.red(err));
+        })
+        .pipe(source('mozaik.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest(config.dest))
+    ;
+
+    if (!isDev) {
+        b = b
+            .pipe(uglify())
+            .pipe(rename({ suffix: '.min' }))
+            .pipe(gulp.dest(config.dest))
+        ;
+    }
+
+    return b;
+}
+
+function getWatcher(isDev) {
+    var watcher = watchify(getBundler(true));
+
+    return watcher
+        .on('log', gutil.log)
+        .on('update', function (files) {
+            gutil.log(chalk.yellow('Updated JavaScript sources, changes in:'));
+            files.forEach(function (file) {
+                gutil.log('- ' + file);
+            });
+
+            return bundle(watcher, isDev);
+        })
+    ;
 }
 
 gulp.task('watch:js', function () {
-    var watcher = watchify(getBundler(true));
-
-    return watcher
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .on('update', function () {
-            watcher.bundle()
-                .pipe(source('mozaik.js'))
-                .pipe(gulp.dest(config.dest))
-                .pipe(buffer())
-                .pipe(uglify())
-                .pipe(rename({suffix: '.min'}))
-                .pipe(gulp.dest(config.dest))
-            ;
-
-            gutil.log(chalk.green('Updated JavaScript sources'));
+    return bundle(getWatcher(true), true)
+        .on('end', function () {
+            gutil.log(chalk.yellow('watch:js watcher ready'));
         })
-        .bundle() // Create the initial bundle when starting the task
-        .pipe(source('mozaik.js'))
-        .pipe(gulp.dest(config.dest))
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(rename({ suffix: '.min'}))
-        .pipe(gulp.dest(config.dest))
-    ;
-});
-
-gulp.task('watch:js:dev', function () {
-    var watcher = watchify(getBundler(true));
-
-    return watcher
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .on('update', function () {
-            watcher.bundle()
-                .pipe(source('mozaik.js'))
-                .pipe(buffer())
-                .pipe(gulp.dest(config.dest))
-            ;
-
-            gutil.log(chalk.green('Updated JavaScript sources [dev]'));
-        })
-        .bundle() // Create the initial bundle when starting the task
-        .pipe(source('mozaik.js'))
-        .pipe(gulp.dest(config.dest))
     ;
 });
 
@@ -85,8 +93,14 @@ gulp.task('js:dev', function () {
 });
 
 
-gulp.task('js', ['js:dev'], function () {
-    return gulp.src(config.dest + '/mozaik.js')
+gulp.task('js', function () {
+    process.env.NODE_ENV = 'production';
+
+    return getBundler(false)
+        .bundle()
+        .pipe(source('mozaik.js'))
+        .pipe(gulp.dest(config.dest))
+        .pipe(buffer())
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(config.dest))
