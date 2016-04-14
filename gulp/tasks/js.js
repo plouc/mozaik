@@ -75,10 +75,10 @@ function getWatcher(isDev) {
     ;
 }
 
-gulp.task('watch:js:dev', function () {
+gulp.task('watch:js', function () {
     return bundle(getWatcher(true), true)
         .on('end', function () {
-            gutil.log(chalk.yellow('watch:js:dev watcher ready'));
+            gutil.log(chalk.yellow('watch:js watcher ready'));
         })
     ;
 });
