@@ -9,6 +9,12 @@
 > - [Polish]
 
 
+## v1.4.4 (2016-04-14)
+
+* **Internal**
+ * `build`: [#79](https://github.com/plouc/mozaik/pull/79) Reduce Mozaïk js build size.
+
+
 ## v1.4.3 (2016-04-13)
 
 * **Polish**
