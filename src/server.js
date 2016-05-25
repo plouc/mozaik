@@ -5,19 +5,37 @@ import path    from 'path';
 import _       from 'lodash';
 
 /**
+ * @param {String} directory
+ * @return Boolean
+ */
+function checkDirectorySync(directory) {
+  try {
+    fs.statSync(directory);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * @param {Mozaik} mozaik
  * @param {Express} app
  */
 export default function (mozaik, app) {
 
     const config = mozaik.serverConfig;
+    
+    let dir = path.join(mozaik.baseDir, 'templates');
+    if (!checkDirectorySync(dir))
+        dir = path.join(mozaik.rootDir, 'templates');
 
+    mozaik.logger.info(chalk.yellow(`serving templates from ${dir}`));
     mozaik.logger.info(chalk.yellow(`serving static contents from ${mozaik.baseDir}build`));
     app.use(express.static(`${mozaik.baseDir}/build`));
 
     app.engine('html', swig.renderFile);
     app.set('view engine', 'html');
-    app.set('views', path.join(mozaik.rootDir, 'templates'));
+    app.set('views', dir);
     app.set('view cache', false);
     swig.setDefaults({
         cache: false
