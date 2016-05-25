@@ -3,18 +3,19 @@ import swig    from 'swig';
 import chalk   from 'chalk';
 import path    from 'path';
 import _       from 'lodash';
+import fs      from 'fs';
 
 /**
  * @param {String} directory
  * @return Boolean
  */
-function checkDirectorySync(directory) {
+function dirExistsSync(directory) {
   try {
     fs.statSync(directory);
+    return true;
   } catch (e) {
     return false;
   }
-  return true;
 }
 
 /**
@@ -26,7 +27,7 @@ export default function (mozaik, app) {
     const config = mozaik.serverConfig;
     
     let dir = path.join(mozaik.baseDir, 'templates');
-    if (!checkDirectorySync(dir))
+    if (!dirExistsSync(dir))
         dir = path.join(mozaik.rootDir, 'templates');
 
     mozaik.logger.info(chalk.yellow(`serving templates from ${dir}`));
