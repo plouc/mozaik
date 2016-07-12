@@ -36,6 +36,7 @@
     "react"
   ],
   "dependencies": {
+    "gulp-autoprefixer": "3.1.0",
     "bluebird": "3.3.5",
     "browserify": "13.0.0",
     "browserify-resolutions": "1.0.6",
