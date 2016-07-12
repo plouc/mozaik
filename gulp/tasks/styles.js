@@ -1,11 +1,12 @@
-var gulp    = require('gulp');
-var path    = require('path');
-var stylus  = require('gulp-stylus');
-var fs      = require('fs');
-var gutil   = require('gulp-util');
-var chalk   = require('chalk');
-var config  = require('../config');
-var Promise = require('bluebird');
+var gulp         = require('gulp');
+var path         = require('path');
+var stylus       = require('gulp-stylus');
+var fs           = require('fs');
+var gutil        = require('gulp-util');
+var chalk        = require('chalk');
+var config       = require('../config');
+var Promise      = require('bluebird');
+var autoprefixer = require('gulp-autoprefixer');
 
 
 gulp.task('styles', ['styles:dev']);
@@ -45,6 +46,7 @@ gulp.task('styles:dev', ['collect:styles'], function () {
                     style.define('$theme', theme);
                 }
             }))
+            .pipe(autoprefixer({ cascade: false }))
             .pipe(gulp.dest(config.dest + 'css'))
         );
     });

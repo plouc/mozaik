@@ -1,0 +1,4 @@
+# Supported Browsers by Mozaik
+
+Chrome > 27 # so flex rules receive a -webkit- prefix
+> 1%
