@@ -46,10 +46,7 @@ gulp.task('styles:dev', ['collect:styles'], function () {
                     style.define('$theme', theme);
                 }
             }))
-            .pipe(autoprefixer({
-                browsers: ['Chrome > 27'],
-                cascade: false
-            }))
+            .pipe(autoprefixer({ cascade: false }))
             .pipe(gulp.dest(config.dest + 'css'))
         );
     });
