@@ -150,7 +150,7 @@ class Pie {
 
         this.paths.exit()
             .datum(function (d, i) {
-                return  Pie.findNeighborArc(i, prevData, newData, key) || d;
+                return Pie.findNeighborArc(i, prevData, newData) || d;
             })
             .transition()
             .duration(transitionDuration)
