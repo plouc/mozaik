@@ -1,0 +1,78 @@
+.widget
+  position relative
+  width  100%
+  height 100%
+  themifyAll({
+    background:    widget-bg-color,
+    border-radius: widget-border-radius,
+    box-shadow:    widget-shadow,
+    border:        widget-border,
+  })
+
+.widget__wrapper
+  position absolute
+  top  0
+  left 0
+  themify: padding @(c) { return (c.widget-spacing / 2) }
+
+.widget__header
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: pre;
+  themifyAll({
+    font:             widget-header-font,
+    height:           widget-header-height,
+    line-height:      widget-header-height,
+    border-radius:    widget-header-border-radius,
+    padding:          @(c) { return 0 c.widget-inner-spacing },
+    background-color: widget-header-bg-color,
+    color:            widget-header-txt-color,
+    border-bottom:    widget-header-border-bottom,
+    box-shadow:       widget-header-shadow,
+  })
+
+.widget__header__count
+  display inline-block
+  line-height 1em
+  vertical-align middle
+  margin-left 1.2vmin
+  themifyAll({
+    background-color: widget-header-count-bg-color,
+    color:            widget-header-count-txt-color,
+    border-radius:    widget-header-count-border-radius,
+    padding:          widget-header-count-padding,
+    box-shadow:       widget-header-count-shadow,
+    text-shadow:      widget-header-count-txt-shadow,
+    border:           widget-header-count-border,
+  })
+
+.widget__header__count .fa
+  position absolute
+  right 15px
+  themifyAll({
+    top:       @(c) { return (c.widget-header-height - c.widget-header-icon-size) / 2 },
+    font-size: widget-header-icon-size,
+    color:     widget-header-icon-color,
+  })
+
+.widget__body
+  position absolute
+  right  0
+  bottom 0
+  left   0
+  overflow-x hidden
+  overflow-y auto
+  themifyAll({
+    top:              widget-header-height,
+    background-color: widget-body-bg-color,
+    border-radius:    widget-body-border-radius,
+    box-shadow:       widget-body-shadow,
+  })
+
+.widget__body__list
+  list-style none
+  margin  0
+  padding 0
