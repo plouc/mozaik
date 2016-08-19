@@ -1,0 +1,39 @@
+html, body {
+  margin: 0
+  height: 100%
+  width:  100%
+  overflow: hidden
+  themifyAll({
+    font:       main-font,
+    background: main-bg-color,
+    color:      main-txt-color,
+  }, true)
+}
+
+*, *:before, *:after {
+  box-sizing: border-box
+}
+a {
+  color: inherit
+  text-decoration: none
+}
+.histogram
+  &__axis
+    &__legend
+      font-size 14px
+      fill $chart-axis-txt-color
+
+h1, h2, h3, h4, h5, h6
+  font-family "Montserrat", sans-serif
+  text-transform uppercase
+  font-weight 400
+
+.txt--success {
+  color: $success-color
+}
+.prop
+  &__key
+    color $prop-key-txt-color
+
+  &__value
+    color $prop-value-txt-color
