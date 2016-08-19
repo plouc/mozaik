@@ -1,0 +1,27 @@
+.bar-chart_wrapper {
+  width:  100%
+  height: 100%
+}
+.bar-chart_axis_legend,
+.bar-chart_axis text {
+  themifyAll({
+    font-size: chart-tick-txt-size,
+    fill:      chart-axis-txt-color,
+  })
+}
+.bar-chart_axis line {
+  fill: none
+  shape-rendering: crispEdges
+  themify: stroke chart-axis-tick-color
+}
+.bar-chart_axis path {
+  display: none
+}
+.bar-chart_axis--y .tick line {
+  stroke-dasharray 1 2
+  stroke-width 1px
+  themify: stroke chart-grid-line-color
+}
+.bar-chart_axis--y .tick:first-child line {
+  display: none
+}

@@ -16,7 +16,7 @@
         "react"
     ],
     "rules": {
-        "semi": 2,
+        "semi": [1, "never"],
         "prefer-template": 2,
         "indent": [2, 4, {
             "SwitchCase": 1
