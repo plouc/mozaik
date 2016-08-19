@@ -1,0 +1,35 @@
+@require 'defaults'
+
+@require 'mixins'
+
+@require '../themes/bordeau/vars'
+@require '../themes/night-blue/vars'
+@require '../themes/snow/vars'
+//@require '../themes/yellow/vars'
+$themes = {
+  bordeau:    $theme-bordeau,
+  night-blue: $theme-night-blue,
+  snow:       $theme-snow,
+}
+
+@require 'animations'
+@require 'main'
+@require 'components/dashboard'
+@require 'components/widget'
+@require 'components/list'
+@require 'components/count'
+@require 'components/label'
+@require 'components/table'
+//@require 'components/treemap'
+//@require 'components/pie'
+@require 'components/bar-chart'
+@require 'components/inspector'
+//@require 'components/notifications'
+//@require 'components/connection-status'
+
+
+// IMPORT EXTENSIONS STYLES
+@require '~mozaik-ext-github/styl/index.styl'
+@require '~mozaik-ext-travis/styl/index.styl'
+
+@require '../themes/*/index'

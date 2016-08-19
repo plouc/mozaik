@@ -1,0 +1,56 @@
+transition($value)
+  -webkit-transition $value; /* Saf3.2+, Chrome */
+  -moz-transition $value; /* FF4+ */
+  -ms-transition $value;
+  -o-transition $value; /* Opera 10.5+ */
+  transition $value;
+
+themify($property, $ref, $isRoot = false)
+  if $ref in $defaults
+    {$property}: $defaults[$ref]
+
+  for $theme-name, $theme-config in $themes
+    if typeof($ref) is function
+      if not $isRoot
+        .theme-{$theme-name} &
+          {$property}: $ref(merge({}, $defaults, $theme-config))
+      else
+        &.theme-{$theme-name}
+          {$property}: $ref(merge({}, $defaults, $theme-config))
+
+    else if $ref in $theme-config
+      if not $isRoot
+        .theme-{$theme-name} &
+          {$property}: $theme-config[$ref]
+      else
+        &.theme-{$theme-name}
+          {$property}: $theme-config[$ref]
+
+themifyAll($properties, $isRoot = false)
+  for $property, $ref in $properties
+    if typeof($ref) is function
+      {$property}: $ref($defaults)
+    else if $ref in $defaults
+      {$property}: $defaults[$ref]
+
+  for $theme-name, $theme-config in $themes
+    if not $isRoot
+      .theme-{$theme-name} &
+        for $property, $ref in $properties
+          if typeof($ref) is function
+            {$property}: $ref(merge({}, $defaults, $theme-config))
+          else if $ref in $theme-config
+            {$property}: $theme-config[$ref]
+    else
+      &.theme-{$theme-name}
+        for $property, $ref in $properties
+          if typeof($ref) is function
+            {$property}: $ref(merge({}, $defaults, $theme-config))
+          else if $ref in $theme-config
+            {$property}: $theme-config[$ref]
+
+default($key, $value)
+  if lookup($key) is null
+    return $value
+
+  return lookup($key)
