@@ -1,56 +1,57 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700")
+//@import url("https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700")
+theme-light-yellow = {
+  // GENERIC
+  main-bg-color                  : #f1e2b9,
+  main-txt-color                 : #050505,
+  main-margin                    : 5vmin,
+  main-font                      : unquote("normal normal 400 2.2vmin/3.2vmin 'Lato', sans-serif"),
 
-// GENERIC
-$main-bg-color                  = #f1e2b9
-$main-txt-color                 = #050505
-$main-margin                    = 5vmin
-$main-font                      = normal normal 400 unquote("2.2vmin/3.2vmin") "Lato", sans-serif
+  // DASHBOARD
+  dashboard-header-height        : 6vmin,
+  dashboard-header-font          : unquote("normal normal 300 4vmin/6vmin 'Lato', sans-serif"),
 
-// DASHBOARD
-$dashboard-header-height        = 6vmin
-$dashboard-header-font          = normal normal 300 unquote("4vmin/6vmin") "Lato", sans-serif
+  // WIDGET
+  widget-spacing                 : 2vmin,
+  widget-bg-color                : #f1e2b9,
+  widget-border                  : 2px solid #050505,
 
-// WIDGET
-$widget-spacing                 = 2vmin
-$widget-bg-color                = #f1e2b9
-$widget-border                  = 2px solid #050505
+  // WIDGET — header
+  widget-header-height           : 6vmin,
+  widget-header-bg-color         : #ccc0a1,
+  widget-header-icon-size        : 24px,
+  widget-header-border-bottom    : 2px solid #050505,
+  widget-header-font             : unquote("normal normal 300 3vmin 'Lato', sans-serif"),
 
-// WIDGET — header
-$widget-header-height           = 6vmin
-$widget-header-bg-color         = #ccc0a1
-$widget-header-icon-size        = 24px
-$widget-header-border-bottom    = 2px solid #050505
-$widget-header-font             = normal normal 300 3vmin "Lato", sans-serif
+  // COUNT
+  count-padding                 : 3px 7px,
+  count-bg-color                : lighten(#f1e2b9, 3),
+  count-border-radius           : 2px,
+  count-border                  : 1px solid #000,
 
-// COUNT
-$count-padding                 = 3px 7px
-$count-bg-color                = lighten($main-bg-color, 3)
-$count-border-radius           = 2px
-$count-border                  = 1px solid #000
+  // WIDGET — header count
+  widget-header-count-border     : 1px solid #050505,
+  widget-header-count-bg-color   : transparent,
 
-// WIDGET — header count
-$widget-header-count-border     = 1px solid #050505
-$widget-header-count-bg-color   = transparent
+  // WIDGET — body
+  widget-body-bg-color           : transparent,
 
-// WIDGET — body
-$widget-body-bg-color           = transparent
+  // TABLE
+  table-border-h                 : 1px solid #050505,
 
-// TABLE
-$table-border-h                 = 1px solid #050505
+  // LABEL
+  label-bg-color                 : transparent,
+  label-txt-color                : #050505,
+  label-addon-bg-color           : #ccc0a1,
+  label-addon-txt-color          : #050505,
+  label-border                   : 1px solid #000,
 
-// LABEL
-$label-bg-color                 = transparent
-$label-txt-color                = $main-txt-color
-$label-addon-bg-color           = $widget-header-bg-color
-$label-addon-txt-color          = $widget-header-txt-color
-$label-border                   = $count-border
+  // Meaningful colors
+  unknown-color                  : #9d937a,
+  success-color                  : #41508b,
+  warning-color                  : #d1be65,
+  failure-color                  : #f9703c,
 
-// Meaningful colors
-$unknown-color                  = #9d937a
-$success-color                  = #41508b
-$warning-color                  = #d1be65
-$failure-color                  = #f9703c
-
-// CHARTS
-$histogram-bar-bg-color         = #9d937a
-$chart-axis-txt-color           = #050505
+  // CHARTS
+  histogram-bar-bg-color         : #9d937a,
+  chart-axis-txt-color           : #050505,
+}

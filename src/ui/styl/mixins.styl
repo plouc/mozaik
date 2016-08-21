@@ -5,18 +5,47 @@ transition($value)
   -o-transition $value; /* Opera 10.5+ */
   transition $value;
 
-themify($property, $ref, $isRoot = false)
-  if $ref in $defaults
-    {$property}: $defaults[$ref]
+searchFallback(theme, propKey) {
+  if propKey in fallbacks {
+    fallback = fallbacks[propKey]
+    if fallback in theme {
+      return theme[fallback];
+    }
 
-  for $theme-name, $theme-config in $themes
+    return searchFallback(theme, fallback );
+  }
+
+  return defaults[propKey];
+}
+
+normalizeTheme(theme) {
+  normalizedTheme = {};
+  for propKey, propValue in defaults {
+    if propKey in theme {
+      normalizedTheme[propKey] = theme[propKey];
+    } else {
+      normalizedTheme[propKey] = searchFallback(theme, propKey);
+    }
+  }
+
+  return normalizedTheme;
+}
+
+//
+// Generates property variants for all configured themes
+//
+themify($property, $ref, $isRoot = false)
+  if $ref in defaults
+    {$property}: defaults[$ref]
+
+  for $theme-name, $theme-config in themes
     if typeof($ref) is function
       if not $isRoot
         .theme-{$theme-name} &
-          {$property}: $ref(merge({}, $defaults, $theme-config))
+          {$property}: $ref(merge({}, defaults, $theme-config))
       else
         &.theme-{$theme-name}
-          {$property}: $ref(merge({}, $defaults, $theme-config))
+          {$property}: $ref(merge({}, defaults, $theme-config))
 
     else if $ref in $theme-config
       if not $isRoot
@@ -26,26 +55,30 @@ themify($property, $ref, $isRoot = false)
         &.theme-{$theme-name}
           {$property}: $theme-config[$ref]
 
+//
+// Generates variants for a set of properties
+// for all configured themes
+//
 themifyAll($properties, $isRoot = false)
   for $property, $ref in $properties
     if typeof($ref) is function
-      {$property}: $ref($defaults)
-    else if $ref in $defaults
-      {$property}: $defaults[$ref]
+      {$property}: $ref(defaults)
+    else if $ref in defaults
+      {$property}: defaults[$ref]
 
-  for $theme-name, $theme-config in $themes
+  for $theme-name, $theme-config in themes
     if not $isRoot
       .theme-{$theme-name} &
         for $property, $ref in $properties
           if typeof($ref) is function
-            {$property}: $ref(merge({}, $defaults, $theme-config))
+            {$property}: $ref(merge({}, defaults, $theme-config))
           else if $ref in $theme-config
             {$property}: $theme-config[$ref]
     else
       &.theme-{$theme-name}
         for $property, $ref in $properties
           if typeof($ref) is function
-            {$property}: $ref(merge({}, $defaults, $theme-config))
+            {$property}: $ref(merge({}, defaults, $theme-config))
           else if $ref in $theme-config
             {$property}: $theme-config[$ref]
 

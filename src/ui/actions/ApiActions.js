@@ -1,9 +1,18 @@
-import Reflux from 'reflux'
+export const API_SUBSCRIPTION        = 'API_SUBSCRIPTION'
+export const BUFFER_API_SUBSCRIPTION = 'BUFFER_API_SUBSCRIPTION'
+export const API_DATA                = 'API_DATA'
 
+export const subscribeToApi = subscription => {
+    return (dispatch, getState) => {
+        const { ws } = getState()
+        const type = ws.connected ? API_SUBSCRIPTION : BUFFER_API_SUBSCRIPTION
 
-const ApiActions = Reflux.createActions([
-    'get'
-])
+        dispatch({ type, subscription })
+    }
+}
 
-
-export default ApiActions
+export const receiveApiData = ({ id, body }) => ({
+    type: API_DATA,
+    id,
+    data: body,
+})

@@ -1,8 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import _                               from 'lodash'
-import reactMixin                      from 'react-mixin'
-import { ListenerMixin }               from 'reflux'
-import NotificationsStore              from '../stores/NotificationsStore'
 import NotificationsItem               from './NotificationsItem'
 
 
@@ -14,7 +10,7 @@ class Notifications extends Component {
     }
 
     componentWillMount() {
-        this.listenTo(NotificationsStore, this.onNotificationsUpdate)
+        //this.listenTo(NotificationsStore, this.onNotificationsUpdate)
     }
 
     onNotificationsUpdate(notifications) {
@@ -37,11 +33,7 @@ class Notifications extends Component {
     }
 }
 
-Notifications.displayName = 'Notifications'
-
 Notifications.propTypes = {}
-
-reactMixin(Notifications.prototype, ListenerMixin)
 
 
 export default Notifications

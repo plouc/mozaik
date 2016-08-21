@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import reactMixin                      from 'react-mixin'
-import { ListenerMixin }               from 'reflux'
 import _                               from 'lodash'
-import ComponentRegistry               from './../component-registry'
-import ApiConsumerMixin                from './../mixins/ApiConsumerMixin'
+import ComponentRegistry               from './../componentRegistry'
 import InspectorItem                   from './InspectorItem'
+
 
 const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR   = SECONDS_PER_MINUTE * 60
@@ -42,32 +40,22 @@ const formatUptime = uptime => {
 
 
 class Inspector extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = { info: null }
-    }
-
-    getApiRequest() {
+    static getApiRequest() {
         return { id: 'mozaik.inspector' }
     }
 
-    onApiData(info) {
-        this.setState({ info })
-    }
-
     render() {
-        const { info } = this.state
+        const { apiData } = this.props
 
         const items = []
 
         const widgetTypes = _.keys(ComponentRegistry.list())
         items.push(<InspectorItem key="widgets" label="widgets" icon="columns" count={widgetTypes.length} />)
 
-        if (info) {
-            items.push(<InspectorItem key="apis" label="APIs" icon="plug" count={info.apis.length} />)
-            items.push(<InspectorItem key="clients" label="connected clients" icon="user" count={info.clientCount} />)
-            items.push(<InspectorItem key="uptime" label={`uptime: ${formatUptime(info.uptime)}`} icon="clock-o" />)
+        if (apiData) {
+            items.push(<InspectorItem key="apis" label="APIs" icon="plug" count={apiData.apis.length} />)
+            items.push(<InspectorItem key="clients" label="connected clients" icon="user" count={apiData.clientCount} />)
+            items.push(<InspectorItem key="uptime" label={`uptime: ${formatUptime(apiData.uptime)}`} icon="clock-o" />)
         }
 
         return (
@@ -86,12 +74,12 @@ class Inspector extends Component {
     }
 }
 
-Inspector.displayName = 'Inspector'
-
-Inspector.propTypes = {}
-
-reactMixin(Inspector.prototype, ListenerMixin)
-reactMixin(Inspector.prototype, ApiConsumerMixin)
+Inspector.propTypes = {
+    apiData: PropTypes.shape({
+        apis:        PropTypes.array,
+        clientCount: PropTypes.number,
+    }),
+}
 
 
 export default Inspector
