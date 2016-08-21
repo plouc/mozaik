@@ -1,35 +1,39 @@
-@require 'defaults'
+@require 'defaults';
+@require 'fallbacks';
 
-@require 'mixins'
+@require 'mixins';
 
-@require '../themes/bordeau/vars'
-@require '../themes/night-blue/vars'
-@require '../themes/snow/vars'
-//@require '../themes/yellow/vars'
-$themes = {
-  bordeau:    $theme-bordeau,
-  night-blue: $theme-night-blue,
-  snow:       $theme-snow,
+@require '../themes/*/vars';
+
+themes = {
+  bordeau:      normalizeTheme(theme-bordeau),
+  harlequin:    normalizeTheme(theme-harlequin),
+  light-grey:   normalizeTheme(theme-light-grey),
+  light-yellow: normalizeTheme(theme-light-yellow),
+  night-blue:   normalizeTheme(theme-night-blue),
+  snow:         normalizeTheme(theme-snow),
+  yellow:       normalizeTheme(theme-yellow),
 }
 
-@require 'animations'
-@require 'main'
-@require 'components/dashboard'
-@require 'components/widget'
-@require 'components/list'
-@require 'components/count'
-@require 'components/label'
-@require 'components/table'
-//@require 'components/treemap'
-//@require 'components/pie'
-@require 'components/bar-chart'
-@require 'components/inspector'
+@require 'animations';
+@require 'main';
+@require 'components/dashboard';
+@require 'components/widget';
+@require 'components/list';
+@require 'components/count';
+@require 'components/label';
+@require 'components/table';
+@require 'components/treemap';
+@require 'components/pie';
+@require 'components/bar-chart';
+@require 'components/inspector';
 //@require 'components/notifications'
 //@require 'components/connection-status'
 
-
 // IMPORT EXTENSIONS STYLES
-@require '~mozaik-ext-github/styl/index.styl'
-@require '~mozaik-ext-travis/styl/index.styl'
+@require '~mozaik-ext-github/styl/index.styl';
+@require '~mozaik-ext-gitlab/styl/index.styl';
+@require '~mozaik-ext-travis/styl/index.styl';
 
-@require '../themes/*/index'
+//@require '../themes/*/index'
+@require '../themes/*/index';

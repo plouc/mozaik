@@ -1,39 +1,30 @@
-import React, { Component, PropTypes } from 'react'
-import reactMixin                      from 'react-mixin'
-import { ListenerMixin }               from 'reflux'
-import Dashboard                       from './Dashboard'
-import Notifications                   from './Notifications'
-import ConfigStore                     from '../stores/ConfigStore'
-import '../styl/mozaik.styl'
-import 'font-awesome/css/font-awesome.css'
+import React, { Component, PropTypes }  from 'react'
+import { ListenerMixin }                from 'reflux'
+import Dashboard, { DashboardPropType } from './dashboard'
+import Notifications                    from './Notifications'
 
 
 class Mozaik extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = { config: null }
-    }
-
     componentWillMount() {
-        this.listenTo(ConfigStore, this.onConfigStoreUpdate)
-    }
-
-    onConfigStoreUpdate(config) {
-        this.setState({ config })
+        const { fetchConfiguration } = this.props
+        fetchConfiguration()
     }
 
     render() {
-        const { config } = this.state
-        if (config === null) {
-            return null
+        const {
+            isLoading,
+            configuration,
+        } = this.props
+
+        if (isLoading) {
+            return (
+                <div>loading config</div>
+            )
         }
 
-        const dashboardNodes = config.dashboards.map((dashboard, index) => (
-            <Dashboard key={index} dashboard={dashboard} />
+        const dashboardNodes = configuration.dashboards.map((dashboard, index) => (
+            <Dashboard key={index} dashboard={dashboard}/>
         ))
-
-        const { theme } = this.state
 
         return (
             <div className="dashboard">
@@ -44,9 +35,13 @@ class Mozaik extends Component {
     }
 }
 
-Mozaik.displayName = 'Mozaik'
-
-reactMixin(Mozaik.prototype, ListenerMixin)
+Mozaik.propTypes = {
+    fetchConfiguration: PropTypes.func.isRequired,
+    isLoading:          PropTypes.bool.isRequired,
+    configuration:      PropTypes.shape({
+        dashboards: PropTypes.arrayOf(DashboardPropType).isRequired,
+    }),
+}
 
 
 export default Mozaik

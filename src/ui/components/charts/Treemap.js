@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { findDOMNode }                 from 'react-dom'
 import d3                              from 'd3'
 
 
@@ -17,7 +18,7 @@ class Treemap extends Component {
             return
         }
 
-        const el = React.findDOMNode(this)
+        const el = findDOMNode(this)
 
         const width  = el.offsetWidth
         const height = el.offsetHeight
