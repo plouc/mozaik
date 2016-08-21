@@ -9,40 +9,44 @@
     border: label-border,
   })
 }
-.label__group
-    display inline-flex
-    border $label-border
-    border-radius $label-border-radius
-    align-items stretch
-    align-content stretch
-
-    .label
-      border 0
-      border-radius 0
-      flex-grow 1
-
-    *
-      border-left $label-sep-border
-
-    *:first-child
-      border-left 0
-      border-radius $label-border-radius 0 0 $label-border-radius
-
-    *:last-child
-      border-radius 0 $label-border-radius $label-border-radius 0
-
+.label__group {
+  display: inline-flex;
+  align-items: stretch;
+  align-content: stretch;
+  themifyAll({
+    border:        label-border,
+    border-radius: label-border-radius,
+  });
+}
+.label__group .label {
+  border: 0;
+  border-radius: 0;
+  flex-grow: 1;
+}
+.label__group * {
+  themify: border-left label-sep-border;
+}
+.label__group *:first-child {
+  border-left: 0;
+  themify: border-radius @(c) { return c.label-border-radius 0 0 c.label-border-radius };
+}
+.label__group *:last-child {
+  border-left: 0;
+  themify: border-radius @(c) { return 0 c.label-border-radius c.label-border-radius 0 };
+}
 .label__addon {
-  white-space pre
+  white-space: pre;
   themifyAll({
     padding: label-padding,
     background-color: label-addon-bg-color,
     color:            label-addon-txt-color,
-  })
+  });
 }
-.label__addon:first-child
-      left 0
-      border-right $label-border
-
-.label__addon:last-child
-      right 0
-      border-left $label-border
+.label__addon:first-child {
+  left: 0;
+  themify: border-right label-border;
+}
+.label__addon:last-child {
+  right 0;
+  themify: border-left label-border;
+}

@@ -6,8 +6,10 @@
 .bar-chart_axis text {
   themifyAll({
     font-size: chart-tick-txt-size,
-    fill:      chart-axis-txt-color,
+    //fill:      chart-axis-txt-color,
   })
+
+  themify: fill chart-axis-txt-color;
 }
 .bar-chart_axis line {
   fill: none

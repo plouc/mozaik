@@ -1,36 +1,16 @@
 import React, { Component, PropTypes } from 'react'
-import reactMixin                      from 'react-mixin'
 import classNames                      from 'classnames'
 import _                               from 'lodash'
 import { ListenerMixin }               from 'reflux'
-import Widget                          from './Widget'
-import DashboardStore                  from './../stores/DashboardStore'
+import Widget                          from '../containers/WidgetContainer'
 
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            isCurrent: false
-        }
-    }
-
-    componentWillMount() {
-        this.listenTo(DashboardStore, this.onDashboardStoreUpdate)
-    }
-
-    onDashboardStoreUpdate(index) {
-        const { dashboard } = this.props
-
-        this.setState({
-            isCurrent: index === dashboard.index
-        })
-    }
-
     render() {
-        const { dashboard: { columns, rows, widgets, title } } = this.props
-        const { isCurrent }                                    = this.state
+        const {
+            dashboard: { columns, rows, widgets, title },
+            isCurrent,
+        } = this.props
 
         const widgetNodes = widgets.map((widget, index) => {
             const props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
@@ -63,23 +43,21 @@ class Dashboard extends Component {
     }
 }
 
-Dashboard.displayName = 'Dashboard'
+export const DashboardPropType = PropTypes.shape({
+    columns: PropTypes.number.isRequired,
+    rows:    PropTypes.number.isRequired,
+    widgets: PropTypes.arrayOf(PropTypes.shape({
+        type:    PropTypes.string.isRequired,
+        x:       PropTypes.number.isRequired,
+        y:       PropTypes.number.isRequired,
+        columns: PropTypes.number.isRequired,
+        rows:    PropTypes.number.isRequired
+    })).isRequired,
+})
 
 Dashboard.propTypes = {
-    dashboard: PropTypes.shape({
-        columns: PropTypes.number.isRequired,
-        rows:    PropTypes.number.isRequired,
-        widgets: PropTypes.arrayOf(PropTypes.shape({
-            type:    PropTypes.string.isRequired,
-            x:       PropTypes.number.isRequired,
-            y:       PropTypes.number.isRequired,
-            columns: PropTypes.number.isRequired,
-            rows:    PropTypes.number.isRequired
-        })).isRequired
-    }).isRequired
+    dashboard: DashboardPropType.isRequired,
 }
-
-reactMixin(Dashboard.prototype, ListenerMixin)
 
 
 export default Dashboard
