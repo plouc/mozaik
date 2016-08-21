@@ -1,12 +1,13 @@
 import React, { Component, PropTypes } from 'react'
-import Pie                             from './Pie'
+import { findDOMNode }                 from 'react-dom'
+import Pie                             from './PieHelper'
 
 
 class Gauge extends Component {
     componentDidMount() {
         const { spacing, donutRatio, handAnchorRatio, handLengthRatio, transitionDuration } = this.props
 
-        this.pie = new Pie(React.findDOMNode(this.refs.svg), {
+        this.pie = new Pie(findDOMNode(this.refs.svg), {
             spacing,
             donutRatio,
             handAnchorRatio,
@@ -22,7 +23,7 @@ class Gauge extends Component {
         const { ranges, value } = data
         const { enableLegends } = this.props
 
-        const wrapper = React.findDOMNode(this)
+        const wrapper = findDOMNode(this)
         let legends   = []
         if (enableLegends) {
             legends = ranges.map((range, id) => ({

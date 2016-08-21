@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const PROJECT_PATH = process.cwd()
 const MOZAIK_PATH  = __dirname
-const BUILD_DIR    = path.resolve(__dirname, 'build')
+const BUILD_DIR    = path.resolve(PROJECT_PATH, 'build')
 const APP_DIR      = path.resolve(__dirname, 'src')
 
 const projectPackage = require(path.join(PROJECT_PATH, 'package.json'))
@@ -17,8 +17,6 @@ for (let packageName in projectPackage.dependencies) {
         mozaikExtensions.push(packageName)
     }
 }
-
-console.log(mozaikExtensions)
 
 const config = {
     output: {
@@ -31,20 +29,21 @@ const config = {
             APP_DIR,
         ],
         alias: {
-            // prevents multiple react instances to be loaded
             'react':     path.join(PROJECT_PATH, 'node_modules', 'react'),
             'react-dom': path.join(PROJECT_PATH, 'node_modules', 'react-dom'),
             'mozaik':    path.join(PROJECT_PATH, 'node_modules', 'mozaik'),
         },
-        // This is important if you want to refer to module resources. It is important
-        // to use ~ symbol to reference module: @import "~font-awesome/scss/font-awesome";
+        // This is important if you want to refer to module resources.
+        // It is important to use ~ symbol to reference module:
+        // @import "~font-awesome/scss/font-awesome";
         modulesDirectories: [
             'node_modules',
             '..'
         ]
     },
     resolveLoader: {
-        // used to resolve webpack loaders, useful when using npm linked packages
+        // used to resolve webpack loaders,
+        // useful when using npm linked packages
         // for extension authoring for example
         root: path.join(MOZAIK_PATH, 'node_modules')
     },
@@ -104,10 +103,6 @@ const config = {
     },
 }
 
-console.log(mozaikExtensions.map(ext => {
-    return path.join(PROJECT_PATH, 'node_modules', ext)
-}))
-
 if (process.env.NODE_ENV === 'production') {
     config.devtool = 'cheap-module-source-map'
     config.entry = [
@@ -134,12 +129,8 @@ if (process.env.NODE_ENV === 'production') {
         path.join(PROJECT_PATH, 'src', 'app'),
     ]
     config.module.loaders[0].loaders = ['react-hot', 'babel?cacheDirectory']
-    /*
-    config.module.loaders[1].loaders = ['style', 'css', 'resolve-url', 'postcss']
-    */
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
 }
 
-console.log(config)
 
 module.exports = config

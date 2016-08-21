@@ -1,65 +1,65 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700")
+theme-yellow = {
+  // GENERIC
+  main-bg-color                  : #e5dabe,
+  main-txt-color                 : #444,
+  main-margin                    : 2vmin,
 
-// GENERIC
-$main-bg-color                  = #e5dabe
-$main-txt-color                 = #444
-$main-margin                    = 2vmin
+  // DASHBOARD
+  dashboard-header-height        : 6vmin,
+  dashboard-header-txt-color     : #735e39,
+  dashboard-header-font          : unquote("normal normal 300 3.4vmin/6vmin 'Montserrat', sans-serif"),
 
-// DASHBOARD
-$dashboard-header-height        = 6vmin
-$dashboard-header-txt-color     = #735e39
-$dashboard-header-font          = normal normal 300 unquote("3.4vmin/6vmin") "Montserrat", sans-serif
+  // WIDGET
+  widget-spacing                 : 1.6vmin,
+  widget-bg-color                : #ede2c6,
+  widget-shadow                  : 0 1px 1px rgba(0, 0, 0, 0.1),
+  widget-border-radius           : 2px,
 
-// WIDGET
-$widget-spacing                 = 1.6vmin
-$widget-bg-color                = #ede2c6
-$widget-shadow                  = 0 1px 1px rgba(0, 0, 0, 0.1)
-$widget-border-radius           = 2px
+  // WIDGET — header
+  widget-header-bg-color         : #e6d280,
+  widget-header-txt-color        : #735e39,
+  widget-header-icon-color       : #ce6c51,
+  widget-header-font             : unquote("normal normal 700 2.5vmin 'Montserrat', sans-serif"),
 
-// WIDGET — header
-$widget-header-bg-color         = #e6d280
-$widget-header-txt-color        = #735e39
-$widget-header-icon-color       = #ce6c51
-$widget-header-font             = normal normal 700 2.5vmin "Montserrat", sans-serif
+  // WIDGET — header count
+  widget-header-count-bg-color   : #e5dabe,
+  widget-header-count-txt-color  : #ff9176,
 
-// WIDGET — header count
-$widget-header-count-bg-color   = #e5dabe
-$widget-header-count-txt-color  = #ff9176
+  // WIDGET — body
+  widget-body-bg-color           : transparent,
 
-// WIDGET — body
-$widget-body-bg-color           = transparent
+  // TABLE
+  table-border-h                 : 1px solid #e6d280,
 
-// TABLE
-$table-border-h                 = 1px solid #e6d280
+  // Meaningful colors
+  unknown-color                  : #c0ab7f,
+  success-color                  : #4eb6a3,
+  warning-color                  : #d1be65,
+  failure-color                  : #ff9176,
 
-// Meaningful colors
-$unknown-color                  = #c0ab7f
-$success-color                  = #4eb6a3
-$warning-color                  = #d1be65
-$failure-color                  = #ff9176
+  // COUNT
+  count-padding                  : 3px 6px,
+  count-bg-color                 : darken(#ede2c6, 3),
+  count-txt-color                : #ff9176,
+  count-border-radius            : 3px,
+  count-border                   : none,
 
-// COUNT
-$count-padding                  = 3px 6px
-$count-bg-color                 = darken($widget-bg-color, 3)
-$count-txt-color                = $widget-header-count-txt-color
-$count-border-radius            = 3px
-$count-border                   = none
+  // LABEL
+  label-bg-color                 : #f7ecd0,
+  label-txt-color                : #444,
+  label-addon-bg-color           : #e6d280,
+  label-addon-txt-color          : #444,
+  label-border-radius            : 2px,
 
-// LABEL
-$label-bg-color                 = #f7ecd0
-$label-txt-color                = $main-txt-color
-$label-addon-bg-color           = #e6d280
-$label-addon-txt-color          = $main-txt-color
-$label-border-radius            = 2px
+  // CHARTS
+  histogram-bar-bg-color         : #dcd1b5,
+  chart-axis-txt-color           : #806b3f,
+  pie-chart-outline-stroke       : #e5dabe,
+  pie-chart-outline-stroke-width : 8px,
+  pie-gauge-needle-color         : #735e39,
+  pie-svg-legend-bg-color        : #e6d280,
 
-// CHARTS
-$histogram-bar-bg-color         = #dcd1b5
-$chart-axis-txt-color           = #806b3f
-$pie-chart-outline-stroke       = #e5dabe
-$pie-chart-outline-stroke-width = 8px
-$pie-gauge-needle-color         = #735e39
-$pie-svg-legend-bg-color        = #e6d280
-
-// PROPS
-$prop-key-txt-color            = $main-txt-color
-$prop-value-txt-color          = darken($widget-header-icon-color, 10)
+  // PROPS
+  prop-key-txt-color            : #444,
+  prop-value-txt-color          : darken(#ce6c51, 10),
+}
