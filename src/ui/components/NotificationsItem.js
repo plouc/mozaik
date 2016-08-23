@@ -23,10 +23,8 @@ class NotificationsItem extends Component {
     }
 }
 
-NotificationsItem.displayName = 'NotificationsItem'
-
 NotificationsItem.propTypes = {
-    notification: PropTypes.object.isRequired
+    notification: PropTypes.object.isRequired,
 }
 
 

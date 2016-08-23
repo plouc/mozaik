@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux'
-import configuration       from './configurationReducer'
-import ws                  from './wsReducer'
 import api                 from './apiReducer'
+import configuration       from './configurationReducer'
+import dashboards          from './dashboardsReducer'
+import notifications       from './notificationsReducer'
+import ws                  from './wsReducer'
 
 
 export default combineReducers({
-    configuration,
-    ws,
     api,
+    configuration,
+    dashboards,
+    notifications,
+    ws,
 })

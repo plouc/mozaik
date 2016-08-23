@@ -3,22 +3,8 @@ import NotificationsItem               from './NotificationsItem'
 
 
 class Notifications extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = { notifications: [] }
-    }
-
-    componentWillMount() {
-        //this.listenTo(NotificationsStore, this.onNotificationsUpdate)
-    }
-
-    onNotificationsUpdate(notifications) {
-        this.setState({ notifications })
-    }
-
     render() {
-        const { notifications } = this.state
+        const { notifications } = this.props
 
         return (
             <div className="notifications">
@@ -33,7 +19,9 @@ class Notifications extends Component {
     }
 }
 
-Notifications.propTypes = {}
+Notifications.propTypes = {
+    notifications: PropTypes.array.isRequired,
+}
 
 
 export default Notifications

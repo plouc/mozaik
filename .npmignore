@@ -1,2 +1,7 @@
 .travis.yml
 CHANGELOG.md
+.nyc_output
+coverage
+.DS_Store
+test
+npm-debug.log*
