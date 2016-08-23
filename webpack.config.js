@@ -2,14 +2,16 @@ const webpack           = require('webpack')
 const path              = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanPlugin       = require('clean-webpack-plugin')
 const glob              = require('glob')
 
 
 const PROJECT_PATH = process.cwd()
+const APP_PATH     = path.join(PROJECT_PATH, 'src', 'app')
 const MOZAIK_PATH  = __dirname
-const BUILD_DIR    = path.resolve(PROJECT_PATH, 'build')
-const SRC_DIR      = path.resolve(__dirname, 'src')
-const THEMES_DIR   = path.join(SRC_DIR, 'ui', 'themes')
+const BUILD_PATH    = path.resolve(PROJECT_PATH, 'build')
+const SRC_PATH     = path.resolve(MOZAIK_PATH, 'src')
+const THEMES_PATH  = path.join(SRC_PATH, 'ui', 'themes')
 
 const projectPackage = require(path.join(PROJECT_PATH, 'package.json'))
 
@@ -20,12 +22,12 @@ for (let packageName in projectPackage.dependencies) {
     }
 }
 
-const themes = glob.sync(path.join(THEMES_DIR, '*'))
-    .map(t => t.substr(THEMES_DIR.length + 1))
+const themes = glob.sync(path.join(THEMES_PATH, '*'))
+    .map(t => t.substr(THEMES_PATH.length + 1))
 
 const config = {
     output: {
-        path:     BUILD_DIR,
+        path:     BUILD_PATH,
         filename: '[name]-[hash:8].js',
     },
     modulesDirectories: ['node_modules'],
@@ -55,7 +57,7 @@ const config = {
                 test:    /\.js$/,
                 exclude: /node_modules/,
                 include: [
-                    SRC_DIR,
+                    SRC_PATH,
                     /mozaik/,
                 ],
             },
@@ -91,12 +93,12 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/index.html',
+            template: path.join(SRC_PATH, 'index.html'),
             title:    'mozaik',
         }),
         new webpack.DefinePlugin({
-            PRODUCTION:    JSON.stringify(process.NODE_ENV || 'development'),
-            MOZAIK_THEMES: JSON.stringify(themes),
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+            MOZAIK_THEMES:          JSON.stringify(themes),
         }),
     ],
     stylus: {
@@ -111,28 +113,29 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
     config.devtool = 'cheap-module-source-map'
-    config.entry = [
-        `${APP_DIR}/app`,
-    ]
+    config.entry   = [APP_PATH]
     config.module.loaders[0].loaders = ['babel']
-    /*
-    config.module.loaders[1].loader  = ExtractTextPlugin.extract('style', 'css!postcss!resolve-url')
+    config.module.loaders[1].loader  = ExtractTextPlugin.extract('style', 'css!stylus')
     config.plugins.push(new ExtractTextPlugin(
-        DOC_MODE ? '[name].css' : '[name]-[id]-[contenthash:8].css',
+        '[name]-[id]-[contenthash:8].css',
         { allChunks: true }
     ))
-    config.plugins.push(new webpack.DefinePlugin({
-        'process.env': {
-            'NODE_ENV': JSON.stringify('production'),
-        },
+    config.plugins.push(new CleanPlugin(BUILD_PATH, {
+        root: PROJECT_PATH,
     }))
-    */
+    config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin())
+    //config.plugins.push(new webpack.optimize.DedupePlugin())
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }))
 } else {
     config.devtool = 'eval'
     config.entry = [
         'webpack-dev-server/client?http://localhost:8081',
         'webpack/hot/only-dev-server',
-        path.join(PROJECT_PATH, 'src', 'app'),
+        APP_PATH,
     ]
     config.module.loaders[0].loaders = ['react-hot', 'babel?cacheDirectory']
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
