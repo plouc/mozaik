@@ -1,5 +1,4 @@
 import React, { Component, PropTypes }  from 'react'
-import { ListenerMixin }                from 'reflux'
 import Dashboard, { DashboardPropType } from './dashboard'
 import ComponentRegistry                from './../componentRegistry'
 import Notifications                    from '../containers/NotificationsContainer'
