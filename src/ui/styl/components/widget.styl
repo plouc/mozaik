@@ -26,8 +26,8 @@
     font:             widget-header-font,
     height:           widget-header-height,
     line-height:      widget-header-height,
-    border-radius:    widget-header-border-radius,
-    padding:          @(c) { return 0 c.widget-inner-spacing },
+    border-radius:    @(t) { return t.widget-border-radius t.widget-border-radius 0 0 },
+    padding:          @(t) { return 0 t.widget-inner-spacing },
     background-color: widget-header-bg-color,
     color:            widget-header-txt-color,
     border-bottom:    widget-header-border-bottom,
@@ -68,7 +68,7 @@
   themifyAll({
     top:              widget-header-height,
     background-color: widget-body-bg-color,
-    border-radius:    widget-body-border-radius,
+    border-radius:    @(t) { return 0 0 t.widget-border-radius t.widget-border-radius },
     box-shadow:       widget-body-shadow,
   })
 

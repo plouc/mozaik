@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import Mozaik      from '../components/Mozaik'
+import { connect }   from 'react-redux'
+import Notifications from '../components/Notifications'
 import {
     fetchConfiguration
 } from '../actions/configurationActions'
@@ -7,27 +7,25 @@ import {
 
 const mapStateToProps = state => {
     const {
-        configuration,
-        dashboards: {
-            dashboards,
-            current,
+        notifications: {
+            items,
         }
     } = state
 
     return {
-        ...configuration,
-        dashboards,
-        currentDashboard: current,
+        notifications: items,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
+    /*
     fetchConfiguration: () => {
         dispatch(fetchConfiguration())
     },
+    */
 })
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Mozaik)
+)(Notifications)

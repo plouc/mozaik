@@ -1,51 +1,46 @@
-/* global describe it */
-const expect  = require('expect')
+const test    = require('ava')
 const mockery = require('mockery')
 
 
-let Mozaik;
+let Mozaik
 
 
-describe('Mozaïk | Mozaik', () => {
-    before(() => {
-        mockery.enable({
-            warnOnReplace:      false,
-            warnOnUnregistered: false
-        });
-    });
+test.before('Enable mockery', () => {
+    mockery.enable({
+        warnOnReplace:      false,
+        warnOnUnregistered: false,
+    })
+})
 
-    beforeEach(() => {
-        mockery.registerMock('chalk',   require('./chalk-mock'));
-        mockery.registerMock('winston', {
-            info() {}
-        });
+test.beforeEach('Register mocks', () => {
+    mockery.registerMock('chalk',   require('./chalk-mock'))
+    mockery.registerMock('winston', {
+        info() {}
+    })
 
-        Mozaik = require('../../src/server/Mozaik');
-    });
+    Mozaik = require('../../src/server/Mozaik')
+})
 
-    afterEach(() => {
-        mockery.deregisterAll();
-    });
+test.afterEach('Deregister all mocks', () => {
+    mockery.deregisterAll()
+})
 
-    after(() => {
-        mockery.disable();
-    });
+test.after('Disable mockery', () => {
+    mockery.disable()
+})
 
-    describe('constructor()', () => {
-        it('should fill config defaults', () => {
-            const mozaik = new Mozaik({
-                host: 'test.local',
-                port: 5000
-            });
+test('constructor() should fill config defaults', t => {
+    const mozaik = new Mozaik({
+        host: 'test.local',
+        port: 5000
+    })
 
-            expect(mozaik.config).toEqual({
-                host:             'test.local',
-                port:             5000,
-                apisPollInterval: 15000,
-                appTitle:         'Mozaïk',
-                assetsBaseUrl:    '',
-                useWssConnection: false
-            });
-        });
-    });
-});
+    t.deepEqual(mozaik.config, {
+        host:             'test.local',
+        port:             5000,
+        apisPollInterval: 15000,
+        appTitle:         'Mozaïk',
+        assetsBaseUrl:    '',
+        useWssConnection: false
+    })
+})

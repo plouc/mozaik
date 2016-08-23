@@ -1,45 +1,42 @@
-/* global describe it */
+import test          from 'ava'
 import React         from 'react'
 import { shallow }   from 'enzyme'
-import expect        from 'expect'
 import InspectorItem from '../../../src/ui/components/InspectorItem'
 
 
-describe('Mozaïk | InspectorItem component', () => {
-    it('should render given count, label and icon', () => {
-        const itemData = {
-            label: 'test label',
-            count: 13,
-            icon:  'check'
-        }
+test('should render given count, label and icon', t => {
+    const itemData = {
+        label: 'test label',
+        count: 13,
+        icon:  'check'
+    }
 
-        const wrapper = shallow(
-            <InspectorItem
-                label={itemData.label}
-                count={itemData.count}
-                icon={itemData.icon}
-            />
-        )
+    const wrapper = shallow(
+        <InspectorItem
+            label={itemData.label}
+            count={itemData.count}
+            icon={itemData.icon}
+        />
+    )
 
-        expect(wrapper.find('.label').text()).toEqual(itemData.label)
-        expect(wrapper.find('.label__addon').at(0).text()).toEqual(`${itemData.count}`)
-        expect(wrapper.find('.label__addon').at(1).childAt(0).prop('className')).toContain(`fa-${itemData.icon}`)
-    })
+    t.is(wrapper.find('.label').text(), itemData.label)
+    t.is(wrapper.find('.label__addon').at(0).text(), `${itemData.count}`)
+    t.regex(wrapper.find('.label__addon').at(1).childAt(0).prop('className'), new RegExp(`fa-${itemData.icon}`))
+})
 
-    it('should not render count if none given', () => {
-        const itemData = {
-            label: 'test label',
-            icon:  'check'
-        }
+test('should not render count if none given', t => {
+    const itemData = {
+        label: 'test label',
+        icon:  'check'
+    }
 
-        const wrapper = shallow(
-            <InspectorItem
-                label={itemData.label}
-                icon={itemData.icon}
-            />
-        )
+    const wrapper = shallow(
+        <InspectorItem
+            label={itemData.label}
+            icon={itemData.icon}
+        />
+    )
 
-        expect(wrapper.find('.label__addon').length).toEqual(1)
-        expect(wrapper.find('.label__addon').at(0).childAt(0).prop('className')).toContain(`fa-${itemData.icon}`)
-    })
+    t.is(wrapper.find('.label__addon').length, 1)
+    t.regex(wrapper.find('.label__addon').at(0).childAt(0).prop('className'), new RegExp(`fa-${itemData.icon}`))
 })

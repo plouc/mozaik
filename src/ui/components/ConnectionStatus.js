@@ -1,72 +1,107 @@
 import React, { Component, PropTypes } from 'react'
-import reactMixin                      from 'react-mixin'
-import { ListenerMixin }               from 'reflux'
-import ConnectionStatusStore, {
-    CONNECTION_STATUS_CONNECTING,
-    CONNECTION_STATUS_CONNECTED,
-    CONNECTION_STATUS_DISCONNECTED,
-    CONNECTION_STATUS_DELAYING,
-    CONNECTION_STATUS_FAILED
-} from '../stores/ConnectionStatusStore'
+import {
+    WS_STATUS_DELAYING,
+    WS_STATUS_CONNECTED,
+    WS_STATUS_FAILED,
+    WS_MAX_RETRIES,
+    WS_RETRY_DELAY,
+} from '../constants/wsConstants'
+
+
+const WS_RETRY_DELAY_SECONDS = WS_RETRY_DELAY / 1000
 
 
 class ConnectionStatus extends Component {
     constructor(props) {
         super(props)
 
-        this.state = ConnectionStatusStore.getState()
+        this.state = { countdown: 0 }
+    }
+
+    clearCountDown() {
+        if (this.timer) {
+            clearInterval(this.timer)
+        }
+    }
+
+    startCountDown() {
+        this.clearCountDown()
+
+        this.setState({ countdown: WS_RETRY_DELAY_SECONDS })
+        this.timer = setInterval(() => {
+            const { countdown } = this.state
+            this.setState({ countdown: countdown - 1 })
+        }, 1000)
     }
 
     componentWillMount() {
-        this.listenTo(ConnectionStatusStore, this.onStatusUpdate)
+        this.startCountDown()
     }
 
-    onStatusUpdate({ countdown, status, retry }) {
-        this.setState({ countdown, status, retry })
+    componentWillUnmount() {
+        this.clearCountDown()
     }
-    
+
+    componentWillReceiveProps(nextProps) {
+        if (this.timer) {
+            clearInterval(this.timer)
+        }
+
+        if (this.props.retryCount < nextProps.retryCount) {
+            this.startCountDown()
+        }
+    }
+
     render() {
-        const { countdown, status, retry } = this.state
+        const { status, retryCount } = this.props
+        const { countdown }          = this.state
 
         let message
         let iconClass
-        if (status === CONNECTION_STATUS_CONNECTING) {
-            message   = 'connecting'
-            iconClass = 'fa fa-question'
-        } else if (status === CONNECTION_STATUS_CONNECTED) {
-            message   = 'connected'
-            iconClass = 'fa fa-check'
-        } else if (status === CONNECTION_STATUS_DISCONNECTED || status === CONNECTION_STATUS_DELAYING) {
-            message   = 'disconnected'
-            iconClass = 'fa fa-warning'
-
-            if (status === CONNECTION_STATUS_DELAYING) {
-                message = (
-                    <span>
-                        disconnected<br/>
-                        <span className="text-discrete">next attempt in {countdown}s</span>
-                    </span>
-                )
-            }
-        } else if (status === CONNECTION_STATUS_FAILED) {
-            iconClass = 'fa fa-frown-o'
-            message   = `unable to restore websockets after ${retry} attemps,
-            please make sure Mozaïk server is running and that
-            you can reach the internet if running on a remote server.`
+        if (status === WS_STATUS_CONNECTED) {
+            iconClass = 'check'
+            message   = 'connection restored.'
+        } else if (status === WS_STATUS_DELAYING) {
+            iconClass = 'warning'
+            message   = (
+                <span>
+                    lost connection to Mozaïk server,
+                    will attempt to reconnect in {countdown}s
+                    ({retryCount} of {WS_MAX_RETRIES} attempts so far).
+                </span>
+            )
+        } else if (status === WS_STATUS_FAILED) {
+            iconClass = 'frown-o'
+            message   = (
+                <span>
+                    unable to restore connection after {retryCount} attemps,
+                    please make sure Mozaïk server is running and that
+                    you can reach the internet if running on a remote server.
+                </span>
+            )
         }
 
         return (
             <div className="connection-status">
-                <i className={iconClass}/>
+                <i className={`fa fa-${iconClass}`}/>
                 {message}
             </div>
         )
     }
 }
 
-ConnectionStatus.displayName = 'ConnectionStatus'
+ConnectionStatus.propTypes = {
+    retryCount: PropTypes.number.isRequired,
+    status:     PropTypes.oneOf([
+        WS_STATUS_DELAYING,
+        WS_STATUS_CONNECTED,
+        WS_STATUS_FAILED,
+    ]).isRequired,
+}
 
-reactMixin(ConnectionStatus.prototype, ListenerMixin)
+ConnectionStatus.defaultProps = {
+    retryCount: 0,
+}
 
 
 export default ConnectionStatus

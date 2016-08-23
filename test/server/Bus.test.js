@@ -1,385 +1,362 @@
-/* global describe it */
-const expect  = require('expect')
+const test    = require('ava')
 const sinon   = require('sinon')
 const mockery = require('mockery')
 
 
-const sandbox = sinon.sandbox.create();
-let mockedMozaik;
-let Bus, bus;
-let clock;
-let apiStub;
-let thenStub, catchStub;
-let apiSpy;
-let clientSpy;
+const sandbox = sinon.sandbox.create()
+let mockedMozaik
+let Bus, bus
+let clock
+let apiStub
+let thenStub, catchStub
+let apiSpy
+let clientSpy
+let api_params
+
+
+test.before('Enable mockery', () => {
+    mockery.enable({
+        warnOnReplace:      false,
+        warnOnUnregistered: false,
+    })
+})
+
+test.beforeEach('Register mocks', () => {
+    mockery.registerMock('chalk', require('./chalk-mock'))
+
+    clock = sinon.useFakeTimers()
+
+    mockedMozaik = {
+        logger: {
+            info:  sinon.spy(),
+            error: sinon.spy()
+        },
+        config: {
+            apisPollInterval: 15000
+        }
+    }
+
+    Bus = require('../../src/server/Bus')
+    bus = Bus(mockedMozaik)
+})
+
+test.afterEach('Deregister mocks', () => {
+    sandbox.verifyAndRestore()
+    clock.restore()
+    mockery.deregisterAll()
+})
+
+test.after('Disable mockery', () => {
+    mockery.disable()
+})
+
+test('registerApi() should make the API available', t => {
+    bus.registerApi('test_api', () => { })
+
+    t.deepEqual(bus.listApis(), ['test_api'])
+    t.true(mockedMozaik.logger.info.calledOnce)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], `registered API 'test_api' (mode: poll)`)
+})
+
+test('registerApi() should throw if the API was already registered', t => {
+    bus.registerApi('test_api', () => { })
+
+    t.true(mockedMozaik.logger.info.calledOnce, true)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], `registered API 'test_api' (mode: poll)`)
 
-
-describe('Mozaïk | Bus', () => {
-    before(() => {
-        mockery.enable({
-            warnOnReplace:      false,
-            warnOnUnregistered: false
-        });
-    });
-
-    beforeEach(() => {
-        mockery.registerMock('chalk', require('./chalk-mock'));
+    t.throws(() => {
+        bus.registerApi('test_api', () => { })
+    }, `API 'test_api' already registered`)
 
-        clock = sinon.useFakeTimers();
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], `API 'test_api' already registered`)
+})
+
+test(`registerApi() should allow to set API mode to 'push'`, t => {
+    bus.registerApi('test_api', () => { }, 'push')
+
+    t.deepEqual(bus.listApis(), ['test_api'])
+    t.true(mockedMozaik.logger.info.calledOnce)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], `registered API 'test_api' (mode: push)`)
+})
 
-        mockedMozaik = {
-            logger: {
-                info:  sinon.spy(),
-                error: sinon.spy()
-            },
-            config: {
-                apisPollInterval: 15000
-            }
-        };
+test('registerApi() should throw if we pass an invalid API mode', t => {
+    t.throws(() => {
+        bus.registerApi('test_api', () => { }, 'invalid')
+    }, `API mode 'invalid' is not a valid mode, must be one of 'poll' or 'push'`)
 
-        Bus = require('../../src/server/Bus');
-        bus = Bus(mockedMozaik);
-    });
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], `API mode 'invalid' is not a valid mode, must be one of 'poll' or 'push'`)
+})
+
+test('addClient() should add a client to the current list', t => {
+    bus.addClient({}, 'test_client')
 
-    afterEach(() => {
-        sandbox.verifyAndRestore();
-        clock.restore();
-        mockery.deregisterAll();
-    });
-
-    after(() => {
-        mockery.disable();
-    });
-
-
-    describe('registerApi()', () => {
-        it('should make the API available', () => {
-            bus.registerApi('test_api', () => { });
+    t.truthy(bus.listClients().test_client)
 
-            expect(bus.listApis()).toEqual(['test_api']);
-            expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual(`registered API 'test_api' (mode: poll)`);
-        });
+    t.true(mockedMozaik.logger.info.calledOnce)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], 'Client #test_client connected')
+})
 
-        it('should throw if the API was already registered', () => {
-            bus.registerApi('test_api', () => { });
+test('addClient() should throw if a client with the same id already exists', t => {
+    bus.addClient({}, 'test_client')
 
-            expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual(`registered API 'test_api' (mode: poll)`);
+    t.throws(() => {
+        bus.addClient({}, 'test_client')
+    }, `Client with id 'test_client' already exists`)
 
-            expect(() => {
-                bus.registerApi('test_api', () => { });
-            }).toThrow(`API 'test_api' already registered`);
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], `Client with id 'test_client' already exists`)
+})
 
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(`API 'test_api' already registered`);
-        });
+test('removeClient() should remove a registered client from the current list', t => {
+    bus.addClient({}, 'test_client')
+    t.truthy(bus.listClients().test_client)
 
-        it(`should allow to set API mode to 'push'`, () => {
-            bus.registerApi('test_api', () => { }, 'push');
+    bus.removeClient('test_client')
+    t.falsy(bus.listClients().test_client)
 
-            expect(bus.listApis()).toEqual(['test_api']);
-            expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual(`registered API 'test_api' (mode: push)`);
-        });
+    t.true(mockedMozaik.logger.info.calledTwice)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], 'Client #test_client connected')
+    t.is(mockedMozaik.logger.info.getCall(1).args[0], 'Client #test_client disconnected')
+})
 
-        it('should throw if we pass an invalid API mode', () => {
-            expect(() => {
-                bus.registerApi('test_api', () => { }, 'invalid');
-            }).toThrow(`API mode 'invalid' is not a valid mode, must be one of 'poll' or 'push'`);
+test('removeClient() should cleanup subscription and remove timer if no clients left', t => {
+    bus.addClient({ send() {} }, 'test_client')
+    t.truthy(bus.listClients().test_client)
 
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(`API mode 'invalid' is not a valid mode, must be one of 'poll' or 'push'`);
+    bus.registerApi('test_api', () => ({ test() {
+        return Promise.resolve(true)
+    }}))
+    t.deepEqual(bus.listApis(), ['test_api'])
 
-        });
-    });
+    bus.clientSubscription('test_client', { id: 'test_api.test' })
 
+    const subscriptions = bus.listSubscriptions()
+    t.truthy(subscriptions['test_api.test'])
+    t.truthy(subscriptions['test_api.test'].timer)
+    t.deepEqual(subscriptions['test_api.test'].clients, ['test_client'])
 
-    describe('addClient()',  () => {
-        it('should add a client to the current list', () => {
-            bus.addClient({}, 'test_client');
+    bus.removeClient('test_client')
+    t.falsy(subscriptions['test_api.test'].timer)
+    t.deepEqual(subscriptions['test_api.test'].clients, [])
+})
 
-            expect(bus.listClients()['test_client']).toExist(`'test_client' has not been added to the client list`);
+test('clientSubscription() should log an error if there is no existing client having given id', t => {
+    apiSpy = { fetch: sinon.spy() }
+    bus.registerApi('test_api', () => apiSpy)
 
-            expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual('Client #test_client connected');
-        });
+    bus.clientSubscription('test_client')
 
-        it('should throw if a client with the same id already exists', () => {
-            bus.addClient({}, 'test_client');
+    const expectedError = `Unable to find a client with id 'test_client'`
 
-            expect(() => {
-                bus.addClient({}, 'test_client');
-            }).toThrow(`Client with id 'test_client' already exists`);
+    t.false(apiSpy.fetch.called)
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], expectedError)
+})
 
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(`Client with id 'test_client' already exists`);
-        });
-    });
+test('clientSubscription() should throw and log an error if the request id is invalid', t => {
+    apiSpy = { fetch: sinon.spy() }
+    bus.registerApi('test_api', () => apiSpy)
 
+    bus.addClient({}, 'test_client')
 
-    describe('removeClient()', () => {
-        it('should remove a registered client from the current list', () => {
-            bus.addClient({}, 'test_client');
-            expect(bus.listClients()['test_client']).toExist();
+    const expectedError = `Invalid request id 'test_api', should be something like 'api_id.method'`
 
-            bus.removeClient('test_client');
-            expect(bus.listClients()['test_client']).toNotExist();
+    t.throws(() => {
+        bus.clientSubscription('test_client', { id: 'test_api' })
+    }, expectedError)
 
-            expect(mockedMozaik.logger.info.calledTwice).toEqual(true, 'logger.info() have not been called  twice');
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual('Client #test_client connected');
-            expect(mockedMozaik.logger.info.getCall(1).args[0]).toEqual('Client #test_client disconnected');
-        });
+    t.false(apiSpy.fetch.called)
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], expectedError)
+})
 
-        it('should cleanup subscription and remove timer if no clients left', () => {
-            bus.addClient({ send() {} }, 'test_client');
-            expect(bus.listClients()['test_client']).toExist();
+test('clientSubscription() should throw and log an error if there is no existing api for given request id', t => {
+    apiSpy = { fetch: sinon.spy() }
+    bus.registerApi('test_api', () => apiSpy)
 
-            bus.registerApi('test_api', () => ({ test() {
-                return Promise.resolve(true);
-            }}));
-            expect(bus.listApis()).toEqual(['test_api']);
+    bus.addClient({}, 'test_client')
 
-            bus.clientSubscription('test_client', { id: 'test_api.test' });
+    const expectedError = `Unable to find API matching id 'invalid_api'`
 
-            const subscriptions = bus.listSubscriptions();
-            expect(subscriptions['test_api.test']).toExist();
-            expect(subscriptions['test_api.test'].timer).toExist();
-            expect(subscriptions['test_api.test'].clients).toEqual(['test_client']);
+    t.throws(() => {
+        bus.clientSubscription('test_client', { id: 'invalid_api.invalid_method' })
+    }, expectedError)
 
-            bus.removeClient('test_client');
-            expect(subscriptions['test_api.test'].timer).toNotExist();
-            expect(subscriptions['test_api.test'].clients).toEqual([]);
-        });
-    });
+    t.false(apiSpy.fetch.called)
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], expectedError)
+})
 
+test('clientSubscription() should throw and log an error if the api method does not exists', t => {
+    apiSpy = { fetch: sinon.spy() }
+    bus.registerApi('test_api', () => apiSpy)
 
-    describe('clientSubscription()', () => {
-        it('should log an error if there is no existing client having given id', () => {
-            apiSpy = { fetch: sinon.spy() };
-            bus.registerApi('test_api', () => apiSpy);
+    bus.addClient({}, 'test_client')
 
-            bus.clientSubscription('test_client');
+    const expectedError = `Unable to find API method matching 'invalid_method'`
 
-            const expectedError = `Unable to find a client with id 'test_client'`;
+    t.throws(() => {
+        bus.clientSubscription('test_client', { id: 'test_api.invalid_method' })
+    }, expectedError)
 
-            expect(apiSpy.fetch.called).toEqual(false);
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(expectedError);
-        });
+    t.false(apiSpy.fetch.called)
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], expectedError)
+})
 
-        it('should throw and log an error if the request id is invalid', () => {
-            apiSpy = { fetch: sinon.spy() };
-            bus.registerApi('test_api', () => apiSpy);
+test('clientSubscription() should throw and log an error if the api method is not a function', t => {
+    bus.registerApi('test_api', () => ({ method: false }))
 
-            bus.addClient({}, 'test_client');
+    bus.addClient({}, 'test_client')
 
-            const expectedError = `Invalid request id 'test_api', should be something like 'api_id.method'`;
+    const expectedError = `API method 'test_api.method' MUST be a function`
 
-            expect(() => {
-                bus.clientSubscription('test_client', { id: 'test_api' });
-            }).toThrow(expectedError);
+    t.throws(() => {
+        bus.clientSubscription('test_client', { id: 'test_api.method' })
+    }, expectedError)
 
-            expect(apiSpy.fetch.called).toEqual(false, 'Api method should not be called');
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(expectedError);
-        });
+    t.true(mockedMozaik.logger.error.calledOnce)
+    t.is(mockedMozaik.logger.error.getCall(0).args[0], expectedError)
+})
 
-        it('should throw and log an error if there is no existing api for given request id', () => {
-            apiSpy = { fetch: sinon.spy() };
-            bus.registerApi('test_api', () => apiSpy);
+test(`clientSubscription() should immediately call the api if there's no matching subscription`, t => {
+    const apiData = { test: true }
 
-            bus.addClient({}, 'test_client');
+    thenStub  = sinon.stub()
+    catchStub = sinon.stub()
+    apiStub   = sinon.stub().returns({ then: thenStub })
+    thenStub.yields(apiData).returns({ 'catch': catchStub })
+    bus.registerApi('test_api', () => ({ fetch: apiStub }))
 
-            const expectedError = `Unable to find API matching id 'invalid_api'`;
+    clientSpy = { send: sinon.spy() }
+    bus.addClient(clientSpy, 'test_client')
 
-            expect(() => {
-                bus.clientSubscription('test_client', { id: 'invalid_api.invalid_method' });
-            }).toThrow(expectedError);
+    bus.clientSubscription('test_client', { id: 'test_api.fetch' })
 
-            expect(apiSpy.fetch.called).toEqual(false, 'Api method should not be called');
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(expectedError);
-        });
+    t.true(apiStub.calledOnce)
+    t.true(clientSpy.send.calledOnce)
+    t.is(clientSpy.send.getCall(0).args[0], JSON.stringify({
+        id:   'test_api.fetch',
+        body: apiData,
+    }))
+})
 
-        it('should throw and log an error if the api method does not exists', () => {
-            apiSpy = { fetch: sinon.spy() };
-            bus.registerApi('test_api', () => apiSpy);
+test(`clientSubscription() should create a timer if there's no matching subscription`, t => {
+    const apiData = { test: true }
 
-            bus.addClient({}, 'test_client');
+    thenStub  = sinon.stub()
+    catchStub = sinon.stub()
+    apiStub   = sinon.stub().returns({ then: thenStub })
+    thenStub.yields(apiData).returns({ 'catch': catchStub })
+    bus.registerApi('test_api', () => ({ fetch: apiStub }))
 
-            const expectedError = `Unable to find API method matching 'invalid_method'`;
+    clientSpy = { send: sinon.spy() }
+    bus.addClient(clientSpy, 'test_client')
 
-            expect(() => {
-                bus.clientSubscription('test_client', { id: 'test_api.invalid_method' });
-            }).toThrow(expectedError);
+    bus.clientSubscription('test_client', { id: 'test_api.fetch' })
 
-            expect(apiSpy.fetch.called).toEqual(false, 'Api method should not be called');
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(expectedError);
-        });
+    clock.tick(15000)
 
-        it('should throw and log an error if the api method is not a function', () => {
-            bus.registerApi('test_api', () => ({ method: false }));
+    t.is(apiStub.callCount, 2, 'API method should have been called')
+    t.is(clientSpy.send.callCount, 2, 'API data should have been sent to the client')
+    t.true(clientSpy.send.alwaysCalledWith(JSON.stringify({
+        id:   'test_api.fetch',
+        body: apiData,
+    })))
 
-            bus.addClient({}, 'test_client');
+    const subscriptions = bus.listSubscriptions()
+    t.truthy(subscriptions['test_api.fetch'])
+    t.truthy(subscriptions['test_api.fetch'].timer)
+})
 
-            const expectedError = `API method 'test_api.method' MUST be a function`;
+test(`clientSubscription() should create a producer if there's no matching subscription and API mode is 'push'`, t => {
+    apiSpy = sinon.spy()
+    bus.registerApi('test_api', () => ({ push: apiSpy }), 'push')
 
-            expect(() => {
-                bus.clientSubscription('test_client', { id: 'test_api.method' });
-            }).toThrow(expectedError);
+    clientSpy = { send: sinon.spy() }
+    bus.addClient(clientSpy, 'test_client')
 
-            expect(mockedMozaik.logger.error.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.error.getCall(0).args[0]).toEqual(expectedError);
-        });
+    bus.clientSubscription('test_client', { id: 'test_api.push' })
 
-        it(`should immediately call the api if there's no matching subscription`, () => {
-            const apiData = { test: true };
+    t.true(apiSpy.calledOnce, 'API method should have been called')
 
-            thenStub  = sinon.stub();
-            catchStub = sinon.stub();
-            apiStub   = sinon.stub().returns({ then: thenStub });
-            thenStub.yields(apiData).returns({ 'catch': catchStub });
-            bus.registerApi('test_api', () => ({ fetch: apiStub }));
+    const subscriptions = bus.listSubscriptions()
+    t.truthy(subscriptions['test_api.push'])
+    //t.truthy(subscriptions['test_api.push'].timer)
+})
 
-            clientSpy = { send: sinon.spy() };
-            bus.addClient(clientSpy, 'test_client');
+test('clientSubscription() should not add the same client id twice to the subscription client list', t => {
+    bus.registerApi('test_api', () => ({ push: () => {} }), 'push')
+    bus.addClient({ send: () => {} }, 'test_client')
+    bus.clientSubscription('test_client', { id: 'test_api.push' })
 
-            bus.clientSubscription('test_client', { id: 'test_api.fetch' });
+    const subscriptions = bus.listSubscriptions()
+    t.truthy(subscriptions['test_api.push'])
+    t.deepEqual(subscriptions['test_api.push'].clients, ['test_client'])
 
-            expect(apiStub.calledOnce).toEqual(true, 'API method should have been called');
-            expect(clientSpy.send.calledOnce).toEqual(true, 'API data should have been sent to the client');
-            expect(clientSpy.send.getCall(0).args[0]).toEqual(JSON.stringify({
-                id:   'test_api.fetch',
-                body: apiData
-            }));
-        });
+    bus.clientSubscription('test_client', { id: 'test_api.push' })
+    t.deepEqual(subscriptions['test_api.push'].clients, ['test_client'])
+})
 
-        it(`should create a timer if there's no matching subscription`, () => {
-            const apiData = { test: true };
+test('clientCount() should return the number of connected clients', t => {
+    t.is(bus.clientCount(), 0)
 
-            thenStub  = sinon.stub();
-            catchStub = sinon.stub();
-            apiStub   = sinon.stub().returns({ then: thenStub });
-            thenStub.yields(apiData).returns({ 'catch': catchStub });
-            bus.registerApi('test_api', () => ({ fetch: apiStub }));
+    bus.addClient({}, 'client_a')
+    bus.addClient({}, 'client_b')
+    bus.addClient({}, 'client_c')
 
-            clientSpy = { send: sinon.spy() };
-            bus.addClient(clientSpy, 'test_client');
+    t.is(bus.clientCount(), 3)
+})
 
-            bus.clientSubscription('test_client', { id: 'test_api.fetch' });
+test('processApiCall() should log api call', t => {
+    apiStub   = sinon.stub()
+    thenStub  = sinon.stub()
+    catchStub = sinon.stub()
 
-            clock.tick(15000);
+    thenStub.returns({ 'catch': catchStub })
+    apiStub.returns({ then: thenStub })
 
-            expect(apiStub.callCount).toEqual(2, 'API method should have been called');
-            expect(clientSpy.send.callCount).toEqual(2, 'API data should have been sent to the client');
-            expect(clientSpy.send.alwaysCalledWith(JSON.stringify({
-                id:   'test_api.fetch',
-                body: apiData
-            }))).toEqual(true);
+    bus.processApiCall('test_api.test_method', apiStub)
 
-            const subscriptions = bus.listSubscriptions();
-            expect(subscriptions['test_api.fetch']).toExist();
-            expect(subscriptions['test_api.fetch'].timer).toExist();
-        });
+    t.true(mockedMozaik.logger.info.calledOnce)
+    t.is(mockedMozaik.logger.info.getCall(0).args[0], `Calling 'test_api.test_method'`)
+})
 
-        it(`should create a producer if there's no matching subscription and API mode is 'push'`, () => {
-            apiSpy = sinon.spy();
-            bus.registerApi('test_api', () => ({ push: apiSpy }), 'push');
+test('processApiCall() should call api', t => {
+    apiStub   = sinon.stub()
+    thenStub  = sinon.stub()
+    catchStub = sinon.stub()
 
-            clientSpy = { send: sinon.spy() };
-            bus.addClient(clientSpy, 'test_client');
+    thenStub.returns({ 'catch': catchStub })
+    apiStub.returns({ then: thenStub })
 
-            bus.clientSubscription('test_client', { id: 'test_api.push' });
+    api_params = { api_param: 'api_param' }
 
-            expect(apiSpy.calledOnce).toEqual(true, 'API method should have been called');
+    bus.processApiCall('test_api.test_method', apiStub, api_params)
 
-            const subscriptions = bus.listSubscriptions();
-            expect(subscriptions['test_api.push']).toExist();
-            expect(subscriptions['test_api.push'].timer).toNotExist();
-        });
+    t.true(apiStub.calledOnce, 'should have called the given api method')
+    t.deepEqual(apiStub.getCall(0).args[0], api_params)
+})
 
-        it('should not add the same client id twice to the subscription client list', () => {
-            bus.registerApi('test_api', () => ({ push: () => {} }), 'push');
-            bus.addClient({ send: () => {} }, 'test_client');
-            bus.clientSubscription('test_client', { id: 'test_api.push' });
+test('processApiCall() should cache result', t => {
+    bus.listSubscriptions()['test_api.test_method'] = {
+        clients: []
+    }
 
-            const subscriptions = bus.listSubscriptions();
-            expect(subscriptions['test_api.push']).toExist();
-            expect(subscriptions['test_api.push'].clients).toEqual(['test_client']);
+    apiStub   = sinon.stub()
+    thenStub  = sinon.stub()
+    catchStub = sinon.stub()
 
-            bus.clientSubscription('test_client', { id: 'test_api.push' });
-            expect(subscriptions['test_api.push'].clients).toEqual(['test_client']);
-        });
-    });
+    thenStub.yields('sample_data').returns({ 'catch': catchStub })
+    apiStub.returns({ then: thenStub })
 
+    bus.processApiCall('test_api.test_method', apiStub)
 
-    describe('clientCount()', () => {
-        it('should return the number of connected clients', () => {
-            expect(bus.clientCount()).toEqual(0);
-
-            bus.addClient({}, 'client_a');
-            bus.addClient({}, 'client_b');
-            bus.addClient({}, 'client_c');
-
-            expect(bus.clientCount()).toEqual(3);
-        });
-    });
-
-
-    describe('processApiCall()', () => {
-        let api_params;
-
-        it('should log api call', () => {
-            apiStub   = sinon.stub();
-            thenStub  = sinon.stub();
-            catchStub = sinon.stub();
-
-            thenStub.returns({ 'catch': catchStub });
-            apiStub.returns({ then: thenStub });
-
-            bus.processApiCall('test_api.test_method', apiStub);
-
-            expect(mockedMozaik.logger.info.calledOnce).toEqual(true);
-            expect(mockedMozaik.logger.info.getCall(0).args[0]).toEqual(`Calling 'test_api.test_method'`);
-        });
-
-        it('should call api', () => {
-            apiStub   = sinon.stub();
-            thenStub  = sinon.stub();
-            catchStub = sinon.stub();
-
-            thenStub.returns({ 'catch': catchStub });
-            apiStub.returns({ then: thenStub });
-
-            api_params = { api_param: 'api_param' };
-
-            bus.processApiCall('test_api.test_method', apiStub, api_params);
-
-            expect(apiStub.calledOnce).toEqual(true, 'should have called the given api method');
-            expect(apiStub.getCall(0).args[0]).toEqual(api_params);
-        });
-
-        it('should cache result', () => {
-            bus.listSubscriptions()['test_api.test_method'] = {
-                clients: []
-            };
-
-            apiStub   = sinon.stub();
-            thenStub  = sinon.stub();
-            catchStub = sinon.stub();
-
-            thenStub.yields('sample_data').returns({ 'catch': catchStub });
-            apiStub.returns({ then: thenStub });
-
-            bus.processApiCall('test_api.test_method', apiStub);
-
-            expect(bus.listSubscriptions()['test_api.test_method'].cached).toExist;
-            expect(bus.listSubscriptions()['test_api.test_method'].cached).toEqual({
-                id:   'test_api.test_method',
-                body: 'sample_data'
-            });
-        });
-    });
-});
+    t.truthy(bus.listSubscriptions()['test_api.test_method'].cached)
+    t.deepEqual(bus.listSubscriptions()['test_api.test_method'].cached, {
+        id:   'test_api.test_method',
+        body: 'sample_data',
+    })
+})
