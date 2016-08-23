@@ -1,5 +1,4 @@
 const express = require('express')
-const swig    = require('swig')
 const chalk   = require('chalk')
 const path    = require('path')
 const cors    = require('cors')
@@ -17,22 +16,6 @@ module.exports = function startServer(mozaik, app) {
     app.use(express.static(`${mozaik.baseDir}/build`))
 
     app.use(cors())
-
-    app.engine('html', swig.renderFile)
-    app.set('view engine', 'html')
-    app.set('views', path.join(mozaik.rootDir, 'templates'))
-    app.set('view cache', false)
-    swig.setDefaults({
-        cache: false
-    })
-
-    app.get('/', (req, res) => {
-        res.render('index', {
-            env:           mozaik.config.env,
-            appTitle:      mozaik.config.appTitle,
-            assetsBaseUrl: mozaik.config.assetsBaseUrl
-        })
-    })
 
     app.get('/config', (req, res) => {
         res.send(_.omit(mozaik.config, 'api'))
