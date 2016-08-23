@@ -16,7 +16,7 @@
         "react"
     ],
     "rules": {
-        "semi": [1, "never"],
+        "semi": [2, "never"],
         "prefer-template": 2,
         "indent": [2, 4, {
             "SwitchCase": 1
@@ -29,7 +29,10 @@
             "beforeColon": false,
             "afterColon":  true
         }],
-        "quotes": [2, "single"],
+        "quotes": [2, "single", {
+            "avoidEscape":           true,
+            "allowTemplateLiterals": true
+        }],
         "jsx-quotes": [2, "prefer-double"],
         "array-bracket-spacing": [2, "never"],
         "eol-last": 2,

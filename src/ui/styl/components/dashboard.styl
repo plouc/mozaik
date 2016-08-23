@@ -1,10 +1,10 @@
 .dashboard {
-  height: 100%
-  width:  100%
+  height: 100%;
+  width:  100%;
 }
 .dashboard__title {
-  position: absolute
-  padding: 0 3vmin
+  position: absolute;
+  padding: 0 3vmin;
   themifyAll({
     top:    @(c) { return c.widget-spacing / 2 },
     right:  @(c) { return c.widget-spacing / 2 },
@@ -12,36 +12,36 @@
     height: dashboard-header-height,
     color:  dashboard-header-txt-color,
     font:   dashboard-header-font,
-  })
+  });
 }
 .dashboard__body {
-  position: absolute
-  width: 100%
-  top:    0
-  bottom: 0
-  left:   0
+  position: absolute;
+  width: 100%;
+  top:    0;
+  bottom: 0;
+  left:   0;
 }
 .dashboard__body--with-header {
-  themify: top @(c) { return c.dashboard-header-height + c.widget-spacing }
+  themify: top @(c) { return c.dashboard-header-height + c.widget-spacing };
 }
 .dashboard__wrapper {
-  height: 100%
-  width:  100%
+  height: 100%;
+  width:  100%;
 }
 .dashboard__sheet {
-  position: absolute
-  //opacity: 0
-  padding: 20px
-  transition(all 800ms)
-  z-index: 1
+  position: absolute;
+  opacity: 0;
+  padding: 20px;
+  z-index: 1;
+  transition(all 800ms);
   themifyAll({
     top:    main-margin,
     right:  main-margin,
     bottom: main-margin,
     left:   main-margin,
-  })
+  });
 }
 .dashboard__sheet._is-current {
-  z-index: 2
-  opacity: 1
+  z-index: 2;
+  opacity: 1;
 }

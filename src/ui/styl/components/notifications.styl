@@ -1,31 +1,36 @@
-.notifications
-  position absolute
-  top   ($main-margin + $widget-spacing * 2)
-  right ($main-margin + $widget-spacing * 2)
-  z-index 10000
-  width 25%
-
-  &__item
-    position relative
-    margin-bottom 1.4vmin
-    padding $notifications-padding
-    background $notifications-bg-color
-    color      $notifications-txt-color
-    box-shadow $notifications-shadow
-
-    &:before
-      position absolute
-      content ' '
-      top    0
-      left   0
-      bottom 0
-      width $notifications-marker-width
-
-    &--success:before
-      background $success-color
-
-    &--warning:before
-      background $warning-color
-
-    &--error:before
-      background $failure-color
+.notifications {
+  position: absolute;
+  z-index: 10000;
+  width: 25%;
+  themifyAll({
+    top:   @(t) { return t.main-margin + t.widget-spacing * 2 },
+    right: @(t) { return t.main-margin + t.widget-spacing * 2 },
+  });
+}
+.notifications__item {
+  position: relative;
+  margin-bottom: 1.4vmin;
+  themifyAll({
+    padding:    notifications-padding,
+    background: notifications-bg-color,
+    color:      notifications-txt-color,
+    box-shadow: notifications-shadow,
+  });
+}
+.notifications__item:before {
+  position: absolute;
+  content: '';
+  top:    0;
+  left:   0;
+  bottom: 0;
+  themify: width notifications-marker-width;
+}
+.notifications__item--success:before {
+  themify: background success-color;
+}
+.notifications__item--warning:before {
+  themify: background warning-color;
+}
+.notifications__item--error:before {
+  themify: background failure-color;
+}

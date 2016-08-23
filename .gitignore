@@ -3,6 +3,8 @@ logs
 node_modules
 .idea
 lib
+.nyc_output
+coverage
 npm-debug.log*
 
 # Ignore non default themes

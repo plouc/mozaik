@@ -1,23 +1,33 @@
 import React, { Component, PropTypes } from 'react'
 import _                               from 'lodash'
-import ComponentRegistry               from './../componentRegistry'
 
+
+const ignoreProps = [
+    'type', 'x', 'y', 'width', 'height', 'registry', 'apiData', 'subscribeToApi',
+]
 
 class Widget extends Component {
     componentWillMount() {
-        const { type, subscribeToApi } = this.props
+        const { registry, type, subscribeToApi } = this.props
 
         // Pick component from registry
-        const component = ComponentRegistry.get(type)
+        const component = registry.get(type)
 
         if (_.isFunction(component.getApiRequest)) {
-            const childProps = _.omit(this.props, ['type', 'x', 'y', 'width', 'height', 'apiData'])
-            subscribeToApi(component.getApiRequest(childProps))
+            const childProps   = _.omit(this.props, ignoreProps)
+            const subscription = component.getApiRequest(childProps)
+            if (!_.isObject(subscription) || !subscription.id) {
+                console.error(`widget ${type} 'getApiRequest()' must return an object with an 'id' property`)
+            } else {
+                subscribeToApi(subscription)
+            }
+        } else {
+            console.warn(`widget ${type} does not provide a static 'getApiRequest()' method`)
         }
     }
 
     render() {
-        const { apiData, type, x, y, width, height } = this.props
+        const { registry, apiData, type, x, y, width, height } = this.props
 
         const style = {
             top:  y,
@@ -27,10 +37,10 @@ class Widget extends Component {
         }
 
         // Pass props to widget component without 'metadata
-        let childProps = _.omit(this.props, ['type', 'x', 'y', 'width', 'height', 'apiData'])
+        let childProps = _.omit(this.props, ignoreProps)
 
         // Pick component from registry and instantiate with filtered props
-        const component = ComponentRegistry.get(type)
+        const component = registry.get(type)
 
         if (_.isFunction(component.getApiRequest)) {
             const { id } = component.getApiRequest(childProps)
@@ -65,6 +75,9 @@ Widget.propTypes = {
     y:              PropTypes.string.isRequired,
     width:          PropTypes.string.isRequired,
     height:         PropTypes.string.isRequired,
+    registry:       PropTypes.shape({
+        get: PropTypes.func.isRequired,
+    }).isRequired,
 }
 
 

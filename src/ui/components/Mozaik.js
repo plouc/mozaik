@@ -1,7 +1,8 @@
 import React, { Component, PropTypes }  from 'react'
 import { ListenerMixin }                from 'reflux'
 import Dashboard, { DashboardPropType } from './dashboard'
-import Notifications                    from './Notifications'
+import ComponentRegistry                from './../componentRegistry'
+import Notifications                    from '../containers/NotificationsContainer'
 
 
 class Mozaik extends Component {
@@ -13,7 +14,8 @@ class Mozaik extends Component {
     render() {
         const {
             isLoading,
-            configuration,
+            dashboards,
+            currentDashboard,
         } = this.props
 
         if (isLoading) {
@@ -22,8 +24,13 @@ class Mozaik extends Component {
             )
         }
 
-        const dashboardNodes = configuration.dashboards.map((dashboard, index) => (
-            <Dashboard key={index} dashboard={dashboard}/>
+        const dashboardNodes = dashboards.map((dashboard, index) => (
+            <Dashboard
+                key={index}
+                dashboard={dashboard}
+                isCurrent={index === currentDashboard}
+                registry={ComponentRegistry}
+            />
         ))
 
         return (
@@ -38,9 +45,13 @@ class Mozaik extends Component {
 Mozaik.propTypes = {
     fetchConfiguration: PropTypes.func.isRequired,
     isLoading:          PropTypes.bool.isRequired,
-    configuration:      PropTypes.shape({
-        dashboards: PropTypes.arrayOf(DashboardPropType).isRequired,
-    }),
+    dashboards:         PropTypes.arrayOf(DashboardPropType).isRequired,
+    currentDashboard:   PropTypes.number.isRequired,
+    configuration:      PropTypes.shape({}),
+}
+
+Mozaik.defaultProps = {
+    currentDashboard: 0,
 }
 
 
