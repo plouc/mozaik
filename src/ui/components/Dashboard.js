@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames                      from 'classnames'
 import _                               from 'lodash'
-import { ListenerMixin }               from 'reflux'
 import Widget                          from '../containers/WidgetContainer'
 
 
