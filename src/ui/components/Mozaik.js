@@ -1,6 +1,7 @@
 import React, { Component, PropTypes }  from 'react'
 import Dashboard, { DashboardPropType } from './dashboard'
 import ComponentRegistry                from './../componentRegistry'
+import Settings                         from './Settings'
 import Notifications                    from '../containers/NotificationsContainer'
 
 
@@ -15,6 +16,8 @@ class Mozaik extends Component {
             isLoading,
             dashboards,
             currentDashboard,
+            theme,
+            setSettings,
         } = this.props
 
         if (isLoading) {
@@ -33,8 +36,9 @@ class Mozaik extends Component {
         ))
 
         return (
-            <div className="dashboard">
+            <div className={`dashboard theme-${theme}`}>
                 {dashboardNodes}
+                <Settings setSettings={setSettings} />
                 <Notifications />
             </div>
         )
@@ -43,10 +47,12 @@ class Mozaik extends Component {
 
 Mozaik.propTypes = {
     fetchConfiguration: PropTypes.func.isRequired,
+    setSettings:        PropTypes.func.isRequired,
     isLoading:          PropTypes.bool.isRequired,
     dashboards:         PropTypes.arrayOf(DashboardPropType).isRequired,
     currentDashboard:   PropTypes.number.isRequired,
     configuration:      PropTypes.shape({}),
+    theme:              PropTypes.string.isRequired,
 }
 
 Mozaik.defaultProps = {

@@ -2,12 +2,14 @@ const webpack           = require('webpack')
 const path              = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const glob              = require('glob')
 
 
 const PROJECT_PATH = process.cwd()
 const MOZAIK_PATH  = __dirname
 const BUILD_DIR    = path.resolve(PROJECT_PATH, 'build')
-const APP_DIR      = path.resolve(__dirname, 'src')
+const SRC_DIR      = path.resolve(__dirname, 'src')
+const THEMES_DIR   = path.join(SRC_DIR, 'ui', 'themes')
 
 const projectPackage = require(path.join(PROJECT_PATH, 'package.json'))
 
@@ -18,6 +20,9 @@ for (let packageName in projectPackage.dependencies) {
     }
 }
 
+const themes = glob.sync(path.join(THEMES_DIR, '*'))
+    .map(t => t.substr(THEMES_DIR.length + 1))
+
 const config = {
     output: {
         path:     BUILD_DIR,
@@ -25,9 +30,6 @@ const config = {
     },
     modulesDirectories: ['node_modules'],
     resolve: {
-        fallback: [
-            APP_DIR,
-        ],
         alias: {
             'react':     path.join(PROJECT_PATH, 'node_modules', 'react'),
             'react-dom': path.join(PROJECT_PATH, 'node_modules', 'react-dom'),
@@ -53,7 +55,7 @@ const config = {
                 test:    /\.js$/,
                 exclude: /node_modules/,
                 include: [
-                    APP_DIR,
+                    SRC_DIR,
                     /mozaik/,
                 ],
             },
@@ -91,6 +93,10 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             title:    'mozaik',
+        }),
+        new webpack.DefinePlugin({
+            PRODUCTION:    JSON.stringify(process.NODE_ENV || 'development'),
+            MOZAIK_THEMES: JSON.stringify(themes),
         }),
     ],
     stylus: {
