@@ -1,5 +1,12 @@
-import request     from 'superagent'
-import { connect } from '../actions/wsActions'
+import request           from 'superagent'
+import { connect }       from './wsActions'
+import {
+    setDashboards,
+    startDashboardRotation,
+} from './dashboardsActions'
+import {
+    notifySuccess,
+} from './notificationsActions'
 
 export const FETCH_CONFIGURATION         = 'FETCH_CONFIGURATION'
 export const FETCH_CONFIGURATION_SUCCESS = 'FETCH_CONFIGURATION_SUCCESS'
@@ -29,6 +36,12 @@ export const fetchConfiguration = () => dispatch => {
 
                 dispatch(fetchConfigurationSuccess(res.body))
                 dispatch(connect(configuration))
+                //dispatch(notifySuccess({
+                //    message: 'configuration loaded',
+                //    ttl:     2000,
+                //}))
+                dispatch(setDashboards(configuration.dashboards))
+                dispatch(startDashboardRotation(configuration.rotationDuration))
             }
         })
 }

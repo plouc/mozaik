@@ -10,6 +10,7 @@ class Dashboard extends Component {
         const {
             dashboard: { columns, rows, widgets, title },
             isCurrent,
+            registry,
         } = this.props
 
         const widgetNodes = widgets.map((widget, index) => {
@@ -19,7 +20,8 @@ class Dashboard extends Component {
                 width:  `${ widget.columns / columns * 100 }%`,
                 height: `${ widget.rows    / rows    * 100 }%`,
                 x:      `${ widget.x       / columns * 100 }%`,
-                y:      `${ widget.y       / rows    * 100 }%`
+                y:      `${ widget.y       / rows    * 100 }%`,
+                registry,
             })
 
             return React.createElement(Widget, props)
@@ -57,6 +59,10 @@ export const DashboardPropType = PropTypes.shape({
 
 Dashboard.propTypes = {
     dashboard: DashboardPropType.isRequired,
+    isCurrent: PropTypes.bool.isRequired,
+    registry:  PropTypes.shape({
+        get: PropTypes.func.isRequired,
+    }).isRequired,
 }
 
 
