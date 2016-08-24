@@ -44,6 +44,7 @@
     "font-awesome": "4.5.0",
     "glob": "7.0.3",
     "html-webpack-plugin": "2.22.0",
+    "json-loader": "0.5.4",
     "lodash": "4.10.0",
     "memory-cache": "0.1.5",
     "node-uuid": "1.4.7",
