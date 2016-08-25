@@ -66,7 +66,7 @@
     "socket.io-client": "1.4.8",
     "style-loader": "0.13.1",
     "stylus": "0.54.5",
-    "stylus-loader": "2.3.1",
+    "stylus-relative-loader": "3.2.0",
     "superagent": "1.8.3",
     "superagent-bluebird-promise": "3.0.0",
     "webpack": "1.13.2",
