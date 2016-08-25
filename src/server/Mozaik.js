@@ -1,60 +1,98 @@
-const winston = require('winston')
-const path    = require('path')
-const chalk   = require('chalk')
-const Bus     = require('./Bus')
-const express = require('express')
-const server  = require('./server')
-const CoreApi = require('./CoreApi')
+const http     = require('http')
+const path     = require('path')
+const chalk    = require('chalk')
+const _        = require('lodash')
+const express  = require('express')
+const cors     = require('cors')
+const chokidar = require('chokidar')
+const SocketIO = require('socket.io')
+const Bus      = require('./Bus')
+const logger   = require('./logger')
+const CoreApi  = require('./CoreApi')
+const loadYaml = require('./loadYaml')
 
 
-class Mozaik {
-    constructor(config) {
-        this.logger = winston
+let configuration
+let socket
 
-        this.config = config
+const bus = new Bus({
+    logger,
+})
 
-        this.serverConfig = {
-            host: config.host,
-            port: config.port
-        }
-
-        this.config.appTitle         = this.config.appTitle         || 'Mozaïk'
-        this.config.assetsBaseUrl    = this.config.assetsBaseUrl    || ''
-        this.config.useWssConnection = !!this.config.useWssConnection
-        this.config.apisPollInterval = this.config.apisPollInterval || 15000
-
-        this.baseDir = (config.baseDir || process.cwd()) + path.sep
-        this.rootDir = path.resolve(__dirname)
-
-        this.bus = Bus(this)
-        
-        this.bus.registerApi('mozaik', CoreApi)
-    }
-
-    /**
-     * @param  {Express} app
-     */
-    startServer(app) {
-        app = app || express()
-
-        server(this, app)
-    }
-
-    /**
-     * @param {Object} config The convict config schema to validate against
-     */
-    loadApiConfig(config) {
-        // load and validate config
-        config.load(this.config.api)
-
-        try {
-            config.validate()
-        } catch (e) {
-            this.logger.error(chalk.red(e.message))
-            process.exit(1)
-        }
-    }
+exports.configure = _configuration => {
+    configuration = _configuration
 }
 
+const loadConfig = configurationPath => {
+    return loadYaml(configurationPath)
+        .then(_configuration => {
+            configuration = _configuration
 
-module.exports = Mozaik
+            return configuration
+        })
+}
+
+exports.configureFromFile = (configurationPath, watch = true) => {
+    if (watch === true) {
+        const watcher = chokidar.watch(configurationPath)
+        watcher.on('change', () => {
+            logger.info(`configuration updated, reloading`)
+            loadConfig(configurationPath)
+                .then(configuration => {
+                    if (socket) {
+                        socket.emit('configuration', _.omit(configuration, 'api'))
+                    }
+                })
+        })
+    }
+
+    return loadConfig(configurationPath)
+}
+
+/**
+ * @param {Express} [app]
+ */
+exports.start = _app => {
+    if (!configuration) {
+        logger.error(chalk.red(`no configuration, you must either call 'configure()' or 'configureFromFile()' before starting Mozaïk`))
+        process.exit(1)
+    }
+
+    bus.registerApi('mozaik', CoreApi(bus))
+
+    const app = _app || express()
+
+    app.use(cors())
+
+    const baseDir = (configuration.baseDir || process.cwd()) + path.sep
+    logger.info(chalk.yellow(`serving static contents from ${baseDir}build`))
+    app.use(express.static(`${baseDir}/build`))
+
+    app.get('/config', (req, res) => {
+        res.send(_.omit(configuration, 'api'))
+    })
+
+    const server = http.createServer(app)
+
+    server.listen(configuration.port, configuration.host, () => {
+        logger.info(chalk.yellow(`Mozaïk server listening at http://${configuration.host}:${configuration.port}`))
+    })
+
+    socket = SocketIO(server)
+    socket.on('connection', client => {
+        bus.addClient(client)
+        client.on('api.subscription', subscription => {
+            bus.subscribe(client.id, subscription)
+        })
+        client.on('disconnect', () => {
+            bus.removeClient(client.id)
+        })
+    })
+}
+
+/**
+ * Alias to Bus method.
+ */
+exports.registerApi = (id, api) => {
+    bus.registerApi(id, api)
+}

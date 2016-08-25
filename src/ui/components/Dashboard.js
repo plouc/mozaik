@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
         const widgetNodes = widgets.map((widget, index) => {
             const props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
-                key:    `widget.${index}`,
+                key:    `widget.${index}.${widget.type}`,
                 type:   widget.type,
                 width:  `${ widget.columns / columns * 100 }%`,
                 height: `${ widget.rows    / rows    * 100 }%`,
