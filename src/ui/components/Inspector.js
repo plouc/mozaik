@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import _                               from 'lodash'
 import ComponentRegistry               from './../componentRegistry'
 import InspectorItem                   from './InspectorItem'
 
@@ -49,7 +48,7 @@ class Inspector extends Component {
 
         const items = []
 
-        const widgetTypes = _.keys(ComponentRegistry.list())
+        const widgetTypes = Object.keys(ComponentRegistry.list())
         items.push(<InspectorItem key="widgets" label="widgets" icon="columns" count={widgetTypes.length} />)
 
         if (apiData) {

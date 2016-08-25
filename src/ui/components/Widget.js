@@ -8,6 +8,7 @@ const ignoreProps = [
 
 class Widget extends Component {
     componentWillMount() {
+        console.log('Widget.componentWillMount()')
         const { registry, type, subscribeToApi } = this.props
 
         // Pick component from registry
@@ -19,11 +20,15 @@ class Widget extends Component {
             if (!_.isObject(subscription) || !subscription.id) {
                 console.error(`widget ${type} 'getApiRequest()' must return an object with an 'id' property`)
             } else {
+                console.log('Widget.componentWillMount(), subscribeToApi', subscription.id)
                 subscribeToApi(subscription)
             }
-        } else {
-            console.warn(`widget ${type} does not provide a static 'getApiRequest()' method`)
         }
+    }
+
+    componentWillUnmount() {
+        console.log('Widget.componentWillUnmount()')
+        const { registry, type, subscribeToApi } = this.props
     }
 
     render() {

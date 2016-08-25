@@ -1,22 +1,29 @@
-const _     = require('lodash')
-const chalk = require('chalk')
+const _      = require('lodash')
+const chalk  = require('chalk')
+const logger = require('./logger')
 
 
-const API_MODE_POLL = 'poll'
-const API_MODE_PUSH = 'push'
+const API_MODE_POLL          = 'poll'
+const API_MODE_PUSH          = 'push'
+
+const DEFAULT_POLL_INTERVAL  = 15000
 
 
 /**
- * @param {Mozaik} mozaik
- * @returns {*}
- * @constructor
+ * Bus class.
  */
-const Bus = mozaik => {
-    const { apisPollInterval } = mozaik.config
+class Bus {
+    /**
+     * @param {Object} options
+     */
+    constructor(options = {}) {
+        this.apis          = {}
+        this.clients       = {}
+        this.subscriptions = {}
 
-    const apis          = {}
-    const clients       = {}
-    const subscriptions = {}
+        this.logger        = options.logger       || logger
+        this.pollInterval  = options.pollInterval || DEFAULT_POLL_INTERVAL
+    }
 
     /**
      * Push message to matching clients.
@@ -24,15 +31,15 @@ const Bus = mozaik => {
      * @param {String} subscriptionId
      * @param {Object} data
      */
-    const send = (subscriptionId, data) => {
-        if (!_.has(subscriptions, subscriptionId)) {
-            mozaik.logger.warn(chalk.red(`No subscription found mathing '${subscriptionId}'`))
+    send(subscriptionId, data) {
+        if (!this.subscriptions[subscriptionId]) {
+            this.logger.warn(chalk.red(`No subscription found matching '${subscriptionId}'`))
 
             return
         }
 
-        subscriptions[subscriptionId].clients.forEach((clientId) => {
-            clients[clientId].send(JSON.stringify(data))
+        this.subscriptions[subscriptionId].clients.forEach(clientId => {
+            this.clients[clientId].emit('api.data', data)
         })
     }
 
@@ -44,43 +51,51 @@ const Bus = mozaik => {
      * @param {Object} api   api function
      * @param {String} mode  api mode, can be one of 'poll' or 'push'
      */
-    const registerApi = (id, api, mode = API_MODE_POLL) => {
+    registerApi(id, api, mode = API_MODE_POLL) {
         if (mode !== API_MODE_POLL && mode !== API_MODE_PUSH) {
             const errMsg = `API mode '${mode}' is not a valid mode, must be one of 'poll' or 'push'`
-            mozaik.logger.error(chalk.red(errMsg))
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        if (_.has(apis, id)) {
+        if (this.apis[id] !== undefined) {
             const errMsg = `API '${id}' already registered`
-            mozaik.logger.error(chalk.red(errMsg))
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        apis[id] = { methods: api(mozaik), mode }
+        this.apis[id] = {
+            methods: api({
+                logger,
+                loadApiConfig: config => {
+                    //console.log(config)
+                }
+            }),
+            mode,
+        }
 
-        mozaik.logger.info(chalk.yellow(`registered API '${id}' (mode: ${mode})`))
+        this.logger.info(chalk.yellow(`registered API '${id}' (mode: ${mode})`))
     }
 
     /**
      * Register a new client.
      *
-     * @param {WebSocket} client
-     * @param {String}    id
+     * @param {SocketIO} client
+     * @param {String}   id
      */
-    const addClient = (client, id) => {
-        if (_.has(clients, id)) {
-            const errMsg = `Client with id '${id}' already exists`
-            mozaik.logger.error(chalk.red(errMsg))
+    addClient(client) {
+        if (this.clients[client.id] !== undefined) {
+            const errMsg = `Client with id '${client.id}' already exists`
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        clients[id] = client
+        this.clients[client.id] = client
 
-        mozaik.logger.info(`Client #${id} connected`)
+        this.logger.info(`Client #${client.id} connected`)
     }
 
     /**
@@ -88,131 +103,137 @@ const Bus = mozaik => {
      *
      * @param {String} id
      */
-    const removeClient = (id) => {
-        _.forOwn(subscriptions, (subscription, subscriptionId) => {
+    removeClient(id) {
+        _.forOwn(this.subscriptions, (subscription, subscriptionId) => {
             subscription.clients = _.without(subscription.clients, id)
 
             // if there's no more subscribers, clear the interval
             // to avoid consuming APIs for nothing.
             if (subscription.clients.length === 0 && subscription.timer) {
-                mozaik.logger.info(`removing interval for '${subscriptionId}'`)
+                this.logger.info(`no client found for subscription '${subscriptionId}' removing scheduler`)
 
                 clearInterval(subscription.timer)
                 delete subscription.timer
             }
         })
 
-        delete clients[id]
+        delete this.clients[id]
 
-        mozaik.logger.info(`Client #${id} disconnected`)
+        this.logger.info(`Client #${id} disconnected`)
     }
 
     /**
      * @param {String}   id
      * @param {Function} callFn
      * @param {Object}   params
+     * @returns {Promise.<void>}
      */
-    const processApiCall = (id, callFn, params) => {
-        mozaik.logger.info(`Calling '${id}'`)
+    processApiCall(id, callFn, params) {
+        this.logger.info(`Calling '${id}'`)
 
-        callFn(params)
+        // Will handle Promises and other return values
+        return Promise.resolve(callFn(params))
             .then(data => {
-                const message = { id, body: data }
+                const message = { id, data }
 
-                // cache message
-                subscriptions[id].cached = message
+                // cache message if subscription exists
+                if (this.subscriptions[id]) {
+                    this.subscriptions[id].cached = message
+                }
 
-                send(id, message)
+                this.send(id, message)
+
+                return message
             })
             .catch(err => {
-                mozaik.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`))
+                this.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`))
             })
-        
     }
 
     /**
-     * Add a subscription for the given client (client <-> API call).
+     * Add a subscription to an API.
      *
-     * @param {String} clientId
-     * @param {Object} request
+     * @param {string} clientId
+     * @param {Object} subscription
      */
-    const clientSubscription = (clientId, request) => {
-        if (!_.has(clients, clientId)) {
-            mozaik.logger.error(`Unable to find a client with id '${clientId}'`)
-
+    subscribe(clientId, subscription) {
+        if (!this.clients[clientId]) {
+            this.logger.error(`Unable to find a client with id '${clientId}'`)
             return
         }
 
-        const requestId = request.id
-        const parts     = requestId.split('.')
+        const subscriptionId = subscription.id
+        const parts          = subscriptionId.split('.')
         let errMsg
         if (parts.length < 2) {
-            errMsg = `Invalid request id '${requestId}', should be something like 'api_id.method'`
-            mozaik.logger.error(chalk.red(errMsg))
+            errMsg = `Invalid subscription id '${subscriptionId}', should be something like 'api_id.method'`
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        if (!_.has(apis, parts[0])) {
-            errMsg = `Unable to find API matching id '${parts[0]}'`
-            mozaik.logger.error(chalk.red(errMsg))
+        const [apiId, apiMethod] = parts
+        if (this.apis[apiId] === undefined) {
+            errMsg = `Unable to find API matching id '${apiId}'`
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        const api = apis[parts[0]]
-        if (!_.has(api.methods, parts[1])) {
-            errMsg = `Unable to find API method matching '${parts[1]}'`
-            mozaik.logger.error(chalk.red(errMsg))
+        const api = this.apis[apiId]
+        if (api.methods[apiMethod] === undefined) {
+            errMsg = `Unable to find API method matching '${apiMethod}'`
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        const callFn = api.methods[parts[1]]
+        const callFn = api.methods[apiMethod]
         if (!_.isFunction(callFn)) {
-            errMsg = `API method '${parts[0]}.${parts[1]}' MUST be a function`
-            mozaik.logger.error(chalk.red(errMsg))
+            errMsg = `API method '${apiId}.${apiMethod}' MUST be a function`
+            this.logger.error(chalk.red(errMsg))
 
             throw new Error(errMsg)
         }
 
-        if (!subscriptions[requestId]) {
-            subscriptions[requestId] = {
+        if (this.subscriptions[subscriptionId] === undefined) {
+            this.subscriptions[subscriptionId] = {
                 clients:         [],
-                currentResponse: null
+                currentResponse: null,
             }
 
-            mozaik.logger.info(`Added subscription '${requestId}'`)
+            this.logger.info(`Added subscription '${subscriptionId}'`)
 
             if (api.mode === API_MODE_POLL) {
                 // make an immediate call to avoid waiting for the first interval.
-                processApiCall(requestId, callFn, request.params)
+                this.processApiCall(subscriptionId, callFn, subscription.params)
             } else if (api.mode === API_MODE_PUSH) {
-                mozaik.logger.info(`Creating producer for '${requestId}'`)
+                this.logger.info(`Creating producer for '${subscriptionId}'`)
                 callFn(data => {
-                    send(requestId, {
-                        id:   requestId,
-                        body: data
+                    this.send(subscriptionId, {
+                        id: subscriptionId,
+                        data,
                     })
-                }, request.params)
+                }, subscription.params)
             }
         }
 
         // if there is no interval running, create one
-        if (!subscriptions[requestId].timer && api.mode === API_MODE_POLL) {
-            mozaik.logger.info(`Setting timer for '${requestId}'`)
-            subscriptions[requestId].timer = setInterval(() => {
-                processApiCall(requestId, callFn, request.params)
-            }, apisPollInterval)
+        if (!this.subscriptions[subscriptionId].timer && api.mode === API_MODE_POLL) {
+            this.logger.info(`creating scheduler for subscription '${subscriptionId}'`)
+
+            this.subscriptions[subscriptionId].timer = setInterval(() => {
+                this.processApiCall(subscriptionId, callFn, subscription.params)
+            }, this.pollInterval)
         }
 
         // avoid adding a client for the same API call twice
-        if (subscriptions[requestId].clients.indexOf(clientId) === -1) {
-            subscriptions[requestId].clients.push(clientId)
+        if (!this.subscriptions[subscriptionId].clients.includes(clientId)) {
+            this.subscriptions[subscriptionId].clients.push(clientId)
 
             // if there's an available cached response, send it immediately
-            if (subscriptions[requestId].cached !== null) {
-                clients[clientId].send(JSON.stringify(subscriptions[requestId].cached))
+            if (this.subscriptions[subscriptionId].cached !== null) {
+                this.clients[clientId].emit('api.data', this.subscriptions[subscriptionId].cached)
             }
         }
     }
@@ -222,13 +243,8 @@ const Bus = mozaik => {
      *
      * @returns {Array}
      */
-    const listApis = () => {
-        const apiIds = []
-        _.forOwn(apis, (api, id) => {
-            apiIds.push(id)
-        })
-
-        return apiIds
+    listApis() {
+        return Object.keys(this.apis)
     }
 
     /**
@@ -236,34 +252,26 @@ const Bus = mozaik => {
      *
      * @returns {Object}
      */
-    const listClients = () => clients
+    listClients() {
+        return this.clients
+    }
 
     /**
      * Returns current subscriptions.
      *
      * @returns {Object}
      */
-    const listSubscriptions = () => subscriptions
+    listSubscriptions() {
+        return this.subscriptions
+    }
 
     /**
      * Returns number of connected clients.
      *
      * @returns {Number}
      */
-    const clientCount = () => {
-        return _.keys(clients).length
-    }
-
-    return {
-        registerApi,
-        addClient,
-        removeClient,
-        listClients,
-        processApiCall,
-        clientSubscription,
-        listSubscriptions,
-        listApis,
-        clientCount
+    clientCount() {
+        return Object.keys(this.clients).length
     }
 }
 
