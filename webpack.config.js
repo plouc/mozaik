@@ -9,18 +9,14 @@ const glob              = require('glob')
 const PROJECT_PATH = process.cwd()
 const APP_PATH     = path.join(PROJECT_PATH, 'src', 'app')
 const MOZAIK_PATH  = __dirname
-const BUILD_PATH    = path.resolve(PROJECT_PATH, 'build')
+const BUILD_PATH   = path.resolve(PROJECT_PATH, 'build')
 const SRC_PATH     = path.resolve(MOZAIK_PATH, 'src')
 const THEMES_PATH  = path.join(SRC_PATH, 'ui', 'themes')
 
 const projectPackage = require(path.join(PROJECT_PATH, 'package.json'))
 
-const mozaikExtensions = []
-for (let packageName in projectPackage.dependencies) {
-    if (packageName.includes('mozaik-ext-')) {
-        mozaikExtensions.push(packageName)
-    }
-}
+const mozaikExtensions = Object.keys(projectPackage.dependencies)
+    .filter(packageName => packageName.includes('mozaik-ext-'))
 
 const themes = glob.sync(path.join(THEMES_PATH, '*'))
     .map(t => t.substr(THEMES_PATH.length + 1))
@@ -63,7 +59,7 @@ const config = {
             },
             {
                 test:   /\.styl/,
-                loader: 'style!css!stylus',
+                loader: 'style!css!stylus-relative',
             },
             {
                 test:     /\.css$/,
@@ -100,13 +96,18 @@ const config = {
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
             MOZAIK_THEMES:          JSON.stringify(themes),
         }),
+        // Hacky, but prevents loading all moment locales
+        new webpack.ContextReplacementPlugin(
+            /moment[\\\/]locale$/,
+            /^\.\/(en)$/
+        ),
     ],
     stylus: {
         paths: mozaikExtensions.map(ext => {
             return path.join(PROJECT_PATH, 'node_modules', ext)
         }),
         define: {
-            '$mozaik-extensions': mozaikExtensions,
+            'mozaik-extensions': mozaikExtensions,
         },
     },
 }
@@ -115,7 +116,7 @@ if (process.env.NODE_ENV === 'production') {
     config.devtool = 'cheap-module-source-map'
     config.entry   = [APP_PATH]
     config.module.loaders[0].loaders = ['babel']
-    config.module.loaders[1].loader  = ExtractTextPlugin.extract('style', 'css!stylus')
+    config.module.loaders[1].loader  = ExtractTextPlugin.extract('style', 'css!stylus-relative')
     config.plugins.push(new ExtractTextPlugin(
         '[name]-[id]-[contenthash:8].css',
         { allChunks: true }

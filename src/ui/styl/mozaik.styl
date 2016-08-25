@@ -31,11 +31,12 @@ themes = {
 @require 'components/connection-status';
 @require 'components/settings';
 
-// IMPORT EXTENSIONS STYLES
-@require '~mozaik-ext-github/styl/index.styl';
-@require '~mozaik-ext-gitlab/styl/index.styl';
-@require '~mozaik-ext-travis/styl/index.styl';
-@require '~mozaik-ext-time/styl/index.styl';
+// ——————————————————————————————————————————————————————————————————————
+// Importing extensions styles the variable mozaik-extensions is defined
+// by webpack, by looking at installed extensions in package.json
+// ——————————————————————————————————————————————————————————————————————
+for extension in mozaik-extensions {
+  @require '~' + extension + '/styl/index.styl';
+}
 
-//@require '../themes/*/index'
 @require '../themes/*/index';
