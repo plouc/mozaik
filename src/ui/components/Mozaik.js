@@ -1,5 +1,5 @@
 import React, { Component, PropTypes }  from 'react'
-import Dashboard, { DashboardPropType } from './dashboard'
+import Dashboard, { DashboardPropType } from './Dashboard'
 import ComponentRegistry                from './../componentRegistry'
 import Settings                         from './Settings'
 import Notifications                    from '../containers/NotificationsContainer'
