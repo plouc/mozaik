@@ -12,7 +12,7 @@ export const FETCH_CONFIGURATION         = 'FETCH_CONFIGURATION'
 export const FETCH_CONFIGURATION_SUCCESS = 'FETCH_CONFIGURATION_SUCCESS'
 export const FETCH_CONFIGURATION_FAILURE = 'FETCH_CONFIGURATION_FAILURE'
 
-const fetchConfigurationSuccess = configuration => ({
+export const fetchConfigurationSuccess = configuration => ({
     type: FETCH_CONFIGURATION_SUCCESS,
     configuration,
 })
@@ -41,7 +41,7 @@ export const fetchConfiguration = () => dispatch => {
                 //    ttl:     2000,
                 //}))
                 dispatch(setDashboards(configuration.dashboards))
-                dispatch(startDashboardRotation(configuration.rotationDuration))
+                dispatch(startDashboardRotation(parseInt(configuration.rotationDuration, 10)))
             }
         })
 }

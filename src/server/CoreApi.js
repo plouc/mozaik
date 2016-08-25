@@ -1,13 +1,13 @@
 /**
- * @param {Mozaik} mozaik
+ * @param {Bus} bus
  */
-const CoreApi = mozaik => {
+const CoreApi = bus => () => {
     const methods = {
         inspector() {
             return Promise.resolve({
-                apis:        mozaik.bus.listApis(),
-                clientCount: mozaik.bus.clientCount(),
-                uptime:      process.uptime()
+                apis:        bus.listApis(),
+                clientCount: bus.clientCount(),
+                uptime:      process.uptime(),
             })
         },
     }

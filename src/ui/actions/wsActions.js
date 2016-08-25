@@ -1,16 +1,22 @@
 import { guessWSURL } from '../lib/WSHelper'
+import SocketIO       from 'socket.io-client'
 import {
-    subscribeToApi,
     receiveApiData,
 } from './apiActions'
 import {
+    setDashboards,
+} from './dashboardsActions'
+import {
+    fetchConfigurationSuccess,
+} from './configurationActions'
+import {
+    notifySuccess,
     notifyWarning,
     updateNotification,
     closeNotification,
 } from './notificationsActions'
 import {
     NOTIFICATION_STATUS_SUCCESS,
-    NOTIFICATION_STATUS_WARNING,
     NOTIFICATION_STATUS_ERROR,
 } from '../constants/notificationsConstants'
 import ConnectionStatus from '../components/ConnectionStatus'
@@ -27,7 +33,6 @@ import {
 export const WS_CONNECT         = 'WS_CONNECT'
 export const WS_CONNECT_SUCCESS = 'WS_CONNECT_SUCCESS'
 export const WS_DISCONNECTED    = 'WS_DISCONNECTED'
-export const WS_RETRY           = 'WS_RETRY'
 
 const connectSuccess = () => ({
     type: WS_CONNECT_SUCCESS,
@@ -37,30 +42,84 @@ const disconnected = () => ({
     type: WS_DISCONNECTED,
 })
 
-const retry = () => ({
-    type: WS_RETRY,
-})
+let socket
 
-let ws
-
-const send = ({ id, params = {} }) => {
-    ws.send(JSON.stringify({ id, params }))
+export const send = (type, data) => {
+    return dispatch => {
+        socket.emit(type, data)
+    }
 }
 
 export const connect = configuration => {
     const wsUrl = guessWSURL(configuration)
 
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch({
             type: WS_CONNECT,
             wsUrl,
         })
 
-        ws = new WebSocket(wsUrl)
+        socket = SocketIO(wsUrl, {
+            reconnection:         true,
+            reconnectionAttempts: WS_MAX_RETRIES,
+            reconnectionDelay:    WS_RETRY_DELAY,
+            reconnectionDelayMax: WS_RETRY_DELAY,
+            randomizationFactor:  0,
+        })
 
-        ws.onopen = () => {
+        socket.on('connect', () => {
             dispatch(connectSuccess())
+        })
 
+        socket.on('api.data', data => {
+            if (data) {
+                dispatch(receiveApiData(data))
+            }
+        })
+
+        socket.on('configuration', configuration => {
+            dispatch(fetchConfigurationSuccess(configuration))
+            dispatch(setDashboards(configuration.dashboards))
+            dispatch(notifySuccess({
+                message: 'configuration updated',
+                ttl:     2000,
+            }))
+        })
+
+        socket.on('disconnect', () => {
+            dispatch(disconnected())
+            dispatch(notifyWarning({
+                id:        WS_NOTIFICATION_ID,
+                component: ConnectionStatus,
+                ttl:       -1,
+                props:     {
+                    retryCount: 0,
+                    status:     WS_STATUS_DELAYING,
+                },
+            }))
+        })
+
+        socket.on('reconnecting', attempt => {
+            dispatch(updateNotification(WS_NOTIFICATION_ID, {
+                props: {
+                    retryCount: attempt,
+                    status:     WS_STATUS_DELAYING,
+                },
+            }))
+        })
+
+        socket.on('reconnect_failed', () => {
+            dispatch(updateNotification(WS_NOTIFICATION_ID, {
+                status: NOTIFICATION_STATUS_ERROR,
+                props:  {
+                    retryCount: WS_MAX_RETRIES,
+                    status:     WS_STATUS_FAILED,
+                },
+            }))
+        })
+
+        socket.on('reconnect', () => {
+            dispatch(connectSuccess())
             dispatch(updateNotification(WS_NOTIFICATION_ID, {
                 status: NOTIFICATION_STATUS_SUCCESS,
                 props:  {
@@ -68,57 +127,6 @@ export const connect = configuration => {
                 },
             }))
             dispatch(closeNotification(WS_NOTIFICATION_ID, 2000))
-
-            const { api: { buffer } } = getState()
-            buffer.forEach(subscription => {
-                dispatch(subscribeToApi(subscription))
-                send(subscription)
-            })
-        }
-
-        ws.onmessage = event => {
-            if (event.data !== '') {
-                dispatch(receiveApiData(JSON.parse(event.data)))
-            }
-        }
-
-        ws.onclose = () => {
-            ws = null
-
-            dispatch(disconnected())
-
-            const { ws: { retryCount } } = getState()
-            if (retryCount === WS_MAX_RETRIES) {
-                return dispatch(updateNotification(WS_NOTIFICATION_ID, {
-                    status: NOTIFICATION_STATUS_ERROR,
-                    props:  {
-                        retryCount,
-                        status: WS_STATUS_FAILED,
-                    },
-                }))
-            } else if (retryCount === 0) {
-                dispatch(notifyWarning({
-                    id:        WS_NOTIFICATION_ID,
-                    component: ConnectionStatus,
-                    ttl:       -1,
-                    props:     {
-                        retryCount: 0,
-                        status:     WS_STATUS_DELAYING,
-                    },
-                }))
-            } else {
-                dispatch(updateNotification(WS_NOTIFICATION_ID, {
-                    props: {
-                        retryCount,
-                        status: WS_STATUS_DELAYING,
-                    },
-                }))
-            }
-
-            setTimeout(() => {
-                dispatch(retry())
-                dispatch(connect(configuration))
-            }, WS_RETRY_DELAY)
-        }
+        })
     }
 }
