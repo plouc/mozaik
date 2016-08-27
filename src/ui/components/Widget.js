@@ -3,13 +3,15 @@ import _                               from 'lodash'
 
 
 const ignoreProps = [
-    'type', 'x', 'y', 'width', 'height', 'registry', 'apiData', 'subscribeToApi',
+    'type', 'x', 'y', 'width', 'height',
+    'registry', 'apiData',
+    'subscribeToApi', 'unsubscribeFromApi',
 ]
 
+
 class Widget extends Component {
-    componentWillMount() {
-        console.log('Widget.componentWillMount()')
-        const { registry, type, subscribeToApi } = this.props
+    getSubscription() {
+        const { registry, type } = this.props
 
         // Pick component from registry
         const component = registry.get(type)
@@ -20,15 +22,29 @@ class Widget extends Component {
             if (!_.isObject(subscription) || !subscription.id) {
                 console.error(`widget ${type} 'getApiRequest()' must return an object with an 'id' property`)
             } else {
-                console.log('Widget.componentWillMount(), subscribeToApi', subscription.id)
-                subscribeToApi(subscription)
+                return subscription
             }
+        }
+
+        return null
+    }
+
+    componentWillMount() {
+        const { subscribeToApi } = this.props
+
+        const subscription = this.getSubscription()
+        if (subscription) {
+            subscribeToApi(subscription)
         }
     }
 
     componentWillUnmount() {
-        console.log('Widget.componentWillUnmount()')
-        const { registry, type, subscribeToApi } = this.props
+        const { unsubscribeFromApi } = this.props
+
+        const subscription = this.getSubscription()
+        if (subscription) {
+            unsubscribeFromApi(subscription.id)
+        }
     }
 
     render() {
@@ -73,14 +89,15 @@ class Widget extends Component {
 }
 
 Widget.propTypes = {
-    subscribeToApi: PropTypes.func.isRequired,
-    apiData:        PropTypes.object.isRequired,
-    type:           PropTypes.string.isRequired,
-    x:              PropTypes.string.isRequired,
-    y:              PropTypes.string.isRequired,
-    width:          PropTypes.string.isRequired,
-    height:         PropTypes.string.isRequired,
-    registry:       PropTypes.shape({
+    subscribeToApi:     PropTypes.func.isRequired,
+    unsubscribeFromApi: PropTypes.func.isRequired,
+    apiData:            PropTypes.object.isRequired,
+    type:               PropTypes.string.isRequired,
+    x:                  PropTypes.string.isRequired,
+    y:                  PropTypes.string.isRequired,
+    width:              PropTypes.string.isRequired,
+    height:             PropTypes.string.isRequired,
+    registry:           PropTypes.shape({
         get: PropTypes.func.isRequired,
     }).isRequired,
 }

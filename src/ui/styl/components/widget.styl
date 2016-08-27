@@ -9,13 +9,14 @@
     border:        widget-border,
   })
 
-.widget__wrapper
-  position absolute
-  top  0
-  left 0
-  themify: padding @(c) { return (c.widget-spacing / 2) }
+.widget__wrapper {
+  position: absolute;
+  top:  0;
+  left: 0;
+  themify: padding @(c) { return (c.widget-spacing / 2) };
+}
 
-.widget__header
+.widget__header {
   position: relative;
   overflow: hidden;
   display: flex;
@@ -33,7 +34,7 @@
     border-bottom:    widget-header-border-bottom,
     box-shadow:       widget-header-shadow,
   })
-
+}
 .widget__header__count
   display inline-block
   line-height 1em

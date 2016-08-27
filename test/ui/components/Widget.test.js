@@ -36,6 +36,7 @@ test('should render a component matching given type', t => {
         <Widget
             {...widget}
             subscribeToApi={noop}
+            unsubscribeFromApi={noop}
             apiData={{}}
             registry={registry}
         />
@@ -61,6 +62,7 @@ test('should only pass extra props to created component', t => {
         <Widget
             {...widget}
             subscribeToApi={noop}
+            unsubscribeFromApi={noop}
             apiData={{}}
             registry={registry}
         />
@@ -85,6 +87,7 @@ test('should add a custom css class for widget type', t => {
         <Widget
             {...widget}
             subscribeToApi={noop}
+            unsubscribeFromApi={noop}
             apiData={{}}
             registry={registry}
         />

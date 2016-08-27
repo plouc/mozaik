@@ -32,7 +32,10 @@ const nextDashboard = (interval, dispatch, getState) => {
 
 export const startDashboardRotation = interval => {
     return (dispatch, getState) => {
-        nextDashboard(interval, dispatch, getState)
+        const { dashboards: { dashboards } } = getState()
+        if (dashboards.length > 1) {
+            nextDashboard(interval, dispatch, getState)
+        }
     }
 }
 
