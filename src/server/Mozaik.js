@@ -84,6 +84,9 @@ exports.start = _app => {
         client.on('api.subscription', subscription => {
             bus.subscribe(client.id, subscription)
         })
+        client.on('api.unsubscription', subscription => {
+            bus.unsubscribe(client.id, subscription.id)
+        })
         client.on('disconnect', () => {
             bus.removeClient(client.id)
         })

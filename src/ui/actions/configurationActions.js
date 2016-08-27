@@ -1,5 +1,5 @@
-import request           from 'superagent'
-import { connect }       from './wsActions'
+import request     from 'superagent-bluebird-promise'
+import { connect } from './wsActions'
 import {
     setDashboards,
     startDashboardRotation,
@@ -22,16 +22,14 @@ const fetchConfigurationFailure = error => ({
     error,
 })
 
-export const fetchConfiguration = () => dispatch => {
-    dispatch({
-        type: FETCH_CONFIGURATION,
-    })
+export const fetchConfiguration = () => {
+    return dispatch => {
+        dispatch({
+            type: FETCH_CONFIGURATION,
+        })
 
-    request.get('http://localhost:5000/config')
-        .end((error, res) => {
-            if (error) {
-                dispatch(fetchConfigurationFailure(error))
-            } else {
+        return request.get('http://localhost:5000/config')
+            .then(res => {
                 const configuration = res.body
 
                 dispatch(fetchConfigurationSuccess(res.body))
@@ -42,6 +40,9 @@ export const fetchConfiguration = () => dispatch => {
                 //}))
                 dispatch(setDashboards(configuration.dashboards))
                 dispatch(startDashboardRotation(parseInt(configuration.rotationDuration, 10)))
-            }
-        })
+            })
+            .catch(err => {
+                dispatch(fetchConfigurationFailure(err.message))
+            })
+    }
 }
