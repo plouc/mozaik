@@ -1,17 +1,31 @@
 import { send } from './wsActions'
 
 
-export const API_SUBSCRIPTION        = 'API_SUBSCRIPTION'
-export const BUFFER_API_SUBSCRIPTION = 'BUFFER_API_SUBSCRIPTION'
-export const API_DATA                = 'API_DATA'
+export const API_SUBSCRIBE   = 'API_SUBSCRIBE'
+export const API_UNSUBSCRIBE = 'API_UNSUBSCRIBE'
+export const API_DATA        = 'API_DATA'
 
 export const subscribeToApi = subscription => {
     return dispatch => {
         dispatch({
-            type: API_SUBSCRIPTION,
+            type: API_SUBSCRIBE,
             subscription,
         })
         dispatch(send('api.subscription', subscription))
+    }
+}
+
+export const unsubscribeFromApi = id => {
+    return (dispatch, getState) => {
+        const { api: { subscriptions } } = getState()
+        if (subscriptions[id] && subscriptions[id].subscriptionCount <= 1) {
+            dispatch(send('api.unsubscription', { id }))
+        }
+
+        dispatch({
+            type: API_UNSUBSCRIBE,
+            id,
+        })
     }
 }
 

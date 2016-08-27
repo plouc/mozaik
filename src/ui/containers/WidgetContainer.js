@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import Widget      from '../components/Widget'
 import {
     subscribeToApi,
+    unsubscribeFromApi,
 } from '../actions/apiActions'
 
 
@@ -12,9 +13,12 @@ const mapStateToProps = ({ api: { data } }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    subscribeToApi: requestId => {
-        dispatch(subscribeToApi(requestId))
-    }
+    subscribeToApi: subscriptionId => {
+        dispatch(subscribeToApi(subscriptionId))
+    },
+    unsubscribeFromApi: subscriptionId => {
+        dispatch(unsubscribeFromApi(subscriptionId))
+    },
 })
 
 export default connect(
