@@ -1,3 +1,3 @@
 import Mozaik from './src/ui'
 
-export { Mozaik as default }
+export default Mozaik
