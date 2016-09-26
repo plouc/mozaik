@@ -56,7 +56,7 @@ const config = {
                     MOZAIK_SRC_PATH,
                     path.join(MOZAIK_PATH, 'ui.js'),
                     SRC_PATH,
-                    /mozaik-ext-[a-z0-9-]+\/src/,
+                    /mozaik-ext-[a-z0-9-]+(\/|\\)src/,
                 ],
             },
             {
