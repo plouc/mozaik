@@ -6,12 +6,13 @@ const CleanPlugin       = require('clean-webpack-plugin')
 const glob              = require('glob')
 
 
-const PROJECT_PATH = process.cwd()
-const APP_PATH     = path.join(PROJECT_PATH, 'src', 'app')
-const MOZAIK_PATH  = __dirname
-const BUILD_PATH   = path.resolve(PROJECT_PATH, 'build')
-const SRC_PATH     = path.resolve(MOZAIK_PATH, 'src')
-const THEMES_PATH  = path.join(SRC_PATH, 'ui', 'themes')
+const PROJECT_PATH    = process.cwd()
+const SRC_PATH        = path.join(PROJECT_PATH, 'src')
+const APP_PATH        = path.join(SRC_PATH, 'app')
+const MOZAIK_PATH     = __dirname
+const BUILD_PATH      = path.resolve(PROJECT_PATH, 'build')
+const MOZAIK_SRC_PATH = path.resolve(MOZAIK_PATH, 'src')
+const THEMES_PATH     = path.join(MOZAIK_SRC_PATH, 'ui', 'themes')
 
 const projectPackage = require(path.join(PROJECT_PATH, 'package.json'))
 
@@ -45,16 +46,17 @@ const config = {
         // used to resolve webpack loaders,
         // useful when using npm linked packages
         // for extension authoring for example
-        root: path.join(MOZAIK_PATH, 'node_modules')
+        root: path.join(MOZAIK_PATH, 'node_modules'),
     },
     module : {
         loaders: [
             {
                 test:    /\.js$/,
-                exclude: /node_modules\/(?!mozaik).*/,
                 include: [
+                    MOZAIK_SRC_PATH,
+                    path.join(MOZAIK_PATH, 'ui.js'),
                     SRC_PATH,
-                    /mozaik/,
+                    /mozaik-ext-[a-z0-9-]+\/src/,
                 ],
             },
             {
@@ -89,7 +91,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(SRC_PATH, 'index.html'),
+            template: path.join(MOZAIK_SRC_PATH, 'index.html'),
             title:    'mozaik',
         }),
         new webpack.DefinePlugin({
@@ -142,5 +144,6 @@ if (process.env.NODE_ENV === 'production') {
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
 }
 
+console.log(config.module.loaders[0]);
 
 module.exports = config
