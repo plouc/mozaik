@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mozaïk</title>
+    <link>http://mozaik.rocks/index.xml</link>
+    <description>Recent content on Mozaïk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 09 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://mozaik.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mozaïk 1.3.0 Released</title>
+      <link>http://mozaik.rocks/news/mozaik-1.3.0/</link>
+      <pubDate>Sat, 09 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-1.3.0/</guid>
+      <description>&lt;p&gt;Mozaïk &lt;strong&gt;1.3.0&lt;/strong&gt; was released, shipping a &lt;strong&gt;critical feature&lt;/strong&gt;:
+support for &lt;code&gt;push&lt;/code&gt; mode, it solves &lt;a href=&#34;https://github.com/plouc/mozaik/issues/34&#34;&gt;an issue&lt;/a&gt;
+which have been there for far too long.&lt;/p&gt;
+
+&lt;p&gt;Before, Mozaïk just provided a polling model, which worked nicely for most of the cases.&lt;/p&gt;
+
+&lt;p&gt;However, some users wanted to push data from &lt;strong&gt;live streams&lt;/strong&gt;, for example another WebSocket
+or a Message queue, but prior to this version, you can not decide when to send data to Mozaïk,
+you can only provide some endpoints to be called at a given interval.&lt;/p&gt;
+
+&lt;p&gt;So, now you have the ability to &lt;strong&gt;decide when to push data&lt;/strong&gt;,
+more details on this &lt;a href=&#34;http://mozaik.rocks/v1/hack/client-push-mode/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As usual, &lt;strong&gt;release notes&lt;/strong&gt; are available on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.3.0&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.2.0 Released</title>
+      <link>http://mozaik.rocks/news/mozaik-1.2.0/</link>
+      <pubDate>Wed, 06 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-1.2.0/</guid>
+      <description>&lt;p&gt;Mozaïk 1.2.0 was released, some internals changes and a brand new widget!&lt;/p&gt;
+
+&lt;p&gt;So there&amp;rsquo;s now a new &lt;code&gt;mozaik.inspector&lt;/code&gt; widget:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/mozaik-inspector-widget.png&#34; alt=&#34;Mozaïk inspector widget&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To use it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+    type: &#39;mozaik.inspector&#39;,
+    columns: 1, rows: 1,
+    x: 0, y: 0
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can check detail on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.2.0&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.0.13 Released</title>
+      <link>http://mozaik.rocks/news/mozaik-1.0.13/</link>
+      <pubDate>Sat, 02 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-1.0.13/</guid>
+      <description>&lt;p&gt;Mozaïk 1.0.13 was released, brings you small bug fixes plus ability to set an optional title for your dashboards.
+You can check all the details on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.0.13&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Saucelabs widgets for Mozaïk</title>
+      <link>http://mozaik.rocks/news/mozaik-ext-saucelabs/</link>
+      <pubDate>Sat, 19 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-ext-saucelabs/</guid>
+      <description>&lt;p&gt;This one is from &lt;a href=&#34;https://github.com/iamfiscus&#34;&gt;iamfiscus&lt;/a&gt;, it comes with 2 widgets at the time I&amp;rsquo;m writing,
+one to show the current SauceLabs status from &lt;a href=&#34;http://status.saucelabs.com/&#34;&gt;status.saucelabs.com&lt;/a&gt; and another one showing a list of your jobs with extra info.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/saucelabs-widgets.png&#34; alt=&#34;saucelabs widgets&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Have a look at the &lt;a href=&#34;https://github.com/iamfiscus/mozaik-ext-saucelabs/blob/master/README.md&#34;&gt;repo&amp;rsquo;s README&lt;/a&gt; for instructions/details.&lt;/p&gt;
+
+&lt;p&gt;Thanks &lt;a href=&#34;https://github.com/iamfiscus&#34;&gt;@iamfiscus&lt;/a&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.0.10 Released</title>
+      <link>http://mozaik.rocks/news/mozaik-1.0.10/</link>
+      <pubDate>Fri, 15 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-1.0.10/</guid>
+      <description>&lt;p&gt;Mozaïk 1.0.10 was released, brings you small bug fixes for server port/host settings.
+You can check detail on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.0.10&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk website launched</title>
+      <link>http://mozaik.rocks/news/mozaik-website-launch/</link>
+      <pubDate>Mon, 24 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-website-launch/</guid>
+      <description>&lt;p&gt;After some weeks of work, it&amp;rsquo;s finally here!
+This website is built with hexo, a great static site generator written in nodejs.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extensions</title>
+      <link>http://mozaik.rocks/extensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/extensions/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; widgets are maintained as separate modules, available as &lt;code&gt;mozaik-ext-EXT_NAME&lt;/code&gt; npm packages.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Themes</title>
+      <link>http://mozaik.rocks/themes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/themes/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; comes with several themes and makes it easy to develop your own.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Develop</title>
+      <link>http://mozaik.rocks/v2/hack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/hack/</guid>
+      <description>&lt;p&gt;So that&amp;rsquo;s it, you installed the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;Mozaïk demo&lt;/a&gt;, installed and configured some &lt;a href=&#34;http://mozaik.rocks/extensions&#34;&gt;extensions&lt;/a&gt; but you want your own because you didn&amp;rsquo;t found the one which interact with the brand new service you&amp;rsquo;re just using.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be shy, take a deep breath and carefully follow this guide, you should be able to publish your crazy extension in a day or two (depending on your knowledge of the underlying technologies of course).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting started</title>
+      <link>http://mozaik.rocks/v1/use/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;clone-the-repo&#34;&gt;Clone the repo&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GITHUB_API_TOKEN=xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting started</title>
+      <link>http://mozaik.rocks/v2/use/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;clone-the-repo&#34;&gt;Clone the repo&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GITHUB_API_TOKEN=xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;yeoman-generator&#34;&gt;Yeoman generator&lt;/h2&gt;
+
+&lt;p&gt;Alternatively, use provided &lt;a href=&#34;https://www.npmjs.com/package/generator-mozaik&#34;&gt;Yeoman generator&lt;/a&gt; available to start with new dashboard or widget:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install -g yo gulp generator-mozaik
+yo mozaik
+npm install
+gulp build
+node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple js config file &lt;code&gt;config.js&lt;/code&gt; located at the root folder.
+You should start from the default config file and customize it to fit your needs.&lt;/p&gt;
+
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hack</title>
+      <link>http://mozaik.rocks/v1/hack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/</guid>
+      <description>&lt;p&gt;So that&amp;rsquo;s it, you installed the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;Mozaïk demo&lt;/a&gt;,
+installed and configured some &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;extensions&lt;/a&gt; but you want your own
+because you didn&amp;rsquo;t found the one which interact with the brand new service you&amp;rsquo;re just using.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be shy, take a deep breath and carefully follow this guide,
+you should be able to publish your crazy extension in a day or two
+(depending on your knowledge of the underlying technologies of course).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Anatomy of an extension</title>
+      <link>http://mozaik.rocks/v1/hack/extension-anatomy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/extension-anatomy/</guid>
+      <description>
+
+&lt;h2 id=&#34;directory-layout&#34;&gt;Directory layout&lt;/h2&gt;
+
+&lt;p&gt;You should use the following directory layout when developing a Mozaïk extension.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-default&#34;&gt;mozaik-ext-awesome/ # root extension directory
+  preview/     # put preview images in this directory, you can reference them in the README
+  src/         # extension javascript code
+    components/  # put all your extension&#39;s widgets in there
+      WidgetA.jsx  # a widget (React component)
+      WidgetB.jsx  # another one :)
+      index.js     # entry point to all your widgets
+    client.js    # extension&#39;s client
+    config.js    # define your extension&#39;s client configuration schema using convict
+  styl/        # custom extension styles if you need some
+    index.styl   # this is the file that gets collected by Mozaïk
+  test/        # of course :)
+  .eslintrc    # javascript linter configuration 
+  .babelrc     # required for es6/jsx transiplation
+  .npmignore   # files to ignore when publishing your extension to npm
+  .travis.yml  # to automatically run your tests
+  client.js    # entry point to your extension&#39;s client
+  package.json # dependencies, meta, scripts…
+  README.md    # extension description and documentation
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://mozaik.rocks/v1/use/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/config/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;config.js&lt;/strong&gt; is the main &lt;strong&gt;Mozaïk&lt;/strong&gt; config, it&amp;rsquo;s where you configure your dashboards.
+It must be located at the root of your main &lt;strong&gt;Mozaïk&lt;/strong&gt; project directory.&lt;/p&gt;
+
+&lt;p&gt;Let see how to define it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/config.js
+
+// because we use plain js file, the config object must be exported
+module.exports = {
+    host: &#39;localhost&#39;, // Mozaïk host
+    port: 5000,        // Mozaïk port
+
+    theme: &#39;night-blue&#39;, // Mozaïk theme to use
+
+    rotationDuration: 8000, // Mozaïk dashboard rotation interval (ms)
+
+    // Dashboards definition
+    dashboards: [
+        // first dashboard
+        {
+            // defines dashboard grid: 4 x 3
+            columns: 4, rows: 3,
+        },
+
+        // a second dashboard
+        {
+            // add title
+            title: &#39;My second Mozaïk dashboard&#39;,
+            // defines dashboard grid: 5 x 4
+            columns: 5, rows: 4,
+        }
+    ]
+};
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://mozaik.rocks/v2/use/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/config/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;config.yml&lt;/strong&gt; is the main &lt;strong&gt;Mozaïk&lt;/strong&gt; config, it&amp;rsquo;s where you configure your dashboards.
+It should be located at the root of your main &lt;strong&gt;Mozaïk&lt;/strong&gt; project directory.&lt;/p&gt;
+
+&lt;p&gt;Let see how to define it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
+
+host: localhost # Mozaïk host
+port: 5000      # Mozaïk port
+
+# Mozaïk dashboard rotation interval (ms)
+rotationDuration: 8000 
+
+dashboards:
+    # first dashboard
+    - columns: 4
+      rows:    3
+      widgets: []
+    
+    # second dashboard
+    - columns: 3
+      rows:    3
+      widgets: []
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

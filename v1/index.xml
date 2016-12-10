@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>V1-rsses on Mozaïk</title>
+    <link>http://mozaik.rocks/v1/index.xml</link>
+    <description>Recent content in V1-rsses on Mozaïk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <atom:link href="http://mozaik.rocks/v1/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting started</title>
+      <link>http://mozaik.rocks/v1/use/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;clone-the-repo&#34;&gt;Clone the repo&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GITHUB_API_TOKEN=xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hack</title>
+      <link>http://mozaik.rocks/v1/hack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/</guid>
+      <description>&lt;p&gt;So that&amp;rsquo;s it, you installed the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;Mozaïk demo&lt;/a&gt;,
+installed and configured some &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;extensions&lt;/a&gt; but you want your own
+because you didn&amp;rsquo;t found the one which interact with the brand new service you&amp;rsquo;re just using.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be shy, take a deep breath and carefully follow this guide,
+you should be able to publish your crazy extension in a day or two
+(depending on your knowledge of the underlying technologies of course).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Anatomy of an extension</title>
+      <link>http://mozaik.rocks/v1/hack/extension-anatomy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/extension-anatomy/</guid>
+      <description>
+
+&lt;h2 id=&#34;directory-layout&#34;&gt;Directory layout&lt;/h2&gt;
+
+&lt;p&gt;You should use the following directory layout when developing a Mozaïk extension.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-default&#34;&gt;mozaik-ext-awesome/ # root extension directory
+  preview/     # put preview images in this directory, you can reference them in the README
+  src/         # extension javascript code
+    components/  # put all your extension&#39;s widgets in there
+      WidgetA.jsx  # a widget (React component)
+      WidgetB.jsx  # another one :)
+      index.js     # entry point to all your widgets
+    client.js    # extension&#39;s client
+    config.js    # define your extension&#39;s client configuration schema using convict
+  styl/        # custom extension styles if you need some
+    index.styl   # this is the file that gets collected by Mozaïk
+  test/        # of course :)
+  .eslintrc    # javascript linter configuration 
+  .babelrc     # required for es6/jsx transiplation
+  .npmignore   # files to ignore when publishing your extension to npm
+  .travis.yml  # to automatically run your tests
+  client.js    # entry point to your extension&#39;s client
+  package.json # dependencies, meta, scripts…
+  README.md    # extension description and documentation
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://mozaik.rocks/v1/use/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/config/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;config.js&lt;/strong&gt; is the main &lt;strong&gt;Mozaïk&lt;/strong&gt; config, it&amp;rsquo;s where you configure your dashboards.
+It must be located at the root of your main &lt;strong&gt;Mozaïk&lt;/strong&gt; project directory.&lt;/p&gt;
+
+&lt;p&gt;Let see how to define it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/config.js
+
+// because we use plain js file, the config object must be exported
+module.exports = {
+    host: &#39;localhost&#39;, // Mozaïk host
+    port: 5000,        // Mozaïk port
+
+    theme: &#39;night-blue&#39;, // Mozaïk theme to use
+
+    rotationDuration: 8000, // Mozaïk dashboard rotation interval (ms)
+
+    // Dashboards definition
+    dashboards: [
+        // first dashboard
+        {
+            // defines dashboard grid: 4 x 3
+            columns: 4, rows: 3,
+        },
+
+        // a second dashboard
+        {
+            // add title
+            title: &#39;My second Mozaïk dashboard&#39;,
+            // defines dashboard grid: 5 x 4
+            columns: 5, rows: 4,
+        }
+    ]
+};
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extension client</title>
+      <link>http://mozaik.rocks/v1/hack/client/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/client/</guid>
+      <description>
+
+&lt;h2 id=&#34;when-to-use-it&#34;&gt;When to use it&lt;/h2&gt;
+
+&lt;p&gt;When developing a Mozaïk extension, you&amp;rsquo;ll probably have to fetch data from external services, for example retrieve entities through an API, querying a database…&lt;/p&gt;
+
+&lt;p&gt;For now there is only one extension which doesn&amp;rsquo;t require a client, &lt;a href=&#34;https://github.com/plouc/mozaik-ext-time&#34;&gt;&lt;code&gt;mozaik-ext-time&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So to communicate with thoses external services, Mozaïk provides a simple way to feed your components, using a &lt;a href=&#34;https://github.com/plouc/mozaik/blob/master/src/Bus.js&#34;&gt;&lt;strong&gt;Bus&lt;/strong&gt;&lt;/a&gt; on the server side, and a &lt;a href=&#34;https://github.com/plouc/mozaik/blob/master/src/browser/mixins/ApiConsumerMixin.js&#34;&gt;&lt;strong&gt;mixin&lt;/strong&gt;&lt;/a&gt; on the frontend to easily notify your widgets when some fresh data is fetched from the server.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-big-picture&#34;&gt;The big picture&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Crafting schema…&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-use-it&#34;&gt;How to use it&lt;/h2&gt;
+
+&lt;p&gt;When you create an extension, you provide a set of widgets (React components). Those widgets can use the &lt;a href=&#34;https://github.com/plouc/mozaik/blob/master/src/browser/mixins/ApiConsumerMixin.js&#34;&gt;&lt;strong&gt;ApiConsumerMixin&lt;/strong&gt;&lt;/a&gt; to tell Mozaïk they need data from a client.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-a-connected-component&#34;&gt;Creating a connected component&lt;/h3&gt;
+
+&lt;p&gt;We&amp;rsquo;ll create an imaginary component named &lt;code&gt;ClientConsumer&lt;/code&gt; for an imaginary extension named &lt;code&gt;mozaik-ext-sample&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// mozaik-ext-sample/src/components/ClientConsumer.jsx
+import React, { Component } from &#39;react&#39;;
+import reactMixin           from &#39;react-mixin&#39;;    // to be able to use Mixins on es6 classes
+import { ListenerMixin }    from &#39;reflux&#39;;         // see https://github.com/reflux/refluxjs#convenience-mixin-for-react
+import Mozaik               from &#39;mozaik/browser&#39;; // Mozaïk browser utilities
+
+
+class ClientConsumer extends Component {
+    // we extend the constructor to set a default state 
+    constructor(props) {
+        super(props);
+        
+        this.state = { count: 0 };
+    }
+
+    // Before the component is mounted, the mixin will search for this method on the component.
+    // This method MUST return an object with an `id` property.
+    // It tells Mozaïk that this component is interested in data coming from `sample` generated with `sampleMethod`
+    // The `id` MUST be unique across all Mozaïk extensions.
+    getApiRequest() {
+        return { id: &#39;sample.sampleMethod&#39; };
+    }
+    
+    // This method is automatically invoked each time the `sample.sampleMethod` has fetched some data. 
+    // This assumes your method will return an object containing a `count` property.
+    onApiData(data) {
+        console.log(data);
+        this.setState({ count: data.count });
+    }
+
+    render() {
+        const { count } = this.state;
+    
+        return (
+            &amp;lt;div&amp;gt;{count}&amp;lt;/div&amp;gt;
+        );
+    }
+}
+
+// apply the mixins on the component
+reactMixin(ClientConsumer.prototype, ListenerMixin);
+reactMixin(ClientConsumer.prototype, Mozaik.Mixin.ApiConsumer);
+
+export default ClientConsumer;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Simple rules to define request id:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;use the name of your extension for the first part, so here we used &lt;code&gt;sample&lt;/code&gt; because our extension is &lt;code&gt;mozaik-ext-sample&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;use the name of the client&amp;rsquo;s method you want to call for the second part, here we&amp;rsquo;re interested in data produced by &lt;code&gt;sampleMethod&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;creating-a-client&#34;&gt;Creating a client&lt;/h3&gt;
+
+&lt;p&gt;Now we have our connected widget ready to receive data from our extension&amp;rsquo;s client, so let&amp;rsquo;s create it.&lt;/p&gt;
+
+&lt;p&gt;A client must be a single exported function which returns an &lt;strong&gt;object whose keys correspond to all available operations&lt;/strong&gt;.
+All operations &lt;strong&gt;must return a Promise&lt;/strong&gt;, for this simple example, it&amp;rsquo;s not really useful, but most of the time, you&amp;rsquo;ll be performing asynchronous operations.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// mozaik-ext-sample/src/client.js
+import Promise from &#39;bluebird&#39;; // use bluebird for simplicity, you should also use a Promise polyfill
+
+// When Mozaïk instanciate a client, it pass the mozaik instance to it,
+// it&#39;s usefull to use the builtin Mozaïk logger for example.
+// This function MUST return an object whose keys correspond to all available operations.
+const client = mozaik =&amp;gt; {
+    const count = 0;
+
+    return {
+        // Remember the request id `sample.sampleMethod`.
+        // This function MUST return a promise.
+        sampleMethod() {
+            // each time this method is invoked, we increment the count by 1
+            count += 1;
+            
+            return Promise.resolve({ count }); 
+        }
+    };
+};
+
+export default client;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Grid system</title>
+      <link>http://mozaik.rocks/v1/use/grid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/grid/</guid>
+      <description>&lt;p&gt;As we saw previously in the &lt;a href=&#34;http://mozaik.rocks/v1/use/config/&#34;&gt;config.js&lt;/a&gt; section,
+&lt;strong&gt;Mozaïk&lt;/strong&gt; provides a simple way to define dashboard layout. Let&amp;rsquo;s see how it works.&lt;/p&gt;
+
+&lt;p&gt;To configure a layout like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-default&#34;&gt;                         columns: 3
+ +——————————————————+——————————————————+——————————————————+
+ |                  |                                     |
+ | A -&amp;gt; x: 0  y: 0  |        B -&amp;gt; x: 1  y: 0              |
+ |      columns: 1  |             columns: 2              |
+ |      rows:    1  |             rows:    1              |
+ |                  |                                     |
+ +——————————————————+——————————————————+——————————————————+  rows: 2
+ |                                     |                  |
+ |        C -&amp;gt; x: 0  y: 1              | D -&amp;gt; x: 2  y: 1  |
+ |             columns: 2              |      columns: 1  |
+ |             rows:    1              |      rows:    1  |
+ |                                     |                  |
+ +——————————————————+——————————————————+——————————————————+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should have the following config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+    //...
+    dashboards: [
+        {
+            columns: 3, rows: 2,
+            widgets: [
+                {
+                    type: &#39;whatever&#39;,
+            /* A */ columns: 1, rows: 1,
+                    x: 0, y: 0
+                },
+                {
+                    type: &#39;whatever&#39;,
+            /* B */ columns: 2, rows: 1,
+                    x: 1, y: 0
+                },
+                {
+                    type: &#39;whatever&#39;,
+            /* C */ columns: 2, rows: 1,
+                    x: 0, y: 1
+                },
+                {
+                    type: &#39;whatever&#39;,
+            /* D */ columns: 1, rows: 1,
+                    x: 2, y: 1
+                }
+            ]
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extension client [poll mode]</title>
+      <link>http://mozaik.rocks/v1/hack/client-poll-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/client-poll-mode/</guid>
+      <description>
+
+&lt;p&gt;If you didn&amp;rsquo;t read the &lt;a href=&#34;http://mozaik.rocks/v1/hack/client/&#34;&gt;intro&lt;/a&gt; on Mozaïk extension clients,
+then you should consider &lt;a href=&#34;http://mozaik.rocks/v1/hack/client/&#34;&gt;reading it first&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When you register your extension&amp;rsquo;s client to Mozaïk, you have the ability to pass a &lt;strong&gt;mode&lt;/strong&gt;
+which determine how the data will be pulled from your external service to Mozaïk.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;poll&lt;/code&gt; mode is the default mode set when you register a client to Mozaïk.&lt;/p&gt;
+
+&lt;h2 id=&#34;when-using-poll-mode&#34;&gt;When using &lt;code&gt;poll&lt;/code&gt; mode&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s useful when you want your client to fetch data from an external service at a given interval.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;http://mozaik.rocks/v1/hack/client/&#34;&gt;this page&lt;/a&gt; for usage.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Theme</title>
+      <link>http://mozaik.rocks/v1/use/theme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/theme/</guid>
+      <description>
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;You can set the theme you want with the &lt;code&gt;theme&lt;/code&gt; key in the config file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  //…
+  theme: &#39;yellow&#39;,
+  //…
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;available-themes&#34;&gt;Available themes&lt;/h3&gt;
+
+&lt;p&gt;Mozaïk comes with 6 themes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bordeau&lt;/li&gt;
+&lt;li&gt;light-grey&lt;/li&gt;
+&lt;li&gt;light-yellow&lt;/li&gt;
+&lt;li&gt;night-blue&lt;/li&gt;
+&lt;li&gt;snow&lt;/li&gt;
+&lt;li&gt;yellow&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Take a look at the theme gallery&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-a-custom-theme&#34;&gt;Creating a custom theme&lt;/h2&gt;
+
+&lt;p&gt;Mozaïk eases the creation of a custom theme by providing a bunch of customizable variables.
+To create your theme you&amp;rsquo;ll have to follow this directory layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;your-mozaik-app/ # root Mozaïk app directory, if you used the demo repository, should be &#39;mozaik-demo&#39;
+  build/
+  src/
+  themes/         # custom themes directory
+    my-theme/     # your theme, name must match config key
+      _vars.styl  # theme variables
+      index.styl  # theme overrides
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, you have to create &lt;code&gt;themes&lt;/code&gt; and &lt;code&gt;my-theme&lt;/code&gt; directories and &lt;code&gt;_vars.styl&lt;/code&gt;, &lt;code&gt;index.styl&lt;/code&gt; files.
+Your theme can now be used by setting &lt;code&gt;theme&lt;/code&gt; config key to &lt;strong&gt;my-theme&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The theme compilation run in two phases:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;loads Mozaïk core styles using the stylus variables defined in &lt;code&gt;_vars.styl&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;loads overrides defined in &lt;code&gt;index.styl&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You should take a look at &lt;a href=&#34;https://github.com/plouc/mozaik/tree/master/src/themes/night-blue&#34;&gt;an existing theme&lt;/a&gt; to see how it&amp;rsquo;s built.&lt;/p&gt;
+
+&lt;h3 id=&#34;vars-styl&#34;&gt;_vars.styl&lt;/h3&gt;
+
+&lt;p&gt;As seen previously, this file contains variables availables in core Mozaïk styles, for an exhaustive list of them, see &lt;a href=&#34;https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl&#34;&gt;this file&lt;/a&gt;.
+You don&amp;rsquo;t have to set all variables, if one is not set, default value defined in &lt;a href=&#34;https://github.com/plouc/mozaik/blob/master/src/styl/__vars.styl&#34;&gt;this file&lt;/a&gt; will be used.&lt;/p&gt;
+
+&lt;h3 id=&#34;index-styl&#34;&gt;index.styl&lt;/h3&gt;
+
+&lt;p&gt;This file contains overrides, it differs from &lt;code&gt;_vars.styl&lt;/code&gt; because it&amp;rsquo;s completely independent from Mozaïk core styles.
+If you want to customize a certain widget or if you don&amp;rsquo;t find a variable which fit your needs, you should put your rules there.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extension client [push mode]</title>
+      <link>http://mozaik.rocks/v1/hack/client-push-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/client-push-mode/</guid>
+      <description>
+
+&lt;p&gt;If you didn&amp;rsquo;t read the &lt;a href=&#34;http://mozaik.rocks/v1/hack/client/&#34;&gt;intro&lt;/a&gt; on Mozaïk extension client,
+then you should consider &lt;a href=&#34;http://mozaik.rocks/v1/hack/client/&#34;&gt;reading it first&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When you register your extension&amp;rsquo;s client to Mozaïk, you have the ability to pass a &lt;strong&gt;mode&lt;/strong&gt;
+which determine how the data will be pulled from your external service to Mozaïk.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;push&lt;/code&gt; must be specified when you register a client to Mozaïk.&lt;/p&gt;
+
+&lt;h2 id=&#34;when-using-push-mode&#34;&gt;When using &lt;code&gt;push&lt;/code&gt; mode&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s useful when you communicate with an external service through websockets or if you want
+to connect Mozaïk to some sort of message queue.&lt;/p&gt;
+
+&lt;p&gt;The main difference with &lt;code&gt;poll&lt;/code&gt; mode is that Mozaïk is no more responsible for fetching the data
+at a given interval, your client acts as a producer and notify Mozaïk when it wants to push
+some fresh data to its bound widgets.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-use-it&#34;&gt;How to use it&lt;/h2&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/5fc5d80aa74e4a6c3196a265602c509c.js&#34;&gt;&lt;/script&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Widgets</title>
+      <link>http://mozaik.rocks/v1/use/widgets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/use/widgets/</guid>
+      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
+a react component which often communicates with an API.
+Mozaïk comes with just a few core widgets, others must be installed through extensions,
+see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Widgets share some common properties which are all required:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;key&lt;/th&gt;
+&lt;th&gt; description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;type&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;the type of widget to instantiate&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;x&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;x position&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;y&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;y position&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;columns&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;width expressed in columns&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;rows&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;height expressed in rows&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v1/use/grid/&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Automated extension demo</title>
+      <link>http://mozaik.rocks/v1/hack/extension-demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v1/hack/extension-demo/</guid>
+      <description>
+
+&lt;p&gt;The best way to promote your brand new Mozaïk extension is to provide a
+&lt;a href=&#34;http://mozaik.herokuapp.com/&#34;&gt;demo&lt;/a&gt; for it.&lt;/p&gt;
+
+&lt;p&gt;But because we&amp;rsquo;re talking about open source stuff, you probably don&amp;rsquo;t want to spend
+money for a dedicated hosting, we&amp;rsquo;ll see how you can use a free &lt;a href=&#34;https://www.heroku.com/&#34;&gt;heroku&lt;/a&gt;
+hosting to showcase your extension.&lt;/p&gt;
+
+&lt;p&gt;Also manual deployment is painful and hard to maintain, the goal is to automate
+everything so that you don&amp;rsquo;t have to worry about which version is deployed,
+your demo will always be up to date.&lt;/p&gt;
+
+&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://signup.heroku.com/&#34;&gt;An heroku account&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A Mozaïk extension hosted on &lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;git/Node.js/wget/unzip&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;
+
+&lt;h3 id=&#34;create-a-dedicated-branch&#34;&gt;Create a dedicated branch&lt;/h3&gt;
+
+&lt;p&gt;First, you&amp;rsquo;ll have to create a new orphan branch on your repository:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git checkout --orphan demo
+git rm --cached -r .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Next, remove all unwanted files, &lt;strong&gt;make sure you don&amp;rsquo;t delete the &lt;code&gt;.git&lt;/code&gt; directory&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;fetch-the-template&#34;&gt;Fetch the template&lt;/h3&gt;
+
+&lt;p&gt;Now, you&amp;rsquo;ll have to get the &lt;a href=&#34;https://github.com/plouc/mozaik-ext-demo-template&#34;&gt;Mozaïk extension demo template&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://github.com/plouc/mozaik-ext-demo-template/archive/master.zip
+unzip master.zip
+mv {mozaik-ext-demo-template-master/*,mozaik-ext-demo-template-master/.*} .
+rm -r mozaik-ext-demo-template-master master.zip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;define-proper-settings&#34;&gt;Define proper settings&lt;/h3&gt;
+
+&lt;p&gt;You need to adjust several files:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;package.json&lt;/strong&gt;: replace &lt;code&gt;EXT_NAME&lt;/code&gt;, &lt;code&gt;FULL_NAME&lt;/code&gt;, &lt;code&gt;GITHUB_USER&lt;/code&gt; and set the correct version of your package&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;README.md&lt;/strong&gt;: replace &lt;code&gt;EXT_NAME&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;src/App.jsx&lt;/strong&gt;: replace &lt;code&gt;EXT_NAME&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If your extension involves a client, tweak &lt;strong&gt;src/server.js&lt;/strong&gt; by uncommenting the following lines and replacing &lt;code&gt;EXT_NAME&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;import EXT_NAME  from &#39;mozaik-ext-EXT_NAME/client&#39;
+
+mozaik.bus.registerApi(&#39;EXT_NAME&#39;, EXT_NAME)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, edit dashboard configuration: &lt;strong&gt;config.js&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;test-push&#34;&gt;Test &amp;amp; push&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install
+npm start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now open &lt;a href=&#34;http://localhost:5000/&#34;&gt;http://localhost:5000/&lt;/a&gt; and check your dashboard works as expected.&lt;/p&gt;
+
+&lt;p&gt;If everything is OK, commit and push the demo branch:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git add . &amp;amp;&amp;amp; git commit -m &amp;quot;feat(demo): init demo&amp;quot;
+git push --set-upstream origin demo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;heroku-setup&#34;&gt;Heroku setup&lt;/h3&gt;
+
+&lt;p&gt;Login to your heroku account.&lt;/p&gt;
+
+&lt;h4 id=&#34;create-a-new-app&#34;&gt;Create a new app&lt;/h4&gt;
+
+&lt;p&gt;Click on the &lt;strong&gt;Create new app&lt;/strong&gt; button located in the top right drop down.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-create-app.png&#34; alt=&#34;new heroku app&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Set your app name, should be something like &lt;strong&gt;mozaik-EXT_NAME&lt;/strong&gt; and
+click on &lt;strong&gt;Create App&lt;/strong&gt; to validate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-create-app-form.png&#34; alt=&#34;heroku app form&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Connect your app to your GitHub repository,
+click on the &lt;strong&gt;GitHub&lt;/strong&gt; button inside the &lt;strong&gt;Deployment method&lt;/strong&gt; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-deploy-method.png&#34; alt=&#34;heroku deployment method&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Search for your repository and click the &lt;strong&gt;connect&lt;/strong&gt; button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-connect-github.png&#34; alt=&#34;heroku connect github&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Enable auto deployment, choose the &lt;strong&gt;demo&lt;/strong&gt; branch and click &lt;strong&gt;Enable Automatic Deploys&lt;/strong&gt;
+inside the &lt;strong&gt;Automatic Deploys&lt;/strong&gt; section. This will trigger a deploy each time
+you push to the &lt;strong&gt;demo&lt;/strong&gt; branch.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-auto-deploy.png&#34; alt=&#34;heroku auto deployment&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Add config vars, click on the &lt;strong&gt;Settings&lt;/strong&gt; tab and click &lt;strong&gt;Reveal Config Vars&lt;/strong&gt;,
+then add &lt;strong&gt;USE_SSL&lt;/strong&gt; var with value &lt;strong&gt;true&lt;/strong&gt;. This is required to tell Mozaïk to use
+https and wss.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-vars.png&#34; alt=&#34;heroku vars&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s also a good opportunity to add required credentials if your extension
+relies on a http client requiring some (don&amp;rsquo;t put it in the repo!),
+those vars will then be available as regular environment variables.&lt;/p&gt;
+
+&lt;p&gt;Deploy your app by clicking on the &lt;strong&gt;Deploy&lt;/strong&gt; tab, choosing the &lt;strong&gt;demo&lt;/strong&gt; branch
+and clicking &lt;strong&gt;Deploy Branch&lt;/strong&gt; inside the &lt;strong&gt;Manual Deploy&lt;/strong&gt; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/heroku-deploy.png&#34; alt=&#34;heroku deploy&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Your app should be deployed in a few minutes and then availabe at &lt;a href=&#34;https://mozaik-EXT_NAME.herokuapp.com/&#34;&gt;https://mozaik-EXT_NAME.herokuapp.com/&lt;/a&gt;.
+To update the demo for newer releases, you&amp;rsquo;ll just have to edit the extension version in the
+&lt;strong&gt;package.json&lt;/strong&gt; file from the &lt;strong&gt;demo&lt;/strong&gt; branch, it will automatically re-deploy it.&lt;/p&gt;
+
+&lt;h3 id=&#34;enjoy-and-share&#34;&gt;Enjoy and share :)&lt;/h3&gt;
+
+&lt;p&gt;You can now add the demo as your repository website on GitHub.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://mozaik.rocks/images/extension-demo/github-extension-website.png&#34; alt=&#34;GitHub extension website&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to have a link to the demo on the Mozaïk website extensions page,
+feel free to fork the &lt;a href=&#34;https://github.com/plouc/mozaik-website/&#34;&gt;website repo&lt;/a&gt;
+and edit &lt;strong&gt;config.yaml&lt;/strong&gt; or just &lt;a href=&#34;https://github.com/plouc/mozaik-website/issues/new&#34;&gt;create an issue&lt;/a&gt;,
+I&amp;rsquo;ll take care of it.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

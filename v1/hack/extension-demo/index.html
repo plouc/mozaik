@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+
+    <base href="http://mozaik.rocks/">
+    <title>
+        
+        
+            Automated extension demo | Mozaïk
+        
+    </title>
+    <link rel="canonical" href="http://mozaik.rocks/v1/hack/extension-demo/">
+    
+    <link rel="apple-touch-icon" href="http://mozaik.rocks/images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-32x32.png" sizes="32x32">
+    
+
+<script type="text/javascript">
+    var baseURL = 'http:\/\/mozaik.rocks\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+<link rel="stylesheet" href="http://mozaik.rocks/css/mozaik.css">
+
+
+<link rel="shortcut icon"
+      
+      href="http://mozaik.rocks/img/favicon.ico"
+      
+>
+
+
+
+
+</head>
+<body lang="">
+<header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="http://mozaik.rocks/" class="header_logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav">
+                
+                    <a href="http://mozaik.rocks/v1/use/" class="main-nav_item">Use</a>
+                
+                    <a href="http://mozaik.rocks/extensions/" class="main-nav_item">Extend</a>
+                
+                    <a href="http://mozaik.rocks/themes/" class="main-nav_item">Theme</a>
+                
+                    <a href="http://mozaik.rocks/v1/hack/" class="main-nav_item">Hack</a>
+                
+                    <a href="http://mozaik.rocks/news/" class="main-nav_item">News</a>
+                
+                <a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_item">Github</a>
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_item main-nav_item-demo">demo</a>
+            </nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
+    </div>
+</header>
+<div id="container">
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <div class="strata_out sub-header">
+                <div class="strata">
+                    <div class="strata_in">
+                        <h1 class="page-title">Automated extension demo</h1>
+                        
+                            <div class="page-baseline">How to automatically publish a demo of your Mozaïk extension (for free)</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article">
+                    <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                        
+
+<p>The best way to promote your brand new Mozaïk extension is to provide a
+<a href="http://mozaik.herokuapp.com/">demo</a> for it.</p>
+
+<p>But because we&rsquo;re talking about open source stuff, you probably don&rsquo;t want to spend
+money for a dedicated hosting, we&rsquo;ll see how you can use a free <a href="https://www.heroku.com/">heroku</a>
+hosting to showcase your extension.</p>
+
+<p>Also manual deployment is painful and hard to maintain, the goal is to automate
+everything so that you don&rsquo;t have to worry about which version is deployed,
+your demo will always be up to date.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li><a href="https://signup.heroku.com/">An heroku account</a></li>
+<li>A Mozaïk extension hosted on <a href="https://github.com/">GitHub</a></li>
+<li>git/Node.js/wget/unzip</li>
+</ul>
+
+<h2 id="steps">Steps</h2>
+
+<h3 id="create-a-dedicated-branch">Create a dedicated branch</h3>
+
+<p>First, you&rsquo;ll have to create a new orphan branch on your repository:</p>
+
+<pre><code class="language-bash">git checkout --orphan demo
+git rm --cached -r .
+</code></pre>
+
+<p>Next, remove all unwanted files, <strong>make sure you don&rsquo;t delete the <code>.git</code> directory</strong>.</p>
+
+<h3 id="fetch-the-template">Fetch the template</h3>
+
+<p>Now, you&rsquo;ll have to get the <a href="https://github.com/plouc/mozaik-ext-demo-template">Mozaïk extension demo template</a>:</p>
+
+<pre><code class="language-bash">wget https://github.com/plouc/mozaik-ext-demo-template/archive/master.zip
+unzip master.zip
+mv {mozaik-ext-demo-template-master/*,mozaik-ext-demo-template-master/.*} .
+rm -r mozaik-ext-demo-template-master master.zip
+</code></pre>
+
+<h3 id="define-proper-settings">Define proper settings</h3>
+
+<p>You need to adjust several files:</p>
+
+<ul>
+<li><strong>package.json</strong>: replace <code>EXT_NAME</code>, <code>FULL_NAME</code>, <code>GITHUB_USER</code> and set the correct version of your package</li>
+<li><strong>README.md</strong>: replace <code>EXT_NAME</code></li>
+<li><strong>src/App.jsx</strong>: replace <code>EXT_NAME</code></li>
+</ul>
+
+<p>If your extension involves a client, tweak <strong>src/server.js</strong> by uncommenting the following lines and replacing <code>EXT_NAME</code>:</p>
+
+<pre><code class="language-javascript">import EXT_NAME  from 'mozaik-ext-EXT_NAME/client'
+
+mozaik.bus.registerApi('EXT_NAME', EXT_NAME)
+</code></pre>
+
+<p>Finally, edit dashboard configuration: <strong>config.js</strong>.</p>
+
+<h3 id="test-push">Test &amp; push</h3>
+
+<pre><code>npm install
+npm start
+</code></pre>
+
+<p>Now open <a href="http://localhost:5000/">http://localhost:5000/</a> and check your dashboard works as expected.</p>
+
+<p>If everything is OK, commit and push the demo branch:</p>
+
+<pre><code class="language-bash">git add . &amp;&amp; git commit -m &quot;feat(demo): init demo&quot;
+git push --set-upstream origin demo
+</code></pre>
+
+<h3 id="heroku-setup">Heroku setup</h3>
+
+<p>Login to your heroku account.</p>
+
+<h4 id="create-a-new-app">Create a new app</h4>
+
+<p>Click on the <strong>Create new app</strong> button located in the top right drop down.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-create-app.png" alt="new heroku app" /></p>
+
+<p>Set your app name, should be something like <strong>mozaik-EXT_NAME</strong> and
+click on <strong>Create App</strong> to validate.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-create-app-form.png" alt="heroku app form" /></p>
+
+<p>Connect your app to your GitHub repository,
+click on the <strong>GitHub</strong> button inside the <strong>Deployment method</strong> section.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-deploy-method.png" alt="heroku deployment method" /></p>
+
+<p>Search for your repository and click the <strong>connect</strong> button.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-connect-github.png" alt="heroku connect github" /></p>
+
+<p>Enable auto deployment, choose the <strong>demo</strong> branch and click <strong>Enable Automatic Deploys</strong>
+inside the <strong>Automatic Deploys</strong> section. This will trigger a deploy each time
+you push to the <strong>demo</strong> branch.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-auto-deploy.png" alt="heroku auto deployment" /></p>
+
+<p>Add config vars, click on the <strong>Settings</strong> tab and click <strong>Reveal Config Vars</strong>,
+then add <strong>USE_SSL</strong> var with value <strong>true</strong>. This is required to tell Mozaïk to use
+https and wss.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-vars.png" alt="heroku vars" /></p>
+
+<p>It&rsquo;s also a good opportunity to add required credentials if your extension
+relies on a http client requiring some (don&rsquo;t put it in the repo!),
+those vars will then be available as regular environment variables.</p>
+
+<p>Deploy your app by clicking on the <strong>Deploy</strong> tab, choosing the <strong>demo</strong> branch
+and clicking <strong>Deploy Branch</strong> inside the <strong>Manual Deploy</strong> section.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/heroku-deploy.png" alt="heroku deploy" /></p>
+
+<p>Your app should be deployed in a few minutes and then availabe at <a href="https://mozaik-EXT_NAME.herokuapp.com/">https://mozaik-EXT_NAME.herokuapp.com/</a>.
+To update the demo for newer releases, you&rsquo;ll just have to edit the extension version in the
+<strong>package.json</strong> file from the <strong>demo</strong> branch, it will automatically re-deploy it.</p>
+
+<h3 id="enjoy-and-share">Enjoy and share :)</h3>
+
+<p>You can now add the demo as your repository website on GitHub.</p>
+
+<p><img src="http://mozaik.rocks/images/extension-demo/github-extension-website.png" alt="GitHub extension website" /></p>
+
+<p>If you want to have a link to the demo on the Mozaïk website extensions page,
+feel free to fork the <a href="https://github.com/plouc/mozaik-website/">website repo</a>
+and edit <strong>config.yaml</strong> or just <a href="https://github.com/plouc/mozaik-website/issues/new">create an issue</a>,
+I&rsquo;ll take care of it.</p>
+
+                    </div>
+                </div>
+            </article>
+            
+                
+                
+                <aside class="sidebar" role="navigation">
+                    <nav>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/" class="sidebar__link">
+                                Hack
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/extension-anatomy/" class="sidebar__link">
+                                Anatomy of an extension
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/client/" class="sidebar__link">
+                                Extension client
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/client-poll-mode/" class="sidebar__link">
+                                Extension client [poll mode]
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/client-push-mode/" class="sidebar__link">
+                                Extension client [push mode]
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/hack/extension-demo/" class="sidebar__link _is-current">
+                                Automated extension demo
+                            </a>
+                        
+                    </nav>
+                </aside>
+            
+        </div>
+    </div>
+</div>
+    <footer id="footer" class="strata_out">
+        <div class="strata">
+            <div class="strata_in">
+                <div id="footer-copyright">
+                    <a href="https://github.com/plouc/mozaik">Mozaïk</a> |  Distributed under MIT License |
+                    crafted by <a href="https://github.com/plouc" target="_blank">Raphaël Benitte</a> aka <a href="https://github.com/plouc">plouc</a> |
+                    Found an issue with the docs? Report it <a href="https://github.com/plouc/mozaik-website/issues/new">here</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="http://mozaik.rocks/js/mozaik.js"></script>
+</body>
+</html>

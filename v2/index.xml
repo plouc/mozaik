@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>V2-rsses on Mozaïk</title>
+    <link>http://mozaik.rocks/v2/index.xml</link>
+    <description>Recent content in V2-rsses on Mozaïk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <atom:link href="http://mozaik.rocks/v2/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Develop</title>
+      <link>http://mozaik.rocks/v2/hack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/hack/</guid>
+      <description>&lt;p&gt;So that&amp;rsquo;s it, you installed the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;Mozaïk demo&lt;/a&gt;, installed and configured some &lt;a href=&#34;http://mozaik.rocks/extensions&#34;&gt;extensions&lt;/a&gt; but you want your own because you didn&amp;rsquo;t found the one which interact with the brand new service you&amp;rsquo;re just using.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be shy, take a deep breath and carefully follow this guide, you should be able to publish your crazy extension in a day or two (depending on your knowledge of the underlying technologies of course).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting started</title>
+      <link>http://mozaik.rocks/v2/use/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;clone-the-repo&#34;&gt;Clone the repo&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GITHUB_API_TOKEN=xxxxx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;yeoman-generator&#34;&gt;Yeoman generator&lt;/h2&gt;
+
+&lt;p&gt;Alternatively, use provided &lt;a href=&#34;https://www.npmjs.com/package/generator-mozaik&#34;&gt;Yeoman generator&lt;/a&gt; available to start with new dashboard or widget:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install -g yo gulp generator-mozaik
+yo mozaik
+npm install
+gulp build
+node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple js config file &lt;code&gt;config.js&lt;/code&gt; located at the root folder.
+You should start from the default config file and customize it to fit your needs.&lt;/p&gt;
+
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://mozaik.rocks/v2/use/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/config/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;config.yml&lt;/strong&gt; is the main &lt;strong&gt;Mozaïk&lt;/strong&gt; config, it&amp;rsquo;s where you configure your dashboards.
+It should be located at the root of your main &lt;strong&gt;Mozaïk&lt;/strong&gt; project directory.&lt;/p&gt;
+
+&lt;p&gt;Let see how to define it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
+
+host: localhost # Mozaïk host
+port: 5000      # Mozaïk port
+
+# Mozaïk dashboard rotation interval (ms)
+rotationDuration: 8000 
+
+dashboards:
+    # first dashboard
+    - columns: 4
+      rows:    3
+      widgets: []
+    
+    # second dashboard
+    - columns: 3
+      rows:    3
+      widgets: []
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Grid system</title>
+      <link>http://mozaik.rocks/v2/use/grid/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/grid/</guid>
+      <description>&lt;p&gt;As we saw previously in the &lt;a href=&#34;http://mozaik.rocks/v2/usage/config-file.html&#34;&gt;config.yml&lt;/a&gt; section, &lt;strong&gt;Mozaïk&lt;/strong&gt; provides a simple way to define dashboard layout.
+Let&amp;rsquo;s see how it works.&lt;/p&gt;
+
+&lt;p&gt;To configure a layout like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-raw&#34;&gt;                         columns: 3
+ +——————————————————+——————————————————+——————————————————+
+ |                  |                                     |
+ | A -&amp;gt; x: 0  y: 0  |        B -&amp;gt; x: 1  y: 0              |
+ |      columns: 1  |             columns: 2              |
+ |      rows:    1  |             rows:    1              |
+ |                  |                                     |
+ +——————————————————+——————————————————+——————————————————+  rows: 2
+ |                                     |                  |
+ |        C -&amp;gt; x: 0  y: 1              | D -&amp;gt; x: 2  y: 1  |
+ |             columns: 2              |      columns: 1  |
+ |             rows:    1              |      rows:    1  |
+ |                                     |                  |
+ +——————————————————+——————————————————+——————————————————+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should have the following config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
+dashboards:
+  - columns: 3
+    rows:    2
+    widgets:
+    
+      # widget A
+      - type:    whatever
+        columns: 1
+        rows:    1
+        x:       0
+        y:       0
+        
+      # widget B
+      - type:    whatever
+        columns: 2
+        rows:    1
+        x:       1
+        y:       0 
+
+      # widget C
+      - type:    whatever
+        columns: 2
+        rows:    1
+        x:       0
+        y:       1
+         
+      # widget D
+      - type:    whatever
+        columns: 1
+        rows:    1
+        x:       2
+        y:       1          
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Widgets</title>
+      <link>http://mozaik.rocks/v2/use/widgets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/widgets/</guid>
+      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact a react component which often communicates with an API.
+Mozaïk comes with just a few core widgets, others must be installed through extensions, see &lt;a href=&#34;http://mozaik.rocks/extensions&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Widgets share some common properties which are all required:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;key&lt;/th&gt;
+&lt;th&gt; description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;type&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;the type of widget to instantiate&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;columns&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;width expressed in columns&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;rows&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;height expressed in rows&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;x&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;x position&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;y&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;y position&lt;/em&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
+dashboards:
+  - columns: 3
+    rows:    3
+    widgets:
+      - type:    mozaik.inspector
+        columns: 1
+        rows:    1
+        x:       0
+        y:       0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v2/usage/grid-system.html&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+
+    <base href="http://mozaik.rocks/">
+    <title>
+        
+        
+            Grid system | Mozaïk
+        
+    </title>
+    <link rel="canonical" href="http://mozaik.rocks/v1/use/grid/">
+    
+    <link rel="apple-touch-icon" href="http://mozaik.rocks/images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-32x32.png" sizes="32x32">
+    
+
+<script type="text/javascript">
+    var baseURL = 'http:\/\/mozaik.rocks\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+<link rel="stylesheet" href="http://mozaik.rocks/css/mozaik.css">
+
+
+<link rel="shortcut icon"
+      
+      href="http://mozaik.rocks/img/favicon.ico"
+      
+>
+
+
+
+
+</head>
+<body lang="">
+<header class="strata_out header">
+    <div class="strata">
+        <div class="strata_in">
+            <h1 id="logo-wrap">
+                <a href="http://mozaik.rocks/" class="header_logo">Mozaïk</a>
+            </h1>
+            <nav class="main-nav">
+                
+                    <a href="http://mozaik.rocks/v1/use/" class="main-nav_item">Use</a>
+                
+                    <a href="http://mozaik.rocks/extensions/" class="main-nav_item">Extend</a>
+                
+                    <a href="http://mozaik.rocks/themes/" class="main-nav_item">Theme</a>
+                
+                    <a href="http://mozaik.rocks/v1/hack/" class="main-nav_item">Hack</a>
+                
+                    <a href="http://mozaik.rocks/news/" class="main-nav_item">News</a>
+                
+                <a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_item">Github</a>
+                <a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_item main-nav_item-demo">demo</a>
+            </nav>
+            <a id="mobile-nav-toggle">
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+                <span class="mobile-nav-toggle-bar"></span>
+            </a>
+            <a id="mobile-search-btn" class="st-search-launcher"></a>
+        </div>
+    </div>
+</header>
+<div id="container">
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <div class="strata_out sub-header">
+                <div class="strata">
+                    <div class="strata_in">
+                        <h1 class="page-title">Grid system</h1>
+                        
+                            <div class="page-baseline">Configure Mozaïk grid system</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="strata_out page_content">
+    <div class="strata">
+        <div class="strata_in">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article">
+                    <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
+                        <p>As we saw previously in the <a href="http://mozaik.rocks/v1/use/config/">config.js</a> section,
+<strong>Mozaïk</strong> provides a simple way to define dashboard layout. Let&rsquo;s see how it works.</p>
+
+<p>To configure a layout like this:</p>
+
+<pre><code class="language-default">                         columns: 3
+ +——————————————————+——————————————————+——————————————————+
+ |                  |                                     |
+ | A -&gt; x: 0  y: 0  |        B -&gt; x: 1  y: 0              |
+ |      columns: 1  |             columns: 2              |
+ |      rows:    1  |             rows:    1              |
+ |                  |                                     |
+ +——————————————————+——————————————————+——————————————————+  rows: 2
+ |                                     |                  |
+ |        C -&gt; x: 0  y: 1              | D -&gt; x: 2  y: 1  |
+ |             columns: 2              |      columns: 1  |
+ |             rows:    1              |      rows:    1  |
+ |                                     |                  |
+ +——————————————————+——————————————————+——————————————————+
+
+</code></pre>
+
+<p>You should have the following config:</p>
+
+<pre><code class="language-javascript">{
+    //...
+    dashboards: [
+        {
+            columns: 3, rows: 2,
+            widgets: [
+                {
+                    type: 'whatever',
+            /* A */ columns: 1, rows: 1,
+                    x: 0, y: 0
+                },
+                {
+                    type: 'whatever',
+            /* B */ columns: 2, rows: 1,
+                    x: 1, y: 0
+                },
+                {
+                    type: 'whatever',
+            /* C */ columns: 2, rows: 1,
+                    x: 0, y: 1
+                },
+                {
+                    type: 'whatever',
+            /* D */ columns: 1, rows: 1,
+                    x: 2, y: 1
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+
+                    </div>
+                </div>
+            </article>
+            
+                
+                
+                <aside class="sidebar" role="navigation">
+                    <nav>
+                        
+                            <a href="http://mozaik.rocks/v1/use/" class="sidebar__link">
+                                Getting started
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/use/config/" class="sidebar__link">
+                                Configuration
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/use/grid/" class="sidebar__link _is-current">
+                                Grid system
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/use/theme/" class="sidebar__link">
+                                Theme
+                            </a>
+                        
+                            <a href="http://mozaik.rocks/v1/use/widgets/" class="sidebar__link">
+                                Widgets
+                            </a>
+                        
+                    </nav>
+                </aside>
+            
+        </div>
+    </div>
+</div>
+    <footer id="footer" class="strata_out">
+        <div class="strata">
+            <div class="strata_in">
+                <div id="footer-copyright">
+                    <a href="https://github.com/plouc/mozaik">Mozaïk</a> |  Distributed under MIT License |
+                    crafted by <a href="https://github.com/plouc" target="_blank">Raphaël Benitte</a> aka <a href="https://github.com/plouc">plouc</a> |
+                    Found an issue with the docs? Report it <a href="https://github.com/plouc/mozaik-website/issues/new">here</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="http://mozaik.rocks/js/mozaik.js"></script>
+</body>
+</html>

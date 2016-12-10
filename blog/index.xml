@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog-rsses on Mozaïk</title>
+    <link>http://yoursite.example.com/blog/index.xml</link>
+    <description>Recent content in Blog-rsses on Mozaïk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 09 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://yoursite.example.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mozaïk 1.3.0 Released</title>
+      <link>http://yoursite.example.com/blog/mozaik-1/</link>
+      <pubDate>Sat, 09 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-1/</guid>
+      <description>&lt;p&gt;Mozaïk &lt;strong&gt;1.3.0&lt;/strong&gt; was released, shipping a &lt;strong&gt;critical feature&lt;/strong&gt;: support for &lt;code&gt;push&lt;/code&gt; mode, it solves &lt;a href=&#34;https://github.com/plouc/mozaik/issues/34&#34;&gt;an issue&lt;/a&gt; which have been there for far too long.&lt;/p&gt;
+
+&lt;p&gt;Before, Mozaïk just provided a polling model, which worked nicely for most of the cases.&lt;/p&gt;
+
+&lt;p&gt;However, some users wanted to push data from &lt;strong&gt;live streams&lt;/strong&gt;, for example another WebSocket or a Message queue, but prior to this version, you can not decide when to send data to Mozaïk, you can only provide some endpoints to be called at a given interval.&lt;/p&gt;
+
+&lt;p&gt;So, now you have the ability to &lt;strong&gt;decide when to push data&lt;/strong&gt;, more details on this &lt;a href=&#34;http://yoursite.example.com/develop/client-push-mode.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As usual, &lt;strong&gt;release notes&lt;/strong&gt; are available on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.3.0&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.2.0 Released</title>
+      <link>http://yoursite.example.com/blog/mozaik-1/</link>
+      <pubDate>Wed, 06 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-1/</guid>
+      <description>&lt;p&gt;Mozaïk 1.2.0 was released, some internals changes and a brand new widget!&lt;/p&gt;
+
+&lt;p&gt;So there&amp;rsquo;s now a new &lt;code&gt;mozaik.inspector&lt;/code&gt; widget:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/mozaik-inspector-widget.png [mozaik inspector widget] %}&lt;/p&gt;
+
+&lt;p&gt;To use it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+    type: &#39;mozaik.inspector&#39;,
+    columns: 1, rows: 1,
+    x: 0, y: 0
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can check detail on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.2.0&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.0.13 Released</title>
+      <link>http://yoursite.example.com/blog/mozaik-1/</link>
+      <pubDate>Sat, 02 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-1/</guid>
+      <description>&lt;p&gt;Mozaïk 1.0.13 was released, brings you small bug fixes plus ability to set an optional title for your dashboards.
+You can check all the details on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.0.13&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>New Saucelabs widgets for Mozaïk</title>
+      <link>http://yoursite.example.com/blog/mozaik-saucelabs-extensions/</link>
+      <pubDate>Sat, 19 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-saucelabs-extensions/</guid>
+      <description>&lt;p&gt;Say Hi to the new SauceLabs extension for Mozaïk!&lt;/p&gt;
+
+&lt;p&gt;This one is from &lt;a href=&#34;https://github.com/iamfiscus&#34;&gt;iamfiscus&lt;/a&gt;, it comes with 2 widgets at the time I&amp;rsquo;m writing,
+one to show the current SauceLabs status from &lt;a href=&#34;http://status.saucelabs.com/&#34;&gt;status.saucelabs.com&lt;/a&gt; and another one showing a list of your jobs with extra info.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/saucelabs-widgets.png [saucelabs widgets] %}&lt;/p&gt;
+
+&lt;p&gt;Have a look at the &lt;a href=&#34;https://github.com/iamfiscus/mozaik-ext-saucelabs/blob/master/README.md&#34;&gt;repo&amp;rsquo;s README&lt;/a&gt; for instructions/details.&lt;/p&gt;
+
+&lt;p&gt;Thanks &lt;a href=&#34;https://github.com/iamfiscus&#34;&gt;@iamfiscus&lt;/a&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk 1.0.10 Released</title>
+      <link>http://yoursite.example.com/blog/mozaik-1/</link>
+      <pubDate>Fri, 15 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-1/</guid>
+      <description>&lt;p&gt;Mozaïk 1.0.10 was released, brings you small bug fixes for server port/host settings.
+You can check detail on &lt;a href=&#34;https://github.com/plouc/mozaik/releases/tag/v1.0.10&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mozaïk website launched</title>
+      <link>http://yoursite.example.com/blog/mozaik-website-launched/</link>
+      <pubDate>Mon, 24 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://yoursite.example.com/blog/mozaik-website-launched/</guid>
+      <description>&lt;p&gt;After some weeks of work, it&amp;rsquo;s finally here!
+This website is built with hexo, a great static site generator written in nodejs.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
