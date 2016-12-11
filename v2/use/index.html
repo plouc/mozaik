@@ -57,15 +57,41 @@
             </h1>
             <nav class="main-nav">
                 
-                    <a href="http://mozaik.rocks/v1/use/" class="main-nav_item">Use</a>
+                    
+                        <div class="dropdown">
+                            <span class="main-nav_item">Use</span>
+                            <div class="dropdown__content">
+                                
+                                    <a href="http://mozaik.rocks/v1/use/" class="main-nav_item main-nav_item--sub">Mozaik v1 (stable)</a>
+                                
+                                    <a href="http://mozaik.rocks/v2/use/" class="main-nav_item main-nav_item--sub">Mozaik v2 (latest)</a>
+                                
+                            </div>
+                        </div>
+                    
                 
-                    <a href="http://mozaik.rocks/extensions/" class="main-nav_item">Extend</a>
+                    
+                        <a href="http://mozaik.rocks/extensions/" class="main-nav_item">Extend</a>
+                    
                 
-                    <a href="http://mozaik.rocks/themes/" class="main-nav_item">Theme</a>
+                    
+                        <a href="http://mozaik.rocks/themes/" class="main-nav_item">Theme</a>
+                    
                 
-                    <a href="http://mozaik.rocks/v1/hack/" class="main-nav_item">Hack</a>
+                    
+                        <div class="dropdown">
+                            <span class="main-nav_item">Hack</span>
+                            <div class="dropdown__content">
+                                
+                                    <a href="http://mozaik.rocks/v1/hack/" class="main-nav_item main-nav_item--sub">Mozaik v1 (stable)</a>
+                                
+                            </div>
+                        </div>
+                    
                 
-                    <a href="http://mozaik.rocks/news/" class="main-nav_item">News</a>
+                    
+                        <a href="http://mozaik.rocks/news/" class="main-nav_item">News</a>
+                    
                 
                 <a href="https://github.com/plouc/mozaik" target="_blank" class="main-nav_item">Github</a>
                 <a href="http://mozaik.herokuapp.com/" target="_blank" class="main-nav_item main-nav_item-demo">demo</a>
@@ -88,6 +114,8 @@
                     <div class="strata_in">
                         <h1 class="page-title">Getting started</h1>
                         
+                            <div class="page-baseline">Have Mozaïk V2 up and running in minutes</div>
+                        
                     </div>
                 </div>
             </div>
@@ -104,82 +132,81 @@
 
 <h2 id="sample-repo">Sample Repo</h2>
 
-<p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo">demo dashboard</a>.</p>
-
-<h3 id="clone-the-repo">Clone the repo</h3>
+<p>The easiest way to get started is by using the <a href="https://github.com/plouc/mozaik-demo">demo dashboard</a>.<br />
+For now Mozaïk stable version is V1, in order to install V2 you must use the dedicated branch.</p>
 
 <pre><code class="language-bash">git clone git@github.com:plouc/mozaik-demo.git
+git checkout mozaik-2
 </code></pre>
 
-<h3 id="install-packages">Install packages</h3>
+<h3 id="install-packages-publish-assets">Install packages &amp; publish assets</h3>
 
 <pre><code class="language-bash">cd mozaik-demo
+# using npm
 npm install
+# or yarn
+yarn install
 </code></pre>
 
-<h3 id="publish-assets-js-css">Publish assets (js/css)</h3>
+<p>If for some reason the install command fails, the asset generation should be skipped,
+you can re-run it with:</p>
 
-<pre><code class="language-bash">gulp build
+<pre><code class="language-bash"># using npm
+npm run build
+# or yarn
+yarn build
 </code></pre>
 
 <h3 id="add-github-tokens-in-a-env-file">Add github tokens in a <code>.env</code> file</h3>
 
-<p>This step is optional, it&rsquo;s useful if you want to bypass github api rate limit.</p>
+<p>This step is optional, it&rsquo;s useful if you want to bypass github api rate limit.
+You have to generate a token for your dashboard from your GitHub account,
+and then set the appropriate var for <code>mozaik-ext-github</code> which is installed by default.</p>
 
-<pre><code>GITHUB_API_TOKEN=xxxxx
+<pre><code class="language-bash"># ./.env
+GITHUB_API_TOKEN=xxxxx
 </code></pre>
 
 <h3 id="run-the-app">Run the app</h3>
 
-<pre><code class="language-bash">node app.js
+<pre><code class="language-bash"># using npm
+npm start
+# or yarn
+yarn start
 </code></pre>
 
-<h2 id="yeoman-generator">Yeoman generator</h2>
-
-<p>Alternatively, use provided <a href="https://www.npmjs.com/package/generator-mozaik">Yeoman generator</a> available to start with new dashboard or widget:</p>
-
-<pre><code class="language-sh">npm install -g yo gulp generator-mozaik
-yo mozaik
-npm install
-gulp build
-node app.js
-</code></pre>
-
-<p><strong>Mozaïk</strong> can be configured through a simple js config file <code>config.js</code> located at the root folder.
+<p><strong>Mozaïk</strong> can be configured through a simple yaml config file <code>config.yml</code> located at the root folder.
 You should start from the default config file and customize it to fit your needs.</p>
-
-<h2 id="docker">Docker</h2>
-
-<p><em>coming soon</em></p>
 
                     </div>
                 </div>
             </article>
+            <aside class="sidebar">
+    
+        
+        
+        <nav role="navigation">
             
-                
-                
-                <aside class="sidebar" role="navigation">
-                    <nav>
-                        
-                            <a href="http://mozaik.rocks/v2/use/" class="sidebar__link _is-current">
-                                Getting started
-                            </a>
-                        
-                            <a href="http://mozaik.rocks/v2/use/config/" class="sidebar__link">
-                                Configuration
-                            </a>
-                        
-                            <a href="http://mozaik.rocks/v2/use/grid/" class="sidebar__link">
-                                Grid system
-                            </a>
-                        
-                            <a href="http://mozaik.rocks/v2/use/widgets/" class="sidebar__link">
-                                Widgets
-                            </a>
-                        
-                    </nav>
-                </aside>
+                <a href="http://mozaik.rocks/v2/use/" class="sidebar__link _is-current">
+                    Getting started
+                </a>
             
+                <a href="http://mozaik.rocks/v2/use/config/" class="sidebar__link">
+                    Configuration
+                </a>
+            
+                <a href="http://mozaik.rocks/v2/use/grid/" class="sidebar__link">
+                    Grid system
+                </a>
+            
+                <a href="http://mozaik.rocks/v2/use/widgets/" class="sidebar__link">
+                    Widgets
+                </a>
+            
+        </nav>
+    
+    
+</aside>
         </div>
     </div>
 </div>

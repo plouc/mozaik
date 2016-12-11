@@ -29,53 +29,51 @@
 
 &lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
 
-&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;clone-the-repo&#34;&gt;Clone the repo&lt;/h3&gt;
+&lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;br /&gt;
+For now Mozaïk stable version is V1, in order to install V2 you must use the dedicated branch.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
+git checkout mozaik-2
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+&lt;h3 id=&#34;install-packages-publish-assets&#34;&gt;Install packages &amp;amp; publish assets&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
+# using npm
 npm install
+# or yarn
+yarn install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+&lt;p&gt;If for some reason the install command fails, the asset generation should be skipped,
+you can re-run it with:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# using npm
+npm run build
+# or yarn
+yarn build
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
 
-&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.
+You have to generate a token for your dashboard from your GitHub account,
+and then set the appropriate var for &lt;code&gt;mozaik-ext-github&lt;/code&gt; which is installed by default.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;GITHUB_API_TOKEN=xxxxx
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# ./.env
+GITHUB_API_TOKEN=xxxxx
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# using npm
+npm start
+# or yarn
+yarn start
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;yeoman-generator&#34;&gt;Yeoman generator&lt;/h2&gt;
-
-&lt;p&gt;Alternatively, use provided &lt;a href=&#34;https://www.npmjs.com/package/generator-mozaik&#34;&gt;Yeoman generator&lt;/a&gt; available to start with new dashboard or widget:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;npm install -g yo gulp generator-mozaik
-yo mozaik
-npm install
-gulp build
-node app.js
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple js config file &lt;code&gt;config.js&lt;/code&gt; located at the root folder.
+&lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple yaml config file &lt;code&gt;config.yml&lt;/code&gt; located at the root folder.
 You should start from the default config file and customize it to fit your needs.&lt;/p&gt;
-
-&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -118,7 +116,8 @@ dashboards:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://mozaik.rocks/v2/use/grid/</guid>
-      <description>&lt;p&gt;As we saw previously in the &lt;a href=&#34;http://mozaik.rocks/v2/usage/config-file.html&#34;&gt;config.yml&lt;/a&gt; section, &lt;strong&gt;Mozaïk&lt;/strong&gt; provides a simple way to define dashboard layout.
+      <description>&lt;p&gt;As we saw previously in the &lt;a href=&#34;http://mozaik.rocks/v2/use/config/&#34;&gt;config.yml&lt;/a&gt; section,
+&lt;strong&gt;Mozaïk&lt;/strong&gt; provides a simple way to define dashboard layout.
 Let&amp;rsquo;s see how it works.&lt;/p&gt;
 
 &lt;p&gt;To configure a layout like this:&lt;/p&gt;
@@ -185,8 +184,10 @@ dashboards:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://mozaik.rocks/v2/use/widgets/</guid>
-      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact a react component which often communicates with an API.
-Mozaïk comes with just a few core widgets, others must be installed through extensions, see &lt;a href=&#34;http://mozaik.rocks/extensions&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
+a react component which often communicates with an API.
+Mozaïk comes with just a few core widgets, others must be installed through extensions,
+see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Widgets share some common properties which are all required:&lt;/p&gt;
 
@@ -240,7 +241,7 @@ dashboards:
         y:       0
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v2/usage/grid-system.html&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v2/use/grid/&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     

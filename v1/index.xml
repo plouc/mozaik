@@ -24,32 +24,32 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone git@github.com:plouc/mozaik-demo.git
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;install-packages&#34;&gt;Install packages&lt;/h3&gt;
+&lt;h3 id=&#34;install-packages-publish-assets&#34;&gt;Install packages &amp;amp; publish assets&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd mozaik-demo
 npm install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;publish-assets-js-css&#34;&gt;Publish assets (js/css)&lt;/h3&gt;
+&lt;p&gt;If for some reason the install command fails, the asset generation should be skipped,
+you can re-run it with:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gulp build
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm run build
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;add-github-tokens-in-a-env-file&#34;&gt;Add github tokens in a &lt;code&gt;.env&lt;/code&gt; file&lt;/h3&gt;
 
-&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.&lt;/p&gt;
+&lt;p&gt;This step is optional, it&amp;rsquo;s useful if you want to bypass github api rate limit.
+You have to generate a token for your dashboard from your GitHub account,
+and then set the appropriate var for &lt;code&gt;mozaik-ext-github&lt;/code&gt; which is installed by default.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;GITHUB_API_TOKEN=xxxxx
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# ./.env
+GITHUB_API_TOKEN=xxxxx
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;run-the-app&#34;&gt;Run the app&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;node app.js
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;coming soon&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
