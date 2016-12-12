@@ -13,10 +13,10 @@
     <title>
         
         
-            Mozaïk 1.3.0 Released | Mozaïk
+            Mozaïk v2 | Mozaïk
         
     </title>
-    <link rel="canonical" href="http://mozaik.rocks/news/mozaik-1.3.0/">
+    <link rel="canonical" href="http://mozaik.rocks/news/mozaik-v2/">
     
     <link rel="apple-touch-icon" href="http://mozaik.rocks/images/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-196x196.png" sizes="196x196">
@@ -112,8 +112,8 @@
             <div class="strata_out sub-header">
                 <div class="strata">
                     <div class="strata_in">
-                        <h1 class="page-title">Mozaïk 1.3.0 Released</h1>
-                        <div class="page-baseline">Published on April 9 2016</div>
+                        <h1 class="page-title">Mozaïk v2</h1>
+                        <div class="page-baseline">Published on December 12 2016</div>
                     </div>
                 </div>
             </div>
@@ -126,34 +126,66 @@
             <article class="article-container" itemscope itemtype="http://schema.org/Article">
                 <div class="article">
                     <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                        <p>Mozaïk <strong>1.3.0</strong> was released, shipping a <strong>critical feature</strong>:
-support for <code>push</code> mode, it solves <a href="https://github.com/plouc/mozaik/issues/34">an issue</a>
-which have been there for far too long.</p>
+                        
 
-<p>Before, Mozaïk just provided a polling model, which worked nicely for most of the cases.</p>
+<p>I&rsquo;m currently working on Mozaïk v2, at the time of writing, it&rsquo;s in alpha stage.
+This release will contains a lot of breaking changes, but let&rsquo;s see why and how
+it will differ from Mozaïk v1.</p>
 
-<p>However, some users wanted to push data from <strong>live streams</strong>, for example another WebSocket
-or a Message queue, but prior to this version, you can not decide when to send data to Mozaïk,
-you can only provide some endpoints to be called at a given interval.</p>
+<h2 id="improving-dx">Improving DX</h2>
 
-<p>So, now you have the ability to <strong>decide when to push data</strong>,
-more details on this <a href="http://mozaik.rocks/v1/hack/client-push-mode/">here</a>.</p>
+<p>When working with Mozaïk v1, some people legitimately complained about the constrain
+of having to restart the server each time they wanted to change the config file: widgets,
+theme… Mozaïk v2 now supports hot reloading and watcher on config file.</p>
 
-<p>As usual, <strong>release notes</strong> are available on <a href="https://github.com/plouc/mozaik/releases/tag/v1.3.0">GitHub</a>.</p>
+<p>You&rsquo;ll find the corresponding issue <a href="https://github.com/plouc/mozaik/issues/97">here</a>.</p>
+
+<h2 id="ease-extension-authoring">Ease extension authoring</h2>
+
+<p>Developing Mozaïk extensions was really painful, no guide, tricky workflow, thanks to
+hot reloading and migration to <a href="http://redux.js.org/">redux</a>, it&rsquo;s now easier to develop
+a custom extension and debug it.</p>
+
+<p>I&rsquo;m also planing to add an in depth guide on how to craft a Mozaïk extension for v2,
+so stay tuned!</p>
+
+<p>The usage of React components mixin has been completely removed, which makes easier
+to code your component following the current React.js best practices and ease
+extensions testing.</p>
+
+<h2 id="modules-upgrade-replacement">Modules upgrade/replacement</h2>
+
+<p><a href="https://github.com/reflux/refluxjs">reflux</a> is a great library,
+but <a href="http://redux.js.org/">redux</a> has became the de facto state management
+library for React, and its ecosystem is really complete.</p>
+
+<p><code>react</code> and <code>react-dom</code> have also been upgraded, which means you should be
+able to use recent libraries and third party components.</p>
+
+<p>Some people had problem with <a href="https://github.com/websockets/ws">ws</a> module,
+while it offers great performance and did the job, Mozaïk v2 uses
+<a href="http://socket.io/">socket.io</a> which is widely adopted and has already been
+used for many projects, it also provide higher abstractions, meaning less
+code to maintain and a more robust implementation.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If you&rsquo;re interested in contributing to Mozaïk v2, check the dedicated
+<a href="https://github.com/plouc/mozaik/milestone/2">milestone</a> and don&rsquo;t hesitate
+to contact me.</p>
+
+<p>If you&rsquo;re an extension maintainer, you should have a look at the
+<a href="https://github.com/plouc/mozaik/issues/98">migrated extensions</a>
+to understand how to make it works with Mozaïk v2.</p>
 
                     </div>
                     <footer class="article-footer">
                         
-                            <a href="http://mozaik.rocks/news/mozaik-1.2.0/" class="article-footer-prev">
-                                <span>Mozaïk 1.2.0 Released</span>
+                            <a href="http://mozaik.rocks/news/mozaik-1.3.0/" class="article-footer-prev">
+                                <span>Mozaïk 1.3.0 Released</span>
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                        
-                            <a href="http://mozaik.rocks/news/mozaik-v2/" class="article-footer-next">
-                                <span>Mozaïk v2</span>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
                     </footer>
                 </div>

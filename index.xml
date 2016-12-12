@@ -5,8 +5,68 @@
     <link>http://mozaik.rocks/index.xml</link>
     <description>Recent content on Mozaïk</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 09 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Dec 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://mozaik.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mozaïk v2</title>
+      <link>http://mozaik.rocks/news/mozaik-v2/</link>
+      <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/news/mozaik-v2/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;m currently working on Mozaïk v2, at the time of writing, it&amp;rsquo;s in alpha stage.
+This release will contains a lot of breaking changes, but let&amp;rsquo;s see why and how
+it will differ from Mozaïk v1.&lt;/p&gt;
+
+&lt;h2 id=&#34;improving-dx&#34;&gt;Improving DX&lt;/h2&gt;
+
+&lt;p&gt;When working with Mozaïk v1, some people legitimately complained about the constrain
+of having to restart the server each time they wanted to change the config file: widgets,
+theme… Mozaïk v2 now supports hot reloading and watcher on config file.&lt;/p&gt;
+
+&lt;p&gt;You&amp;rsquo;ll find the corresponding issue &lt;a href=&#34;https://github.com/plouc/mozaik/issues/97&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;ease-extension-authoring&#34;&gt;Ease extension authoring&lt;/h2&gt;
+
+&lt;p&gt;Developing Mozaïk extensions was really painful, no guide, tricky workflow, thanks to
+hot reloading and migration to &lt;a href=&#34;http://redux.js.org/&#34;&gt;redux&lt;/a&gt;, it&amp;rsquo;s now easier to develop
+a custom extension and debug it.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m also planing to add an in depth guide on how to craft a Mozaïk extension for v2,
+so stay tuned!&lt;/p&gt;
+
+&lt;p&gt;The usage of React components mixin has been completely removed, which makes easier
+to code your component following the current React.js best practices and ease
+extensions testing.&lt;/p&gt;
+
+&lt;h2 id=&#34;modules-upgrade-replacement&#34;&gt;Modules upgrade/replacement&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/reflux/refluxjs&#34;&gt;reflux&lt;/a&gt; is a great library,
+but &lt;a href=&#34;http://redux.js.org/&#34;&gt;redux&lt;/a&gt; has became the de facto state management
+library for React, and its ecosystem is really complete.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;react&lt;/code&gt; and &lt;code&gt;react-dom&lt;/code&gt; have also been upgraded, which means you should be
+able to use recent libraries and third party components.&lt;/p&gt;
+
+&lt;p&gt;Some people had problem with &lt;a href=&#34;https://github.com/websockets/ws&#34;&gt;ws&lt;/a&gt; module,
+while it offers great performance and did the job, Mozaïk v2 uses
+&lt;a href=&#34;http://socket.io/&#34;&gt;socket.io&lt;/a&gt; which is widely adopted and has already been
+used for many projects, it also provide higher abstractions, meaning less
+code to maintain and a more robust implementation.&lt;/p&gt;
+
+&lt;h2 id=&#34;contributing&#34;&gt;Contributing&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;re interested in contributing to Mozaïk v2, check the dedicated
+&lt;a href=&#34;https://github.com/plouc/mozaik/milestone/2&#34;&gt;milestone&lt;/a&gt; and don&amp;rsquo;t hesitate
+to contact me.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re an extension maintainer, you should have a look at the
+&lt;a href=&#34;https://github.com/plouc/mozaik/issues/98&#34;&gt;migrated extensions&lt;/a&gt;
+to understand how to make it works with Mozaïk v2.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Mozaïk 1.3.0 Released</title>
@@ -337,39 +397,6 @@ module.exports = {
         }
     ]
 };
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>http://mozaik.rocks/v2/use/config/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://mozaik.rocks/v2/use/config/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;config.yml&lt;/strong&gt; is the main &lt;strong&gt;Mozaïk&lt;/strong&gt; config, it&amp;rsquo;s where you configure your dashboards.
-It should be located at the root of your main &lt;strong&gt;Mozaïk&lt;/strong&gt; project directory.&lt;/p&gt;
-
-&lt;p&gt;Let see how to define it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
-
-host: localhost # Mozaïk host
-port: 5000      # Mozaïk port
-
-# Mozaïk dashboard rotation interval (ms)
-rotationDuration: 8000 
-
-dashboards:
-    # first dashboard
-    - columns: 4
-      rows:    3
-      widgets: []
-    
-    # second dashboard
-    - columns: 3
-      rows:    3
-      widgets: []
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

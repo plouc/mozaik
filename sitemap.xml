@@ -3,7 +3,14 @@
   
   <url>
     <loc>http://mozaik.rocks/</loc>
-    <lastmod>2016-04-09T00:00:00+00:00</lastmod>
+    <lastmod>2016-12-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://mozaik.rocks/news/mozaik-v2/</loc>
+    <lastmod>2016-12-12T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
