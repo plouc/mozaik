@@ -192,6 +192,10 @@ GITHUB_API_TOKEN=xxxxx
       <guid>http://mozaik.rocks/v2/use/</guid>
       <description>
 
+&lt;p&gt;This is the install guide for Mozaïk v2, be aware that this version
+is in alpha stage so you won&amp;rsquo;t be able to use all extensions, you can check
+&lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;extensions compatibility&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
 
 &lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;br /&gt;
@@ -238,7 +242,8 @@ yarn start
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple yaml config file &lt;code&gt;config.yml&lt;/code&gt; located at the root folder.
-You should start from the default config file and customize it to fit your needs.&lt;/p&gt;
+You should start from the default config file and
+&lt;a href=&#34;http://mozaik.rocks/v2/use/config/&#34;&gt;customize it to fit your needs&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

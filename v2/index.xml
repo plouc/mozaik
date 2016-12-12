@@ -27,6 +27,10 @@
       <guid>http://mozaik.rocks/v2/use/</guid>
       <description>
 
+&lt;p&gt;This is the install guide for Mozaïk v2, be aware that this version
+is in alpha stage so you won&amp;rsquo;t be able to use all extensions, you can check
+&lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;extensions compatibility&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;sample-repo&#34;&gt;Sample Repo&lt;/h2&gt;
 
 &lt;p&gt;The easiest way to get started is by using the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;demo dashboard&lt;/a&gt;.&lt;br /&gt;
@@ -73,7 +77,8 @@ yarn start
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;Mozaïk&lt;/strong&gt; can be configured through a simple yaml config file &lt;code&gt;config.yml&lt;/code&gt; located at the root folder.
-You should start from the default config file and customize it to fit your needs.&lt;/p&gt;
+You should start from the default config file and
+&lt;a href=&#34;http://mozaik.rocks/v2/use/config/&#34;&gt;customize it to fit your needs&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -184,7 +189,9 @@ dashboards:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://mozaik.rocks/v2/use/widgets/</guid>
-      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
+      <description>
+
+&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
 a react component which often communicates with an API.
 Mozaïk comes with just a few core widgets, others must be installed through extensions,
 see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
@@ -232,9 +239,9 @@ see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions
 &lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
 dashboards:
   - columns: 3
-    rows:    3
+    rows:    2
     widgets:
-      - type:    mozaik.inspector
+      - type:    ext.widget_type
         columns: 1
         rows:    1
         x:       0
@@ -242,6 +249,23 @@ dashboards:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v2/use/grid/&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;core-widgets&#34;&gt;Core widgets&lt;/h2&gt;
+
+&lt;p&gt;Mozaïk core extension provides an &lt;code&gt;inspector&lt;/code&gt; widget, in order to use it,
+you should use this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# ~/mozaik-demo/config.yml
+dashboards:
+  - columns: 3
+    rows:    2
+    widgets:
+      - type:    mozaik.inspector
+        columns: 1
+        rows:    1
+        x:       0
+        y:       0
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

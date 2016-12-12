@@ -128,7 +128,9 @@
             <article class="article-container" itemscope itemtype="http://schema.org/Article">
                 <div class="article">
                     <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
-                        <p>Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
+                        
+
+<p>Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
 a react component which often communicates with an API.
 Mozaïk comes with just a few core widgets, others must be installed through extensions,
 see <a href="http://mozaik.rocks/extensions/">available extensions</a>.</p>
@@ -176,9 +178,9 @@ see <a href="http://mozaik.rocks/extensions/">available extensions</a>.</p>
 <pre><code class="language-yaml"># ~/mozaik-demo/config.yml
 dashboards:
   - columns: 3
-    rows:    3
+    rows:    2
     widgets:
-      - type:    mozaik.inspector
+      - type:    ext.widget_type
         columns: 1
         rows:    1
         x:       0
@@ -186,6 +188,23 @@ dashboards:
 </code></pre>
 
 <p><em>for properties related to position/size see <a href="http://mozaik.rocks/v2/use/grid/">grid system</a>.</em></p>
+
+<h2 id="core-widgets">Core widgets</h2>
+
+<p>Mozaïk core extension provides an <code>inspector</code> widget, in order to use it,
+you should use this config:</p>
+
+<pre><code class="language-yaml"># ~/mozaik-demo/config.yml
+dashboards:
+  - columns: 3
+    rows:    2
+    widgets:
+      - type:    mozaik.inspector
+        columns: 1
+        rows:    1
+        x:       0
+        y:       0
+</code></pre>
 
                     </div>
                 </div>

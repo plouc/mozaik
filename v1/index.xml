@@ -459,7 +459,9 @@ some fresh data to its bound widgets.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://mozaik.rocks/v1/use/widgets/</guid>
-      <description>&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
+      <description>
+
+&lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
 a react component which often communicates with an API.
 Mozaïk comes with just a few core widgets, others must be installed through extensions,
 see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
@@ -502,7 +504,46 @@ see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/config.js
+{
+    // …
+    dashboards: [{
+        columns: 3, rows: 2,
+        widgets: [
+            {
+                type: &#39;ext.widget_type&#39;,
+                columns: 1, rows: 1,
+                x: 0, y: 0,
+            },
+        ],
+    }],
+},
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;em&gt;for properties related to position/size see &lt;a href=&#34;http://mozaik.rocks/v1/use/grid/&#34;&gt;grid system&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;core-widgets&#34;&gt;Core widgets&lt;/h2&gt;
+
+&lt;p&gt;Mozaïk core extension provides an &lt;code&gt;inspector&lt;/code&gt; widget, in order to use it,
+you should use this config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/config.js
+{
+    // …
+    dashboards: [{
+        columns: 3, rows: 2,
+        widgets: [
+            {
+                type: &#39;mozaik.inspector&#39;,
+                columns: 1, rows: 1,
+                x: 0, y: 0,
+            },
+        ],
+    }],
+},
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
