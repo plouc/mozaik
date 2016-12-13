@@ -2,12 +2,14 @@ import {
     API_SUBSCRIBE,
     API_UNSUBSCRIBE,
     API_DATA,
+    API_FAILURE,
 } from '../actions/apiActions'
 
 
 export default function configuration(state = {
     subscriptions: {},
     data:          {},
+    errors:        {},
 }, action) {
     let subscriptions
 
@@ -52,12 +54,25 @@ export default function configuration(state = {
             }
 
         case API_DATA:
+            let errors = { ...state.errors }
+            delete errors[action.id]
+
             return {
                 ...state,
                 data: {
                     ...state.data,
                     [action.id]: action.data,
                 },
+                errors,
+            }
+
+        case API_FAILURE:
+            return {
+                ...state,
+                errors: {
+                    ...state.errors,
+                    [action.id]: action.data,
+                }
             }
 
         default:

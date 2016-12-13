@@ -2,6 +2,7 @@ import { guessWSURL } from '../lib/WSHelper'
 import SocketIO       from 'socket.io-client'
 import {
     receiveApiData,
+    apiFailure,
 } from './apiActions'
 import {
     setDashboards,
@@ -72,9 +73,11 @@ export const connect = configuration => {
         })
 
         socket.on('api.data', data => {
-            if (data) {
-                dispatch(receiveApiData(data))
-            }
+            if (data) dispatch(receiveApiData(data))
+        })
+
+        socket.on('api.error', data => {
+            if (data) dispatch(apiFailure(data))
         })
 
         socket.on('configuration', configuration => {

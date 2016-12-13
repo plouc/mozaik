@@ -9,6 +9,8 @@ const API_MODE_PUSH          = 'push'
 
 const DEFAULT_POLL_INTERVAL  = 15000
 
+const API_DATA_MESSAGE       = 'api.data'
+const API_ERROR_MESSAGE      = 'api.error'
 
 /**
  * Bus class.
@@ -31,8 +33,9 @@ class Bus {
      *
      * @param {String} subscriptionId
      * @param {Object} data
+     * @param {string} type
      */
-    send(subscriptionId, data) {
+    send(subscriptionId, data, type = API_DATA_MESSAGE) {
         if (!this.subscriptions[subscriptionId]) {
             this.logger.warn(chalk.magenta(`No subscription found matching '${subscriptionId}'`))
 
@@ -40,7 +43,7 @@ class Bus {
         }
 
         this.subscriptions[subscriptionId].clients.forEach(clientId => {
-            this.clients[clientId].emit('api.data', data)
+            this.clients[clientId].emit(type, data)
         })
     }
 
@@ -124,9 +127,11 @@ class Bus {
     }
 
     /**
-     * @param {String}   id
-     * @param {Function} callFn
-     * @param {Object}   params
+     * Process API call for given subscription id/params.
+     *
+     * @param {String}   id     - The subscription id
+     * @param {Function} callFn - The API call function
+     * @param {Object}   params - Params to be passed to `callFn`
      * @returns {Promise.<void>}
      */
     processApiCall(id, callFn, params) {
@@ -148,6 +153,16 @@ class Bus {
             })
             .catch(err => {
                 this.logger.error(chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`))
+
+                const message = {
+                    id,
+                    // data is in fact the error object
+                    data: {
+                        message: err.message,
+                    },
+                }
+
+                this.send(id, message, API_ERROR_MESSAGE)
             })
     }
 
@@ -234,7 +249,7 @@ class Bus {
 
             // if there's an available cached response, send it immediately
             if (this.subscriptions[subscriptionId].cached !== null) {
-                this.clients[clientId].emit('api.data', this.subscriptions[subscriptionId].cached)
+                this.clients[clientId].emit(API_DATA_MESSAGE, this.subscriptions[subscriptionId].cached)
             }
         }
 

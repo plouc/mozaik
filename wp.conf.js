@@ -144,5 +144,6 @@ if (process.env.NODE_ENV === 'production') {
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
 }
 
+console.log(config.module.loaders[0]);
 
 module.exports = config

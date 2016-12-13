@@ -4,6 +4,7 @@ import { send } from './wsActions'
 export const API_SUBSCRIBE   = 'API_SUBSCRIBE'
 export const API_UNSUBSCRIBE = 'API_UNSUBSCRIBE'
 export const API_DATA        = 'API_DATA'
+export const API_FAILURE     = 'API_FAILURE'
 
 export const subscribeToApi = subscription => {
     return dispatch => {
@@ -31,6 +32,12 @@ export const unsubscribeFromApi = id => {
 
 export const receiveApiData = ({ id, data }) => ({
     type: API_DATA,
+    id,
+    data,
+})
+
+export const apiFailure = ({ id, data }) => ({
+    type: API_FAILURE,
     id,
     data,
 })
