@@ -4,7 +4,7 @@ import _                               from 'lodash'
 
 const ignoreProps = [
     'type', 'x', 'y', 'width', 'height',
-    'registry', 'apiData',
+    'registry', 'apiData', 'apiErrors',
     'subscribeToApi', 'unsubscribeFromApi',
 ]
 
@@ -48,7 +48,7 @@ class Widget extends Component {
     }
 
     render() {
-        const { registry, apiData, type, x, y, width, height } = this.props
+        const { registry, apiData, apiErrors, type, x, y, width, height } = this.props
 
         const style = {
             top:  y,
@@ -58,7 +58,7 @@ class Widget extends Component {
         }
 
         // Pass props to widget component without 'metadata
-        let childProps = _.omit(this.props, ignoreProps)
+        const childProps = _.omit(this.props, ignoreProps)
 
         // Pick component from registry and instantiate with filtered props
         const component = registry.get(type)
@@ -66,10 +66,10 @@ class Widget extends Component {
         if (_.isFunction(component.getApiRequest)) {
             const { id } = component.getApiRequest(childProps)
             if (apiData[id]) {
-                childProps = {
-                    ...childProps,
-                    apiData: apiData[id],
-                }
+                childProps.apiData = apiData[id]
+            }
+            if (apiErrors[id]) {
+                childProps.apiError = apiErrors[id]
             }
         }
 

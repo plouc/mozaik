@@ -1,5 +1,5 @@
 import './styl/mozaik.styl'
-import 'font-awesome/css/font-awesome.css'
+//import 'font-awesome/css/font-awesome.css'
 
 import React          from 'react'
 import { Provider }   from 'react-redux'

@@ -15,3 +15,4 @@ It brings the following improvements:
 - No more transpiler for server code (but require node 6+)
 - Added cors support
 - Moved to socket.io as the previous library were not really maintained
+- Provides a way to display api errors

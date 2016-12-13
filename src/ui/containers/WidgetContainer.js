@@ -6,9 +6,10 @@ import {
 } from '../actions/apiActions'
 
 
-const mapStateToProps = ({ api: { data } }) => {
+const mapStateToProps = ({ api: { data, errors } }) => {
     return {
-        apiData: data,
+        apiData:   data,
+        apiErrors: errors,
     }
 }
 
