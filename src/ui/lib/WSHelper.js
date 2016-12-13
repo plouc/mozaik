@@ -1,7 +1,6 @@
 export const guessWSURL = (config = {}) => {
     return 'ws://localhost:5000'
 
-
     let proto = 'ws'
     if (config.useWssConnection === true) {
         proto = 'wss'
