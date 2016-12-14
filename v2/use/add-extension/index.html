@@ -13,10 +13,10 @@
     <title>
         
         
-            Widgets | Mozaïk
+            Adding an extension | Mozaïk
         
     </title>
-    <link rel="canonical" href="http://mozaik.rocks/v2/use/widgets/">
+    <link rel="canonical" href="http://mozaik.rocks/v2/use/add-extension/">
     
     <link rel="apple-touch-icon" href="http://mozaik.rocks/images/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="http://mozaik.rocks/images/icon/favicon-196x196.png" sizes="196x196">
@@ -112,9 +112,9 @@
             <div class="strata_out sub-header">
                 <div class="strata">
                     <div class="strata_in">
-                        <h1 class="page-title">Widgets</h1>
+                        <h1 class="page-title">Adding an extension</h1>
                         
-                            <div class="page-baseline">Configure Mozaïk V2 widgets</div>
+                            <div class="page-baseline">How to install/configure a Mozaïk extension in your project</div>
                         
                     </div>
                 </div>
@@ -130,81 +130,69 @@
                     <div class="article-content" itemprop="articleBody" data-swiftype-index="true">
                         
 
-<p>Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
-a react component which often communicates with an API.
-Mozaïk comes with just a few core widgets, others must be installed through extensions,
-see <a href="http://mozaik.rocks/extensions/">available extensions</a> and <a href="http://mozaik.rocks/v2/use/add-extension/">how to install them</a>.</p>
+<p>Once you picked one extension from the available <a href="http://mozaik.rocks/extensions/">Mozaïk extensions</a>,
+you&rsquo;ll have to activate it in your project.</p>
 
-<p>Widgets share some common properties which are all required:</p>
+<p>Please make sure you read the specific setup instructions from the extension documentation
+(usually the <code>README.md</code> file from the dedicated repository).</p>
 
-<table>
-<thead>
-<tr>
-<th>key</th>
-<th> description</th>
-</tr>
-</thead>
+<p>This guide assumes you used the <a href="https://github.com/plouc/mozaik-demo">mozaik-demo</a>
+repository to bootstrap your project, see <a href="http://mozaik.rocks/v2/use/">setup</a>.</p>
 
-<tbody>
-<tr>
-<td><strong>type</strong></td>
-<td><em>the type of widget to instantiate</em></td>
-</tr>
+<h2 id="install-package">Install package</h2>
 
-<tr>
-<td><strong>columns</strong></td>
-<td><em>width expressed in columns</em></td>
-</tr>
+<p>First, you have to install the extension:</p>
 
-<tr>
-<td><strong>rows</strong></td>
-<td><em>height expressed in rows</em></td>
-</tr>
-
-<tr>
-<td><strong>x</strong></td>
-<td><em>x position</em></td>
-</tr>
-
-<tr>
-<td><strong>y</strong></td>
-<td><em>y position</em></td>
-</tr>
-</tbody>
-</table>
-
-<p>Example:</p>
-
-<pre><code class="language-yaml"># ~/mozaik-demo/config.yml
-dashboards:
-  - columns: 3
-    rows:    2
-    widgets:
-      - type:    ext.widget_type
-        columns: 1
-        rows:    1
-        x:       0
-        y:       0
+<pre><code class="language-bash"># using npm
+npm install mozaik-ext-EXT_NAME
+# or yarn
+yarn add mozaik-ext-EXT_NAME
 </code></pre>
 
-<p><em>for properties related to position/size see <a href="http://mozaik.rocks/v2/use/grid/">grid system</a>.</em></p>
+<h2 id="registering-the-extension-widgets">Registering the extension widgets</h2>
 
-<h2 id="core-widgets">Core widgets</h2>
+<p>The demo provides an entry point to register your extensions and mount Mozaïk <code>src/index.js</code>,
+it&rsquo;s the frontend part of your Mozaïk project.</p>
 
-<p>Mozaïk core extension provides an <code>inspector</code> widget, in order to use it,
-you should use this config:</p>
+<pre><code class="language-javascript">// ~/mozaik-demo/src/index.js
+import React                from 'react'
+import { render }           from 'react-dom'
+import Mozaik, { Registry } from 'mozaik/ui'
+// import the extension
+import EXT_NAME             from 'mozaik-ext-EXT_NAME'
 
-<pre><code class="language-yaml"># ~/mozaik-demo/config.yml
-dashboards:
-  - columns: 3
-    rows:    2
-    widgets:
-      - type:    mozaik.inspector
-        columns: 1
-        rows:    1
-        x:       0
-        y:       0
+// register it
+Registry.addExtensions({
+    EXT_NAME,
+})
+
+render(&lt;Mozaik/&gt;, document.getElementById('mozaik'))
 </code></pre>
+
+<h2 id="registering-the-extension-client">Registering the extension client</h2>
+
+<p>If the extension provides a client, you&rsquo;ll have to also register it,
+the entry point for the server is <code>server.js</code></p>
+
+<pre><code class="language-javascript">// ~/mozaik-demo/server.js
+require('dotenv').load({ silent: false })
+
+const path   = require('path')
+const Mozaik = require('mozaik')
+
+
+Mozaik.configureFromFile(path.join(__dirname, 'config.yml'))
+    .then(() =&gt; {
+        // you register the extension here
+        Mozaik.registerApi('EXT_NAME', require('mozaik-ext-EXT_NAME/client'))
+
+        Mozaik.start()
+    })
+    .catch(err =&gt; { console.error(err) })
+</code></pre>
+
+<p>That&rsquo;s it, you can now use some of the extension widgets by
+<a href="http://mozaik.rocks/v2/use/widgets/">adding them to the config file</a>!</p>
 
                     </div>
                 </div>
@@ -236,11 +224,11 @@ dashboards:
                                     Grid system
                                 </a>
                             
-                                <a href="http://mozaik.rocks/v2/use/widgets/" class="sidebar__link _is-current">
+                                <a href="http://mozaik.rocks/v2/use/widgets/" class="sidebar__link">
                                     Widgets
                                 </a>
                             
-                                <a href="http://mozaik.rocks/v2/use/add-extension/" class="sidebar__link">
+                                <a href="http://mozaik.rocks/v2/use/add-extension/" class="sidebar__link _is-current">
                                     Adding an extension
                                 </a>
                             
@@ -326,13 +314,13 @@ dashboards:
                                                     </li>
                                                 
                                                     <li class="mobile-nav-item">
-                                                        <a href="http://mozaik.rocks/v2/use/widgets/" class="mobile-nav__link mobile-nav__link--sub _is-active">
+                                                        <a href="http://mozaik.rocks/v2/use/widgets/" class="mobile-nav__link mobile-nav__link--sub">
                                                             Widgets
                                                         </a>
                                                     </li>
                                                 
                                                     <li class="mobile-nav-item">
-                                                        <a href="http://mozaik.rocks/v2/use/add-extension/" class="mobile-nav__link mobile-nav__link--sub">
+                                                        <a href="http://mozaik.rocks/v2/use/add-extension/" class="mobile-nav__link mobile-nav__link--sub _is-active">
                                                             Adding an extension
                                                         </a>
                                                     </li>

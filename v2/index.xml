@@ -194,7 +194,7 @@ dashboards:
 &lt;p&gt;Widgets are the building blocks of a Mozaïk dashboard, a widget is in fact
 a react component which often communicates with an API.
 Mozaïk comes with just a few core widgets, others must be installed through extensions,
-see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt;.&lt;/p&gt;
+see &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;available extensions&lt;/a&gt; and &lt;a href=&#34;http://mozaik.rocks/v2/use/add-extension/&#34;&gt;how to install them&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Widgets share some common properties which are all required:&lt;/p&gt;
 
@@ -266,6 +266,80 @@ dashboards:
         x:       0
         y:       0
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Adding an extension</title>
+      <link>http://mozaik.rocks/v2/use/add-extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://mozaik.rocks/v2/use/add-extension/</guid>
+      <description>
+
+&lt;p&gt;Once you picked one extension from the available &lt;a href=&#34;http://mozaik.rocks/extensions/&#34;&gt;Mozaïk extensions&lt;/a&gt;,
+you&amp;rsquo;ll have to activate it in your project.&lt;/p&gt;
+
+&lt;p&gt;Please make sure you read the specific setup instructions from the extension documentation
+(usually the &lt;code&gt;README.md&lt;/code&gt; file from the dedicated repository).&lt;/p&gt;
+
+&lt;p&gt;This guide assumes you used the &lt;a href=&#34;https://github.com/plouc/mozaik-demo&#34;&gt;mozaik-demo&lt;/a&gt;
+repository to bootstrap your project, see &lt;a href=&#34;http://mozaik.rocks/v2/use/&#34;&gt;setup&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-package&#34;&gt;Install package&lt;/h2&gt;
+
+&lt;p&gt;First, you have to install the extension:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# using npm
+npm install mozaik-ext-EXT_NAME
+# or yarn
+yarn add mozaik-ext-EXT_NAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;registering-the-extension-widgets&#34;&gt;Registering the extension widgets&lt;/h2&gt;
+
+&lt;p&gt;The demo provides an entry point to register your extensions and mount Mozaïk &lt;code&gt;src/index.js&lt;/code&gt;,
+it&amp;rsquo;s the frontend part of your Mozaïk project.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/src/index.js
+import React                from &#39;react&#39;
+import { render }           from &#39;react-dom&#39;
+import Mozaik, { Registry } from &#39;mozaik/ui&#39;
+// import the extension
+import EXT_NAME             from &#39;mozaik-ext-EXT_NAME&#39;
+
+// register it
+Registry.addExtensions({
+    EXT_NAME,
+})
+
+render(&amp;lt;Mozaik/&amp;gt;, document.getElementById(&#39;mozaik&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;registering-the-extension-client&#34;&gt;Registering the extension client&lt;/h2&gt;
+
+&lt;p&gt;If the extension provides a client, you&amp;rsquo;ll have to also register it,
+the entry point for the server is &lt;code&gt;server.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// ~/mozaik-demo/server.js
+require(&#39;dotenv&#39;).load({ silent: false })
+
+const path   = require(&#39;path&#39;)
+const Mozaik = require(&#39;mozaik&#39;)
+
+
+Mozaik.configureFromFile(path.join(__dirname, &#39;config.yml&#39;))
+    .then(() =&amp;gt; {
+        // you register the extension here
+        Mozaik.registerApi(&#39;EXT_NAME&#39;, require(&#39;mozaik-ext-EXT_NAME/client&#39;))
+
+        Mozaik.start()
+    })
+    .catch(err =&amp;gt; { console.error(err) })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it, you can now use some of the extension widgets by
+&lt;a href=&#34;http://mozaik.rocks/v2/use/widgets/&#34;&gt;adding them to the config file&lt;/a&gt;!&lt;/p&gt;
 </description>
     </item>
     
