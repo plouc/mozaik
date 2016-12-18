@@ -23,6 +23,14 @@ const dashboard = {
     },
 }
 
+const notifications = {
+    bgColor:   colors.background,
+    textColor: colors.text,
+    padding:   0,
+    shadow:    'none',
+    overrides: {},
+}
+
 const card = {
     bgColor: 'transparent',
     shadow:  'none',
@@ -121,6 +129,7 @@ export default {
     colors,
     fonts,
     dashboard,
+    notifications,
     card,
     widget,
     list,
