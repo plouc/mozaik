@@ -61,6 +61,13 @@ const nightBlueTheme = {
             },
         },
     },
+    notifications: {
+        bgColor:   '#1e2430',
+        textColor: '#eedba5',
+        padding:   '0.8vmin 1.6vmin',
+        shadow:    '0 1px 2px rgba(0, 0, 0, 0.15), 0 4px 7px rgba(0, 0, 0, 0.15)',
+        overrides: {},
+    },
     card: {
         bgColor: '#2b3847',
         shadow:  '0 10px 20px rgba(0, 0, 0, 0.35)',
