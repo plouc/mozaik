@@ -60,6 +60,13 @@ const snowTheme = {
             },
         },
     },
+    notifications: {
+        bgColor:   '#fff',
+        textColor: '#333',
+        padding:   '0.8vmin 1.6vmin',
+        shadow:    '0 1px 2px rgba(0, 0, 0, 0.15), 0 4px 7px rgba(0, 0, 0, 0.15)',
+        overrides: {},
+    },
     card: {
         bgColor: '#fff',
         shadow:  '0 10px 10px rgba(0, 0, 0, 0.15)',
