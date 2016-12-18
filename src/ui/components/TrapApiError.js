@@ -3,12 +3,12 @@ import React, { PropTypes, Component } from 'react'
 
 class TrapApiError extends Component {
     render() {
-        const { apiError, children } = this.props
+        const { error, children } = this.props
 
-        if (apiError) {
+        if (error) {
             return (
                 <div className="widget__error">
-                    {apiError.message}
+                    {error.message}
                 </div>
             )
         }
@@ -18,7 +18,8 @@ class TrapApiError extends Component {
 }
 
 TrapApiError.propTypes = {
-    error: PropTypes.object,
+    error:    PropTypes.object,
+    children: PropTypes.node,
 }
 
 

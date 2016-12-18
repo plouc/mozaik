@@ -6,8 +6,10 @@ import {
 } from '../actions/apiActions'
 
 
-const mapStateToProps = ({ api: { data, errors } }) => {
+const mapStateToProps = ({ settings: { theme }, api: { data, errors } }) => {
     return {
+        // not used but needed to force refresh of context
+        themeId:   theme,
         apiData:   data,
         apiErrors: errors,
     }
