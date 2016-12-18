@@ -1,16 +1,21 @@
 import React, { Component, PropTypes } from 'react'
-import classNames                      from 'classnames'
 import _                               from 'lodash'
-import Widget                          from '../containers/WidgetContainer'
+import Widget                          from '../../containers/WidgetContainer'
 
 
 class Dashboard extends Component {
+    static contextTypes = {
+        theme: PropTypes.object.isRequired,
+    }
+
     render() {
         const {
             dashboard: { columns, rows, widgets, title },
             isCurrent,
             registry,
         } = this.props
+
+        const { theme } = this.context
 
         const widgetNodes = widgets.map((widget, index) => {
             const props = _.extend({}, _.omit(widget, ['columns', 'rows']), {
@@ -26,19 +31,20 @@ class Dashboard extends Component {
             return React.createElement(Widget, props)
         })
 
-        const classes     = classNames('dashboard__sheet', { '_is-current': isCurrent })
-        const bodyClasses = classNames('dashboard__body',  { 'dashboard__body--with-header': title })
+        const dashboardStyle = {
+            position:        'absolute',
+            top:             `calc(${theme.widget.spacing} / 2 + ${theme.dashboard.header.height})`,
+            bottom:          `calc(${theme.widget.spacing} / 2)`,
+            left:            `calc(${theme.widget.spacing} / 2)`,
+            right:           `calc(${theme.widget.spacing} / 2)`,
+            font:            theme.fonts.default,
+            backgroundColor: theme.colors.background,
+            color:           theme.colors.text,
+        }
 
         return (
-            <div className={classes}>
-                {title && (
-                    <div className="dashboard__title">
-                        {title}
-                    </div>
-                )}
-                <div className={bodyClasses}>
-                    {widgetNodes}
-                </div>
+            <div style={dashboardStyle}>
+                {widgetNodes}
             </div>
         )
     }
@@ -48,11 +54,12 @@ export const DashboardPropType = PropTypes.shape({
     columns: PropTypes.number.isRequired,
     rows:    PropTypes.number.isRequired,
     widgets: PropTypes.arrayOf(PropTypes.shape({
-        type:    PropTypes.string.isRequired,
-        x:       PropTypes.number.isRequired,
-        y:       PropTypes.number.isRequired,
-        columns: PropTypes.number.isRequired,
-        rows:    PropTypes.number.isRequired
+        extension: PropTypes.string.isRequired,
+        widget:    PropTypes.string.isRequired,
+        x:         PropTypes.number.isRequired,
+        y:         PropTypes.number.isRequired,
+        columns:   PropTypes.number.isRequired,
+        rows:      PropTypes.number.isRequired
     })).isRequired,
 })
 

@@ -28,7 +28,8 @@ export const fetchConfiguration = () => {
             type: FETCH_CONFIGURATION,
         })
 
-        return request.get('http://localhost:5000/config')
+        //http://localhost:5000/config
+        return request.get('/config')
             .then(res => {
                 const configuration = res.body
 

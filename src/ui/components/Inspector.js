@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import ComponentRegistry               from './../componentRegistry'
-import InspectorItem                   from './InspectorItem'
+import WidgetHeader                    from './widget/WidgetHeader'
+import WidgetBody                      from './widget/WidgetBody'
+import WidgetLabel                     from './widget/WidgetLabel'
 
 
 const SECONDS_PER_MINUTE = 60
@@ -49,25 +51,61 @@ class Inspector extends Component {
         const items = []
 
         const widgetTypes = Object.keys(ComponentRegistry.list())
-        items.push(<InspectorItem key="widgets" label="widgets" icon="columns" count={widgetTypes.length} />)
+        items.push(
+            <WidgetLabel
+                key="widgets"
+                label="widgets"
+                prefix={widgetTypes.length}
+                suffix={<i className="fa fa-columns" />}
+            />
+        )
 
         if (apiData) {
-            items.push(<InspectorItem key="apis" label="APIs" icon="plug" count={apiData.apis.length} />)
-            items.push(<InspectorItem key="clients" label="connected clients" icon="user" count={apiData.clientCount} />)
-            items.push(<InspectorItem key="uptime" label={`uptime: ${formatUptime(apiData.uptime)}`} icon="clock-o" />)
+            items.push(
+                <WidgetLabel
+                    key="apis"
+                    label="APIs"
+                    prefix={apiData.apis.length}
+                    suffix={<i className="fa fa-plug" />}
+                />
+            )
+            items.push(
+                <WidgetLabel
+                    key="clients"
+                    label="connected clients"
+                    prefix={apiData.clientCount}
+                    suffix={<i className="fa fa-user" />}
+                />
+            )
+            items.push(
+                <WidgetLabel
+                    key="uptime"
+                    label={`uptime: ${formatUptime(apiData.uptime)}`}
+                    suffix={<i className="fa fa-clock-o" />}
+                />
+            )
         }
 
         return (
             <div>
-                <div className="widget__header">
-                    <span>
-                        Mozaïk <span className="widget__header__subject">inspector</span>
-                    </span>
-                    <i className="fa fa-stethoscope" />
-                </div>
-                <div className="widget__body">
+                <WidgetHeader
+                    title="Mozaïk"
+                    subject="inspector"
+                    subjectPlacement="append"
+                    icon="stethoscope"
+                />
+                <WidgetBody
+                    style={{
+                        padding:        '1.6vmin 2vmin',
+                        display:        'flex',
+                        flexDirection:  'column',
+                        alignItems:     'stretch',
+                        alignContent:   'stretch',
+                        justifyContent: 'space-between',
+                    }}
+                >
                     {items}
-                </div>
+                </WidgetBody>
             </div>
         )
     }
