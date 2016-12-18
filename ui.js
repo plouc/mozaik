@@ -1,3 +1,1 @@
-import Mozaik from './src/ui'
-
-export default Mozaik
+module.exports = require('./lib/ui')

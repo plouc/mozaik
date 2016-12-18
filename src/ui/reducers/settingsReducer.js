@@ -4,7 +4,7 @@ import {
 
 
 export default function settings(state = {
-    theme: 'night-blue',
+    theme: 'solarized dark',
 }, action) {
     switch (action.type) {
         case SETTINGS_SET:
