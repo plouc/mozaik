@@ -1,12 +1,12 @@
-import { connect } from 'react-redux'
-import Widget      from '../components/Widget'
+import { connect }   from 'react-redux'
+import WidgetWrapper from '../components/widget/WidgetWrapper'
 import {
     subscribeToApi,
     unsubscribeFromApi,
 } from '../actions/apiActions'
 
 
-const mapStateToProps = ({ settings: { theme }, api: { data, errors } }) => {
+const mapStateToProps = ({ themes: { current: theme }, api: { data, errors } }) => {
     return {
         // not used but needed to force refresh of context
         themeId:   theme,
@@ -27,4 +27,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Widget)
+)(WidgetWrapper)

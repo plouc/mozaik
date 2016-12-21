@@ -1,7 +1,9 @@
 const zenBurnTheme = {
     colors: {
         background: '#373737',
+        overlay:    'rgba(0, 0, 0, .35)',
         text:       '#d0a182',
+        textMute:   '#87685a',
         unknown:    '#333333',
         success:    '#84c3c6',
         warning:    '#b58900',
@@ -42,7 +44,7 @@ const zenBurnTheme = {
     },
     list: {
         item: {
-            padding:   '1vmin 2vmin',
+            padding:   '0.6vmin 2vmin',
             overrides: {},
             meta: {
                 overrides: {

@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,400,600,800|Montserrat:400,700");
 theme-night-blue = {
   // DASHBOARD,
-  dashboard-header-height        : 5vmin,
   dashboard-header-txt-color     : #e0c671,
   dashboard-header-font          : unquote("normal normal 400 2.6vmin/5vmin 'Raleway', sans-serif"),
 
@@ -11,18 +10,6 @@ theme-night-blue = {
   notifications-bg-color         : lighten(#323f53, 5),
   notifications-txt-color        : #e0c671,
   notifications-shadow           : 0 1px 1px rgba(0, 0, 0, 0.85),
-
-  // CHART,
-  chart-elements-color           : lighten(#2b3847, 40),
-  histogram-bar-bg-color         : lighten(#2b3847, 7),
-  pie-chart-outline-stroke       : #27313e,
-  pie-chart-outline-stroke-width : 6px,
-  pie-gauge-needle-color         : #151b26,
-  pie-svg-legend-bg-color        : #323f53,
-
-  // PROPS,
-  prop-key-txt-color             : #eedba5,
-  prop-value-txt-color           : lighten(#eedba5, 10),
 }
 .time__clock
   box-shadow 0 1px 0 #495b71 inset
@@ -41,15 +28,19 @@ theme-night-blue = {
     color #495b71
 */
 
+const colors = {
+    background: '#1e2430',
+    text:       '#eedba5',
+    textMute:   '#879db7',
+    overlay:    'rgba(0, 0, 0, .35)',
+    unknown:    '#495b71',
+    success:    '#4ec2b4',
+    warning:    '#d1be65',
+    failure:    '#de5029',
+}
+
 const nightBlueTheme = {
-    colors: {
-        background: '#1e2430',
-        text:       '#eedba5',
-        unknown:    '#495b71',
-        success:    '#4ec2b4',
-        warning:    '#d1be65',
-        failure:    '#de5029',
-    },
+    colors,
     fonts: {
         default: `normal normal 400 1.6vmin/3vmin 'Raleway', sans-serif`,
     },
@@ -61,9 +52,12 @@ const nightBlueTheme = {
             },
         },
     },
+    settings: {
+        shadow: '0 1px 2px rgba(0, 0, 0, 0.75)',
+    },
     notifications: {
-        bgColor:   '#1e2430',
-        textColor: '#eedba5',
+        bgColor:   colors.background,
+        textColor: colors.text,
         padding:   '0.8vmin 1.6vmin',
         shadow:    '0 1px 2px rgba(0, 0, 0, 0.15), 0 4px 7px rgba(0, 0, 0, 0.15)',
         overrides: {},
@@ -98,6 +92,10 @@ const nightBlueTheme = {
                 textShadow:   '0 1px 0 rgba(0, 0, 0, 0.5)',
                 borderRadius: '2px',
                 padding:      '3px 7px',
+                overrides:    {
+                    textTransform: 'none',
+                    fontWeight:    400,
+                },
             },
             icon: {
                 size:  '2.2vmin',
@@ -140,8 +138,11 @@ const nightBlueTheme = {
     },
     charts: {
         axis: {
-            textColor: '#879db7',
-            tickColor: '#879db7',
+            textColor:      colors.textMute,
+            fontSize:       '1.3vmin',
+            tickColor:      colors.textMute,
+            legendColor:    colors.textMute,
+            legendFontSize: '1.3vmin',
         },
         grid: {
             stroke:          '#596981',

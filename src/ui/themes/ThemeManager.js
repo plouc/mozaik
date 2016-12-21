@@ -9,13 +9,15 @@ const ThemeManager = {
     },
 
     listThemes() {
-        return Object.keys(themes)
+        return themes
     },
 
     get(id) {
         return themes[id]
     },
 }
+
+ThemeManager.defaultTheme = 'wine'
 
 
 export default ThemeManager

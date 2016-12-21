@@ -4,20 +4,7 @@
 
 theme-yellow = {
   // DASHBOARD
-  dashboard-header-height        : 6vmin,
   dashboard-header-txt-color     : #453d3a,
-
-  // CHARTS
-  histogram-bar-bg-color         : #dcd1b5,
-  chart-axis-txt-color           : #806b3f,
-  pie-chart-outline-stroke       : #e5dabe,
-  pie-chart-outline-stroke-width : 8px,
-  pie-gauge-needle-color         : #735e39,
-  pie-svg-legend-bg-color        : #e6d280,
-
-  // PROPS
-  prop-key-txt-color            : #444,
-  prop-value-txt-color          : darken(#ce6c51, 10),
 }
 
 .time__clock {
@@ -41,6 +28,7 @@ const sunnyTheme = {
     colors: {
         background: '#e5dabe',
         text:       '#444',
+        textMute:   '#c0ab7f',
         unknown:    '#c0ab7f',
         success:    '#4eb6a3',
         warning:    '#d1be65',
@@ -54,6 +42,9 @@ const sunnyTheme = {
             bgColor: '#e6d280',
             overrides: {},
         },
+    },
+    settings: {
+        shadow: '0 1px 2px rgba(0, 0, 0, 0.15)',
     },
     card: {
         bgColor: '#ede2c6',
@@ -118,6 +109,18 @@ const sunnyTheme = {
                     borderBottom: '1px solid #e6d280',
                 },
             },
+        },
+    },
+    charts: {
+        axis: {
+            fontSize:       '1.3vmin',
+            textColor:      '#735e39',
+            legendFontSize: '1.3vmin',
+            legendColor:    '#735e39',
+        },
+        grid: {
+            stroke:          '#dfcea6',
+            strokeDasharray: 'none',
         },
     },
 }

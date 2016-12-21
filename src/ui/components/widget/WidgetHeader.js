@@ -66,6 +66,12 @@ class WidgetHeader extends Component {
 
         let subjectNode = null
         if (subject) {
+            if (subjectPlacement === 'prepend') {
+                subjectStyle.marginRight = theme.widget.header.itemsSpacing
+            } else {
+                subjectStyle.marginLeft = theme.widget.header.itemsSpacing
+            }
+
             subjectNode = (
                 <span style={subjectStyle}>
                     {subject}
@@ -79,7 +85,7 @@ class WidgetHeader extends Component {
                 display:         'inline-block',
                 lineHeight:      '1em',
                 verticalAlign:   'middle',
-                marginLeft:      '1.2vmin',
+                marginLeft:      theme.widget.header.count.spacing,
                 backgroundColor: theme.widget.header.count.bgColor,
                 color:           theme.widget.header.count.textColor,
                 padding:         theme.widget.header.count.padding,

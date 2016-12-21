@@ -4,21 +4,21 @@ import UnknowWidgetTypeError           from './UnknowWidgetTypeError'
 
 
 const ignoreProps = [
-    'extension', 'type', 'x', 'y', 'width', 'height',
+    'extension', 'widget', 'x', 'y', 'width', 'height',
     'registry', 'apiData', 'apiErrors',
     'subscribeToApi', 'unsubscribeFromApi',
 ]
 
 
-export default class Widget extends Component {
+export default class WidgetWrapper extends Component {
     static propTypes = {
         subscribeToApi:     PropTypes.func.isRequired,
         unsubscribeFromApi: PropTypes.func.isRequired,
         apiData:            PropTypes.object.isRequired,
         extension:          PropTypes.string.isRequired,
         widget:             PropTypes.string.isRequired,
-        x:                  PropTypes.string.isRequired,
-        y:                  PropTypes.string.isRequired,
+        top:                PropTypes.string.isRequired,
+        left:               PropTypes.string.isRequired,
         width:              PropTypes.string.isRequired,
         height:             PropTypes.string.isRequired,
         registry:           PropTypes.shape({
@@ -67,7 +67,7 @@ export default class Widget extends Component {
 
         const subscription = this.getSubscription()
         if (subscription) {
-            unsubscribeFromApi(subscription.id)
+            //unsubscribeFromApi(subscription.id)
         }
     }
 
@@ -76,17 +76,8 @@ export default class Widget extends Component {
             registry,
             apiData, apiErrors,
             extension, widget: type,
-            x, y, width, height,
         } = this.props
 
-        const { theme } = this.context
-
-        const style = {
-            top:  y,
-            left: x,
-            width,
-            height,
-        }
         let content
         if (!registry.has(extension, type)) {
             content = (
@@ -115,28 +106,6 @@ export default class Widget extends Component {
             content = React.createElement(component, childProps)
         }
 
-        return (
-            <div
-                style={{
-                    position: 'absolute',
-                    padding:  `calc(${theme.widget.spacing} / 2)`,
-                    ...style
-                }}
-            >
-                <div
-                    style={{
-                        position:        'relative',
-                        width:           '100%',
-                        height:          '100%',
-                        backgroundColor: theme.widget.bgColor,
-                        borderRadius:    theme.widget.borderRadius,
-                        boxShadow:       theme.widget.shadow,
-                        //border:        widget-border,
-                    }}
-                >
-                    {content}
-                </div>
-            </div>
-        )
+        return content
     }
 }

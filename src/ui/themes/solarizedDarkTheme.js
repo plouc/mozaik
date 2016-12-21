@@ -1,6 +1,8 @@
 const colors = {
     background: '#073642',
     text:       '#839496',
+    textMute:   '#495b71',
+    overlay:    'rgba(0, 0, 0, .35)',
     cardBg:     '#002b36',
     unknown:    '#495b71',
     success:    '#859900',
@@ -16,7 +18,12 @@ const solarizedDarkTheme = {
     dashboard: {
         header: {
             bgColor:   colors.cardBg,
-            overrides: {},
+            title: {
+                overrides: {
+                    fontSize: '1.8vmin',
+                    color:    '#eee8d5',
+                },
+            },
         },
     },
     notifications: {
@@ -52,7 +59,7 @@ const solarizedDarkTheme = {
     },
     list: {
         item: {
-            padding:   '1vmin 2vmin',
+            padding:   '0.6vmin 2vmin',
             overrides: {},
             meta: {
                 overrides: {
@@ -82,9 +89,11 @@ const solarizedDarkTheme = {
     },
     charts: {
         axis: {
-            textColor: '#839496',
-            textSize:  '1.2vmin',
-            tickColor: '#586e75',
+            textColor:      '#839496',
+            fontSize:       '1.2vmin',
+            tickColor:      '#586e75',
+            legendColor:    '#839496',
+            legendFontSize: '1.2vmin',
         },
         grid: {
             stroke:          '#485c63',

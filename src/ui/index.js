@@ -9,6 +9,7 @@ import ZenBurnTheme        from './themes/zenBurnTheme'
 import Mozaik              from './app'
 import Inspector           from './components/Inspector'
 import TrapApiError        from './components/TrapApiError'
+import Widget              from './components/widget/Widget'
 import WidgetHeader        from './components/widget/WidgetHeader'
 import WidgetBody          from './components/widget/WidgetBody'
 import WidgetList          from './components/widget/list/WidgetList'
@@ -18,7 +19,9 @@ import WidgetTable         from './components/widget/table/WidgetTable'
 import WidgetTableCell     from './components/widget/table/WidgetTableCell'
 import WidgetTableHeadCell from './components/widget/table/WidgetTableHeadCell'
 import WidgetAvatar        from './components/widget/WidgetAvatar'
-import WidgetStatusChip    from './components/widget/WidgetStatusChip'
+import WidgetStatusChip    from './components/widget/status/WidgetStatusChip'
+import WidgetStatusBadge   from './components/widget/status/WidgetStatusBadge'
+
 
 ThemeManager.loadTheme('snow',           SnowTheme)
 ThemeManager.loadTheme('night blue',     NightBlueTheme)
@@ -34,6 +37,7 @@ export {
     Registry,
     ThemeManager,
     TrapApiError,
+    Widget,
     WidgetHeader,
     WidgetBody,
     WidgetList,
@@ -44,4 +48,5 @@ export {
     WidgetTableHeadCell,
     WidgetAvatar,
     WidgetStatusChip,
+    WidgetStatusBadge,
 }
