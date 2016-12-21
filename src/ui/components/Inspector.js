@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import ComponentRegistry               from './../componentRegistry'
+import Registry                        from './../WidgetsRegistry'
+import Widget                          from './widget/Widget'
 import WidgetHeader                    from './widget/WidgetHeader'
 import WidgetBody                      from './widget/WidgetBody'
 import WidgetLabel                     from './widget/WidgetLabel'
@@ -40,7 +41,14 @@ const formatUptime = uptime => {
 }
 
 
-class Inspector extends Component {
+export default class Inspector extends Component {
+    static propTypes = {
+        apiData: PropTypes.shape({
+            apis:        PropTypes.array,
+            clientCount: PropTypes.number,
+        }),
+    }
+
     static getApiRequest() {
         return { id: 'mozaik.inspector' }
     }
@@ -50,12 +58,11 @@ class Inspector extends Component {
 
         const items = []
 
-        const widgetTypes = Object.keys(ComponentRegistry.list())
         items.push(
             <WidgetLabel
                 key="widgets"
                 label="widgets"
-                prefix={widgetTypes.length}
+                prefix={Registry.widgetsCount()}
                 suffix={<i className="fa fa-columns" />}
             />
         )
@@ -87,7 +94,7 @@ class Inspector extends Component {
         }
 
         return (
-            <div>
+            <Widget>
                 <WidgetHeader
                     title="Mozaïk"
                     subject="inspector"
@@ -106,17 +113,7 @@ class Inspector extends Component {
                 >
                     {items}
                 </WidgetBody>
-            </div>
+            </Widget>
         )
     }
 }
-
-Inspector.propTypes = {
-    apiData: PropTypes.shape({
-        apis:        PropTypes.array,
-        clientCount: PropTypes.number,
-    }),
-}
-
-
-export default Inspector

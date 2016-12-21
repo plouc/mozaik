@@ -73,6 +73,15 @@ const WidgetsRegistry = {
         return registry[extension][widget]
     },
 
+    widgetsCount() {
+        let count = 0
+        for (let ext in registry) {
+            count += Object.keys(registry[ext]).length
+        }
+
+        return count
+    },
+
     /**
      * @return {Object}
      */

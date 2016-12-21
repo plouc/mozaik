@@ -1,7 +1,12 @@
 import React, { PropTypes, Component } from 'react'
 
 
-class TrapApiError extends Component {
+export default class TrapApiError extends Component {
+    static propTypes = {
+        error:    PropTypes.object,
+        children: PropTypes.node,
+    }
+
     render() {
         const { error, children } = this.props
 
@@ -16,11 +21,3 @@ class TrapApiError extends Component {
         return children
     }
 }
-
-TrapApiError.propTypes = {
-    error:    PropTypes.object,
-    children: PropTypes.node,
-}
-
-
-export default TrapApiError

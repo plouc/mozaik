@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect }                     from 'react-redux'
-import ThemeManager                    from '../themes/ThemeManager'
 
 
 class ThemeProvider extends Component {
     static propTypes = {
-        theme:    PropTypes.string.isRequired,
+        themes:   PropTypes.object.isRequired,
+        current:  PropTypes.string.isRequired,
         children: PropTypes.element,
     }
 
@@ -14,11 +14,9 @@ class ThemeProvider extends Component {
     }
 
     getChildContext() {
-        const { theme } = this.props
+        const { themes, current } = this.props
 
-        return {
-            theme: ThemeManager.get(theme),
-        }
+        return { theme: themes[current] }
     }
 
     render() {
@@ -26,7 +24,11 @@ class ThemeProvider extends Component {
     }
 }
 
-const mapStateToProps = ({ settings: { theme } }) => ({ theme })
+const mapStateToProps = ({
+    themes: { themes, current },
+}) => {
+    return { themes, current }
+}
 
 
 export default connect(mapStateToProps)(ThemeProvider)

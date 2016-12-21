@@ -1,28 +1,21 @@
 import { connect }   from 'react-redux'
 import Notifications from '../components/notifications/Notifications'
-import {
-    fetchConfiguration
-} from '../actions/configurationActions'
 
 
 const mapStateToProps = state => {
     const {
-        notifications: {
-            items,
-        }
+        notifications: { items },
+        themes:        { current: themeId },
     } = state
 
     return {
         notifications: items,
+        // not used but needed to force refresh of context
+        themeId,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    /*
-    fetchConfiguration: () => {
-        dispatch(fetchConfiguration())
-    },
-    */
 })
 
 export default connect(

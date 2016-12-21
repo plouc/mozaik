@@ -2,11 +2,28 @@ import React, { Component, PropTypes }  from 'react'
 import Dashboard, { DashboardPropType } from './dashboard/Dashboard'
 import DashboardHeader                  from './dashboard/DashboardHeader'
 import WidgetsRegistry                  from './../WidgetsRegistry'
-import Settings                         from './Settings'
+import Settings                         from './Settings/Settings'
 import Notifications                    from '../containers/NotificationsContainer'
+import { TransitionMotion, spring }     from 'react-motion'
 
 
-class Mozaik extends Component {
+export default class Mozaik extends Component {
+    static propTypes = {
+        fetchConfiguration: PropTypes.func.isRequired,
+        isLoading:          PropTypes.bool.isRequired,
+        dashboards:         PropTypes.arrayOf(DashboardPropType).isRequired,
+        currentDashboard:   PropTypes.number.isRequired,
+        isPlaying:          PropTypes.bool.isRequired,
+        play:               PropTypes.func.isRequired,
+        pause:              PropTypes.func.isRequired,
+        previous:           PropTypes.func.isRequired,
+        next:               PropTypes.func.isRequired,
+        configuration:      PropTypes.shape({}),
+        themes:             PropTypes.object.isRequired,
+        currentTheme:       PropTypes.string.isRequired,
+        setTheme:           PropTypes.func.isRequired,
+    }
+
     static contextTypes = {
         theme: PropTypes.object.isRequired,
     }
@@ -16,9 +33,7 @@ class Mozaik extends Component {
 
         this.toggleSettings = this.toggleSettings.bind(this)
 
-        this.state = {
-            settingsOpened: false,
-        }
+        this.state = { settingsOpened: false }
     }
 
     toggleSettings() {
@@ -36,29 +51,29 @@ class Mozaik extends Component {
             isLoading,
             dashboards,
             currentDashboard,
-            setSettings,
+            isPlaying,
+            play, pause, previous, next,
+            themes,
+            currentTheme,
+            setTheme,
         } = this.props
 
         const { theme } = this.context
 
         const { settingsOpened } = this.state
 
-        if (isLoading) {
-            return (
-                <div>loading config</div>
+        let content = <div>loading</div>
+        if (!isLoading && dashboards.length > 0) {
+            content = (
+                <Dashboard
+                    dashboard={dashboards[currentDashboard]}
+                    dashboardIndex={currentDashboard}
+                    registry={WidgetsRegistry}
+                />
             )
         }
 
-        const dashboardNodes = dashboards.map((dashboard, index) => (
-            <Dashboard
-                key={index}
-                dashboard={dashboard}
-                isCurrent={index === currentDashboard}
-                registry={WidgetsRegistry}
-            />
-        ))
-
-        const style = {
+        const rootStyle = {
             position:        'absolute',
             top:             0,
             bottom:          0,
@@ -71,36 +86,28 @@ class Mozaik extends Component {
         }
 
         return (
-            <div style={style}>
+            <div style={rootStyle}>
                 <DashboardHeader
-                    title="test"
                     settingsOpened={settingsOpened}
                     toggleSettings={this.toggleSettings}
+                    dashboards={dashboards}
+                    currentDashboardIndex={currentDashboard}
+                    isPlaying={isPlaying}
+                    play={play}
+                    pause={pause}
+                    previous={previous}
+                    next={next}
                 />
-                {dashboardNodes}
+                {content}
                 <Settings
-                    setSettings={setSettings}
+                    themes={themes}
+                    currentTheme={currentTheme}
+                    setTheme={setTheme}
                     opened={settingsOpened}
+                    close={this.toggleSettings}
                 />
                 <Notifications />
             </div>
         )
     }
 }
-
-Mozaik.propTypes = {
-    fetchConfiguration: PropTypes.func.isRequired,
-    setSettings:        PropTypes.func.isRequired,
-    isLoading:          PropTypes.bool.isRequired,
-    dashboards:         PropTypes.arrayOf(DashboardPropType).isRequired,
-    currentDashboard:   PropTypes.number.isRequired,
-    configuration:      PropTypes.shape({}),
-    theme:              PropTypes.string.isRequired,
-}
-
-Mozaik.defaultProps = {
-    currentDashboard: 0,
-}
-
-
-export default Mozaik
