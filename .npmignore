@@ -1,7 +1,11 @@
 .travis.yml
-CHANGELOG.md
 .nyc_output
-coverage
+.eslintrc
+CHANGELOG.md
+/coverage
 .DS_Store
 test
 npm-debug.log*
+/src/ui
+/lib/server
+yarn.lock

@@ -2,7 +2,7 @@ import request     from 'superagent-bluebird-promise'
 import { connect } from './wsActions'
 import {
     setDashboards,
-    startDashboardRotation,
+    play,
 } from './dashboardsActions'
 import {
     notifySuccess,
@@ -35,12 +35,12 @@ export const fetchConfiguration = () => {
 
                 dispatch(fetchConfigurationSuccess(res.body))
                 dispatch(connect(configuration))
-                //dispatch(notifySuccess({
-                //    message: 'configuration loaded',
-                //    ttl:     2000,
-                //}))
+                dispatch(notifySuccess({
+                    message: 'configuration loaded',
+                    ttl:     2000,
+                }))
                 dispatch(setDashboards(configuration.dashboards))
-                dispatch(startDashboardRotation(parseInt(configuration.rotationDuration, 10)))
+                dispatch(play())
             })
             .catch(err => {
                 dispatch(fetchConfigurationFailure(err.message))

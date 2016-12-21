@@ -3,18 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,200,800|Montserrat:400,700");
 theme-snow = {
   // DASHBOARD
-  dashboard-header-height        : 6vmin,
   dashboard-header-font          : unquote("normal normal 400 2.6vmin/6vmin 'Montserrat', sans-serif"),
-
-  // CHART
-  histogram-bar-bg-color         : #fafafa,
-  pie-chart-outline-stroke       : #ddd,
-  pie-chart-outline-stroke-width : 6px,
-  pie-svg-legend-bg-color        : #ededed,
-
-  // PROPS
-  prop-key-txt-color             : #333,
-  prop-value-txt-color           : lighten(#333, 10),
 }
 .dashboard__title {
   background: themes[snow][widget-header-bg-color];
@@ -44,6 +33,7 @@ const snowTheme = {
     colors: {
         background: '#ebf0f1',
         text:       '#333',
+        textMute:   '#999',
         unknown:    '#d3dfe8',
         success:    '#8ddb8d',
         warning:    '#d1be65',
@@ -59,6 +49,9 @@ const snowTheme = {
                 boxShadow: '0 1px 3px rgba(0, 0, 0, 0.15)',
             },
         },
+    },
+    settings: {
+        shadow: '0 1px 2px rgba(0, 0, 0, 0.15)',
     },
     notifications: {
         bgColor:   '#fff',
@@ -130,9 +123,11 @@ const snowTheme = {
     },
     charts: {
         axis: {
-            textColor: '#777',
-            textSize: '1.2vmin',
-            tickColor: '#777',
+            textColor:      '#777',
+            fontSize:       '1.3vmin',
+            tickColor:      '#777',
+            legendColor:    '#777',
+            legendFontSize: '1.3vmin',
         },
         grid: {
             stroke:          '#aaa',

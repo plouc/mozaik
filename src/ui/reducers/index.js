@@ -3,8 +3,8 @@ import api                 from './apiReducer'
 import configuration       from './configurationReducer'
 import dashboards          from './dashboardsReducer'
 import notifications       from './notificationsReducer'
-import settings            from './settingsReducer'
 import ws                  from './wsReducer'
+import themes              from './themesReducer'
 
 
 export default combineReducers({
@@ -12,6 +12,6 @@ export default combineReducers({
     configuration,
     dashboards,
     notifications,
-    settings,
     ws,
+    themes,
 })

@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react'
-import WidgetHeader                    from './widget/WidgetHeader'
-import WidgetBody                      from './widget/WidgetBody'
+import Widget                          from './Widget'
+import WidgetHeader                    from './WidgetHeader'
+import WidgetBody                      from './WidgetBody'
 
 
 export default class UnknowWidgetTypeError extends Component {
-    static contextTypes = {
-        theme:     PropTypes.object.isRequired,
+    static propTypes = {
         extension: PropTypes.string.isRequired,
         widget:    PropTypes.string.isRequired,
+    }
+
+    static contextTypes = {
+        theme: PropTypes.object.isRequired,
     }
 
     render() {
@@ -15,7 +19,7 @@ export default class UnknowWidgetTypeError extends Component {
         const { theme }             = this.context
 
         return (
-            <div>
+            <Widget>
                 <WidgetHeader
                     title="Error"
                     icon="warning"
@@ -31,7 +35,7 @@ export default class UnknowWidgetTypeError extends Component {
                         a "{widget}" widget.
                     </p>
                 </WidgetBody>
-            </div>
+            </Widget>
         )
     }
 }

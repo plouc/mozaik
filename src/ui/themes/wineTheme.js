@@ -1,7 +1,9 @@
 const wineTheme = {
     colors: {
         background: '#281212',
+        overlay:    'rgba(0, 0, 0, .35)',
         text:       'hsl(6, 26%, 67%)',
+        textMute:   '#9b645e',
         unknown:    '#7e706d',
         success:    '#50a3b2',
         failure:    '#a31c12',
@@ -13,6 +15,9 @@ const wineTheme = {
         header: {
             bgColor: 'rgb(69, 23, 23)',
         },
+    },
+    settings: {
+        shadow: '0 1px 2px rgba(0, 0, 0, 0.75)',
     },
     card: {
         bgColor: 'rgb(69, 23, 23)',
