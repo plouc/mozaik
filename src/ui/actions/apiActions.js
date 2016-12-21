@@ -7,12 +7,13 @@ export const API_DATA        = 'API_DATA'
 export const API_FAILURE     = 'API_FAILURE'
 
 export const subscribeToApi = subscription => {
-    return dispatch => {
-        dispatch({
-            type: API_SUBSCRIBE,
-            subscription,
-        })
-        dispatch(send('api.subscription', subscription))
+    return (dispatch, getState) => {
+        const { api: { subscriptions } } = getState()
+
+        if (!subscriptions.hasOwnProperty(subscription.id)) {
+            dispatch({ type: API_SUBSCRIBE, subscription })
+            dispatch(send('api.subscription', subscription))
+        }
     }
 }
 

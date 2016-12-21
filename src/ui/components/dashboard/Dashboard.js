@@ -29,13 +29,18 @@ const widgetWillLeave = () => ({
     x:       spring(-60, { stiffness: 120, damping: 15 }),
 })
 
+const ignoreProps = [
+    'x', 'y', 'top', 'left',
+    'columns', 'rows', 'width', 'height',
+]
+
 
 export default class Dashboard extends Component {
     static propTypes = {
         dashboard:      DashboardPropType.isRequired,
         dashboardIndex: PropTypes.number.isRequired,
         registry:       PropTypes.shape({
-            get: PropTypes.func.isRequired,
+            getComponent: PropTypes.func.isRequired,
         }).isRequired,
     }
 
@@ -65,7 +70,7 @@ export default class Dashboard extends Component {
 
         const widgets = _widgets.map(w => {
             return {
-                ..._.omit(w, ['columns', 'rows']),
+                ...w,
                 key:    `dashboard${dashboardIndex}.x${w.x}.y${w.y}`,
                 width:  `${ w.columns / columns * 100 }%`,
                 height: `${ w.rows    / rows    * 100 }%`,
@@ -105,7 +110,7 @@ export default class Dashboard extends Component {
                                     }}
                                 >
                                     <WidgetWrapper
-                                        {...data}
+                                        {..._.omit(data, ignoreProps)}
                                         registry={registry}
                                     />
                                 </div>
