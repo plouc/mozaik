@@ -4,71 +4,20 @@ import UnknowWidgetTypeError           from './UnknowWidgetTypeError'
 
 
 const ignoreProps = [
-    'extension', 'widget', 'x', 'y', 'width', 'height',
-    'registry', 'apiData', 'apiErrors',
-    'subscribeToApi', 'unsubscribeFromApi',
+    'extension', 'widget', 'registry',
+    'subscriptionId', 'apiData', 'apiErrors',
 ]
 
 
 export default class WidgetWrapper extends Component {
     static propTypes = {
-        subscribeToApi:     PropTypes.func.isRequired,
-        unsubscribeFromApi: PropTypes.func.isRequired,
-        apiData:            PropTypes.object.isRequired,
-        extension:          PropTypes.string.isRequired,
-        widget:             PropTypes.string.isRequired,
-        top:                PropTypes.string.isRequired,
-        left:               PropTypes.string.isRequired,
-        width:              PropTypes.string.isRequired,
-        height:             PropTypes.string.isRequired,
-        registry:           PropTypes.shape({
-            get: PropTypes.func.isRequired,
+        apiData:        PropTypes.object.isRequired,
+        extension:      PropTypes.string.isRequired,
+        widget:         PropTypes.string.isRequired,
+        subscriptionId: PropTypes.string,
+        registry:       PropTypes.shape({
+            getComponent: PropTypes.func.isRequired,
         }).isRequired,
-    }
-
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
-    getSubscription() {
-        const { registry, extension, widget } = this.props
-
-        // The error will be displayed in the render method
-        // so we just ignore it here
-        if (!registry.has(extension, widget)) return null
-
-        // Pick component from registry
-        const component = registry.get(extension, widget)
-
-        if (_.isFunction(component.getApiRequest)) {
-            const childProps   = _.omit(this.props, ignoreProps)
-            const subscription = component.getApiRequest(childProps)
-            if (!_.isObject(subscription) || !subscription.id) {
-                console.error(`widget ${extension}.${widget} 'getApiRequest()' must return an object with an 'id' property`)
-            } else {
-                return subscription
-            }
-        }
-
-        return null
-    }
-
-    componentDidMount() {
-        const { subscribeToApi } = this.props
-
-        const subscription = this.getSubscription()
-        if (subscription) {
-            subscribeToApi(subscription)
-        }
-    }
-
-    componentWillUnmount() {
-        const { unsubscribeFromApi } = this.props
-
-        const subscription = this.getSubscription()
-        if (subscription) {
-            //unsubscribeFromApi(subscription.id)
-        }
     }
 
     render() {
@@ -76,7 +25,10 @@ export default class WidgetWrapper extends Component {
             registry,
             apiData, apiErrors,
             extension, widget: type,
+            subscriptionId,
         } = this.props
+
+        //console.log(`${extension}.${type}.render()`)
 
         let content
         if (!registry.has(extension, type)) {
@@ -88,18 +40,17 @@ export default class WidgetWrapper extends Component {
             )
         } else {
             // Pick component from registry and instantiate with filtered props
-            const component = registry.get(extension, type)
+            const component = registry.getComponent(extension, type)
 
             // Pass props to widget component without 'metadata
             const childProps = _.omit(this.props, ignoreProps)
 
-            if (_.isFunction(component.getApiRequest)) {
-                const { id } = component.getApiRequest(childProps)
-                if (apiData[id]) {
-                    childProps.apiData = apiData[id]
+            if (subscriptionId) {
+                if (apiData[subscriptionId]) {
+                    childProps.apiData = apiData[subscriptionId]
                 }
-                if (apiErrors[id]) {
-                    childProps.apiError = apiErrors[id]
+                if (apiErrors[subscriptionId]) {
+                    childProps.apiError = apiErrors[subscriptionId]
                 }
             }
 

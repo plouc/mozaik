@@ -63,7 +63,7 @@ const WidgetsRegistry = {
      * @param {string} widget
      * @return {Function}
      */
-    get(extension, widget) {
+    getComponent(extension, widget) {
         if (!WidgetsRegistry.has(extension, widget)) {
             throw new Error(
                 `No widget "${widget}" defined for extension "${extension}"`
