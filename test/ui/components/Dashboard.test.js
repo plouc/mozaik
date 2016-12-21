@@ -3,7 +3,7 @@ import React       from 'react'
 import { shallow } from 'enzyme'
 import _           from 'lodash'
 import Widget      from '../../../src/ui/containers/WidgetContainer'
-import Dashboard   from '../../../src/ui/components/Dashboard'
+import Dashboard   from '../../../src/ui/components/dashboard/Dashboard'
 
 
 const registry = {

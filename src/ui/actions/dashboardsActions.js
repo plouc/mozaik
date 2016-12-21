@@ -1,13 +1,58 @@
+import Registry from '../WidgetsRegistry'
+import _        from 'lodash'
+import {
+    subscribeToApi,
+    unsubscribeFromApi,
+} from './apiActions'
+
 export const SET_DASHBOARDS        = 'SET_DASHBOARDS'
 export const SET_CURRENT_DASHBOARD = 'SET_CURRENT_DASHBOARD'
 export const DASHBOARDS_PLAY       = 'DASHBOARDS_PLAY'
 export const DASHBOARDS_PAUSE      = 'DASHBOARDS_PAUSE'
 
 
-export const setDashboards = dashboards => ({
-    type: SET_DASHBOARDS,
-    dashboards,
-})
+
+const ignoreProps = [
+    'extension', 'widget',
+    'x', 'y',
+    'columns', 'rows',
+]
+
+export const setDashboards = dashboards => {
+    return (dispatch, getState) => {
+        const { api: { subscriptions } } = getState()
+        const currentSubscriptionsIds    = Object.keys(subscriptions)
+        const newSubscriptionsIds        = []
+
+        dashboards.forEach((dashboard, dahsboardIndex) => {
+            dashboard.widgets.forEach((w, widgetIndex) => {
+                if (Registry.has(w.extension, w.widget)) {
+                    const component = Registry.getComponent(w.extension, w.widget)
+
+                    if (typeof component.getApiRequest === 'function') {
+                        const childProps   = _.omit(w, ignoreProps)
+                        const subscription = component.getApiRequest(childProps)
+
+                        if (!_.isObject(subscription) || !subscription.id) {
+                            console.error(`widget ${w.extension}.${w.widget} 'getApiRequest()' must return an object with an 'id' property`)
+                        } else {
+                            dashboards[dahsboardIndex].widgets[widgetIndex].subscriptionId = subscription.id
+                            dispatch(subscribeToApi(subscription))
+                            newSubscriptionsIds.push(subscription.id)
+                        }
+                    }
+                }
+            })
+        })
+
+        const staleSubscriptionsIds = _.difference(currentSubscriptionsIds, newSubscriptionsIds)
+        staleSubscriptionsIds.forEach(id => {
+            dispatch(unsubscribeFromApi(id))
+        })
+
+        dispatch({ type: SET_DASHBOARDS, dashboards })
+    }
+}
 
 const setCurrentDashboard = index => {
     return {
