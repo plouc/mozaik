@@ -53,6 +53,15 @@ export default class DashboardPlayer extends Component {
                         color={iconColor}
                     />
                 </span>
+                <span className={`${classes.index} ${_.get(theme, 'dashboardPlayer.index', '')}`}>
+                        {currentDashboardIndex + 1}
+                </span>
+                <span className={`${classes.slash} ${_.get(theme, 'dashboardPlayer.slash', '')}`}>
+                    /
+                </span>
+                <span className={`${classes.index} ${_.get(theme, 'dashboardPlayer.index', '')}`}>
+                    {dashboards.length}
+                </span>
                 <span
                     className={classes.button}
                     onClick={handler}
@@ -72,9 +81,6 @@ export default class DashboardPlayer extends Component {
                         size={32}
                         color={iconColor}
                     />
-                </span>
-                <span>
-                    {currentDashboardIndex + 1} / {dashboards.length}
                 </span>
             </div>
         )

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
 import ThemeSetting                    from './ThemesSetting'
-import './Settings.css'
+import classes                         from './Settings.css'
 
 
 export default class Settings extends Component {
@@ -32,10 +33,10 @@ export default class Settings extends Component {
         return (
             <div>
                 <div
-                    styleName="overlay"
+                    className={`${classes.overlay} ${_.get(theme, 'settings.overlay', '')}`}
                     onClick={close}
                 />
-                <div styleName="settings" className="settings">
+                <div className={`${classes.settings} ${_.get(theme, 'settings.settings', '')}`}>
                     <ThemeSetting
                         themes={themes}
                         currentTheme={currentTheme}
