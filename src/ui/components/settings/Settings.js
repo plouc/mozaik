@@ -35,22 +35,6 @@ export default class Settings extends Component {
 
         const { theme } = this.context
 
-        /*
-        <div>
-                <div
-                    className={`${classes.overlay} ${_.get(theme, 'settings.overlay', '')}`}
-                    onClick={close}
-                />
-                <div className={`${classes.settings} ${_.get(theme, 'settings.settings', '')}`}>
-                    <ThemeSetting
-                        themes={themes}
-                        currentTheme={currentTheme}
-                        setTheme={setTheme}
-                    />
-                </div>
-            </div>
-         */
-
         const settings = []
         if (opened) {
             settings.push({ key: 'settings' })
@@ -77,8 +61,7 @@ export default class Settings extends Component {
                 >
                     {styles => (
                         <div>
-                            {styles.map(({ key, data, style }) => {
-                                console.log(style)
+                            {styles.map(({ key, style }) => {
                                 return (
                                     <div
                                         key={key}
