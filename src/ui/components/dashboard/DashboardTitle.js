@@ -32,7 +32,7 @@ export default class DashboardTitle extends Component {
                 willEnter={willEnter}
                 willLeave={willLeave}
                 styles={items.map(item => ({
-                    key:   item.key,
+                    key:   `${item.key}`,
                     data:  item.title,
                     style: {
                         x:       spring(0, { stiffness: 60, damping: 15 }),

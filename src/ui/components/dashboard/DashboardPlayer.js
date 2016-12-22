@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import _                               from 'lodash'
-import { MorphIcon }                   from 'react-svg-buttons'
+import { MorphIcon, PlayButton }       from 'react-svg-buttons'
 import classes                         from './DashboardPlayer.css'
 
 
@@ -66,9 +66,10 @@ export default class DashboardPlayer extends Component {
                     className={classes.button}
                     onClick={handler}
                 >
-                    <MorphIcon
+                    <PlayButton
                         type={icon}
                         size={32}
+                        isPlaying={isPlaying}
                         color={iconColor}
                     />
                 </span>
