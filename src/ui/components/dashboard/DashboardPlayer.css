@@ -14,6 +14,9 @@
 }
 .button:first-child {
 }
+.play {
+    margin-left: 0.6vmin;
+}
 
 .index {
     display: inline-block;

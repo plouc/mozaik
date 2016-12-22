@@ -63,7 +63,7 @@ export default class DashboardPlayer extends Component {
                     {dashboards.length}
                 </span>
                 <span
-                    className={classes.button}
+                    className={`${classes.button} ${classes.play}`}
                     onClick={handler}
                 >
                     <PlayButton
