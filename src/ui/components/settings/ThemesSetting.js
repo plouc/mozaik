@@ -25,7 +25,7 @@ export default class ThemeSetting extends Component {
         const themeIds = Object.keys(themes)
 
         return (
-            <Widget style={{ width: '30%' }}>
+            <Widget>
                 <WidgetHeader
                     title="Themes"
                     count={themeIds.length}

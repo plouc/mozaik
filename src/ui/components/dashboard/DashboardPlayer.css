@@ -14,3 +14,13 @@
 }
 .button:first-child {
 }
+
+.index {
+    display: inline-block;
+    width: 2vmin;
+    text-align: center;
+}
+
+.slash {
+
+}
