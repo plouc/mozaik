@@ -9,7 +9,7 @@
 
 .settings {
     position: absolute;
-    z-index: 10000;
+    z-index: 100;
     top: 6vmin;
     right: 0;
     width: 33%;
