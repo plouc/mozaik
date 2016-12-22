@@ -1,4 +1,3 @@
-import request     from 'superagent-bluebird-promise'
 import { connect } from './wsActions'
 import {
     setDashboards,
@@ -6,6 +5,7 @@ import {
 } from './dashboardsActions'
 import {
     notifySuccess,
+    notifyError,
 } from './notificationsActions'
 
 export const FETCH_CONFIGURATION         = 'FETCH_CONFIGURATION'
@@ -24,16 +24,19 @@ const fetchConfigurationFailure = error => ({
 
 export const fetchConfiguration = () => {
     return dispatch => {
-        dispatch({
-            type: FETCH_CONFIGURATION,
-        })
+        dispatch({ type: FETCH_CONFIGURATION })
 
-        //http://localhost:5000/config
-        return request.get('/config')
+        // http://localhost:5000/config
+        return fetch('/config')
             .then(res => {
-                const configuration = res.body
+                if (res.status !== 200) {
+                    return Promise.reject(`Unable to fetch configuration: ${res.statusText} (${res.status})`)
+                }
 
-                dispatch(fetchConfigurationSuccess(res.body))
+                return res.json()
+            })
+            .then(configuration => {
+                dispatch(fetchConfigurationSuccess(configuration))
                 dispatch(connect(configuration))
                 dispatch(notifySuccess({
                     message: 'configuration loaded',
@@ -43,6 +46,10 @@ export const fetchConfiguration = () => {
                 dispatch(play())
             })
             .catch(err => {
+                dispatch(notifyError({
+                    message: `An error occurred while fetching configuration: ${err.message}`,
+                    ttl:     -1,
+                }))
                 dispatch(fetchConfigurationFailure(err.message))
             })
     }
