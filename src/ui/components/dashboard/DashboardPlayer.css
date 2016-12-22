@@ -1,0 +1,16 @@
+.player {
+    margin-right: 6vmin;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    padding: 0 0.6vmin;
+}
+.button:first-child {
+}

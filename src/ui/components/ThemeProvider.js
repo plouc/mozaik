@@ -16,7 +16,12 @@ class ThemeProvider extends Component {
     getChildContext() {
         const { themes, current } = this.props
 
-        return { theme: themes[current] }
+        let theme = {}
+        if (themes.hasOwnProperty(current)) {
+            theme = themes[current]
+        }
+
+        return { theme }
     }
 
     render() {

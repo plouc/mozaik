@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
 import Widget                          from '../widget/Widget'
 import WidgetHeader                    from '../widget/WidgetHeader'
 import WidgetBody                      from '../widget/WidgetBody'
 import WidgetListItem                  from '../widget/list/WidgetListItem'
+import { MorphIcon }                   from 'react-svg-buttons'
 
 
 export default class ThemeSetting extends Component {
@@ -31,9 +33,9 @@ export default class ThemeSetting extends Component {
                 />
                 <WidgetBody>
                     {themeIds.map(t => {
-                        let icon = 'circle-thin'
+                        let icon = 'cross'
                         if (t === currentTheme) {
-                            icon = 'dot-circle-o'
+                            icon = 'check'
                         }
 
                         return (
@@ -41,7 +43,14 @@ export default class ThemeSetting extends Component {
                                 key={t}
                                 onClick={() => { setTheme(t) }}
                                 title={t}
-                                pre={<i className={`fa fa-${icon}`}/>}
+                                style={{ cursor: 'pointer' }}
+                                pre={
+                                    <MorphIcon
+                                        type={icon}
+                                        size={26}
+                                        color={_.get(theme, 'colors.icon', '#000')}
+                                    />
+                                }
                             />
                         )
                     })}

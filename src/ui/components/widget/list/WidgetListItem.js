@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetList.css'
 
 
 class WidgetListItem extends Component {
@@ -13,59 +15,38 @@ class WidgetListItem extends Component {
             post,
             meta,
             onClick,
-            style: _style
+            style,
         } = this.props
 
         const { theme } = this.context
 
-        const rootStyle = {
-            position:     'relative',
-            padding:      theme.list.item.padding,
-            display:      'flex',
-            alignItems:   'center',
-            borderBottom: theme.list.item.border,
-            ...theme.list.item.overrides,
-            ..._style,
-        }
-
-        if (onClick !== undefined) {
-            rootStyle.cursor = 'pointer'
-        }
-
-        const style = {
-            flexGrow: 1,
-        }
-
         let metaNode = null
         if (meta !== undefined) {
-            const metaStyle = {
-                fontSize: theme.list.item.meta.fontSize,
-                ...theme.list.item.meta.overrides,
-            }
-
             metaNode = (
-                <div style={metaStyle}>
+                <div className={_.get(theme, 'widgetList.meta', '')}>
                     {meta}
                 </div>
             )
         }
 
-        const spacing = theme.list.item.spacing
-
         let preNode = null
         if (pre !== undefined) {
-            preNode = <div style={{ marginRight: spacing }}>{pre}</div>
+            preNode = <div className={`${classes.pre} ${_.get(theme, 'widgetList.pre', '')}`}>{pre}</div>
         }
 
         let postNode = null
         if (post !== undefined) {
-            postNode = <div style={{ marginLeft: spacing }}>{post}</div>
+            postNode = <div className={`${classes.post} ${_.get(theme, 'widgetList.post', '')}`}>{post}</div>
         }
 
         return (
-            <div style={rootStyle} onClick={onClick}>
+            <div
+                className={`${classes.item} ${_.get(theme, 'widgetList.item', '')}`}
+                style={style}
+                onClick={onClick}
+            >
                 {preNode}
-                <div style={style}>
+                <div style={{ flexGrow: 1 }}>
                     {title}
                     {metaNode}
                 </div>

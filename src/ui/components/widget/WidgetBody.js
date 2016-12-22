@@ -1,46 +1,29 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetBody.css'
 
 
-class WidgetBody extends Component {
+export default class WidgetBody extends Component {
+    static propTypes = {
+        style: PropTypes.object,
+    }
+
+    static defaultProps = {
+        style: {},
+    }
+
     static contextTypes = {
         theme: PropTypes.object.isRequired,
     }
 
     render() {
-        const { children, style: _style } = this.props
-
-        const { theme } = this.context
-
-        const style = {
-            position:  'absolute',
-            right:     0,
-            bottom:    0,
-            left:      0,
-            overflowX: 'hidden',
-            overflowY: 'auto',
-            top:       theme.widget.header.height,
-             //top:              widget-header-height,
-             //background-color: widget-body-bg-color,
-             //border-radius:    @(t) { return 0 0 t.widget-border-radius t.widget-border-radius },
-             //box-shadow:       widget-body-shadow,
-            ..._style,
-        }
+        const { children, style } = this.props
+        const { theme }           = this.context
 
         return (
-            <div style={style}>
+            <div className={`${classes.body} ${_.get(theme, 'widgetBody.body', '')}`} style={style}>
                 {children}
             </div>
         )
     }
 }
-
-WidgetBody.propTypes = {
-    style: PropTypes.object,
-}
-
-WidgetBody.defaultProps = {
-    style: {},
-}
-
-
-export default WidgetBody

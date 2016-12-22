@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetAvatar.css'
 
 
-class WidgetAvatar extends Component {
+export default class WidgetAvatar extends Component {
     static propTypes = {
         children: PropTypes.node,
         size:     PropTypes.oneOfType([
@@ -27,24 +29,16 @@ class WidgetAvatar extends Component {
         const { theme } = this.context
 
         const style = {
-            display:        'flex',
-            alignItems:     'center',
-            justifyContent: 'center',
-            fontSize:       `calc(${size} / 2)`,
-            borderRadius:   '50%',
-            height:         size,
-            width:          size,
-            overflow:       'hidden',
+            fontSize: `calc(${size} / 2)`,
+            height:   size,
+            width:    size,
             ..._style,
         }
 
         return (
-            <div style={style}>
+            <div className={`${classes.avatar} ${_.get(theme, 'widgetAvatar.avatar', '')}`} style={style}>
                 {children}
             </div>
         )
     }
 }
-
-
-export default WidgetAvatar

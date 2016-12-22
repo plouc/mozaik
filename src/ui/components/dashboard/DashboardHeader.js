@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import { NavButton }                   from 'react-svg-buttons'
 import { DashboardPropType }           from './Dashboard'
 import DashboardTitle                  from './DashboardTitle'
 import DashboardPlayer                 from './DashboardPlayer'
-import { TransitionMotion, spring }    from 'react-motion'
+import classes                         from './DashboardHeader.css'
 
 
 export default class DashboardHeader extends Component {
@@ -31,25 +33,7 @@ export default class DashboardHeader extends Component {
             settingsOpened,
             toggleSettings,
         } = this.props
-
         const { theme } = this.context
-
-        const t     = theme.dashboard.header
-        const style = {
-            position:        'absolute',
-            zIndex:          1000,
-            top:             0,
-            left:            0,
-            width:           '100%',
-            height:          t.height,
-            backgroundColor: t.bgColor,
-            display:         'flex',
-            alignItems:      'center',
-            justifyContent:  'space-between',
-            padding:         t.padding,
-            overflow:        'hidden',
-            ...t.overrides,
-        }
 
         let title = 'Mozaïk'
         if (dashboards.length) {
@@ -60,45 +44,35 @@ export default class DashboardHeader extends Component {
         }
 
         return (
-            <div style={style}>
-                <div
-                    style={{
-                        display:        'flex',
-                        flexGrow:       1,
-                        alignItems:     'center',
-                        justifyContent: 'space-between',
-                        marginRight:    '4vmin',
-                    }}
-                >
+            <div className={`${classes.header} ${_.get(theme, 'dashboardHeader.header', '')}`}>
+                <div styleName="title_wrapper">
                     <DashboardTitle
                         currentDashboardIndex={currentDashboardIndex}
                         title={title}
                     />
-                    {dashboards.length && dashboards.length > 1 && (
-                        <DashboardPlayer
-                            dashboards={dashboards}
-                            currentDashboardIndex={currentDashboardIndex}
-                            isPlaying={isPlaying}
-                            play={play}
-                            pause={pause}
-                            previous={previous}
-                            next={next}
-                        />
-                    )}
                 </div>
+                {dashboards.length && dashboards.length > 1 && (
+                    <DashboardPlayer
+                        dashboards={dashboards}
+                        currentDashboardIndex={currentDashboardIndex}
+                        isPlaying={isPlaying}
+                        play={play}
+                        pause={pause}
+                        previous={previous}
+                        next={next}
+                    />
+                )}
                 <div
                     onClick={toggleSettings}
-                    style={{
-                        cursor:         'pointer',
-                        width:          theme.dashboard.header.height,
-                        height:         theme.dashboard.header.height,
-                        display:        'flex',
-                        justifyContent: 'center',
-                        alignItems:     'center',
-                        fontSize:       '2vmin',
-                    }}
+                    styleName="toggle"
+                    style={{}}
                 >
-                    <i className={`fa fa-${settingsOpened ? 'close' : 'sliders'}`}/>
+                    <NavButton
+                        direction="down"
+                        opened={settingsOpened}
+                        size={32}
+                        color={_.get(theme, 'colors.icon', '#000')}
+                    />
                 </div>
             </div>
         )
