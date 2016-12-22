@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import './WidgetStatusChip.css'
 
 const colorMapping = {
     success: ['success', 'passed', 'ok'],
@@ -36,15 +36,13 @@ class WidgetStatusChip extends Component {
         const colorKey = getColorKey(status)
 
         const style = {
-            display:      'block',
-            borderRadius: '50%',
             height:       size,
             width:        size,
-            background:   theme.colors[colorKey],
-            ..._style,
+            //background:   theme.colors[colorKey],
+            //..._style,
         }
 
-        return <span style={style} />
+        return <span styleName="chip" style={style} />
     }
 }
 

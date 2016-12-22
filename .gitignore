@@ -1,8 +1,8 @@
 logs
-*.log
+*.log*
 node_modules
 .idea
-/lib
+.DS_Store
 .nyc_output
 coverage
-npm-debug.log*
+ui.*

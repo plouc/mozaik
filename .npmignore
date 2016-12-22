@@ -1,11 +1,12 @@
 .travis.yml
 .nyc_output
 .eslintrc
-CHANGELOG.md
+.babelrc
 /coverage
+preview.png
 .DS_Store
 test
 npm-debug.log*
 /src/ui
-/lib/server
 yarn.lock
+webpack.config.js

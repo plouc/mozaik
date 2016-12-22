@@ -1,10 +1,12 @@
 import React, { Component, PropTypes }  from 'react'
+import _                                from 'lodash'
 import Dashboard, { DashboardPropType } from './dashboard/Dashboard'
 import DashboardHeader                  from './dashboard/DashboardHeader'
 import WidgetsRegistry                  from './../WidgetsRegistry'
 import Settings                         from './Settings/Settings'
 import Notifications                    from '../containers/NotificationsContainer'
 import { TransitionMotion, spring }     from 'react-motion'
+import classes                          from './Mozaik.css'
 
 
 export default class Mozaik extends Component {
@@ -73,20 +75,8 @@ export default class Mozaik extends Component {
             )
         }
 
-        const rootStyle = {
-            position:        'absolute',
-            top:             0,
-            bottom:          0,
-            left:            0,
-            height:          '100%',
-            width:           '100%',
-            font:            theme.fonts.default,
-            backgroundColor: theme.colors.background,
-            color:           theme.colors.text,
-        }
-
         return (
-            <div style={rootStyle}>
+            <div className={`${classes.root} ${_.get(theme, 'root', '')}`}>
                 <DashboardHeader
                     settingsOpened={settingsOpened}
                     toggleSettings={this.toggleSettings}

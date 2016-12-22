@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetHeader.css'
 
 
 class WidgetHeader extends Component {
@@ -36,44 +38,26 @@ class WidgetHeader extends Component {
         const { theme } = this.context
 
         const headerStyle = {
-            position:        'relative',
-            overflow:        'hidden',
-            display:         'flex',
-            alignItems:      'center',
-            justifyContent:  'space-between',
-            whiteSpace:      'pre',
-            padding:         `0 ${theme.widget.innerSpacing}`,
-            height:          theme.widget.header.height,
-            backgroundColor: theme.widget.header.bgColor,
-            color:           theme.widget.header.textColor,
-            borderBottom:    theme.widget.header.borderBottom,
-            boxShadow:       theme.widget.header.shadow,
-            font:            theme.widget.header.font,
-            borderRadius:    `${theme.widget.borderRadius} ${theme.widget.borderRadius} 0 0`,
-            ...theme.widget.header.overrides,
-            ...style,
+            //padding:         `0 ${theme.widget.innerSpacing}`,
+            //height:          theme.widget.header.height,
+            //backgroundColor: theme.widget.header.bgColor,
+            //color:           theme.widget.header.textColor,
+            //borderBottom:    theme.widget.header.borderBottom,
+            //boxShadow:       theme.widget.header.shadow,
+            //font:            theme.widget.header.font,
+            //borderRadius:    `${theme.widget.borderRadius} ${theme.widget.borderRadius} 0 0`,
+            //...theme.widget.header.overrides,
+            //...style,
         }
 
         const subjectStyle = {
-            ...theme.widget.header.subject.overrides,
-        }
-
-        const iconStyle = {
-            color:    theme.widget.header.icon.color,
-            fontSize: theme.widget.header.icon.size,
-            ..._iconStyle,
+            //...theme.widget.header.subject.overrides,
         }
 
         let subjectNode = null
         if (subject) {
-            if (subjectPlacement === 'prepend') {
-                subjectStyle.marginRight = theme.widget.header.itemsSpacing
-            } else {
-                subjectStyle.marginLeft = theme.widget.header.itemsSpacing
-            }
-
             subjectNode = (
-                <span style={subjectStyle}>
+                <span className={`${classes.subject} ${_.get(theme, 'widgetHeader.subject', '')}`}>
                     {subject}
                 </span>
             )
@@ -81,33 +65,24 @@ class WidgetHeader extends Component {
 
         let countNode = null
         if (count !== undefined) {
-            const countStyle = {
-                display:         'inline-block',
-                lineHeight:      '1em',
-                verticalAlign:   'middle',
-                marginLeft:      theme.widget.header.count.spacing,
-                backgroundColor: theme.widget.header.count.bgColor,
-                color:           theme.widget.header.count.textColor,
-                padding:         theme.widget.header.count.padding,
-                boxShadow:       theme.widget.header.count.shadow,
-                textShadow:      theme.widget.header.count.textShadow,
-                borderRadius:    theme.widget.header.count.borderRadius,
-                border:          theme.widget.header.count.border,
-                ...theme.widget.header.count.overrides,
-            }
-
-            countNode = <span style={countStyle}>{count}</span>
+            countNode = (
+                <span className={`${classes.count} ${_.get(theme, 'widgetHeader.count', '')}`}>
+                    {count}
+                </span>
+            )
         }
 
         return (
-            <div style={headerStyle}>
+            <div className={`${classes.header} ${_.get(theme, 'widgetHeader.header', '')}`} style={style}>
                 <span>
                     {subjectPlacement === 'prepend' && subjectNode}
                     {title}
                     {subjectPlacement === 'append' && subjectNode}
                     {countNode}
                 </span>
-                {icon && <i style={iconStyle} className={`fa fa-${icon}`} />}
+                {icon && (
+                    <i className={`fa fa-${icon} ${classes.icon} ${_.get(theme, 'widgetHeader.icon', '')}`}/>
+                )}
             </div>
         )
     }

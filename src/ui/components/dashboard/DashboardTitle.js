@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
 import { TransitionMotion, spring }    from 'react-motion'
+import classes                         from './DashboardHeader.css'
 
 
 const willEnter = () => ({ x: 30, opacity: 0 })
@@ -39,27 +41,15 @@ export default class DashboardTitle extends Component {
                 }))}
             >
                 {styles => (
-                    <div
-                        style={{
-                            position: 'relative',
-                            height:   theme.dashboard.header.height,
-                            ...theme.dashboard.header.title.overrides,
-                        }}
-                    >
+                    <div style={{ position: 'relative' }}>
                         {styles.map(({ key, data, style }) => {
                             return (
                                 <div
+                                    className={`${classes.title} ${_.get(theme, 'dashboardHeader.title', '')}`}
                                     key={key}
                                     style={{
-                                        position:   'absolute',
-                                        top:        0,
-                                        left:       0,
-                                        transform:  `translate(${style.x}px,0)`,
-                                        opacity:    style.opacity,
-                                        height:     theme.dashboard.header.height,
-                                        display:    'flex',
-                                        alignItems: 'center',
-                                        whiteSpace: 'pre',
+                                        transform: `translate(${style.x}px,0)`,
+                                        opacity:   style.opacity,
                                     }}
                                 >
                                     {data}

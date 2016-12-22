@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import _                               from 'lodash'
+import classes                         from './Notifications.css'
 
 
 export default class NotificationsItem extends Component {
@@ -15,16 +16,6 @@ export default class NotificationsItem extends Component {
         const { notification } = this.props
         const { theme }        = this.context
 
-        const style = {
-            position:     'relative',
-            marginBottom: '1.4vmin',
-            background:   theme.notifications.bgColor,
-            color:        theme.notifications.textColor,
-            padding:      theme.notifications.padding,
-            boxShadow:    theme.notifications.shadow,
-            ...theme.notifications.overrides,
-        }
-
         let content
         if (notification.component) {
             content = React.createElement(notification.component, _.assign({}, notification.props, {
@@ -35,7 +26,7 @@ export default class NotificationsItem extends Component {
         }
 
         return (
-            <div style={style}>
+            <div className={`${classes.item} ${_.get(theme, 'notifications.item', '')}`}>
                 {content}
             </div>
         )

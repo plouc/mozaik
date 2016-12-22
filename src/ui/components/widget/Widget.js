@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import baseTheme                       from './Widget.css'
 
 
 export default class Widget extends Component {
@@ -20,16 +22,8 @@ export default class Widget extends Component {
 
         return (
             <div
-                style={{
-                    position:        'relative',
-                    width:           '100%',
-                    height:          '100%',
-                    backgroundColor: theme.widget.bgColor,
-                    borderRadius:    theme.widget.borderRadius,
-                    boxShadow:       theme.widget.shadow,
-                    border:          theme.widget.border,
-                    ..._style,
-                }}
+                className={`${baseTheme.widget} ${_.get(theme, 'widget.widget', '')}`}
+                style={_style}
             >
                 {children}
             </div>

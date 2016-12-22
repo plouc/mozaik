@@ -1,58 +1,55 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetLabel.css'
 
 
-class WidgetLabel extends Component {
+export default class WidgetLabel extends Component {
+    static propTypes = {
+        prefix: PropTypes.node,
+        label:  PropTypes.node.isRequired,
+        suffix: PropTypes.node,
+        style:  PropTypes.object.isRequired,
+    }
+
+    static defaultProps = {
+        style: {},
+    }
+
     static contextTypes = {
         theme: PropTypes.object.isRequired,
     }
 
     render() {
-        const { label, prefix, suffix, style: _style } = this.props
+        const { label, prefix, suffix, style: style } = this.props
 
         const { theme } = this.context
-
-        const style = {
-            display:      'inline-flex',
-            alignItems:   'stretch',
-            alignContent: 'stretch',
-            border:       theme.label.border,
-            ..._style,
-        }
-
-        const labelStyle = {
-            display:         'inline-block',
-            whiteSpace:      'pre',
-            flexGrow:        1,
-            backgroundColor: theme.label.bgColor,
-            color:           theme.label.textColor,
-            padding:         theme.label.padding,
-        }
-
-        const addonStyle = {
-            whiteSpace:      'pre',
-            padding:         theme.label.padding,
-            backgroundColor: theme.label.addon.bgColor,
-            color:           theme.label.addon.textColor,
-        }
 
         let prefixNode = null
         if (prefix !== undefined) {
             prefixNode = (
-                <span style={addonStyle}>{prefix}</span>
+                <span
+                    className={`${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
+                >
+                    {prefix}
+                </span>
             )
         }
 
         let suffixNode = null
         if (suffix !== undefined) {
             suffixNode = (
-                <span style={addonStyle}>{suffix}</span>
+                <span
+                    className={`${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
+                >
+                    {suffix}
+                </span>
             )
         }
 
         return (
-            <span style={style}>
+            <span className={`${classes.wrapper} ${_.get(theme, 'widgetLabel.wrapper', '')}`} style={style}>
                 {prefixNode}
-                <span style={labelStyle}>
+                <span className={`${classes.label} ${_.get(theme, 'widgetLabel.label', '')}`}>
                     {label}
                 </span>
                 {suffixNode}
@@ -60,17 +57,3 @@ class WidgetLabel extends Component {
         )
     }
 }
-
-WidgetLabel.propTypes = {
-    prefix: PropTypes.node,
-    label:  PropTypes.node.isRequired,
-    suffix: PropTypes.node,
-    style:  PropTypes.object.isRequired,
-}
-
-WidgetLabel.defaultProps = {
-    style: {}
-}
-
-
-export default WidgetLabel

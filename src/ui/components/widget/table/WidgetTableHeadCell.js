@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import _                               from 'lodash'
+import classes                         from './WidgetTable.css'
 
 
 class WidgetTableHeadCell extends Component {
@@ -8,18 +10,10 @@ class WidgetTableHeadCell extends Component {
 
     render() {
         const { children, _style } = this.props
-
-        const { theme } = this.context
-
-        const style = {
-            padding:   theme.table.cell.head.padding,
-            textAlign: 'left',
-            ...theme.table.cell.head.overrides,
-            ..._style,
-        }
+        const { theme }            = this.context
 
         return (
-            <th style={style}>
+            <th className={`${classes.headCell} ${_.get(theme, 'widgetTable.headCell', '')}`}>
                 {children}
             </th>
         )
