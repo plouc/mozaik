@@ -34,12 +34,7 @@ module.exports = {
         ]
     },
     externals: {
-        "lodash": {
-            commonjs: "lodash",
-            commonjs2: "lodash",
-            amd: "lodash",
-            root: "_"
-        },
+        "lodash": "lodash",
         "redux": "redux",
         "react": "react",
         "react-dom": "react-dom",
@@ -52,6 +47,7 @@ module.exports = {
         "superagent-bluebird-promise": "superagent-bluebird-promise",
         "socket.io-client": "socket.io-client",
         "node-uuid": "node-uuid",
+        "react-svg-buttons": "react-svg-buttons"
     },
     resolve: {
         extensions: [
