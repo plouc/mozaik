@@ -18,15 +18,17 @@ export default class UnknowWidgetTypeError extends Component {
         const { extension, widget } = this.props
         const { theme }             = this.context
 
+        //style={/*{ color: theme.colors.failure }*/}
+
         return (
             <Widget>
                 <WidgetHeader
                     title="Error"
                     icon="warning"
-                    iconStyle={{ color: theme.colors.failure }}
+                    //iconStyle={{ color: theme.colors.failure }}
                 />
                 <WidgetBody style={{ padding: '2vmin' }}>
-                    <p style={{ color: theme.colors.failure }}>
+                    <p>
                         Unknown widget "{widget}" for extension "{extension}".
                     </p>
                     <p>

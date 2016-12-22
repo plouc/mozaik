@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import './WidgetStatusBadge.css'
 
 const colorMapping = {
     success: ['success', 'passed', 'good', 'ok'],
@@ -52,18 +52,11 @@ export default class WidgetStatusBadge extends Component {
         const icon     = getIcon(status)
 
         const rootStyle = {
-            display:        'flex',
-            flexDirection:  'column',
-            padding:        '3vmin',
-            alignItems:     'center',
-            justifyContent: 'space-between',
-            height:         '100%',
-            ...style,
+            //...style,
         }
 
         const iconStyle = {
-            fontSize:     '12vmin',
-            color:        theme.colors[colorKey],
+            //color: theme.colors[colorKey],
         }
 
         let messageNode = null
@@ -81,8 +74,8 @@ export default class WidgetStatusBadge extends Component {
         }
 
         return (
-            <div style={rootStyle}>
-                <i className={`fa fa-${icon}`} style={iconStyle}/>
+            <div styleName="badge" style={rootStyle}>
+                <i styleName="icon" className={`fa fa-${icon}`} style={iconStyle}/>
                 {messageNode}
                 {metaNode}
             </div>

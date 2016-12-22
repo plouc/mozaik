@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ThemeSetting                    from './ThemesSetting'
+import './Settings.css'
 
 
 export default class Settings extends Component {
@@ -28,43 +29,13 @@ export default class Settings extends Component {
 
         if (!opened) return null
 
-        const style = {
-            padding:        theme.widget.spacing,
-            position:       'absolute',
-            background:     theme.colors.background,
-            zIndex:         '10000',
-            top:            0,
-            width:          '100%',
-            bottom:         '50%',
-            display:        'flex',
-            boxShadow:      theme.settings.shadow,
-            justifyContent: 'flex-end',
-        }
-
-        const rootStyle = {
-            position:       'absolute',
-            background:     theme.colors.overlay,
-            zIndex:         '10000',
-            top:            theme.dashboard.header.height,
-            width:          '100%',
-            bottom:         0,
-        }
-
-        const overlayStyle = {
-            position: 'absolute',
-            top:      0,
-            left:     0,
-            width:    '100%',
-            height:   '100%',
-        }
-
         return (
-            <div style={rootStyle}>
+            <div>
                 <div
-                    style={overlayStyle}
+                    styleName="overlay"
                     onClick={close}
                 />
-                <div style={style}>
+                <div styleName="settings" className="settings">
                     <ThemeSetting
                         themes={themes}
                         currentTheme={currentTheme}

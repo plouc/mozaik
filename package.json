@@ -49,6 +49,7 @@
     "node-uuid": "1.4.7",
     "react-motion": "^0.4.7",
     "react-redux": "5.0.1",
+    "react-svg-buttons": "^0.2.5",
     "redux": "3.6.0",
     "redux-thunk": "2.1.0",
     "request": "2.71.0",
@@ -61,14 +62,18 @@
   "devDependencies": {
     "ava": "0.16.0",
     "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-react-css-modules": "^1.1.2",
     "babel-preset-react-app": "^2.0.1",
     "babel-register": "6.7.2",
     "coveralls": "2.11.12",
+    "css-loader": "^0.26.1",
     "enzyme": "^2.6.0",
     "eslint": "^3.12.1",
     "eslint-config-react-app": "^0.5.0",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^6.8.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "mockery": "1.5.1",
     "nock": "8.0.0",
     "nyc": "8.1.0",
@@ -77,7 +82,9 @@
     "react-dom": "^15.4.1",
     "redux-mock-store": "1.1.4",
     "sinon": "1.17.3",
-    "sinon-as-promised": "4.0.2"
+    "sinon-as-promised": "4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
   },
   "peerDependencies": {
     "font-awesome": "^4.7.0",
@@ -90,8 +97,8 @@
     "test-cover": "nyc ava --verbose",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "cover-report": "nyc report --reporter=lcov && open coverage/lcov-report/index.html",
-    "build": "rm -rf lib/* && babel src --no-comments --copy-files --out-dir lib",
-    "watch": "babel src --watch --copy-files --out-dir lib"
+    "build": "NODE_ENV=production webpack",
+    "watch": "NODE_ENV=development webpack --watch"
   },
   "ava": {
     "files": [

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import './WidgetTable.css'
 
 
 class WidgetTable extends Component {
@@ -9,16 +10,8 @@ class WidgetTable extends Component {
     render() {
         const { children } = this.props
 
-        const { theme } = this.context
-
         return (
-            <table
-                style={{
-                    width:          '100%',
-                    borderCollapse: 'collapse',
-                    fontSize:       '1.6vmin',
-                }}
-            >
+            <table styleName="table">
                 {children}
             </table>
         )

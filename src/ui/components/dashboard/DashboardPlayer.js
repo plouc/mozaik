@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import _                               from 'lodash'
-import Widget                          from '../../containers/WidgetContainer'
+import { MorphIcon }                   from 'react-svg-buttons'
+import classes                         from './DashboardPlayer.css'
 
 
 export default class DashboardPlayer extends Component {
@@ -28,53 +29,51 @@ export default class DashboardPlayer extends Component {
 
         const { theme } = this.context
 
+        const iconColor = _.get(theme, 'colors.icon', '#000')
+
         let icon
         let handler
-        let label
         if (isPlaying) {
-            icon    = 'pause'
+            icon    = 'plus'
             handler = pause
         } else {
-            icon    = 'play'
+            icon    = 'plusSparks'
             handler = play
         }
 
-        const buttonStyle = {
-            cursor:         'pointer',
-            width:          `calc(${theme.dashboard.header.height} * .6`,
-            height:         `calc(${theme.dashboard.header.height} * .6`,
-            display:        'flex',
-            justifyContent: 'center',
-            alignItems:     'center',
-            fontSize:       '1.4vmin',
-        }
-
         return (
-            <div
-                style={{
-                    display:    'flex',
-                    alignItems: 'center',
-                }}
-            >
+            <div className={classes.player}>
                 <span
+                    className={classes.button}
                     onClick={previous}
-                    style={buttonStyle}
                 >
-                    <i className={`fa fa-step-backward`}/>
+                    <MorphIcon
+                        type="arrowLeft"
+                        size={32}
+                        color={iconColor}
+                    />
                 </span>
                 <span
+                    className={classes.button}
                     onClick={handler}
-                    style={buttonStyle}
                 >
-                    <i className={`fa fa-${icon}`}/>
+                    <MorphIcon
+                        type={icon}
+                        size={32}
+                        color={iconColor}
+                    />
                 </span>
                 <span
+                    className={classes.button}
                     onClick={next}
-                    style={buttonStyle}
                 >
-                    <i className={`fa fa-step-forward`}/>
+                    <MorphIcon
+                        type="arrowRight"
+                        size={32}
+                        color={iconColor}
+                    />
                 </span>
-                <span style={{ marginLeft: '2vmin' }}>
+                <span>
                     {currentDashboardIndex + 1} / {dashboards.length}
                 </span>
             </div>

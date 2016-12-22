@@ -3,7 +3,7 @@ import { Provider }   from 'react-redux'
 import Mozaik         from './containers/MozaikContainer'
 import configureStore from './configureStore'
 import ThemeProvider  from './components/ThemeProvider'
-import ThemeManager   from './themes/ThemeManager'
+import ThemeManager   from './lib/ThemeManager'
 
 
 const MozaikWrapper = () => {

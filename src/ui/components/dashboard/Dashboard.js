@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import _                               from 'lodash'
 import { TransitionMotion, spring }    from 'react-motion'
 import WidgetWrapper                   from '../../containers/WidgetContainer'
+import classes                         from './Dashboard.css'
 
 
 export const DashboardPropType = PropTypes.shape({
@@ -13,20 +14,20 @@ export const DashboardPropType = PropTypes.shape({
         x:         PropTypes.number.isRequired,
         y:         PropTypes.number.isRequired,
         columns:   PropTypes.number.isRequired,
-        rows:      PropTypes.number.isRequired
+        rows:      PropTypes.number.isRequired,
     })).isRequired,
 })
 
 const widgetWillEnter = ({ data }) => {
     return {
         opacity: 0,
-        x:       60 * (data.x + 1)
+        x:       200 * (data.x + 1),
     }
 }
 
 const widgetWillLeave = () => ({
-    opacity: spring(0,   { stiffness: 120, damping: 15 }),
-    x:       spring(-60, { stiffness: 120, damping: 15 }),
+    opacity: spring(0,   { stiffness: 120, damping: 15, precision: 0.1 }),
+    x:       spring(-60, { stiffness: 120, damping: 15, precision: 1   }),
 })
 
 const ignoreProps = [
@@ -57,17 +58,6 @@ export default class Dashboard extends Component {
 
         const { theme } = this.context
 
-        const dashboardStyle = {
-            position:        'absolute',
-            top:             `calc(${theme.widget.spacing} / 2 + ${theme.dashboard.header.height})`,
-            bottom:          `calc(${theme.widget.spacing} / 2)`,
-            left:            `calc(${theme.widget.spacing} / 2)`,
-            right:           `calc(${theme.widget.spacing} / 2)`,
-            font:            theme.fonts.default,
-            backgroundColor: theme.colors.background,
-            color:           theme.colors.text,
-        }
-
         const widgets = _widgets.map(w => {
             return {
                 ...w,
@@ -87,26 +77,27 @@ export default class Dashboard extends Component {
                     key:   w.key,
                     data:  w,
                     style: {
-                        opacity: spring(1, { stiffness: 60, damping: 9 }),
-                        x:       spring(0, { stiffness: 60, damping: 9 }),
+                        opacity: spring(1, { stiffness: 60, damping: 10, precision: 0.1 }),
+                        x:       spring(0, { stiffness: 60, damping: 10, precision: 1   }),
                     },
                 }))}
             >
                 {styles => (
-                    <div style={dashboardStyle}>
+                    <div className={classes.dashboard}>
                         {styles.map(({ key, data, style }) => {
                             return (
                                 <div
+                                    className={_.get(theme, 'widget.wrapper', '')}
                                     key={key}
                                     style={{
-                                        position:  'absolute',
-                                        padding:   `calc(${theme.widget.spacing} / 2)`,
-                                        width:     data.width,
-                                        height:    data.height,
-                                        top:       data.top,
-                                        left:      data.left,
-                                        opacity:   style.opacity,
-                                        transform: `translate3d(${style.x}px,0,0)`,
+                                        transformOrigin: '0 50%',
+                                        position:        'absolute',
+                                        width:           data.width,
+                                        height:          data.height,
+                                        top:             data.top,
+                                        left:            data.left,
+                                        opacity:         style.opacity,
+                                        transform:       `translate3d(${style.x}px,0,0)`,
                                     }}
                                 >
                                     <WidgetWrapper

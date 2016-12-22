@@ -96,7 +96,7 @@ export default class Inspector extends Component {
         return (
             <Widget>
                 <WidgetHeader
-                    title="Mozaïk"
+                    title={<span>Mozaïk</span>}
                     subject="inspector"
                     subjectPlacement="append"
                     icon="stethoscope"
@@ -108,7 +108,7 @@ export default class Inspector extends Component {
                         flexDirection:  'column',
                         alignItems:     'stretch',
                         alignContent:   'stretch',
-                        justifyContent: 'space-between',
+                        justifyContent: 'space-around',
                     }}
                 >
                     {items}
