@@ -18,6 +18,10 @@ const ignoreProps = [
     'columns', 'rows',
 ]
 
+let timer
+
+const SECOND = 1000
+
 export const setDashboards = dashboards => {
     return (dispatch, getState) => {
         const { api: { subscriptions } } = getState()
@@ -96,12 +100,15 @@ export const next = () => {
         dispatch(setCurrentDashboard(nextIndex))
 
         if (isPlaying) {
-            setTimeout(() => { dispatch(next()) }, Number(rotationDuration))
+            clearTimeout(timer)
+            timer = setTimeout(() => { dispatch(next()) }, Number(rotationDuration) * SECOND)
         }
     }
 }
 
 export const play = () => {
+    clearTimeout(timer)
+
     return (dispatch, getState) => {
         const {
             configuration: { configuration },
@@ -111,10 +118,14 @@ export const play = () => {
 
         if (dashboards.length > 1) {
             dispatch({ type: DASHBOARDS_PLAY })
-            setTimeout(() => { dispatch(next()) }, Number(rotationDuration))
+            timer = setTimeout(() => { dispatch(next()) }, Number(rotationDuration) * SECOND)
         }
     }
 }
 
-export const pause = () => ({ type: DASHBOARDS_PAUSE })
+export const pause = () => {
+    clearTimeout(timer)
+
+    return { type: DASHBOARDS_PAUSE }
+}
 
