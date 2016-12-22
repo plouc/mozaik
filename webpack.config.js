@@ -41,10 +41,7 @@ module.exports = {
         "react-motion": "react-motion",
         "react-redux": "react-redux",
         "d3": "d3",
-        "bluebird": "bluebird",
         "redux-thunk": "redux-thunk",
-        "superagent": "superagent",
-        "superagent-bluebird-promise": "superagent-bluebird-promise",
         "socket.io-client": "socket.io-client",
         "node-uuid": "node-uuid",
         "react-svg-buttons": "react-svg-buttons"
