@@ -13,7 +13,7 @@ export default class WidgetTableCell extends Component {
         const { theme }    = this.context
 
         return (
-            <td className={`${classes.cell} ${_.get(theme, 'widgetTable.cell', '')}`}>
+            <td className={`widget__table__cell ${classes.cell} ${_.get(theme, 'widgetTable.cell', '')}`}>
                 {children}
             </td>
         )

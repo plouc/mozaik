@@ -1,0 +1,29 @@
+.player {
+    margin-right: 6vmin;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    padding: 0 0.6vmin;
+}
+.button:first-child {
+}
+.play {
+    margin-left: 0.6vmin;
+}
+
+.index {
+    display: inline-block;
+    width: 2vmin;
+    text-align: center;
+}
+
+.slash {
+
+}

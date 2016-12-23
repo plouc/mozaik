@@ -44,7 +44,7 @@ export default class Settings extends Component {
             <div>
                 {opened && (
                     <div
-                        className={`${classes.overlay} ${_.get(theme, 'settings.overlay', '')}`}
+                        className={`settings__overlay ${classes.overlay} ${_.get(theme, 'settings.overlay', '')}`}
                         onClick={close}
                     />
                 )}
@@ -65,7 +65,7 @@ export default class Settings extends Component {
                                 return (
                                     <div
                                         key={key}
-                                        className={`${classes.settings} ${_.get(theme, 'settings.settings', '')}`}
+                                        className={`settings ${classes.settings} ${_.get(theme, 'settings.settings', '')}`}
                                         style={{
                                             opacity:   style.opacity,
                                             transform: `translate(0,${style.y}px)`,

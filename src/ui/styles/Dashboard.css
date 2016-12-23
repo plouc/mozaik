@@ -1,0 +1,7 @@
+.dashboard {
+    position: absolute;
+    top:    calc(1.2vmin / 2 + 6vmin);
+    right:  calc(1.2vmin / 2);
+    bottom: calc(1.2vmin / 2);
+    left:   calc(1.2vmin / 2);
+}

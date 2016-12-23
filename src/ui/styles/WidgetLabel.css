@@ -1,0 +1,17 @@
+.wrapper {
+    display: inline-flex;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.label {
+    display: inline-block;
+    white-space: pre;
+    flex-grow: 1;
+    padding: 0.4vmin 1.4vmin;
+}
+
+.addon {
+    white-space: pre;
+    padding: 0.4vmin 1.4vmin;
+}

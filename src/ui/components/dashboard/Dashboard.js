@@ -83,11 +83,11 @@ export default class Dashboard extends Component {
                 }))}
             >
                 {styles => (
-                    <div className={classes.dashboard}>
+                    <div className={`dashboard ${classes.dashboard}`}>
                         {styles.map(({ key, data, style }) => {
                             return (
                                 <div
-                                    className={_.get(theme, 'widget.wrapper', '')}
+                                    className={`widget__wrapper ${_.get(theme, 'widget.wrapper', '')}`}
                                     key={key}
                                     style={{
                                         transformOrigin: '0 50%',
