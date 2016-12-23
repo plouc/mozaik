@@ -44,7 +44,7 @@ export default class DashboardHeader extends Component {
         }
 
         return (
-            <div className={`${classes.header} ${_.get(theme, 'dashboardHeader.header', '')}`}>
+            <div className={`dashboard__header ${classes.header} ${_.get(theme, 'dashboardHeader.header', '')}`}>
                 <div styleName="title_wrapper">
                     <DashboardTitle
                         currentDashboardIndex={currentDashboardIndex}
@@ -64,6 +64,7 @@ export default class DashboardHeader extends Component {
                 )}
                 <div
                     onClick={toggleSettings}
+                    className="dashboard__header__toggle"
                     styleName="toggle"
                     style={{}}
                 >

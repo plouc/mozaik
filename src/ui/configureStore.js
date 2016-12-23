@@ -9,15 +9,5 @@ export default function configureStore(initialState) {
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ))
 
-    store.asyncReducers = {
-
-    }
-
-    if (module.hot) {
-        module.hot.accept('./reducers', () => {
-            store.replaceReducer(require('./reducers'))
-        })
-    }
-
     return store
 }

@@ -1,0 +1,14 @@
+.item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1.5vmin 2vmin;
+}
+
+.pre {
+    margin-right: 2vmin;
+}
+
+.post {
+    margin-left: 2vmin;
+}

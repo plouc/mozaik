@@ -28,7 +28,7 @@ export default class WidgetLabel extends Component {
         if (prefix !== undefined) {
             prefixNode = (
                 <span
-                    className={`${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
+                    className={`widget__label__addon ${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
                 >
                     {prefix}
                 </span>
@@ -39,7 +39,7 @@ export default class WidgetLabel extends Component {
         if (suffix !== undefined) {
             suffixNode = (
                 <span
-                    className={`${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
+                    className={`widget__label__addon ${classes.addon} ${_.get(theme, 'widgetLabel.addon', '')}`}
                 >
                     {suffix}
                 </span>
@@ -47,9 +47,9 @@ export default class WidgetLabel extends Component {
         }
 
         return (
-            <span className={`${classes.wrapper} ${_.get(theme, 'widgetLabel.wrapper', '')}`} style={style}>
+            <span className={`widget__label__wrapper ${classes.wrapper} ${_.get(theme, 'widgetLabel.wrapper', '')}`} style={style}>
                 {prefixNode}
-                <span className={`${classes.label} ${_.get(theme, 'widgetLabel.label', '')}`}>
+                <span className={`widget__label ${classes.label} ${_.get(theme, 'widgetLabel.label', '')}`}>
                     {label}
                 </span>
                 {suffixNode}

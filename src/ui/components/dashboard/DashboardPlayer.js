@@ -42,7 +42,7 @@ export default class DashboardPlayer extends Component {
         }
 
         return (
-            <div className={classes.player}>
+            <div className={`dashboard__player ${classes.player}`}>
                 <span
                     className={classes.button}
                     onClick={previous}

@@ -1,4 +1,8 @@
 import {
+    Map
+} from 'immutable'
+
+import {
     API_SUBSCRIBE,
     API_UNSUBSCRIBE,
     API_DATA,
@@ -6,74 +10,39 @@ import {
 } from '../actions/apiActions'
 
 
-export default function configuration(state = {
-    subscriptions: {},
-    data:          {},
-    errors:        {},
-}, action) {
+const defaultState = Map({
+    subscriptions: Map(),
+    data:          Map(),
+    errors:        Map(),
+})
+
+
+export default function configuration(state = defaultState, action) {
     let subscriptions
 
     switch (action.type) {
         case API_SUBSCRIBE:
-            subscriptions = { ...state.subscriptions }
-            if (!subscriptions[action.subscription.id]) {
-                subscriptions[action.subscription.id] = {
-                    ...action.subscription,
-                    subscriptionCount: 0,
-                }
-            }
-            subscriptions[action.subscription.id].subscriptionCount += 1
-
-            return {
-                ...state,
-                subscriptions,
-            }
-
-        case API_UNSUBSCRIBE:
-            if (!state.subscriptions[action.id]) {
+            if (state.get('subscriptions').has(action.subscription.id)) {
                 return state
             }
 
-            subscriptions = { ...state.subscriptions }
-            const subscription  = { ...subscriptions[action.id] }
-            if (subscription.subscriptionCount > 1) {
-                subscriptions = {
-                    ...subscriptions,
-                    [subscription.id]: {
-                        ...subscription,
-                        subscriptionCount: subscription.subscriptionCount - 1,
-                    }
-                }
-            } else {
-                delete subscriptions[subscription.id]
+            return state.setIn(['subscriptions', action.subscription.id], Map(action.subscription))
+
+        case API_UNSUBSCRIBE:
+            if (!state.get('subscriptions').has(action.id)) {
+                return state
             }
 
-            return {
-                ...state,
-                subscriptions,
-            }
+            return state.deleteIn(['subscriptions', action.id])
 
         case API_DATA:
-            let errors = { ...state.errors }
-            delete errors[action.id]
-
-            return {
-                ...state,
-                data: {
-                    ...state.data,
-                    [action.id]: action.data,
-                },
-                errors,
-            }
+            return state
+                .deleteIn(['errors', action.id])
+                .mergeIn(['data', action.id], action.data)
 
         case API_FAILURE:
-            return {
-                ...state,
-                errors: {
-                    ...state.errors,
-                    [action.id]: action.data,
-                }
-            }
+            return state
+                .mergeIn(['errors', action.id], action.data)
 
         default:
             return state

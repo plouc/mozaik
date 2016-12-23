@@ -14,7 +14,7 @@ class Notifications extends Component {
         const { theme }         = this.context
 
         return (
-            <div className={`${classes.notifications} ${_.get(theme, 'notifications.notifications', '')}`}>
+            <div className={`notifications ${classes.notifications} ${_.get(theme, 'notifications.notifications', '')}`}>
                 {notifications.map(notification => (
                     <NotificationsItem
                         key={`notification.${notification.id}`}

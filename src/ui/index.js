@@ -6,6 +6,7 @@ import TrapApiError        from './components/TrapApiError'
 import Widget              from './components/widget/Widget'
 import WidgetHeader        from './components/widget/WidgetHeader'
 import WidgetBody          from './components/widget/WidgetBody'
+import WidgetLoader        from './components/widget/WidgetLoader'
 import WidgetListItem      from './components/widget/list/WidgetListItem'
 import WidgetLabel         from './components/widget/WidgetLabel'
 import WidgetTable         from './components/widget/table/WidgetTable'
@@ -25,6 +26,7 @@ export {
     Widget,
     WidgetHeader,
     WidgetBody,
+    WidgetLoader,
     WidgetListItem,
     WidgetLabel,
     WidgetTable,

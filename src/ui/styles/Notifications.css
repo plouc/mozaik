@@ -1,0 +1,13 @@
+.notifications {
+    position: absolute;
+    z-index:   100000;
+    width: 25%;
+    top: 8vmin;
+    right: 2vmin;
+}
+
+.item {
+    position: relative;
+    margin-bottom: 1.4vmin;
+    padding: 0.8vmin 2vmin;
+}

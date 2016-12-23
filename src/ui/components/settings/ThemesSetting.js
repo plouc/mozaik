@@ -18,6 +18,10 @@ export default class ThemeSetting extends Component {
         theme: PropTypes.object.isRequired,
     }
 
+    shouldComponentUpdate(nextProps) {
+        return this.props.currentTheme !== nextProps.currentTheme
+    }
+
     render() {
         const { themes, currentTheme, setTheme } = this.props
         const { theme }                          = this.context

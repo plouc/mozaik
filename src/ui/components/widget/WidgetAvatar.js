@@ -36,7 +36,10 @@ export default class WidgetAvatar extends Component {
         }
 
         return (
-            <div className={`${classes.avatar} ${_.get(theme, 'widgetAvatar.avatar', '')}`} style={style}>
+            <div
+                className={`widget__avatar ${classes.avatar} ${_.get(theme, 'widgetAvatar.avatar', '')}`}
+                style={style}
+            >
                 {children}
             </div>
         )

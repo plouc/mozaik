@@ -22,7 +22,7 @@ export default class Widget extends Component {
 
         return (
             <div
-                className={`${baseTheme.widget} ${_.get(theme, 'widget.widget', '')}`}
+                className={`widget ${baseTheme.widget} ${_.get(theme, 'widget.widget', '')}`}
                 style={_style}
             >
                 {children}

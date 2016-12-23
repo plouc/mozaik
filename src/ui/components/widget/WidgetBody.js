@@ -21,7 +21,10 @@ export default class WidgetBody extends Component {
         const { theme }           = this.context
 
         return (
-            <div className={`${classes.body} ${_.get(theme, 'widgetBody.body', '')}`} style={style}>
+            <div
+                className={`widget__body ${classes.body} ${_.get(theme, 'widgetBody.body', '')}`}
+                style={style}
+            >
                 {children}
             </div>
         )

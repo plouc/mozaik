@@ -23,7 +23,7 @@ class WidgetListItem extends Component {
         let metaNode = null
         if (meta !== undefined) {
             metaNode = (
-                <div className={_.get(theme, 'widgetList.meta', '')}>
+                <div className={`widget__list__item__meta ${_.get(theme, 'widgetList.meta', '')}`}>
                     {meta}
                 </div>
             )
@@ -31,17 +31,17 @@ class WidgetListItem extends Component {
 
         let preNode = null
         if (pre !== undefined) {
-            preNode = <div className={`${classes.pre} ${_.get(theme, 'widgetList.pre', '')}`}>{pre}</div>
+            preNode = <div className={`widget__list__item__pre ${classes.pre} ${_.get(theme, 'widgetList.pre', '')}`}>{pre}</div>
         }
 
         let postNode = null
         if (post !== undefined) {
-            postNode = <div className={`${classes.post} ${_.get(theme, 'widgetList.post', '')}`}>{post}</div>
+            postNode = <div className={`widget__list__item__post ${classes.post} ${_.get(theme, 'widgetList.post', '')}`}>{post}</div>
         }
 
         return (
             <div
-                className={`${classes.item} ${_.get(theme, 'widgetList.item', '')}`}
+                className={`widget__list__item ${classes.item} ${_.get(theme, 'widgetList.item', '')}`}
                 style={style}
                 onClick={onClick}
             >

@@ -24,9 +24,10 @@ const SECOND = 1000
 
 export const setDashboards = dashboards => {
     return (dispatch, getState) => {
-        const { api: { subscriptions } } = getState()
-        const currentSubscriptionsIds    = Object.keys(subscriptions)
-        const newSubscriptionsIds        = []
+        const { api } = getState()
+
+        const currentSubscriptionsIds = api.get('subscriptions').keySeq().toArray()
+        const newSubscriptionsIds     = []
 
         dashboards.forEach((dashboard, dahsboardIndex) => {
             dashboard.widgets.forEach((w, widgetIndex) => {
