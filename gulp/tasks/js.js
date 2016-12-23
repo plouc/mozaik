@@ -33,7 +33,7 @@ function getBundler(isDev) {
             'bluebird',
             'moment'
         ])
-        .transform(babelify, { presets: ['es2015', 'react'] })
+        .transform(babelify, { compact: true, presets: ['es2015', 'react'] })
     ;
 }
 
