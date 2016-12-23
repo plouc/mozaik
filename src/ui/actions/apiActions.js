@@ -8,9 +8,9 @@ export const API_FAILURE     = 'API_FAILURE'
 
 export const subscribeToApi = subscription => {
     return (dispatch, getState) => {
-        const { api: { subscriptions } } = getState()
+        const { api } = getState()
 
-        if (!subscriptions.hasOwnProperty(subscription.id)) {
+        if (!api.get('subscriptions').has(subscription.id)) {
             dispatch({ type: API_SUBSCRIBE, subscription })
             dispatch(send('api.subscription', subscription))
         }
@@ -19,8 +19,8 @@ export const subscribeToApi = subscription => {
 
 export const unsubscribeFromApi = id => {
     return (dispatch, getState) => {
-        const { api: { subscriptions } } = getState()
-        if (subscriptions[id] && subscriptions[id].subscriptionCount <= 1) {
+        const { api } = getState()
+        if (api.get('subscriptions').has(id)) {
             dispatch(send('api.unsubscription', { id }))
         }
 

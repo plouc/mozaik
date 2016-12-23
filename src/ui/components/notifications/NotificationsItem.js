@@ -26,7 +26,7 @@ export default class NotificationsItem extends Component {
         }
 
         return (
-            <div className={`${classes.item} ${_.get(theme, 'notifications.item', '')}`}>
+            <div className={`notification__item ${classes.item} ${_.get(theme, 'notifications.item', '')}`}>
                 {content}
             </div>
         )

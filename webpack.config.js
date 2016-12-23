@@ -40,11 +40,10 @@ module.exports = {
         "react-dom": "react-dom",
         "react-motion": "react-motion",
         "react-redux": "react-redux",
-        "d3": "d3",
+        "react-svg-buttons": "react-svg-buttons",
         "redux-thunk": "redux-thunk",
         "socket.io-client": "socket.io-client",
-        "node-uuid": "node-uuid",
-        "react-svg-buttons": "react-svg-buttons"
+        "immutable": "immutable",
     },
     resolve: {
         extensions: [

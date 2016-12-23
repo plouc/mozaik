@@ -1,0 +1,25 @@
+.header {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: pre;
+    height: 6vmin;
+    padding: 2vmin;
+}
+
+.subject {
+    display: inline-block;
+    margin-left: 0.5em;
+}
+.subject:first-child {
+    margin-left: 0;
+    margin-right: 0.5em;
+}
+
+.count {
+    display: inline-block;
+    line-height: 1em;
+    margin-left: 1.6vmin;
+}

@@ -76,7 +76,7 @@ export default class Mozaik extends Component {
         }
 
         return (
-            <div className={`${classes.root} ${_.get(theme, 'root', '')}`}>
+            <div className={`mozaik ${classes.root} ${_.get(theme, 'root', '')}`}>
                 <DashboardHeader
                     settingsOpened={settingsOpened}
                     toggleSettings={this.toggleSettings}

@@ -11,7 +11,7 @@ class WidgetTable extends Component {
         const { children } = this.props
 
         return (
-            <table styleName="table">
+            <table styleName="table" className="widget__table">
                 {children}
             </table>
         )

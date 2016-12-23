@@ -1,6 +1,4 @@
-import _    from 'lodash'
-import uuid from 'node-uuid'
-
+import _ from 'lodash'
 import {
     NOTIFICATION_DEFAULT_TTL,
     NOTIFICATION_STATUS_UNKNOWN,
@@ -14,6 +12,8 @@ export const NOTIFY              = 'NOTIFY'
 export const NOTIFICATION_UPDATE = 'NOTIFICATION_UPDATE'
 export const NOTIFICATION_CLOSE  = 'NOTIFICATION_CLOSE'
 
+
+const uid = () => Math.random().toString(34).slice(2)
 
 
 const timers     = {}
@@ -40,7 +40,7 @@ export const notify = notification => {
         const { notifications: { items } } = getState()
 
         if (!_.has(notification, 'id')) {
-            notification.id = uuid.v4()
+            notification.id = uid()
         }
 
         const existingNotification = _.find(items, { id: notification.id })

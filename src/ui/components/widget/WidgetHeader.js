@@ -32,32 +32,14 @@ class WidgetHeader extends Component {
             count,
             icon,
             style,
-            iconStyle: _iconStyle,
         } = this.props
 
         const { theme } = this.context
 
-        const headerStyle = {
-            //padding:         `0 ${theme.widget.innerSpacing}`,
-            //height:          theme.widget.header.height,
-            //backgroundColor: theme.widget.header.bgColor,
-            //color:           theme.widget.header.textColor,
-            //borderBottom:    theme.widget.header.borderBottom,
-            //boxShadow:       theme.widget.header.shadow,
-            //font:            theme.widget.header.font,
-            //borderRadius:    `${theme.widget.borderRadius} ${theme.widget.borderRadius} 0 0`,
-            //...theme.widget.header.overrides,
-            //...style,
-        }
-
-        const subjectStyle = {
-            //...theme.widget.header.subject.overrides,
-        }
-
         let subjectNode = null
         if (subject) {
             subjectNode = (
-                <span className={`${classes.subject} ${_.get(theme, 'widgetHeader.subject', '')}`}>
+                <span className={`widget__header__subject ${classes.subject} ${_.get(theme, 'widgetHeader.subject', '')}`}>
                     {subject}
                 </span>
             )
@@ -66,14 +48,14 @@ class WidgetHeader extends Component {
         let countNode = null
         if (count !== undefined) {
             countNode = (
-                <span className={`${classes.count} ${_.get(theme, 'widgetHeader.count', '')}`}>
+                <span className={`widget__header__count ${classes.count} ${_.get(theme, 'widgetHeader.count', '')}`}>
                     {count}
                 </span>
             )
         }
 
         return (
-            <div className={`${classes.header} ${_.get(theme, 'widgetHeader.header', '')}`} style={style}>
+            <div className={`widget__header ${classes.header} ${_.get(theme, 'widgetHeader.header', '')}`} style={style}>
                 <span>
                     {subjectPlacement === 'prepend' && subjectNode}
                     {title}
