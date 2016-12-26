@@ -30,7 +30,8 @@ export const fetchConfiguration = () => {
         return fetch('/config')
             .then(res => {
                 if (res.status !== 200) {
-                    return Promise.reject(`Unable to fetch configuration: ${res.statusText} (${res.status})`)
+                    return Promise.reject(new Error(
+                        `Unable to fetch configuration: ${res.statusText} (${res.status})`))
                 }
 
                 return res.json()
