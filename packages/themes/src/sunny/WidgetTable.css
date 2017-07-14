@@ -1,0 +1,12 @@
+.table {
+}
+
+.cell {
+}
+
+.headCell {
+    border-bottom: 1px solid #e6d280;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2vmin;
+}

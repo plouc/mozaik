@@ -1,0 +1,23 @@
+.header {
+    height: 5vmin;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 2px 2px 0 0;
+    font-size: 2vmin;
+    border-bottom: 1px solid #ebf0f1;
+}
+
+.subject {
+    color: #000;
+}
+
+.count {
+    border-radius: 2vmin;
+    padding: 0.4vmin 1.2vmin;
+    border: 1px solid #ddd;
+}
+
+.icon {
+    font-size: 2.6vmin;
+    color: #8fccd2;
+}

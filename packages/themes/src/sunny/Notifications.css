@@ -1,0 +1,7 @@
+.item {
+    padding: 1.2vmin 2vmin;
+    background-color: #ece1c5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    font-size: 1.6vmin;
+}

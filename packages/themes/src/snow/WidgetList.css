@@ -1,0 +1,14 @@
+.item {
+    border-bottom: 1px solid #ebf0f1;
+}
+.item:hover {
+    background-color: #eee;
+}
+.item:last-child {
+    border-bottom: 0;
+}
+
+.meta {
+    color: #777;
+    font-size: 1.4vmin;
+}

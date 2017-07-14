@@ -1,0 +1,25 @@
+.header {
+    height: 5vmin;
+    background-color: #e6d280;
+    color: #735e39;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 2px 2px 0 0;
+}
+
+.subject {
+    color: #523d25;
+}
+
+.count {
+    background-color: #e5dabe;
+    color: #cb684d;
+    border-radius: 2px;
+    padding: 0.5vmin 0.8vmin;
+    text-transform: none;
+}
+
+.icon {
+    font-size: 2vmin;
+    color: #ce6c51;
+}

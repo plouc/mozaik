@@ -1,0 +1,31 @@
+.wrapper {
+    line-height: 1em;
+    border-top: 1px dotted #fff;
+    border-bottom: 1px dotted #fff;
+    align-items: baseline;
+}
+
+.label {
+    padding: 1vmin 0.2vmin;
+}
+
+.addon {
+    font-weight: 700;
+    padding: 1vmin 0.6vmin;
+}
+.addon:first-child {
+    padding-right: 1.4vmin;
+    border-right: 1px dotted #fff;
+}
+.addon:last-child {
+    padding-left: 1.4vmin;
+    border-left: 1px dotted #fff;
+}
+
+.addon + .label {
+    padding-left: 1.4vmin;
+}
+
+.label + .addon {
+    margin-left: 1.4vmin;
+}

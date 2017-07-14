@@ -1,0 +1,29 @@
+.header {
+    height: 5vmin;
+    background-color: #323f53;
+    color: #eedba5;
+    box-shadow: 0 1px 0 #495b71 inset;
+    border-bottom: 1px solid #253246;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 2px 2px 0 0;
+}
+
+.subject {
+    color: #f6ecd0;
+}
+
+.count {
+    background-color: #1e2836;
+    color: #7e9ebc;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) inset;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 0.5vmin 0.8vmin;
+    text-transform: none;
+}
+
+.icon {
+    font-size: 2.2vmin;
+    color: #e0c671;
+}
