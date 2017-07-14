@@ -1,0 +1,16 @@
+.table {
+}
+
+.cell:first-child {
+    padding-left: 0;
+}
+
+.headCell {
+    border-bottom: 1px solid #000;
+    font-weight: 600;
+    font-size: 1.4vmin;
+    text-transform: uppercase;
+}
+.headCell:first-child {
+    padding-left: 0;
+}

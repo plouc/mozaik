@@ -1,0 +1,20 @@
+.header {
+    text-transform: uppercase;
+    border-top: 2px solid #fff;
+    font-size: 1.8vmin;
+    align-items: flex-start;
+    padding: 0.8vmin 0 0 0;
+}
+
+.subject {
+    font-weight: 700;
+}
+
+.count {
+    font-weight: 700;
+    vertical-align: baseline;
+}
+
+.icon {
+    display: none;
+}

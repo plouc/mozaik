@@ -1,0 +1,11 @@
+.item {
+}
+.item:hover {
+    background-color: #002834;
+}
+.item:last-child {
+}
+
+.meta {
+    font-size: 1.4vmin;
+}

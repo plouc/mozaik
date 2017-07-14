@@ -1,0 +1,10 @@
+{
+  "name": "mozaik-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@mozaik/server": "1.0.0-alpha.0",
+    "@mozaik/ui": "1.0.0-alpha.0"
+  }
+}

@@ -1,8 +1,12 @@
 language: node_js
 node_js:
   - '6'
+  - '7'
+  - '8'
 script:
-  - npm run eslint
-  - npm run test-cover
-after_success:
-  - npm run coveralls
+  - CI=1 lerna run test
+  #- npm run test-cover
+#after_success:
+#  - npm run coveralls
+
+
