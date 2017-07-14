@@ -1,0 +1,23 @@
+{
+  "name": "basic",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@mozaik/server": "^2.0.0-alpha.1",
+    "@mozaik/ui": "^2.0.0-alpha.1",
+    "@mozaik/ext-github": "^2.0.0-alpha.0",
+    "@mozaik/ext-travis": "^2.0.0-alpha.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.10"
+  },
+  "proxy": "http://localhost:5000",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

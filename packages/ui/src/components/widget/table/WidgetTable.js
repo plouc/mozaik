@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import './WidgetTable.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+//import './WidgetTable.css'
 
 class WidgetTable extends Component {
     static contextTypes = {

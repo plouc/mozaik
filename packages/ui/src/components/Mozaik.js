@@ -1,12 +1,63 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { TransitionMotion, spring } from 'react-motion'
+import styled, { injectGlobal } from 'styled-components'
+
 import Dashboard, { DashboardPropType } from './dashboard/Dashboard'
 import DashboardHeader from './dashboard/DashboardHeader'
 import WidgetsRegistry from './../WidgetsRegistry'
-import Settings from './Settings/Settings'
+import Settings from './settings/Settings'
 import Notifications from '../containers/NotificationsContainer'
-import { TransitionMotion, spring } from 'react-motion'
-import classes from './Mozaik.css'
+
+injectGlobal`
+html,
+body {
+    margin: 0;
+    height: 100%;
+    width:  100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+svg {
+    display: block;
+}
+`
+
+const Root = styled.div`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    font-family: ${props => props.theme.root.fontFamily};
+    font-size: ${props => props.theme.root.fontSize};
+    line-height: ${props => props.theme.root.lineHeight};
+    background: ${props => props.theme.root.background};
+    color: ${props => props.theme.root.color};
+    ${props => props.theme.root.extend.trim()};
+`
 
 export default class Mozaik extends Component {
     static propTypes = {
@@ -23,10 +74,6 @@ export default class Mozaik extends Component {
         themes: PropTypes.object.isRequired,
         currentTheme: PropTypes.string.isRequired,
         setTheme: PropTypes.func.isRequired,
-    }
-
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
     }
 
     constructor(props) {
@@ -62,8 +109,6 @@ export default class Mozaik extends Component {
             setTheme,
         } = this.props
 
-        const { theme } = this.context
-
         const { settingsOpened } = this.state
 
         let content = <div>loading</div>
@@ -78,9 +123,7 @@ export default class Mozaik extends Component {
         }
 
         return (
-            <div
-                className={`mozaik ${classes.root} ${_.get(theme, 'root', '')}`}
-            >
+            <Root>
                 <DashboardHeader
                     settingsOpened={settingsOpened}
                     toggleSettings={this.toggleSettings}
@@ -101,7 +144,7 @@ export default class Mozaik extends Component {
                     close={this.toggleSettings}
                 />
                 <Notifications />
-            </div>
+            </Root>
         )
     }
 }

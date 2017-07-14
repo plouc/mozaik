@@ -1,8 +1,17 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { TransitionMotion, spring } from 'react-motion'
-import WidgetWrapper from '../../containers/WidgetContainer'
-import classes from './Dashboard.css'
+import styled from 'styled-components'
+import Widget from '../../containers/WidgetContainer'
+
+const Wrapper = styled.div`
+    position: absolute;
+    top: calc(1.2vmin / 2 + ${props => props.theme.dashboard.header.height});
+    right: calc(1.2vmin / 2);
+    bottom: calc(1.2vmin / 2);
+    left: calc(1.2vmin / 2);
+`
 
 export const DashboardPropType = PropTypes.shape({
     columns: PropTypes.number.isRequired,
@@ -51,18 +60,12 @@ export default class Dashboard extends Component {
         }).isRequired,
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const {
             dashboard: { columns, rows, widgets: _widgets },
             dashboardIndex,
             registry,
         } = this.props
-
-        const { theme } = this.context
 
         const widgets = _widgets.map(w => {
             return {
@@ -97,15 +100,10 @@ export default class Dashboard extends Component {
                 }))}
             >
                 {styles =>
-                    <div className={`dashboard ${classes.dashboard}`}>
+                    <Wrapper>
                         {styles.map(({ key, data, style }) => {
                             return (
                                 <div
-                                    className={`widget__wrapper ${_.get(
-                                        theme,
-                                        'widget.wrapper',
-                                        ''
-                                    )}`}
                                     key={key}
                                     style={{
                                         transformOrigin: '0 50%',
@@ -118,14 +116,14 @@ export default class Dashboard extends Component {
                                         transform: `translate3d(${style.x}px,0,0)`,
                                     }}
                                 >
-                                    <WidgetWrapper
+                                    <Widget
                                         {..._.omit(data, ignoreProps)}
                                         registry={registry}
                                     />
                                 </div>
                             )
                         })}
-                    </div>}
+                    </Wrapper>}
             </TransitionMotion>
         )
     }

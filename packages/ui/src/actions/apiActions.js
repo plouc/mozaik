@@ -1,19 +1,54 @@
 import { send } from './wsActions'
 
 export const API_SUBSCRIBE = 'API_SUBSCRIBE'
+export const API_SUBSCRIBED = 'API_SUBSCRIBED'
 export const API_UNSUBSCRIBE = 'API_UNSUBSCRIBE'
+export const API_ALL_UNSUSCRIBED = 'API_ALL_UNSUSCRIBED'
 export const API_DATA = 'API_DATA'
 export const API_FAILURE = 'API_FAILURE'
 
+export const subscribedToApi = subscription => ({
+    type: API_SUBSCRIBED,
+    subscription,
+})
+
+export const allSubscriptionsUnsubscribed = () => ({
+    type: API_ALL_UNSUSCRIBED,
+})
+
 export const subscribeToApi = subscription => {
     return (dispatch, getState) => {
-        const { api } = getState()
+        const { api, ws } = getState()
 
         if (!api.get('subscriptions').has(subscription.id)) {
             dispatch({ type: API_SUBSCRIBE, subscription })
+
+            if (ws.connected !== true) return
+
             dispatch(send('api.subscription', subscription))
+            dispatch(subscribedToApi(subscription))
         }
     }
+}
+
+export const sendPendingSubscriptions = () => (dispatch, getState) => {
+    const { api, ws } = getState()
+
+    if (ws.connected !== true) {
+        console.error(
+            `Cannot send pending subscriptions as ws is disconnected!`
+        )
+        return
+    }
+
+    api
+        .get('subscriptions')
+        .filter(s => !s.get('hasSubscribed'))
+        .forEach(sub => {
+            const subscription = sub.toJS()
+            dispatch(send('api.subscription', subscription))
+            dispatch(subscribedToApi(subscription))
+        })
 }
 
 export const unsubscribeFromApi = id => {

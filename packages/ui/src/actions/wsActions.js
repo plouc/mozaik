@@ -1,6 +1,11 @@
 import { guessWSURL } from '../lib/WSHelper'
 import SocketIO from 'socket.io-client'
-import { receiveApiData, apiFailure } from './apiActions'
+import {
+    receiveApiData,
+    apiFailure,
+    sendPendingSubscriptions,
+    allSubscriptionsUnsubscribed,
+} from './apiActions'
 import { setDashboards } from './dashboardsActions'
 import { fetchConfigurationSuccess } from './configurationActions'
 import {
@@ -27,20 +32,20 @@ export const WS_CONNECT = 'WS_CONNECT'
 export const WS_CONNECT_SUCCESS = 'WS_CONNECT_SUCCESS'
 export const WS_DISCONNECTED = 'WS_DISCONNECTED'
 
-const connectSuccess = () => ({
-    type: WS_CONNECT_SUCCESS,
-})
+const connectSuccess = () => dispatch => {
+    dispatch({ type: WS_CONNECT_SUCCESS })
+    dispatch(sendPendingSubscriptions())
+}
 
-const disconnected = () => ({
-    type: WS_DISCONNECTED,
-})
+const disconnected = () => dispatch => {
+    dispatch({ type: WS_DISCONNECTED })
+    dispatch(allSubscriptionsUnsubscribed())
+}
 
 let socket
 
-export const send = (type, data) => {
-    return dispatch => {
-        socket.emit(type, data)
-    }
+export const send = (type, data) => () => {
+    socket.emit(type, data)
 }
 
 export const connect = configuration => {
@@ -53,6 +58,7 @@ export const connect = configuration => {
         })
 
         socket = SocketIO(wsUrl, {
+            transports: ['websocket'],
             reconnection: true,
             reconnectionAttempts: WS_MAX_RETRIES,
             reconnectionDelay: WS_RETRY_DELAY,
@@ -72,6 +78,10 @@ export const connect = configuration => {
             if (data) dispatch(apiFailure(data))
         })
 
+        socket.on('error', error => {
+            console.log('Socket error', error.code, error)
+        })
+
         socket.on('configuration', configuration => {
             dispatch(fetchConfigurationSuccess(configuration))
             dispatch(setDashboards(configuration.dashboards))
@@ -84,6 +94,7 @@ export const connect = configuration => {
         })
 
         socket.on('disconnect', () => {
+            console.warn('disconnected')
             dispatch(disconnected())
             dispatch(
                 notifyWarning({
@@ -122,7 +133,6 @@ export const connect = configuration => {
         })
 
         socket.on('reconnect', () => {
-            dispatch(connectSuccess())
             dispatch(
                 updateNotification(WS_NOTIFICATION_ID, {
                     status: NOTIFICATION_STATUS_SUCCESS,

@@ -1,9 +1,0 @@
-.body {
-    position: absolute;
-    top: 6vmin;
-    right:  0;
-    bottom: 0;
-    left:   0;
-    overflow-x: hidden;
-    overflow-y: auto;
-}

@@ -1,19 +1,24 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
-import classes from './Notifications.css'
+import styled from 'styled-components'
+
+const Item = styled.div`
+    position: relative;
+    margin-bottom: 1.4vmin;
+    padding: ${props => props.theme.notifications.item.padding};
+    background: ${props => props.theme.notifications.item.background};
+    color: ${props => props.theme.notifications.item.color};
+    ${props => props.theme.notifications.item.extend.trim()};
+`
 
 export default class NotificationsItem extends Component {
     static propTypes = {
         notification: PropTypes.object.isRequired,
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { notification } = this.props
-        const { theme } = this.context
 
         let content
         if (notification.component) {
@@ -28,15 +33,9 @@ export default class NotificationsItem extends Component {
         }
 
         return (
-            <div
-                className={`notification__item ${classes.item} ${_.get(
-                    theme,
-                    'notifications.item',
-                    ''
-                )}`}
-            >
+            <Item>
                 {content}
-            </div>
+            </Item>
         )
     }
 }

@@ -1,12 +1,43 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled, { withTheme } from 'styled-components'
 import { NavButton } from 'react-svg-buttons'
 import { DashboardPropType } from './Dashboard'
 import DashboardTitle from './DashboardTitle'
 import DashboardPlayer from './DashboardPlayer'
-import classes from './DashboardHeader.css'
 
-export default class DashboardHeader extends Component {
+const Header = styled.header`
+    position: absolute;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    height: ${props => props.theme.dashboard.header.height};
+    padding: ${props => props.theme.dashboard.header.padding};
+    background: ${props => props.theme.dashboard.header.background};
+    color: ${props => props.theme.dashboard.header.color};
+    box-shadow: ${props => props.theme.dashboard.header.boxShadow};
+`
+
+const TitleWrapper = styled.div`
+    flex-grow: 1;
+    margin-Right: 4vmin;
+    height: 6vmin;
+`
+
+const Toogle = styled.div`
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vmin;
+`
+
+class DashboardHeader extends Component {
     static propTypes = {
         settingsOpened: PropTypes.bool.isRequired,
         toggleSettings: PropTypes.func.isRequired,
@@ -17,10 +48,6 @@ export default class DashboardHeader extends Component {
         previous: PropTypes.func.isRequired,
         next: PropTypes.func.isRequired,
         pause: PropTypes.func.isRequired,
-    }
-
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
     }
 
     render() {
@@ -34,8 +61,8 @@ export default class DashboardHeader extends Component {
             next,
             settingsOpened,
             toggleSettings,
+            theme,
         } = this.props
-        const { theme } = this.context
 
         let title = 'Mozaïk'
         if (dashboards.length) {
@@ -46,19 +73,13 @@ export default class DashboardHeader extends Component {
         }
 
         return (
-            <div
-                className={`dashboard__header ${classes.header} ${_.get(
-                    theme,
-                    'dashboardHeader.header',
-                    ''
-                )}`}
-            >
-                <div styleName="title_wrapper">
+            <Header>
+                <TitleWrapper>
                     <DashboardTitle
                         currentDashboardIndex={currentDashboardIndex}
                         title={title}
                     />
-                </div>
+                </TitleWrapper>
                 {dashboards.length &&
                     dashboards.length > 1 &&
                     <DashboardPlayer
@@ -70,20 +91,20 @@ export default class DashboardHeader extends Component {
                         previous={previous}
                         next={next}
                     />}
-                <div
+                <Toogle
                     onClick={toggleSettings}
-                    className="dashboard__header__toggle"
-                    styleName="toggle"
-                    style={{}}
+                    className="Dashboard__Header__Toggle"
                 >
                     <NavButton
                         direction="down"
                         opened={settingsOpened}
                         size={32}
-                        color={_.get(theme, 'colors.icon', '#000')}
+                        color={theme.colors.icon}
                     />
-                </div>
-            </div>
+                </Toogle>
+            </Header>
         )
     }
 }
+
+export default withTheme(DashboardHeader)

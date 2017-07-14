@@ -1,5 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import './WidgetStatusChip.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const Ship = styled.span`
+    display: block;
+    border-radius: 50%;
+`
 
 const colorMapping = {
     success: ['success', 'passed', 'ok'],
@@ -25,13 +31,8 @@ class WidgetStatusChip extends Component {
         size: 12,
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { status, size, style: _style } = this.props
-        const { theme } = this.context
 
         const colorKey = getColorKey(status)
 
@@ -42,7 +43,7 @@ class WidgetStatusChip extends Component {
             //..._style,
         }
 
-        return <span styleName="chip" style={style} />
+        return <Ship style={style} />
     }
 }
 

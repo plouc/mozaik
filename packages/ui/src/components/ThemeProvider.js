@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { ThemeProvider as Provider } from 'styled-components'
 
 class ThemeProvider extends Component {
     static propTypes = {
@@ -8,11 +10,7 @@ class ThemeProvider extends Component {
         children: PropTypes.element,
     }
 
-    static childContextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
-    getChildContext() {
+    render() {
         const { themes, current } = this.props
 
         let theme = {}
@@ -20,11 +18,11 @@ class ThemeProvider extends Component {
             theme = themes[current]
         }
 
-        return { theme }
-    }
-
-    render() {
-        return this.props.children
+        return (
+            <Provider theme={theme}>
+                {this.props.children}
+            </Provider>
+        )
     }
 }
 

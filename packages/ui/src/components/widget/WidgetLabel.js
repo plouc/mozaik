@@ -1,6 +1,33 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
-import classes from './WidgetLabel.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const Wrapper = styled.span`
+    display: inline-flex;
+    align-items: stretch;
+    align-content: stretch;
+    background: ${props => props.theme.label.background};
+    color: ${props => props.theme.label.color};
+    ${props => props.theme.label.extend.trim()};
+`
+
+const Label = styled.span`
+    display: inline-block;
+    white-space: pre;
+    flex-grow: 1;
+    padding: ${props => props.theme.label.main.padding};
+    background: ${props => props.theme.label.main.background};
+    color: ${props => props.theme.label.main.color};
+    ${props => props.theme.label.main.extend.trim()};
+`
+
+const Addon = styled.span`
+    white-space: pre;
+    padding: ${props => props.theme.label.addon.padding};
+    background: ${props => props.theme.label.addon.background};
+    color: ${props => props.theme.label.addon.color};
+    ${props => props.theme.label.addon.extend.trim()};
+`
 
 export default class WidgetLabel extends Component {
     static propTypes = {
@@ -14,66 +41,35 @@ export default class WidgetLabel extends Component {
         style: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { label, prefix, suffix, style: style } = this.props
-
-        const { theme } = this.context
 
         let prefixNode = null
         if (prefix !== undefined) {
             prefixNode = (
-                <span
-                    className={`widget__label__addon ${classes.addon} ${_.get(
-                        theme,
-                        'widgetLabel.addon',
-                        ''
-                    )}`}
-                >
+                <Addon>
                     {prefix}
-                </span>
+                </Addon>
             )
         }
 
         let suffixNode = null
         if (suffix !== undefined) {
             suffixNode = (
-                <span
-                    className={`widget__label__addon ${classes.addon} ${_.get(
-                        theme,
-                        'widgetLabel.addon',
-                        ''
-                    )}`}
-                >
+                <Addon>
                     {suffix}
-                </span>
+                </Addon>
             )
         }
 
         return (
-            <span
-                className={`widget__label__wrapper ${classes.wrapper} ${_.get(
-                    theme,
-                    'widgetLabel.wrapper',
-                    ''
-                )}`}
-                style={style}
-            >
+            <Wrapper style={style} className="LabelWrapper">
                 {prefixNode}
-                <span
-                    className={`widget__label ${classes.label} ${_.get(
-                        theme,
-                        'widgetLabel.label',
-                        ''
-                    )}`}
-                >
+                <Label className="Label">
                     {label}
-                </span>
+                </Label>
                 {suffixNode}
-            </span>
+            </Wrapper>
         )
     }
 }
