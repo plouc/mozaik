@@ -1,20 +1,17 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withTheme } from 'styled-components'
+import { MorphIcon } from 'react-svg-buttons'
 import Widget from '../widget/Widget'
 import WidgetHeader from '../widget/WidgetHeader'
 import WidgetBody from '../widget/WidgetBody'
 import WidgetListItem from '../widget/list/WidgetListItem'
-import { MorphIcon } from 'react-svg-buttons'
 
-export default class ThemeSetting extends Component {
+class ThemeSetting extends Component {
     static propTypes = {
         themes: PropTypes.object.isRequired,
         currentTheme: PropTypes.string.isRequired,
         setTheme: PropTypes.func.isRequired,
-    }
-
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
     }
 
     shouldComponentUpdate(nextProps) {
@@ -22,8 +19,7 @@ export default class ThemeSetting extends Component {
     }
 
     render() {
-        const { themes, currentTheme, setTheme } = this.props
-        const { theme } = this.context
+        const { themes, currentTheme, setTheme, theme } = this.props
 
         const themeIds = Object.keys(themes)
 
@@ -53,11 +49,7 @@ export default class ThemeSetting extends Component {
                                     <MorphIcon
                                         type={icon}
                                         size={26}
-                                        color={_.get(
-                                            theme,
-                                            'colors.icon',
-                                            '#000'
-                                        )}
+                                        color={theme.colors.icon}
                                     />
                                 }
                             />
@@ -68,3 +60,5 @@ export default class ThemeSetting extends Component {
         )
     }
 }
+
+export default withTheme(ThemeSetting)

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
-import classes from './WidgetLabel.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class WidgetLoader extends Component {
     static propTypes = {
@@ -11,25 +10,10 @@ export default class WidgetLoader extends Component {
         style: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { style } = this.props
         const { theme } = this.context
 
-        return (
-            <div
-                className={`widget__loader ${classes.wrapper} ${_.get(
-                    theme,
-                    'widgetLoader.loader',
-                    ''
-                )}`}
-                style={style}
-            >
-                LOADER
-            </div>
-        )
+        return <div style={style}>LOADER</div>
     }
 }

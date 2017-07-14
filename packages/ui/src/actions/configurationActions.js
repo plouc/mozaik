@@ -20,7 +20,6 @@ export const fetchConfiguration = () => {
     return dispatch => {
         dispatch({ type: FETCH_CONFIGURATION })
 
-        // http://localhost:5000/config
         return fetch('/config')
             .then(res => {
                 if (res.status !== 200) {

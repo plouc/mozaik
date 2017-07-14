@@ -1,6 +1,15 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
-import classes from './WidgetAvatar.css'
+import styled from 'styled-components'
+
+const Avatar = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+`
 
 export default class WidgetAvatar extends Component {
     static propTypes = {
@@ -19,13 +28,8 @@ export default class WidgetAvatar extends Component {
         style: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { children, size, style: _style } = this.props
-        const { theme } = this.context
 
         const style = {
             fontSize: `calc(${size} / 2)`,
@@ -35,16 +39,9 @@ export default class WidgetAvatar extends Component {
         }
 
         return (
-            <div
-                className={`widget__avatar ${classes.avatar} ${_.get(
-                    theme,
-                    'widgetAvatar.avatar',
-                    ''
-                )}`}
-                style={style}
-            >
+            <Avatar style={style}>
                 {children}
-            </div>
+            </Avatar>
         )
     }
 }

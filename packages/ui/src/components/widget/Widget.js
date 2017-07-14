@@ -1,6 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
-import baseTheme from './Widget.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const Container = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: ${props => props.theme.widget.wrapper.padding};
+`
+
+const Inner = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: ${props => props.theme.widget.background};
+`
 
 export default class Widget extends Component {
     static propTypes = {
@@ -11,25 +25,15 @@ export default class Widget extends Component {
         style: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { children, style: _style } = this.props
-        const { theme } = this.context
 
         return (
-            <div
-                className={`widget ${baseTheme.widget} ${_.get(
-                    theme,
-                    'widget.widget',
-                    ''
-                )}`}
-                style={_style}
-            >
-                {children}
-            </div>
+            <Container style={_style}>
+                <Inner>
+                    {children}
+                </Inner>
+            </Container>
         )
     }
 }

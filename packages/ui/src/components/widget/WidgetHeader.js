@@ -1,6 +1,39 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import _ from 'lodash'
-import classes from './WidgetHeader.css'
+import PropTypes from 'prop-types'
+import styled, { withTheme } from 'styled-components'
+
+const Header = styled.header`
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: pre;
+    font-size: ${props => props.theme.widget.header.fontSize};
+    height: ${props => props.theme.widget.header.height};
+    padding: ${props => props.theme.widget.header.padding};
+    background: ${props => props.theme.widget.header.background};
+    color: ${props => props.theme.widget.header.color};
+    text-transform: ${props => props.theme.widget.header.textTransform};
+    ${props => props.theme.widget.header.extend.trim()};
+`
+
+const Count = styled.div`
+    display: inline-block;
+    line-height: 1em;
+    margin-left: 1.6vmin;
+`
+
+const Subject = styled.div`
+    display: inline-block;
+    margin-left: 0.5em;
+
+    &:first-child {
+        margin-left: 0;
+        margin-right: 0.5em;
+    }
+`
 
 class WidgetHeader extends Component {
     static propTypes = {
@@ -8,7 +41,7 @@ class WidgetHeader extends Component {
         subject: PropTypes.node,
         subjectPlacement: PropTypes.oneOf(['prepend', 'append']).isRequired,
         count: PropTypes.node,
-        icon: PropTypes.string,
+        icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
         iconStyle: PropTypes.object.isRequired,
         style: PropTypes.object.isRequired,
     }
@@ -19,78 +52,54 @@ class WidgetHeader extends Component {
         iconStyle: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const {
             title,
             subject,
             subjectPlacement,
             count,
-            icon,
+            icon: _icon,
             style,
+            theme,
         } = this.props
-
-        const { theme } = this.context
 
         let subjectNode = null
         if (subject) {
             subjectNode = (
-                <span
-                    className={`widget__header__subject ${classes.subject} ${_.get(
-                        theme,
-                        'widgetHeader.subject',
-                        ''
-                    )}`}
-                >
+                <Subject>
                     {subject}
-                </span>
+                </Subject>
             )
         }
 
         let countNode = null
         if (count !== undefined) {
             countNode = (
-                <span
-                    className={`widget__header__count ${classes.count} ${_.get(
-                        theme,
-                        'widgetHeader.count',
-                        ''
-                    )}`}
-                >
+                <Count>
                     {count}
-                </span>
+                </Count>
             )
         }
 
+        let icon = null
+        if (_.isFunction(_icon)) {
+            icon = _icon({
+                color: theme.colors.icon,
+            })
+        }
+
         return (
-            <div
-                className={`widget__header ${classes.header} ${_.get(
-                    theme,
-                    'widgetHeader.header',
-                    ''
-                )}`}
-                style={style}
-            >
+            <Header className="WidgetHeader" style={style}>
                 <span>
                     {subjectPlacement === 'prepend' && subjectNode}
                     {title}
                     {subjectPlacement === 'append' && subjectNode}
                     {countNode}
                 </span>
-                {icon &&
-                    <i
-                        className={`fa fa-${icon} ${classes.icon} ${_.get(
-                            theme,
-                            'widgetHeader.icon',
-                            ''
-                        )}`}
-                    />}
-            </div>
+                {icon}
+            </Header>
         )
     }
 }
 
-export default WidgetHeader
+export default withTheme(WidgetHeader)

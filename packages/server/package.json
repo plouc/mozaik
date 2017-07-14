@@ -1,7 +1,8 @@
 {
   "name": "@mozaik/server",
-  "version": "1.0.0-alpha.0",
-  "main": "index.js",
+  "version": "2.0.0-alpha.1",
+  "description": "Mozaïk server",
+  "main": "src/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",

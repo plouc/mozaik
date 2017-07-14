@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 import UnknowWidgetTypeError from './UnknowWidgetTypeError'
 import shallowEqual from '../../lib/shallowEqual'
@@ -37,7 +38,7 @@ export default class WidgetWrapper extends Component {
             apiError,
         } = this.props
 
-        console.log(`=> ${extension}.${type}`)
+        //console.log(`=> ${extension}.${type}`)
 
         let content
         if (!registry.has(extension, type)) {

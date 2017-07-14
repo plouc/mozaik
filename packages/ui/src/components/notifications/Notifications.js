@@ -1,38 +1,33 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import NotificationsItem from './NotificationsItem'
-import classes from './Notifications.css'
+import styled from 'styled-components'
 
-class Notifications extends Component {
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
+const Wrapper = styled.div`
+    position: absolute;
+    z-index: 100000;
+    width: 25%;
+    top: 8vmin;
+    right: 2vmin;
+`
+
+export default class Notifications extends Component {
+    static propTypes = {
+        notifications: PropTypes.array.isRequired,
     }
 
     render() {
         const { notifications } = this.props
-        const { theme } = this.context
 
         return (
-            <div
-                className={`notifications ${classes.notifications} ${_.get(
-                    theme,
-                    'notifications.notifications',
-                    ''
-                )}`}
-            >
+            <Wrapper>
                 {notifications.map(notification =>
                     <NotificationsItem
                         key={`notification.${notification.id}`}
                         notification={notification}
                     />
                 )}
-            </div>
+            </Wrapper>
         )
     }
 }
-
-Notifications.propTypes = {
-    notifications: PropTypes.array.isRequired,
-}
-
-export default Notifications
