@@ -1,0 +1,9 @@
+.travis.yml
+.babelrc
+.DS_Store
+.gitignore
+*.log*
+yarn.lock
+/src
+/node_modules
+webpack.config.js

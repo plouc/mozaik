@@ -1,0 +1,13 @@
+.wrapper {
+    border-radius: 2px;
+}
+
+.label {
+    background-color: #561d1d;
+    color: hsl(10, 60%, 90%);
+}
+
+.addon {
+    background-color: rgb(55, 21, 21);
+    color: hsl(0, 60%, 63%);
+}

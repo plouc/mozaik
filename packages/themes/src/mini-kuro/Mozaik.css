@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700');
+
+.root {
+    font-family: 'Roboto Mono', monospace;
+    color: #fff;
+    background: #000;
+    font-size: 1.6vmin;
+    line-height: 3vmin;
+    font-weight: 300;
+}
+
+.root a {
+    font-weight: 400;
+}
+
+.root img {
+    filter: grayscale(100%);
+}

@@ -1,0 +1,13 @@
+.item {
+    border-bottom: 1px solid #28323f;
+}
+.item:hover {
+    background-color: #2f3d4b;
+}
+.item:last-child {
+    border-bottom: 0;
+}
+
+.meta {
+    color: #879db7;
+}

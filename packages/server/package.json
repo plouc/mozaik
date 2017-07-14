@@ -1,0 +1,30 @@
+{
+  "name": "@mozaik/server",
+  "version": "1.0.0-alpha.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/plouc/mozaik"
+  },
+  "author": {
+    "name": "Raphaël Benitte",
+    "url": "https://github.com/plouc"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "chokidar": "^1.7.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "js-yaml": "^3.9.0",
+    "lodash": "^4.17.4",
+    "socket.io": "^2.0.3",
+    "winston": "^2.3.1"
+  }
+}
