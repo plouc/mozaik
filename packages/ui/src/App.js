@@ -1,22 +1,25 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react'
+import { Provider } from 'react-redux'
+import Mozaik from './containers/MozaikContainer'
+import configureStore from './configureStore'
+import ThemeProvider from './components/ThemeProvider'
+import ThemeManager from './lib/ThemeManager'
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
-                </div>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to
-                    reload.
-                </p>
-            </div>
-        )
-    }
+const MozaikWrapper = () => {
+    const store = configureStore({
+        themes: {
+            themes: ThemeManager.listThemes(),
+            current: ThemeManager.defaultTheme,
+        },
+    })
+
+    return (
+        <Provider store={store}>
+            <ThemeProvider themes={ThemeManager.listThemes()}>
+                <Mozaik />
+            </ThemeProvider>
+        </Provider>
+    )
 }
 
-export default App
+export default MozaikWrapper

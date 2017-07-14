@@ -5,4 +5,13 @@ node_modules
 .DS_Store
 .nyc_output
 coverage
-ui.*
+.env
+*.lerna_backup
+
+# ignore extensions, this directory is just here
+# to ease extension authoring using lerna abilities
+/extensions
+
+# ignore examples except those which are available by default
+/examples/*
+!/examples/basic

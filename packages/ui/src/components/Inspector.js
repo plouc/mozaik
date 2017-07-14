@@ -1,4 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import InspectorIcon from 'react-icons/lib/fa/stethoscope'
+import WidgetsIcon from 'react-icons/lib/fa/columns'
+import ApisIcon from 'react-icons/lib/fa/plug'
+import ClientsIcon from 'react-icons/lib/fa/user'
+import UptimeIcon from 'react-icons/lib/fa/clock-o'
+
 import Registry from './../WidgetsRegistry'
 import Widget from './widget/Widget'
 import WidgetHeader from './widget/WidgetHeader'
@@ -61,7 +68,7 @@ export default class Inspector extends Component {
                 key="widgets"
                 label="widgets"
                 prefix={Registry.widgetsCount()}
-                suffix={<i className="fa fa-columns" />}
+                suffix={<WidgetsIcon />}
             />
         )
 
@@ -71,7 +78,7 @@ export default class Inspector extends Component {
                     key="apis"
                     label="APIs"
                     prefix={apiData.apis.length}
-                    suffix={<i className="fa fa-plug" />}
+                    suffix={<ApisIcon />}
                 />
             )
             items.push(
@@ -79,14 +86,14 @@ export default class Inspector extends Component {
                     key="clients"
                     label="connected clients"
                     prefix={apiData.clientCount}
-                    suffix={<i className="fa fa-user" />}
+                    suffix={<ClientsIcon />}
                 />
             )
             items.push(
                 <WidgetLabel
                     key="uptime"
                     label={`uptime: ${formatUptime(apiData.uptime)}`}
-                    suffix={<i className="fa fa-clock-o" />}
+                    suffix={<UptimeIcon />}
                 />
             )
         }
@@ -97,7 +104,7 @@ export default class Inspector extends Component {
                     title={<span>Mozaïk</span>}
                     subject="inspector"
                     subjectPlacement="append"
-                    icon="stethoscope"
+                    icon={InspectorIcon}
                 />
                 <WidgetBody
                     style={{

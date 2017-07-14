@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { MorphIcon, PlayButton } from 'react-svg-buttons'
-import classes from './DashboardPlayer.css'
+//import classes from './DashboardPlayer.css'
 
 export default class DashboardPlayer extends Component {
     static propTypes = {
@@ -44,39 +45,39 @@ export default class DashboardPlayer extends Component {
         }
 
         return (
-            <div className={`dashboard__player ${classes.player}`}>
-                <span className={classes.button} onClick={previous}>
+            <div /*className={`dashboard__player ${classes.player}`}*/>
+                <span /*className={classes.button}*/ onClick={previous}>
                     <MorphIcon type="arrowLeft" size={32} color={iconColor} />
                 </span>
                 <span
-                    className={`${classes.index} ${_.get(
-                        theme,
-                        'dashboardPlayer.index',
-                        ''
-                    )}`}
+                //className={`${classes.index} ${_.get(
+                //    theme,
+                //    'dashboardPlayer.index',
+                //    ''
+                //)}`}
                 >
                     {currentDashboardIndex + 1}
                 </span>
                 <span
-                    className={`${classes.slash} ${_.get(
-                        theme,
-                        'dashboardPlayer.slash',
-                        ''
-                    )}`}
+                //className={`${classes.slash} ${_.get(
+                //    theme,
+                //    'dashboardPlayer.slash',
+                //    ''
+                //)}`}
                 >
                     /
                 </span>
                 <span
-                    className={`${classes.index} ${_.get(
-                        theme,
-                        'dashboardPlayer.index',
-                        ''
-                    )}`}
+                //className={`${classes.index} ${_.get(
+                //    theme,
+                //    'dashboardPlayer.index',
+                //    ''
+                //)}`}
                 >
                     {dashboards.length}
                 </span>
                 <span
-                    className={`${classes.button} ${classes.play}`}
+                    //className={`${classes.button} ${classes.play}`}
                     onClick={handler}
                 >
                     <PlayButton
@@ -86,7 +87,7 @@ export default class DashboardPlayer extends Component {
                         color={iconColor}
                     />
                 </span>
-                <span className={classes.button} onClick={next}>
+                <span /*className={classes.button}*/ onClick={next}>
                     <MorphIcon type="arrowRight" size={32} color={iconColor} />
                 </span>
             </div>

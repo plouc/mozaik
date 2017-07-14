@@ -1,7 +1,23 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { TransitionMotion, spring } from 'react-motion'
-import classes from './DashboardHeader.css'
+import styled from 'styled-components'
+
+const Title = styled.div`
+    height: 6vmin;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    white-space: pre;
+    font-family: ${props => props.theme.dashboard.header.title.fontFamily};
+    font-size: ${props => props.theme.dashboard.header.title.fontSize};
+    text-transform: ${props =>
+        props.theme.dashboard.header.title.textTransform};
+    color: ${props => props.theme.dashboard.header.title.color};
+    ${props => props.theme.dashboard.header.title.extend.trim()};
+`
 
 const willEnter = () => ({ x: 30, opacity: 0 })
 const willLeave = () => ({
@@ -15,13 +31,8 @@ export default class DashboardTitle extends Component {
         title: PropTypes.string,
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
         const { currentDashboardIndex, title } = this.props
-        const { theme } = this.context
 
         const items = [{ key: currentDashboardIndex, title }]
 
@@ -42,12 +53,8 @@ export default class DashboardTitle extends Component {
                     <div style={{ position: 'relative' }}>
                         {styles.map(({ key, data, style }) => {
                             return (
-                                <div
-                                    className={`${classes.title} ${_.get(
-                                        theme,
-                                        'dashboardHeader.title',
-                                        ''
-                                    )}`}
+                                <Title
+                                    className="Dashboard__Title"
                                     key={key}
                                     style={{
                                         transform: `translate(${style.x}px,0)`,
@@ -55,7 +62,7 @@ export default class DashboardTitle extends Component {
                                     }}
                                 >
                                     {data}
-                                </div>
+                                </Title>
                             )
                         })}
                     </div>}

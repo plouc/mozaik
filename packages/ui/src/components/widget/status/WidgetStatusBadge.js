@@ -1,5 +1,17 @@
-import React, { Component, PropTypes } from 'react'
-import './WidgetStatusBadge.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled, { withTheme } from 'styled-components'
+
+const Badge = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 3vmin;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+`
+
+const Icon = styled.i`font-size: 12vmin;`
 
 const colorMapping = {
     success: ['success', 'passed', 'good', 'ok'],
@@ -28,25 +40,21 @@ const getIcon = status => {
     return 'question'
 }
 
-export default class WidgetStatusBadge extends Component {
+class WidgetStatusBadge extends Component {
     static propTypes = {
         status: PropTypes.string,
         message: PropTypes.node,
         meta: PropTypes.node,
         style: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     }
 
     static defaultProps = {
         style: {},
     }
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
     render() {
-        const { status, message, meta, style } = this.props
-        const { theme } = this.context
+        const { status, message, meta, style, theme } = this.props
 
         const colorKey = getColorKey(status)
         const icon = getIcon(status)
@@ -56,7 +64,7 @@ export default class WidgetStatusBadge extends Component {
         }
 
         const iconStyle = {
-            //color: theme.colors[colorKey],
+            color: theme.colors[colorKey],
         }
 
         let messageNode = null
@@ -78,15 +86,13 @@ export default class WidgetStatusBadge extends Component {
         }
 
         return (
-            <div styleName="badge" style={rootStyle}>
-                <i
-                    styleName="icon"
-                    className={`fa fa-${icon}`}
-                    style={iconStyle}
-                />
+            <Badge style={rootStyle}>
+                <Icon className={`fa fa-${icon}`} style={iconStyle} />
                 {messageNode}
                 {metaNode}
-            </div>
+            </Badge>
         )
     }
 }
+
+export default withTheme(WidgetStatusBadge)

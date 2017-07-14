@@ -1,94 +1,80 @@
-import React, { Component, PropTypes } from 'react'
-import _ from 'lodash'
-import classes from './WidgetList.css'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-class WidgetListItem extends Component {
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
+const Item = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: ${props => props.theme.list.item.padding};
+    background: ${props => props.theme.list.item.background};
+    ${props => props.theme.list.item.extend.trim()} &:hover {
+        background: ${props => props.theme.list.item.hover.background};
+    }
+`
+
+const Pre = styled.div`margin-right: 2vmin;`
+
+const Post = styled.div`margin-left: 2vmin;`
+
+const Meta = styled.div`
+    fontSize: ${props => props.theme.list.item.meta.fontSize};
+    ${props => props.theme.list.item.meta.extend.trim()};
+`
+
+export default class WidgetListItem extends Component {
+    static propTypes = {
+        title: PropTypes.node.isRequired,
+        pre: PropTypes.node,
+        post: PropTypes.node,
+        meta: PropTypes.node,
+        style: PropTypes.object,
+        onClick: PropTypes.func,
+    }
+
+    static defaultProps = {
+        subjectPlacement: 'prepend',
     }
 
     render() {
         const { title, pre, post, meta, onClick, style } = this.props
 
-        const { theme } = this.context
-
         let metaNode = null
         if (meta !== undefined) {
             metaNode = (
-                <div
-                    className={`widget__list__item__meta ${_.get(
-                        theme,
-                        'widgetList.meta',
-                        ''
-                    )}`}
-                >
+                <Meta>
                     {meta}
-                </div>
+                </Meta>
             )
         }
 
         let preNode = null
         if (pre !== undefined) {
             preNode = (
-                <div
-                    className={`widget__list__item__pre ${classes.pre} ${_.get(
-                        theme,
-                        'widgetList.pre',
-                        ''
-                    )}`}
-                >
+                <Pre>
                     {pre}
-                </div>
+                </Pre>
             )
         }
 
         let postNode = null
         if (post !== undefined) {
             postNode = (
-                <div
-                    className={`widget__list__item__post ${classes.post} ${_.get(
-                        theme,
-                        'widgetList.post',
-                        ''
-                    )}`}
-                >
+                <Post>
                     {post}
-                </div>
+                </Post>
             )
         }
 
         return (
-            <div
-                className={`widget__list__item ${classes.item} ${_.get(
-                    theme,
-                    'widgetList.item',
-                    ''
-                )}`}
-                style={style}
-                onClick={onClick}
-            >
+            <Item style={style} onClick={onClick}>
                 {preNode}
                 <div style={{ flexGrow: 1 }}>
                     {title}
                     {metaNode}
                 </div>
                 {postNode}
-            </div>
+            </Item>
         )
     }
 }
-
-WidgetListItem.propTypes = {
-    title: PropTypes.node.isRequired,
-    pre: PropTypes.node,
-    post: PropTypes.node,
-    meta: PropTypes.node,
-    style: PropTypes.object,
-    onClick: PropTypes.func,
-}
-
-WidgetListItem.defaultProps = {
-    subjectPlacement: 'prepend',
-}
-
-export default WidgetListItem
