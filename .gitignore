@@ -15,3 +15,5 @@ coverage
 # ignore examples except those which are available by default
 /examples/*
 !/examples/basic
+
+/tmp

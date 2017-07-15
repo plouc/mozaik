@@ -1,4 +1,2 @@
-*.log*
-node_modules
-.idea
-/themes
+/lib
+/es
