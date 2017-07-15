@@ -1,7 +1,7 @@
 {
   "name": "@mozaik/ui",
   "description": "Mozaïk UI",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.7",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,8 +15,15 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "dependencies": {
+    "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
+    "lodash-es": "^4.17.4",
     "prop-types": "^15.5.10",
     "react-icons": "^2.2.5",
+    "react-redux": "^5.0.5",
+    "react-svg-buttons": "^0.3.1",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "socket.io-client": "^2.0.3",
     "styled-components": "^2.1.1"
   },
@@ -46,19 +53,12 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "cross-env": "^5.0.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "rollup": "^0.45.2",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-replace": "^1.1.1",
-    "rollup-plugin-uglify": "^2.0.1"
+    "react-dom": "^15.6.1"
   },
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c -o dist/mozaik-ui.js",
-    "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c -o dist/mozaik-ui.min.js",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
+    "build": "npm run build:commonjs && npm run build:es",
+    "prepublish": "npm run build"
   }
 }
