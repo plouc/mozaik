@@ -21,7 +21,10 @@
   ],
   "env": {
     "test": {
-      "plugins": ["istanbul"]
+      "plugins": [
+        "istanbul",
+        ["transform-es2015-modules-commonjs", { "loose": true }]
+      ]
     },
     "commonjs": {
       "plugins": [
@@ -31,12 +34,6 @@
     "es": {
       "plugins": [
         "./build/use-lodash-es"
-      ]
-    },
-    "rollup": {
-      "plugins": [
-        "./build/use-lodash-es",
-        "external-helpers"
       ]
     }
   }
