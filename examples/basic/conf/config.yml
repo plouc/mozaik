@@ -18,14 +18,14 @@ dashboards:
   rows:    3
   title:   Mozaïk demo dashboard
   widgets:
-#  -
-#    extension:    github
-#    widget:       UserBadge
-#    user:         plouc
-#    columns:      1
-#    rows:         1
-#    x:            0
-#    y:            0
+  -
+    extension:    github
+    widget:       UserBadge
+    user:         plouc
+    columns:      1
+    rows:         1
+    x:            0
+    y:            0
   -
     extension:    github
     widget:       OrgBadge
