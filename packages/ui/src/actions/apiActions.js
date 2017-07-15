@@ -3,7 +3,7 @@ import { send } from './wsActions'
 export const API_SUBSCRIBE = 'API_SUBSCRIBE'
 export const API_SUBSCRIBED = 'API_SUBSCRIBED'
 export const API_UNSUBSCRIBE = 'API_UNSUBSCRIBE'
-export const API_ALL_UNSUSCRIBED = 'API_ALL_UNSUSCRIBED'
+export const API_ALL_UNSUBSCRIBED = 'API_ALL_UNSUBSCRIBED'
 export const API_DATA = 'API_DATA'
 export const API_FAILURE = 'API_FAILURE'
 
@@ -13,7 +13,7 @@ export const subscribedToApi = subscription => ({
 })
 
 export const allSubscriptionsUnsubscribed = () => ({
-    type: API_ALL_UNSUSCRIBED,
+    type: API_ALL_UNSUBSCRIBED,
 })
 
 export const subscribeToApi = subscription => {

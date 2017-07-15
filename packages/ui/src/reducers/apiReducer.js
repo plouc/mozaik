@@ -3,7 +3,7 @@ import { Map } from 'immutable'
 import {
     API_SUBSCRIBE,
     API_SUBSCRIBED,
-    API_ALL_UNSUSCRIBED,
+    API_ALL_UNSUBSCRIBED,
     API_UNSUBSCRIBE,
     API_DATA,
     API_FAILURE,
@@ -20,7 +20,6 @@ export default function configuration(state = defaultState, action) {
 
     switch (action.type) {
         case API_SUBSCRIBE:
-            console.log('API_SUBSCRIBE', action.subscription.id)
             if (state.get('subscriptions').has(action.subscription.id)) {
                 return state
             }
@@ -44,7 +43,7 @@ export default function configuration(state = defaultState, action) {
                 true
             )
 
-        case API_ALL_UNSUSCRIBED:
+        case API_ALL_UNSUBSCRIBED:
             return state.setIn(
                 ['subscriptions'],
                 state.get('subscriptions').map(subscription => {
