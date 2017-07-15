@@ -61,7 +61,7 @@ export default function configuration(state = defaultState, action) {
         case API_DATA:
             return state
                 .deleteIn(['errors', action.id])
-                .mergeIn(['data', action.id], action.data)
+                .setIn(['data', action.id], action.data)
 
         case API_FAILURE:
             return state.mergeIn(['errors', action.id], action.data)
