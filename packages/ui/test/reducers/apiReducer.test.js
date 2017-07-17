@@ -7,11 +7,13 @@ import {
 } from '../../src/actions/apiActions'
 
 it('should return the initial state', () => {
-    expect(apiReducer(undefined, {})).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({}),
-        errors: new Map({})
-    }))
+    expect(apiReducer(undefined, {})).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({}),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_SUBSCRIBE', () => {
@@ -20,16 +22,18 @@ it('should handle API_SUBSCRIBE', () => {
         subscription: { id: 'yay' },
     })
 
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({
-            yay: new Map({
-                id: 'yay',
-                hasSubscribed: false
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({
+                yay: new Map({
+                    id: 'yay',
+                    hasSubscribed: false,
+                }),
             }),
-        }),
-        data: new Map({}),
-        errors: new Map({})
-    }))
+            data: new Map({}),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_DATA with array based data', () => {
@@ -37,15 +41,17 @@ it('should handle API_DATA with array based data', () => {
     const state = apiReducer(undefined, {
         type: API_DATA,
         id: 'yay',
-        data
+        data,
     })
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({
-            yay: data
-        }),
-        errors: new Map({})
-    }))
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({
+                yay: data,
+            }),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_DATA with string based data', () => {
@@ -53,15 +59,17 @@ it('should handle API_DATA with string based data', () => {
     const state = apiReducer(undefined, {
         type: API_DATA,
         id: 'yay',
-        data
+        data,
     })
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({
-            yay: data
-        }),
-        errors: new Map({})
-    }))
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({
+                yay: data,
+            }),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_DATA with number based data', () => {
@@ -69,51 +77,60 @@ it('should handle API_DATA with number based data', () => {
     const state = apiReducer(undefined, {
         type: API_DATA,
         id: 'yay',
-        data
+        data,
     })
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({
-            yay: data
-        }),
-        errors: new Map({})
-    }))
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({
+                yay: data,
+            }),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_DATA with object based data', () => {
     const data = {
         test: true,
         count: 12.3,
-        labels: ['test', 'object']
+        labels: ['test', 'object'],
     }
     const state = apiReducer(undefined, {
         type: API_DATA,
         id: 'yay',
-        data
+        data,
     })
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({
-            yay: data
-        }),
-        errors: new Map({})
-    }))
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({
+                yay: data,
+            }),
+            errors: new Map({}),
+        })
+    )
 })
 
 it('should handle API_UNSUBSCRIBE', () => {
-    const state = apiReducer(new Map({
-        subscriptions: new Map({
-            yay: 'exists'
+    const state = apiReducer(
+        new Map({
+            subscriptions: new Map({
+                yay: 'exists',
+            }),
+            data: new Map({}),
+            errors: new Map({}),
         }),
-        data: new Map({}),
-        errors: new Map({})
-    }), {
-        type: API_UNSUBSCRIBE,
-        id: 'yay',
-    })
-    expect(state).toEqual(new Map({
-        subscriptions: new Map({}),
-        data: new Map({}),
-        errors: new Map({})
-    }))
+        {
+            type: API_UNSUBSCRIBE,
+            id: 'yay',
+        }
+    )
+    expect(state).toEqual(
+        new Map({
+            subscriptions: new Map({}),
+            data: new Map({}),
+            errors: new Map({}),
+        })
+    )
 })
