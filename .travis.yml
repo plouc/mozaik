@@ -4,7 +4,8 @@ node_js:
   - '7'
   - '8'
 script:
-  - CI=1 lerna run test
+  - cd packages/server && yarn test
+  - cd packages/ui && yarn test
   #- npm run test-cover
 #after_success:
 #  - npm run coveralls
