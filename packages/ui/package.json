@@ -29,7 +29,7 @@
     "styled-components": "^2.1.1"
   },
   "peerDependencies": {
-    "react": "^15.0.0-0"
+    "react": "^15.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
