@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 
 const Ship = styled.span`
     display: block;
@@ -32,19 +32,19 @@ class WidgetStatusChip extends Component {
     }
 
     render() {
-        const { status, size, style: _style } = this.props
+        const { status, size, theme, style: _style } = this.props
 
         const colorKey = getColorKey(status)
 
         const style = {
             height: size,
             width: size,
-            //background:   theme.colors[colorKey],
-            //..._style,
+            background: theme.colors[colorKey],
+            ..._style,
         }
 
         return <Ship style={style} />
     }
 }
 
-export default WidgetStatusChip
+export default withTheme(WidgetStatusChip)
