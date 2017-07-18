@@ -11,12 +11,8 @@ console.log(`using config file: ${configFile}\n`)
 
 Mozaik.configureFromFile(path.join(__dirname, configFile))
     .then(config => {
+        require('./apis')(Mozaik)
         console.log(config)
-        Mozaik.registerApi('github', require('@mozaik/ext-github/client'))
-        Mozaik.registerApi('travis', require('@mozaik/ext-travis/client'))
-        //Mozaik.registerApi('gitlab',    require('mozaik-ext-gitlab/client'))
-        //Mozaik.registerApi('analytics', require('mozaik-ext-analytics/client'))
-
         Mozaik.start()
     })
     .catch(err => {
