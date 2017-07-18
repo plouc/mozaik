@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
+import QuestionIcon from 'react-icons/lib/fa/question'
+import SuccessIcon from 'react-icons/lib/fa/check-circle'
+import WarningIcon from 'react-icons/lib/fa/exclamation-triangle'
 import styled, { withTheme } from 'styled-components'
 
 const Badge = styled.div`
@@ -10,8 +14,6 @@ const Badge = styled.div`
     justify-content: space-between;
     height: 100%;
 `
-
-const Icon = styled.i`font-size: 12vmin;`
 
 const colorMapping = {
     success: ['success', 'passed', 'good', 'ok'],
@@ -27,17 +29,23 @@ const getColorKey = status => {
     return 'unknown'
 }
 
-const iconMapping = {
-    'check-circle': ['success', 'passed', 'good', 'ok'],
-    warning: ['warning', 'error', 'failed', 'bad', 'ko'],
-}
+const iconMapping = [
+    {
+        icon: SuccessIcon,
+        match: ['success', 'passed', 'good', 'ok']
+    },
+    {
+        icon: WarningIcon,
+        match: ['warning', 'error', 'failed', 'bad', 'ko'],
+    }
+]
 
 const getIcon = status => {
-    for (let i in iconMapping) {
-        if (iconMapping[i].includes(status)) return i
-    }
+    const icon = _.find(iconMapping, mapping => {
+        return mapping.match.includes(status)
+    })
 
-    return 'question'
+    return icon || QuestionIcon
 }
 
 class WidgetStatusBadge extends Component {
@@ -57,10 +65,10 @@ class WidgetStatusBadge extends Component {
         const { status, message, meta, style, theme } = this.props
 
         const colorKey = getColorKey(status)
-        const icon = getIcon(status)
+        const Icon = getIcon(status)
 
         const rootStyle = {
-            //...style,
+            ...style,
         }
 
         const iconStyle = {
@@ -87,7 +95,7 @@ class WidgetStatusBadge extends Component {
 
         return (
             <Badge style={rootStyle}>
-                <Icon className={`fa fa-${icon}`} style={iconStyle} />
+                <Icon style={iconStyle} />
                 {messageNode}
                 {metaNode}
             </Badge>
