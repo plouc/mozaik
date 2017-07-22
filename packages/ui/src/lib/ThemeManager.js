@@ -36,8 +36,10 @@ const defaultTheme = {
     },
     widget: {
         background: 'white',
+        extend: '',
         wrapper: {
             padding: '1vmin',
+            extend: '',
         },
         header: {
             height: '6vmin',
