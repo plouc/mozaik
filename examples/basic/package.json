@@ -8,7 +8,7 @@
     "@mozaik/ext-time": "^2.0.0-alpha.10",
     "@mozaik/ext-travis": "^2.0.0-alpha.0",
     "@mozaik/server": "^2.0.0-alpha.2",
-    "@mozaik/themes": "1.0.0-alpha.6",
+    "@mozaik/themes": "1.0.0-alpha.7",
     "@mozaik/ui": "^2.0.0-alpha.8",
     "nivo": "^1.0.0-alpha.7",
     "react": "^15.6.1",
