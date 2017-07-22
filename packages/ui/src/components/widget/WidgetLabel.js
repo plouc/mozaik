@@ -63,9 +63,9 @@ export default class WidgetLabel extends Component {
         }
 
         return (
-            <Wrapper style={style} className="LabelWrapper">
+            <Wrapper style={style}>
                 {prefixNode}
-                <Label className="Label">
+                <Label>
                     {label}
                 </Label>
                 {suffixNode}
