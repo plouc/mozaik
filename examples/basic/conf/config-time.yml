@@ -1,0 +1,92 @@
+port: 5000
+
+# define duration between each dashboard rotation (ms)
+rotationDuration: 10000
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 100000
+
+dashboards:
+- columns: 4
+  rows:    3
+  title:   Mozaïk time extension dashboard
+  widgets:
+    -
+      extension:      time
+      widget:         Clock
+      timezone:       Europe/Paris
+      info:           date
+      title:          Paris
+      columns:        1
+      rows:           1
+      x:              0
+      y:              0
+    -
+      extension:      time
+      widget:         Clock
+      info:           time
+      timezone:       Asia/Tokyo
+      title:          Tokyo
+      columns:        1
+      rows:           1
+      x:              1
+      y:              0
+    -
+      extension:      time
+      widget:         Clock
+      info:           timezone
+      timezone:       America/Los_Angeles
+      title:          Los Angeles
+      columns:        1
+      rows:           1
+      x:              2
+      y:              0
+    -
+      extension:      time
+      widget:         DigitalClock
+      timezone:       Europe/Paris
+      displaySeconds: false
+      columns:        1
+      rows:           1
+      x:              0
+      y:              1
+    -
+      extension:      time
+      widget:         DigitalClock
+      timezone:       Asia/Tokyo
+      displayDate:    false
+      columns:        1
+      rows:           1
+      x:              1
+      y:              1
+    -
+      extension:      time
+      widget:         DigitalClock
+      timezone:       America/Los_Angeles
+      columns:        1
+      rows:           1
+      x:              2
+      y:              1
+    -
+      extension:      time
+      widget:         Clock
+      timezone:       Europe/Paris
+      columns:        1
+      rows:           1
+      x:              0
+      y:              2
+    -
+      extension:      time
+      widget:         Clock
+      timezone:       Asia/Tokyo
+      columns:        1
+      rows:           1
+      x:              1
+      y:              2
+    -
+      extension:      time
+      widget:         Clock
+      timezone:       America/Los_Angeles
+      columns:        1
+      rows:           1
+      x:              2
+      y:              2
