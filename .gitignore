@@ -16,4 +16,8 @@ coverage
 /examples/*
 !/examples/basic
 
+/demos
+
+/graphism
+
 /tmp
