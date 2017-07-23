@@ -33,6 +33,14 @@ const defaultTheme = {
                 extend: '',
             },
         },
+        player: {
+            slash: {
+                margin: '0 0.6vmin',
+                color: 'inherit',
+                fontSize: 'inherit',
+                extend: ''
+            }
+        }
     },
     widget: {
         background: 'white',
@@ -49,6 +57,20 @@ const defaultTheme = {
             padding: '2vmin',
             fontSize: 'inherit',
             extend: '',
+            subject: {
+                color: 'inherit',
+                extend: ''
+            },
+            count: {
+                color: 'inherit',
+                fontSize: 'inherit',
+                extend: ''
+            },
+            icon: {
+                color: 'inherit',
+                fontSize: 'inherit',
+                extend: ''
+            }
         },
         body: {
             top: '6vmin',

@@ -34,6 +34,22 @@ export default {
             border-top: 2px solid #fff;
             align-items: flex-start;    
             `,
+            subject: {
+                extend: `
+                font-weight: 700;
+                `
+            },
+            count: {
+                extend: `
+                font-weight: 700;
+                vertical-align: baseline;
+                `
+            },
+            icon: {
+                extend: `
+                display: none;
+                `
+            }
         },
     },
     notifications: {
