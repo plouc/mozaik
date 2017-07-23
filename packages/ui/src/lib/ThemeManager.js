@@ -38,9 +38,9 @@ const defaultTheme = {
                 margin: '0 0.6vmin',
                 color: 'inherit',
                 fontSize: 'inherit',
-                extend: ''
-            }
-        }
+                extend: '',
+            },
+        },
     },
     widget: {
         background: 'white',
@@ -59,18 +59,18 @@ const defaultTheme = {
             extend: '',
             subject: {
                 color: 'inherit',
-                extend: ''
+                extend: '',
             },
             count: {
                 color: 'inherit',
                 fontSize: 'inherit',
-                extend: ''
+                extend: '',
             },
             icon: {
                 color: 'inherit',
                 fontSize: 'inherit',
-                extend: ''
-            }
+                extend: '',
+            },
         },
         body: {
             top: '6vmin',

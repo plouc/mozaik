@@ -36,8 +36,8 @@ export default {
             slash: {
                 color: '#0badc2',
                 fontSize: '2.2vmin',
-            }
-        }
+            },
+        },
     },
     widget: {
         background: '#fff',
@@ -65,12 +65,12 @@ export default {
                 border-radius: 2vmin;
                 padding: 0.4vmin 1.2vmin;
                 border: 1px solid #ddd;
-                `
+                `,
             },
             icon: {
                 fontSize: '2.6vmin',
-                color: '#8fccd2'
-            }
+                color: '#8fccd2',
+            },
         },
         body: {
             top: '5vmin',
@@ -110,7 +110,7 @@ export default {
             },
             meta: {
                 color: '#777',
-                fontSize: '1.4vmin'
+                fontSize: '1.4vmin',
             },
         },
     },
