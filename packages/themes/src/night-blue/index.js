@@ -41,26 +41,6 @@ export default {
             padding: '0.6vmin',
         },
         header: {
-            /*
-             .subject {
-             color: #f6ecd0;
-             }
-
-             .count {
-             background-color: #1e2836;
-             color: #7e9ebc;
-             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) inset;
-             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-             border-radius: 2px;
-             padding: 0.5vmin 0.8vmin;
-             text-transform: none;
-             }
-
-             .icon {
-             font-size: 2.2vmin;
-             color: #e0c671;
-             }
-             */
             height: '5vmin',
             textTransform: 'uppercase',
             background: '#323f53',
@@ -71,6 +51,24 @@ export default {
             font-family: 'Montserrat', sans-serif;
             border-radius: 2px 2px 0 0;
             `,
+            subject: {
+                color: '#f6ecd0',
+            },
+            count: {
+                color: '#7e9ebc',
+                extend: `
+                background-color: #1e2836;
+                box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) inset;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+                border-radius: 2px;
+                padding: 0.5vmin 0.8vmin;
+                text-transform: none;
+                `
+            },
+            icon: {
+                fontSize: '2.2vmin',
+                color: '#e0c671',
+            }
         },
         body: {
             top: '5vmin',
