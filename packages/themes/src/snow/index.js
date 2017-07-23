@@ -32,6 +32,12 @@ export default {
                 fontSize: '2vmin',
             },
         },
+        player: {
+            slash: {
+                color: '#0badc2',
+                fontSize: '2.2vmin',
+            }
+        }
     },
     widget: {
         background: '#fff',
@@ -43,22 +49,6 @@ export default {
             padding: '1vmin',
         },
         header: {
-            /*
-            .subject {
-                color: #000;
-            }
-
-            .count {
-                border-radius: 2vmin;
-                padding: 0.4vmin 1.2vmin;
-                border: 1px solid #ddd;
-            }
-
-            .icon {
-                font-size: 2.6vmin;
-                color: #8fccd2;
-            }
-             */
             height: '5vmin',
             background: '#fafafa',
             fontSize: '2vmin',
@@ -67,6 +57,20 @@ export default {
             font-family: 'Montserrat', sans-serif;
             border-radius: 2px 2px 0 0;
             `,
+            subject: {
+                color: '#000',
+            },
+            count: {
+                extend: `
+                border-radius: 2vmin;
+                padding: 0.4vmin 1.2vmin;
+                border: 1px solid #ddd;
+                `
+            },
+            icon: {
+                fontSize: '2.6vmin',
+                color: '#8fccd2'
+            }
         },
         body: {
             top: '5vmin',

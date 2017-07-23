@@ -1,10 +1,41 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
-import { MorphIcon, PlayButton } from 'react-svg-buttons'
-//import classes from './DashboardPlayer.css'
+import { MorphIcon, PlayButton as PlayIcon } from 'react-svg-buttons'
+import styled, { withTheme } from 'styled-components'
 
-export default class DashboardPlayer extends Component {
+const Container = styled.div`
+    margin-right: 6vmin;
+    display: flex;
+    align-items: center;
+    height: 100%;
+`
+
+const Button = styled.span`
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    padding: 0 0.6vmin;
+`
+
+const PlayButton = Button.extend`
+    margin-left: 0.6vmin;
+`
+
+const Page = styled.span`
+    display: inline-block;
+    width: 2vmin;
+    text-align: center;
+`
+
+const Slash = styled.span`
+    font-size: ${props => props.theme.dashboard.player.slash.fontSize};
+    color: ${props => props.theme.dashboard.player.slash.color};
+    margin: ${props => props.theme.dashboard.player.slash.margin};
+    ${props => props.theme.dashboard.player.slash.extend.trim()};
+`
+
+class DashboardPlayer extends Component {
     static propTypes = {
         currentDashboardIndex: PropTypes.number.isRequired,
         dashboards: PropTypes.array.isRequired,
@@ -13,9 +44,6 @@ export default class DashboardPlayer extends Component {
         pause: PropTypes.func.isRequired,
         previous: PropTypes.func.isRequired,
         next: PropTypes.func.isRequired,
-    }
-
-    static contextTypes = {
         theme: PropTypes.object.isRequired,
     }
 
@@ -28,11 +56,10 @@ export default class DashboardPlayer extends Component {
             pause,
             previous,
             next,
+            theme,
         } = this.props
 
-        const { theme } = this.context
-
-        const iconColor = _.get(theme, 'colors.icon', '#000')
+        const iconColor = theme.colors.icon
 
         let icon
         let handler
@@ -45,52 +72,33 @@ export default class DashboardPlayer extends Component {
         }
 
         return (
-            <div /*className={`dashboard__player ${classes.player}`}*/>
-                <span /*className={classes.button}*/ onClick={previous}>
+            <Container>
+                <Button onClick={previous}>
                     <MorphIcon type="arrowLeft" size={32} color={iconColor} />
-                </span>
-                <span
-                //className={`${classes.index} ${_.get(
-                //    theme,
-                //    'dashboardPlayer.index',
-                //    ''
-                //)}`}
-                >
+                </Button>
+                <Page>
                     {currentDashboardIndex + 1}
-                </span>
-                <span
-                //className={`${classes.slash} ${_.get(
-                //    theme,
-                //    'dashboardPlayer.slash',
-                //    ''
-                //)}`}
-                >
+                </Page>
+                <Slash>
                     /
-                </span>
-                <span
-                //className={`${classes.index} ${_.get(
-                //    theme,
-                //    'dashboardPlayer.index',
-                //    ''
-                //)}`}
-                >
+                </Slash>
+                <Page>
                     {dashboards.length}
-                </span>
-                <span
-                    //className={`${classes.button} ${classes.play}`}
-                    onClick={handler}
-                >
-                    <PlayButton
+                </Page>
+                <PlayButton onClick={handler}>
+                    <PlayIcon
                         type={icon}
                         size={32}
                         isPlaying={isPlaying}
                         color={iconColor}
                     />
-                </span>
-                <span /*className={classes.button}*/ onClick={next}>
+                </PlayButton>
+                <Button onClick={next}>
                     <MorphIcon type="arrowRight" size={32} color={iconColor} />
-                </span>
-            </div>
+                </Button>
+            </Container>
         )
     }
 }
+
+export default withTheme(DashboardPlayer)

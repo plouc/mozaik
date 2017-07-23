@@ -23,6 +23,11 @@ export default {
         header: {
             background: 'rgb(69, 23, 23)',
         },
+        player: {
+            slash: {
+                color: 'hsl(0, 52%, 60%)'
+            }
+        }
     },
     widget: {
         background: 'rgb(69, 23, 23)',
@@ -30,31 +35,31 @@ export default {
             padding: '0.3vmin',
         },
         header: {
-            /*
-             .subject {
-             color: #fff;
-             font-weight: 300;
-             }
-
-             .count {
-             background-color: rgb(40, 18, 18);
-             color: hsl(0, 52%, 60%);
-             border-radius: 2px;
-             padding: 0.6vmin 1vmin;
-             font-size: 1.8vmin;
-             }
-
-             .icon {
-             color: hsl(0, 52%, 60%);
-             font-size: 2.6vmin;
-             }
-             */
             fontSize: '2.2vmin',
             color: 'hsl(10, 60%, 90%)',
             extend: `
             font-family: 'Roboto Slab', sans-serif;
             border-bottom: 1px solid rgb(40, 18, 18);
             `,
+            subject: {
+                color: '#fff',
+                extend: `
+                font-weight: 300;
+                `
+            },
+            count: {
+                color: 'hsl(0, 52%, 60%)',
+                fontSize: '1.8vmin',
+                extend: `
+                background-color: rgb(40, 18, 18);
+                border-radius: 2px;
+                padding: 0.6vmin 1vmin;
+                `
+            },
+            icon: {
+                fontSize: '2.6vmin',
+                color: 'hsl(0, 52%, 60%)'
+            }
         },
     },
     notifications: {

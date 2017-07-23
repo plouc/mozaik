@@ -29,6 +29,12 @@ export default {
                 color: '#eee8d5',
             },
         },
+        player: {
+            slash: {
+                 color: '#0badc2',
+                margin: '0 0.8vmin',
+            }
+        }
     },
     widget: {
         background: '#002b36',
@@ -37,20 +43,16 @@ export default {
         },
         header: {
             height: '5vmin',
-            /*
-             .subject {
-             color: #eee8d5;
-             }
-
-             .count {
-             color: #eee8d5;
-             }
-
-             .icon {
-             font-size: 2vmin;
-             color: #0badc2;
-             }
-             */
+            subject: {
+                color: '#eee8d5',
+            },
+            count: {
+                color: '#eee8d5',
+            },
+            icon: {
+                fontSize: '2vmin',
+                color: '#0badc2'
+            }
         },
     },
     notifications: {
