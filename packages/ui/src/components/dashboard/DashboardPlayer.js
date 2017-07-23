@@ -18,9 +18,7 @@ const Button = styled.span`
     padding: 0 0.6vmin;
 `
 
-const PlayButton = Button.extend`
-    margin-left: 0.6vmin;
-`
+const PlayButton = Button.extend`margin-left: 0.6vmin;`
 
 const Page = styled.span`
     display: inline-block;
@@ -79,9 +77,7 @@ class DashboardPlayer extends Component {
                 <Page>
                     {currentDashboardIndex + 1}
                 </Page>
-                <Slash>
-                    /
-                </Slash>
+                <Slash>/</Slash>
                 <Page>
                     {dashboards.length}
                 </Page>

@@ -37,19 +37,19 @@ export default {
             subject: {
                 extend: `
                 font-weight: 700;
-                `
+                `,
             },
             count: {
                 extend: `
                 font-weight: 700;
                 vertical-align: baseline;
-                `
+                `,
             },
             icon: {
                 extend: `
                 display: none;
-                `
-            }
+                `,
+            },
         },
     },
     notifications: {
