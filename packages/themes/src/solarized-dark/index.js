@@ -31,10 +31,10 @@ export default {
         },
         player: {
             slash: {
-                 color: '#0badc2',
+                color: '#0badc2',
                 margin: '0 0.8vmin',
-            }
-        }
+            },
+        },
     },
     widget: {
         background: '#002b36',
@@ -51,8 +51,8 @@ export default {
             },
             icon: {
                 fontSize: '2vmin',
-                color: '#0badc2'
-            }
+                color: '#0badc2',
+            },
         },
     },
     notifications: {

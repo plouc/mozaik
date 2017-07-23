@@ -55,14 +55,12 @@ if (env === 'commonjs') {
             {
                 loose: true,
             },
-        ]
+        ],
     ])
 }
 
 if (env === 'es') {
-    plugins.push.apply(plugins, [
-        require.resolve('./build/use-lodash-es'),
-    ])
+    plugins.push.apply(plugins, [require.resolve('./build/use-lodash-es')])
 }
 
 if (env === 'test') {
@@ -73,10 +71,10 @@ if (env === 'test') {
             {
                 loose: true,
             },
-        ]
+        ],
     ])
 }
 
 module.exports = {
-    plugins
+    plugins,
 }

@@ -24,24 +24,25 @@ const Count = styled.div`
     line-height: 1em;
     margin-left: 1.6vmin;
     color: ${props => props.theme.widget.header.count.color};
-    ${props => props.theme.widget.header.count.extend.trim()}
+    ${props => props.theme.widget.header.count.extend.trim()};
 `
 
 const Subject = styled.div`
     display: inline-block;
     margin-left: 0.5em;
     color: ${props => props.theme.widget.header.subject.color};
-    ${props => props.theme.widget.header.subject.extend.trim()}
 
     &:first-child {
         margin-left: 0;
         margin-right: 0.5em;
     }
+
+    ${props => props.theme.widget.header.subject.extend.trim()};
 `
 
 const IconWrapper = styled.div`
     font-size: ${props => props.theme.widget.header.icon.fontSize};
-    ${props => props.theme.widget.header.icon.extend.trim()}    
+    ${props => props.theme.widget.header.icon.extend.trim()};
 `
 
 class WidgetHeader extends Component {
@@ -95,8 +96,8 @@ class WidgetHeader extends Component {
             icon = (
                 <IconWrapper>
                     {_icon({
-                color: theme.colors.icon,
-            })}
+                        color: theme.colors.icon,
+                    })}
                 </IconWrapper>
             )
         }

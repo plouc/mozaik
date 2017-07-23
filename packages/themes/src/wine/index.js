@@ -25,9 +25,9 @@ export default {
         },
         player: {
             slash: {
-                color: 'hsl(0, 52%, 60%)'
-            }
-        }
+                color: 'hsl(0, 52%, 60%)',
+            },
+        },
     },
     widget: {
         background: 'rgb(69, 23, 23)',
@@ -45,7 +45,7 @@ export default {
                 color: '#fff',
                 extend: `
                 font-weight: 300;
-                `
+                `,
             },
             count: {
                 color: 'hsl(0, 52%, 60%)',
@@ -54,12 +54,12 @@ export default {
                 background-color: rgb(40, 18, 18);
                 border-radius: 2px;
                 padding: 0.6vmin 1vmin;
-                `
+                `,
             },
             icon: {
                 fontSize: '2.6vmin',
-                color: 'hsl(0, 52%, 60%)'
-            }
+                color: 'hsl(0, 52%, 60%)',
+            },
         },
     },
     notifications: {

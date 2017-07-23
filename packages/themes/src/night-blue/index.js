@@ -63,12 +63,12 @@ export default {
                 border-radius: 2px;
                 padding: 0.5vmin 0.8vmin;
                 text-transform: none;
-                `
+                `,
             },
             icon: {
                 fontSize: '2.2vmin',
                 color: '#e0c671',
-            }
+            },
         },
         body: {
             top: '5vmin',
