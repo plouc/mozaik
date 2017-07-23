@@ -1,7 +1,7 @@
 export default {
-    name: 'mini kuro',
+    name: 'mini',
     colors: {
-        icon: '#fff',
+        icon: '#000',
         unknown: '#c0ab7f',
         success: '#4eb6a3',
         warning: '#d1be65',
@@ -9,14 +9,12 @@ export default {
     },
     root: {
         fontFamily: `'Roboto Mono', monospace`,
-        color: '#fff',
-        background: '#000',
+        color: '#000',
+        background: '#fff',
         extend: `
         @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700');
-        font-weight: 300;
-        
         & a {
-            font-weight: 400;
+            font-weight: 700;
         }
         & img {
             filter: grayscale(100%);
@@ -34,7 +32,6 @@ export default {
         },
     },
     widget: {
-        background: '#000',
         wrapper: {
             padding: '1.6vmin 3vmin',
         },
@@ -43,8 +40,8 @@ export default {
             fontSize: '1.8vmin',
             padding: '0.8vmin 0 0 0',
             extend: `
-            border-top: 2px solid #fff;
-            align-items: flex-start;    
+            border-top: 2px solid #000;
+            align-items: flex-start;
             `,
             subject: {
                 extend: `
@@ -67,18 +64,18 @@ export default {
     notifications: {
         item: {
             padding: '1.2vmin 2vmin',
-            background: '#fff',
-            color: '#000',
+            background: '#000',
+            color: '#fff',
             extend: `
-            font-weight: 400;
+            font-weight: 300;
             `,
         },
     },
     label: {
         extend: `
         line-height: 1em;
-        border-top: 1px dotted #fff;
-        border-bottom: 1px dotted #fff;
+        border-top: 1px dotted #000;
+        border-bottom: 1px dotted #000;
         align-items: baseline;
         `,
         main: {
@@ -90,11 +87,11 @@ export default {
             font-weight: 700;
             &:first-child {
                 padding-right: 1.4vmin;
-                border-right: 1px dotted #fff;
+                border-right: 1px dotted #000;
             }
             &:last-child {
                 padding-left: 1.4vmin;
-                border-left: 1px dotted #fff;
+                border-left: 1px dotted #000;
             }
             & + .Label {
                 padding-left: 1.4vmin;
@@ -109,7 +106,7 @@ export default {
         item: {
             padding: '1vmin 0',
             extend: `
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px solid #000;
             &:last-child {
                 border-bottom: 0;
             }
