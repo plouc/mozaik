@@ -32,12 +32,12 @@ const getColorKey = status => {
 const iconMapping = [
     {
         icon: SuccessIcon,
-        match: ['success', 'passed', 'good', 'ok']
+        match: ['success', 'passed', 'good', 'ok'],
     },
     {
         icon: WarningIcon,
         match: ['warning', 'error', 'failed', 'bad', 'ko'],
-    }
+    },
 ]
 
 const getIcon = status => {
