@@ -122,4 +122,15 @@ export default {
             },
         },
     },
+    charts: {
+        axis: {
+            textColor: '#fff',
+            tickColor: '#fff',
+            legendColor: '#fff',
+        },
+        grid: {
+            stroke: '#fff',
+            strokeDasharray: '1,6',
+        },
+    },
 }

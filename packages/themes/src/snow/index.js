@@ -1,16 +1,13 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'snow',
-    colors: {
-        icon: '#0badc2',
-        unknown: '#d3dfe8',
-        success: '#8ddb8d',
-        warning: '#d1be65',
-        failure: '#e37856',
-    },
+    colors,
     root: {
         fontFamily: `'Open sans', sans-serif`,
-        color: '#333',
-        background: '#ebf0f1',
+        color: colors.text,
+        background: colors.background,
         fontSize: '1.6vmin',
         lineHeight: '3vmin',
         extend: `
@@ -53,7 +50,7 @@ export default {
             background: '#fafafa',
             fontSize: '2vmin',
             extend: `
-            border-bottom: 1px solid #ebf0f1;
+            border-bottom: 1px solid ${colors.background};
             font-family: 'Montserrat', sans-serif;
             border-radius: 2px 2px 0 0;
             `,
@@ -93,14 +90,14 @@ export default {
         border: 1px solid #ddd;
         `,
         addon: {
-            background: '#ebf0f1',
+            background: colors.background,
             color: '#000',
         },
     },
     list: {
         item: {
             extend: `
-            border-bottom: 1px solid #ebf0f1;
+            border-bottom: 1px solid ${colors.background};
             &:last-child {
                 border-bottom: 0;
             }
@@ -114,4 +111,5 @@ export default {
             },
         },
     },
+    charts,
 }

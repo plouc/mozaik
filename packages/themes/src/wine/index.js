@@ -1,16 +1,13 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'wine',
-    colors: {
-        icon: 'hsl(0, 52%, 60%)',
-        unknown: '#7e706d',
-        success: '#50a3b2',
-        warning: '#b87334',
-        failure: '#a31c12',
-    },
+    colors,
     root: {
         fontFamily: `'Open sans', sans-serif`,
-        color: 'hsl(6, 26%, 67%)',
-        background: '#281212',
+        color: colors.text,
+        background: colors.background,
         fontSize: '1.8vmin',
         extend: `
         @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300|Open+Sans:400italic,400,300,600,700");
@@ -102,4 +99,5 @@ export default {
             },
         },
     },
+    charts,
 }
