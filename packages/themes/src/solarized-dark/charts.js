@@ -7,7 +7,7 @@ export default {
         legendColor: colors.text,
     },
     grid: {
-        stroke:          '#085361',
+        stroke: '#085361',
         strokeDasharray: '3,6',
     },
 }
