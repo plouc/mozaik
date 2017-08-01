@@ -43,7 +43,7 @@
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build": "npm run build:commonjs && npm run build:es",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   }
 }
