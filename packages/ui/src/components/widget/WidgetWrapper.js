@@ -4,15 +4,17 @@ import _ from 'lodash'
 import UnknowWidgetTypeError from './UnknowWidgetTypeError'
 import shallowEqual from '../../lib/shallowEqual'
 import { is } from 'immutable'
+import { withTheme } from 'styled-components'
 
 const ignoreProps = ['extension', 'widget', 'registry', 'apiData', 'apiError']
 
-export default class WidgetWrapper extends Component {
+class WidgetWrapper extends Component {
     static propTypes = {
         apiData: PropTypes.object,
         extension: PropTypes.string.isRequired,
         widget: PropTypes.string.isRequired,
         subscriptionId: PropTypes.string,
+        theme: PropTypes.object.isRequired,
         registry: PropTypes.shape({
             getComponent: PropTypes.func.isRequired,
         }).isRequired,
@@ -52,10 +54,13 @@ export default class WidgetWrapper extends Component {
             // Pass props to widget component without 'metadata
             const childProps = _.omit(this.props, ignoreProps)
             if (apiData) {
-                childProps.apiData = apiData.toJS()
+                //console.log('API_DATA', apiData)
+                childProps.apiData = apiData //.toJS()
+
+                childProps.apiData = apiData
             }
             if (apiError) {
-                childProps.apiError = apiError.toJS()
+                childProps.apiError = apiError //.toJS()
             }
 
             content = React.createElement(component, childProps)
@@ -64,3 +69,5 @@ export default class WidgetWrapper extends Component {
         return content
     }
 }
+
+export default withTheme(WidgetWrapper)
