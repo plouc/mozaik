@@ -1,16 +1,13 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'night blue',
-    colors: {
-        icon: '#e0c671',
-        unknown: '#495b71',
-        success: '#4ec2b4',
-        warning: '#d1be65',
-        failure: '#de5029',
-    },
+    colors,
     root: {
         fontFamily: `'Raleway', sans-serif`,
-        color: '#eedba5',
-        background: '#1e2430',
+        color: colors.text,
+        background: colors.background,
         extend: `
         @import url('https://fonts.googleapis.com/css?family=Raleway:200,400,600,800|Montserrat:400,700');
         
@@ -22,10 +19,10 @@ export default {
     dashboard: {
         header: {
             background: '#2b3847',
-            color: '#eedba5',
+            color: colors.text,
             boxShadow: '0 1px 1px rgba(0, 0, 0, 0.35)',
             title: {
-                color: '#eedba5',
+                color: colors.text,
                 textTransform: 'uppercase',
                 fontFamily: `'Montserrat', sans-serif`,
             },
@@ -44,7 +41,7 @@ export default {
             height: '5vmin',
             textTransform: 'uppercase',
             background: '#323f53',
-            color: '#eedba5',
+            color: colors.text,
             extend: `
             box-shadow: 0 1px 0 #495b71 inset;
             border-bottom: 1px solid #253246;
@@ -77,8 +74,8 @@ export default {
     notifications: {
         item: {
             padding: '1.2vmin 2vmin',
-            background: '#1e2430',
-            color: '#eedba5',
+            background: colors.background,
+            color: colors.text,
             extend: `
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.15);
             border-radius: 2px;
@@ -114,4 +111,5 @@ export default {
             },
         },
     },
+    charts,
 }

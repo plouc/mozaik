@@ -1,16 +1,13 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'solarized dark',
-    colors: {
-        icon: '#0badc2',
-        unknown: '#495b71',
-        success: '#859900',
-        warning: '#b58900',
-        failure: '#dc322f',
-    },
+    colors,
     root: {
         fontFamily: `'Space Mono', Consolas, monospace`,
-        color: '#90a2a4',
-        background: '#073642',
+        color: colors.text,
+        background: colors.background,
         fontSize: '1.6vmin',
         lineHeight: '2.8vmin',
         extend: `
@@ -58,7 +55,7 @@ export default {
     notifications: {
         item: {
             padding: '1.2vmin 2vmin',
-            background: '#073642',
+            background: colors.background,
             color: '#b3c5c7',
             extend: `
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -66,7 +63,7 @@ export default {
         },
     },
     label: {
-        background: '#073642',
+        background: colors.background,
         extend: `
         border-radius: 2px;
         `,
@@ -88,4 +85,5 @@ export default {
             },
         },
     },
+    charts,
 }
