@@ -1,5 +1,6 @@
 import Registry from './WidgetsRegistry'
 import ThemeManager from './lib/ThemeManager'
+import defaultTheme from './defaultTheme'
 import Mozaik from './app'
 import Inspector from './components/Inspector'
 import TrapApiError from './components/TrapApiError'
@@ -22,6 +23,7 @@ export default Mozaik
 export {
     Registry,
     ThemeManager,
+    defaultTheme,
     TrapApiError,
     Widget,
     WidgetHeader,
