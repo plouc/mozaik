@@ -21,10 +21,9 @@
     "prop-types": "^15.5.10",
     "react-icons": "^2.2.5",
     "react-redux": "^5.0.5",
-    "react-svg-buttons": "^0.3.1",
+    "react-svg-buttons": "^0.4.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "regenerator-runtime": "^0.10.5",
     "socket.io-client": "^2.0.3",
     "styled-components": "^2.1.1"
   },
