@@ -7,6 +7,9 @@ const Table = styled.table`
     font-size: 1.6vmin;
 `
 
-const WidgetTable = ({ children }) => <Table>{children}</Table>
+const WidgetTable = ({ children }) =>
+    <Table>
+        {children}
+    </Table>
 
 export default WidgetTable
