@@ -1,0 +1,104 @@
+host: 0.0.0.0
+port: 5000
+
+# define duration between each dashboard rotation (ms)
+rotationDuration: 8000
+
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 100000
+
+extension: &extension gitlab
+gitlabProject: &gitlabProject gitlab-org/release-tools
+
+dashboards:
+- title:   "GitLab Demo: labels charts"
+  columns: 3
+  rows:    3
+  widgets:
+    -
+      extension: *extension
+      widget:    LabelsTreemap
+      project:   *gitlabProject
+      title:     Labels by opened issues
+      columns:   1
+      rows:      1
+      x:         0
+      y:         0
+    -
+      extension: *extension
+      widget:    LabelsBubble
+      project:   *gitlabProject
+      title:     Labels by opened issues
+      columns:   1
+      rows:      1
+      x:         0
+      y:         1
+    -
+      extension: *extension
+      widget:    LabelsPie
+      project:   *gitlabProject
+      title:     Labels by opened issues
+      columns:   1
+      rows:      1
+      x:         0
+      y:         2
+    -
+      extension: *extension
+      widget:    LabelsTreemap
+      project:   *gitlabProject
+      countBy:   closed_issues_count
+      title:     Labels by closed issues
+      columns:   1
+      rows:      1
+      x:         1
+      y:         0
+    -
+      extension: *extension
+      widget:    LabelsBubble
+      project:   *gitlabProject
+      countBy:   closed_issues_count
+      title:     Labels by closed issues
+      columns:   1
+      rows:      1
+      x:         1
+      y:         1
+    -
+      extension: *extension
+      widget:    LabelsPie
+      project:   *gitlabProject
+      countBy:   closed_issues_count
+      title:     Labels by closed issues
+      columns:   1
+      rows:      1
+      x:         1
+      y:         2
+    -
+      extension: *extension
+      widget:    LabelsTreemap
+      project:   *gitlabProject
+      countBy:   open_merge_requests_count
+      title:     Labels by opened merge requests
+      columns:   1
+      rows:      1
+      x:         2
+      y:         0
+    -
+      extension: *extension
+      widget:    LabelsBubble
+      project:   *gitlabProject
+      countBy:   open_merge_requests_count
+      title:     Labels by opened merge requests
+      columns:   1
+      rows:      1
+      x:         2
+      y:         1
+    -
+      extension: *extension
+      widget:    LabelsPie
+      project:   *gitlabProject
+      countBy:   open_merge_requests_count
+      title:     Labels by opened merge requests
+      columns:   1
+      rows:      1
+      x:         2
+      y:         2

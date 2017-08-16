@@ -1,0 +1,5 @@
+.gitignore
+.DS_Store
+/coverage
+/src/test
+*.log*
