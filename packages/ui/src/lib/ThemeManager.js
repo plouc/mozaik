@@ -17,8 +17,7 @@ const ThemeManager = {
     },
 }
 
-ThemeManager.defaultTheme = defaultTheme.name
-
 ThemeManager.add(defaultTheme)
+ThemeManager.defaultTheme = defaultTheme.name
 
 export default ThemeManager

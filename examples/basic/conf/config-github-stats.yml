@@ -1,0 +1,65 @@
+port: 5000
+
+# define duration between each dashboard rotation (seconds)
+rotationDuration: 10
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 100000
+
+extension:   &extension github
+github_user: &github_user plouc
+github_org:  &github_org  ekino
+github_repo: &github_repo plouc/mozaik
+
+dashboards:
+- title:   "GitHub Demo: traffic"
+  columns: 2
+  rows:    3
+  widgets:
+  -
+    extension:  *extension
+    widget:     RepoTrafficViewsHistogram
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          0
+    y:          0
+  -
+    extension:  *extension
+    widget:     RepoTrafficViewsLine
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          1
+    y:          0
+  -
+    extension:  *extension
+    widget:     RepoTrafficClonesHistogram
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          0
+    y:          1
+  -
+    extension:  *extension
+    widget:     RepoTrafficClonesLine
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          1
+    y:          1
+  -
+    extension:  *extension
+    widget:     RepoCommitActivityHistogram
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          0
+    y:          2
+  -
+    extension:  *extension
+    widget:     RepoCommitActivityLine
+    repository: *github_repo
+    rows:       1
+    columns:    1
+    x:          1
+    y:          2

@@ -39,13 +39,12 @@ dashboards:
       rows:      1
       x:         1
       y:         1
-#
-#      - type:    gitlab.merge_requests_gauge
-#        project: *gitlabProject
-#        columns: 1
-#        rows:    1
-#        x:       2
-#        y:       0
+#    - type:    gitlab.merge_requests_gauge
+#      project: *gitlabProject
+#      columns: 1
+#      rows:    1
+#      x:       2
+#      y:       0
     -
       extension: *extension
       widget:    BuildHistory
@@ -62,11 +61,11 @@ dashboards:
       rows:      2
       x:         2
       y:         1
-
-#  - extension: *extension
-#    widget:    BuildHistogram
-#    project:   *gitlabProject
-#    columns:   2
-#    rows:      1
-#    x:         1
-#    y:         0
+    -
+      extension: *extension
+      widget:    BuildHistogram
+      project:   *gitlabProject
+      columns:   2
+      rows:      1
+      x:         1
+      y:         0

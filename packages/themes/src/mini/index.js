@@ -1,12 +1,9 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'mini',
-    colors: {
-        icon: '#000',
-        unknown: '#c0ab7f',
-        success: '#4eb6a3',
-        warning: '#d1be65',
-        failure: '#ff9176',
-    },
+    colors,
     root: {
         fontFamily: `'Roboto Mono', monospace`,
         color: '#000',
@@ -119,15 +116,5 @@ export default {
             },
         },
     },
-    charts: {
-        axis: {
-            textColor: '#000',
-            tickColor: '#000',
-            legendColor: '#000',
-        },
-        grid: {
-            stroke: '#000',
-            strokeDasharray: '1,6',
-        },
-    },
+    charts,
 }

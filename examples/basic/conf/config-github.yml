@@ -1,11 +1,3 @@
-#
-# mozaik-ext-github demo dashboard
-#
-# It's not required, but you should add this env var,
-# without it, you'll probably reach the API rate limit.
-#
-# GITHUB_API_TOKEN=xxxxx
-#
 port: 5000
 
 # define duration between each dashboard rotation (seconds)
@@ -14,14 +6,12 @@ rotationDuration: 10
 apisPollInterval: 100000
 
 extension:   &extension github
-
-# change those values of you want to use another user, organization or repo
 github_user: &github_user plouc
 github_org:  &github_org  ekino
 github_repo: &github_repo plouc/mozaik
 
 dashboards:
-- title:   GitHub Demo 1
+- title:   GitHub Dashboard Demo 1 (mozaik-ext-github)
   columns: 3
   rows:    3
   widgets:
@@ -80,7 +70,7 @@ dashboards:
     x:            2
     y:            2
 
-- title:   GitHub Demo 2
+- title:   GitHub Dashboard Demo 2 (mozaik-ext-github)
   columns: 3
   rows:    3
   widgets:
