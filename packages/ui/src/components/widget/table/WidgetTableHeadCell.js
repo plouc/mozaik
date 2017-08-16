@@ -1,36 +1,12 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import _ from 'lodash'
-//import classes from './WidgetTable.css'
+import styled from 'styled-components'
 
-export default class WidgetTableHeadCell extends Component {
-    static propTypes = {
-        style: PropTypes.object,
-    }
+const HeadCell = styled.th`
+    padding: 1vmin 2vmin;
+    text-align: left;
+    font-weight: normal;
+`
 
-    static defaultProps = {
-        style: {},
-    }
+const WidgetTableHeadCell = ({ children }) => <HeadCell>{children}</HeadCell>
 
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
-
-    render() {
-        const { children, style } = this.props
-        const { theme } = this.context
-
-        return (
-            <th
-                className={`widget__table__cell ${classes.headCell} ${_.get(
-                    theme,
-                    'widgetTable.headCell',
-                    ''
-                )}`}
-                style={style}
-            >
-                {children}
-            </th>
-        )
-    }
-}
+export default WidgetTableHeadCell

@@ -1,27 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import _ from 'lodash'
-//import classes from './WidgetTable.css'
+import React from 'react'
+import styled from 'styled-components'
 
-export default class WidgetTableCell extends Component {
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
+const Cell = styled.td`
+    padding: 1vmin 2vmin;
+`
 
-    render() {
-        const { children } = this.props
-        const { theme } = this.context
+const WidgetTableCell = ({ children }) => <Cell>{children}</Cell>
 
-        return (
-            <td
-                className={`widget__table__cell ${classes.cell} ${_.get(
-                    theme,
-                    'widgetTable.cell',
-                    ''
-                )}`}
-            >
-                {children}
-            </td>
-        )
-    }
-}
+export default WidgetTableCell
