@@ -7,6 +7,9 @@ const HeadCell = styled.th`
     font-weight: normal;
 `
 
-const WidgetTableHeadCell = ({ children }) => <HeadCell>{children}</HeadCell>
+const WidgetTableHeadCell = ({ children }) =>
+    <HeadCell>
+        {children}
+    </HeadCell>
 
 export default WidgetTableHeadCell

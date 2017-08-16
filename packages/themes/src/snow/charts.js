@@ -9,11 +9,5 @@ export default {
     grid: {
         stroke: '#eee',
     },
-    colors: [
-        '#82c2de',
-        '#ade0de',
-        '#dad7a3',
-        '#b3deff',
-        '#baab89',
-    ],
+    colors: ['#82c2de', '#ade0de', '#dad7a3', '#b3deff', '#baab89'],
 }
