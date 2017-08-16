@@ -1,21 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-//import './WidgetTable.css'
+import React from 'react'
+import styled from 'styled-components'
 
-class WidgetTable extends Component {
-    static contextTypes = {
-        theme: PropTypes.object.isRequired,
-    }
+const Table = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.6vmin;
+`
 
-    render() {
-        const { children } = this.props
-
-        return (
-            <table styleName="table" className="widget__table">
-                {children}
-            </table>
-        )
-    }
-}
+const WidgetTable = ({ children }) => <Table>{children}</Table>
 
 export default WidgetTable
