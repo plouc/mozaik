@@ -115,15 +115,23 @@ export default {
             },
         },
     },
-    axis: {
-        textColor: '#000',
-        fontSize: '1.2vmin',
-        tickColor: '#000',
-        legendColor: '#000',
-        legendFontSize: '1.2vmin',
-    },
-    grid: {
-        stroke: '#000',
-        strokeDasharray: '3,6',
+    charts: {
+        axis: {
+            textColor: '#333',
+            fontSize: '1.2vmin',
+            tickColor: '#333',
+            legendColor: '#333',
+            legendFontSize: '1.2vmin',
+        },
+        grid: {
+            stroke: '#eee',
+        },
+        colors: [
+            '#b3e2cd',
+            '#fdcdac',
+            '#cbd5e8',
+            '#f4cae4',
+            '#e6f5c9',
+        ],
     },
 }

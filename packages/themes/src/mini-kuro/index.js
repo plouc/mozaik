@@ -1,12 +1,9 @@
+import colors from './colors'
+import charts from './charts'
+
 export default {
     name: 'mini kuro',
-    colors: {
-        icon: '#fff',
-        unknown: '#c0ab7f',
-        success: '#4eb6a3',
-        warning: '#d1be65',
-        failure: '#ff9176',
-    },
+    colors,
     root: {
         fontFamily: `'Roboto Mono', monospace`,
         color: '#fff',
@@ -122,15 +119,5 @@ export default {
             },
         },
     },
-    charts: {
-        axis: {
-            textColor: '#fff',
-            tickColor: '#fff',
-            legendColor: '#fff',
-        },
-        grid: {
-            stroke: '#fff',
-            strokeDasharray: '1,6',
-        },
-    },
+    charts,
 }

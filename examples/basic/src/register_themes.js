@@ -1,6 +1,5 @@
 import { ThemeManager } from '@mozaik/ui'
 
-// themes
 import {
     miniTheme,
     miniKuroTheme,
@@ -17,4 +16,4 @@ ThemeManager.add(snowTheme)
 ThemeManager.add(solarizedDarkTheme)
 ThemeManager.add(wineTheme)
 
-ThemeManager.defaultTheme = miniTheme.name
+ThemeManager.defaultTheme = solarizedDarkTheme.name
