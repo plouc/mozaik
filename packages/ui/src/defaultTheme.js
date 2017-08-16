@@ -126,12 +126,6 @@ export default {
         grid: {
             stroke: '#eee',
         },
-        colors: [
-            '#b3e2cd',
-            '#fdcdac',
-            '#cbd5e8',
-            '#f4cae4',
-            '#e6f5c9',
-        ],
+        colors: ['#b3e2cd', '#fdcdac', '#cbd5e8', '#f4cae4', '#e6f5c9'],
     },
 }
