@@ -1,6 +1,6 @@
 {
   "name": "@mozaik/themes",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "Mozaïk official themes",
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
   },
   "scripts": {
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:commonjs:watch": "npm run build:commonjs -- --watch",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:es:watch": "npm run build:es -- --watch",
     "build": "npm run build:commonjs && npm run build:es",
     "prepublishOnly": "npm run build"
   }
