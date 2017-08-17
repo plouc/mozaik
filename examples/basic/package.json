@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@mozaik/ext-github": "^2.0.0-alpha.5",
+    "@mozaik/ext-github": "^2.0.0-alpha.6",
     "@mozaik/ext-gitlab": "^2.0.0-alpha.3",
     "@mozaik/ext-time": "^2.0.0-alpha.11",
-    "@mozaik/ext-travis": "^2.0.0-alpha.2",
+    "@mozaik/ext-travis": "^2.0.0-rc.0",
     "@mozaik/server": "^2.0.0-alpha.2",
     "@mozaik/themes": "1.0.0-alpha.13",
     "@mozaik/ui": "^2.0.0-alpha.13",
-    "mozaik-ext-analytics": "0.3.2",
     "nivo": "^0.15.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
