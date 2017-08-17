@@ -1,0 +1,109 @@
+host: 0.0.0.0
+port: 5000
+
+# define duration between each dashboard rotation (ms)
+rotationDuration: 10000
+
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 100000
+
+extension: &extension analytics
+startDate: &startDate 300daysAgo
+endDate: &endDate 288daysAgo
+id: &id 96121643
+
+dashboards:
+- title:   Google Analytics Demo
+  columns: 3
+  rows:    3
+  widgets:
+  -
+    extension: *extension
+    widget:    Browser
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         0
+    y:         0
+  -
+    extension: *extension
+    widget:    PageViews
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         1
+    y:         0
+  -
+    extension: *extension
+    widget:    PageViewsLine
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         2
+    y:         0
+  -
+    extension: *extension
+    widget:    TopPages
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         0
+    y:         1
+  -
+    extension: *extension
+    widget:    TopPagesAvgTimeBar
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         1
+    y:         1
+  -
+    extension: *extension
+    widget:    TopPagesViewsBar
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         2
+    y:         1
+  -
+    extension: *extension
+    widget:    TopPagesViewsBubble
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         0
+    y:         2
+  -
+    extension: *extension
+    widget:    TopPagesViewsLine
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         1
+    y:         2
+  -
+    extension: *extension
+    widget:    TopPagesViewsTreeMap
+    id:        *id
+    startDate: *startDate
+    endDate:   *endDate
+    columns:   1
+    rows:      1
+    x:         2
+    y:         2
