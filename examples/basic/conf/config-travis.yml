@@ -1,0 +1,45 @@
+port: 5000
+
+# define duration between each dashboard rotation (seconds)
+rotationDuration: 10
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 100000
+
+extension:   &extension travis
+
+# change those values of you want to use another user/repo
+travisOwner: &travisOwner plouc
+travisRepo:  &travisRepo  mozaik-ext-travis
+
+dashboards:
+- columns: 2
+  rows:    2
+  title:   travis demo
+  widgets:
+  -
+    extension:  *extension
+    widget:     Repository
+    owner:      *travisOwner
+    repository: *travisRepo
+    columns:    1
+    rows:       1
+    x:          0
+    y:          0
+  -
+    extension:  *extension
+    widget:     BuildHistory
+    owner:      *travisOwner
+    repository: *travisRepo
+    columns:    1
+    rows:       1
+    x:          1
+    y:          0
+  -
+    extension:  *extension
+    widget:     BuildHistogram
+    owner:      *travisOwner
+    repository: *travisRepo
+    columns:    2
+    rows:       1
+    x:          0
+    y:          1
