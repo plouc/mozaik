@@ -1,17 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "format": "prettier --tab-width=4 --bracket-spacing --no-semi --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'examples/*/*.js' 'packages/*/!(node_modules)/**/*.js' 'examples/*/!(node_modules)/**/*.js'"
+    "fmt": "prettier --tab-width=4 --bracket-spacing --no-semi --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'examples/*/*.js' 'packages/*/!(node_modules)/**/*.js' 'examples/*/!(node_modules)/**/*.js'"
   },
   "engineStrict": true,
   "engines": {
     "node": ">=6.0.0",
     "npm": ">=3.0.0"
   },
-  "dependencies": {
-  },
   "devDependencies": {
-    "lerna": "^2.0.0-rc.4",
+    "lerna": "^2.0.0-rc.5",
     "prettier": "^1.5.2"
   }
 }
