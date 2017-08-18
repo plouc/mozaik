@@ -35,5 +35,8 @@
     "babel-plugin-transform-es2015-template-literals": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1"
+  },
+  "scripts": {
+    "version": "echo ${npm_package_version}"
   }
 }

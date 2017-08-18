@@ -36,6 +36,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
     "build:es:watch": "npm run build:es -- --watch",
     "build": "npm run build:commonjs && npm run build:es",
+    "version": "echo ${npm_package_version}",
     "prepublishOnly": "npm run build"
   }
 }
