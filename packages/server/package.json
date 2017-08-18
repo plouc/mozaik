@@ -16,7 +16,8 @@
     "jest": "^20.0.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "version": "echo ${npm_package_version}"
   },
   "dependencies": {
     "chalk": "^2.0.1",
