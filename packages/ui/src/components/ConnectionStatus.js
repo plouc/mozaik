@@ -4,7 +4,6 @@ import {
     WS_STATUS_DELAYING,
     WS_STATUS_CONNECTED,
     WS_STATUS_FAILED,
-    WS_MAX_RETRIES,
     WS_RETRY_DELAY,
 } from '../constants/wsConstants'
 
@@ -13,7 +12,7 @@ const WS_RETRY_DELAY_SECONDS = WS_RETRY_DELAY / 1000
 class ConnectionStatus extends Component {
     constructor(props) {
         super(props)
-
+        this.reconnectionAttempts = props.reconnectionAttempts
         this.state = { countdown: 0 }
     }
 
@@ -57,6 +56,7 @@ class ConnectionStatus extends Component {
 
         let message
         let iconClass
+        let attemptsText = this.reconnectionAttempts !== 'Infinity' ? ` of ${this.reconnectionAttempts}` : ''
         if (status === WS_STATUS_CONNECTED) {
             iconClass = 'check'
             message = 'connection restored.'
@@ -65,8 +65,7 @@ class ConnectionStatus extends Component {
             message = (
                 <span>
                     lost connection to Mozaïk server, will attempt to reconnect
-                    in {countdown}s ({retryCount} of {WS_MAX_RETRIES} attempts
-                    so far).
+                    in {countdown}s ({retryCount}{attemptsText} attempts so far).
                 </span>
             )
         } else if (status === WS_STATUS_FAILED) {
@@ -96,6 +95,7 @@ ConnectionStatus.propTypes = {
         WS_STATUS_CONNECTED,
         WS_STATUS_FAILED,
     ]).isRequired,
+    reconnectionAttempts: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
 }
 
 ConnectionStatus.defaultProps = {

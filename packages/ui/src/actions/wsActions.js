@@ -50,17 +50,16 @@ export const send = (type, data) => () => {
 
 export const connect = configuration => {
     const wsUrl = guessWSURL(configuration)
-
+    let reconnectionAttempts = 'reconnectionAttempts' in configuration ? configuration.reconnectionAttempts : WS_MAX_RETRIES
     return dispatch => {
         dispatch({
             type: WS_CONNECT,
             wsUrl,
         })
-
         socket = SocketIO(wsUrl, {
             transports: ['websocket'],
             reconnection: true,
-            reconnectionAttempts: WS_MAX_RETRIES,
+            reconnectionAttempts: reconnectionAttempts,
             reconnectionDelay: WS_RETRY_DELAY,
             reconnectionDelayMax: WS_RETRY_DELAY,
             randomizationFactor: 0,
@@ -102,6 +101,7 @@ export const connect = configuration => {
                     component: ConnectionStatus,
                     ttl: -1,
                     props: {
+                        reconnectionAttempts: reconnectionAttempts,
                         retryCount: 0,
                         status: WS_STATUS_DELAYING,
                     },
