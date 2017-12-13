@@ -7,7 +7,7 @@ npm-debug.log*
 
 # Ignore non default themes
 src/themes/*
-!src/themes/bordeau
+!src/themes/bordeaux
 !src/themes/harlequin
 !src/themes/light-grey
 !src/themes/light-yellow
