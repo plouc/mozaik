@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const HeadCell = styled.th`
     padding: 1vmin 2vmin;
@@ -7,9 +8,10 @@ const HeadCell = styled.th`
     font-weight: normal;
 `
 
-const WidgetTableHeadCell = ({ children }) =>
-    <HeadCell>
-        {children}
-    </HeadCell>
+const WidgetTableHeadCell = ({ children }) => <HeadCell>{children}</HeadCell>
+
+WidgetTableHeadCell.propTypes = {
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+}
 
 export default WidgetTableHeadCell
