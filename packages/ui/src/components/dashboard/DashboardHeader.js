@@ -25,7 +25,7 @@ const Header = styled.header`
 
 const TitleWrapper = styled.div`
     flex-grow: 1;
-    margin-Right: 4vmin;
+    margin-right: 4vmin;
     height: 6vmin;
 `
 

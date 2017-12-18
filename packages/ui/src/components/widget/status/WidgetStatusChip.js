@@ -25,6 +25,8 @@ class WidgetStatusChip extends Component {
     static propTypes = {
         size: PropTypes.number,
         status: PropTypes.string.isRequired,
+        theme: PropTypes.object.isRequired,
+        style: PropTypes.object.isRequired,
     }
 
     static defaultProps = {

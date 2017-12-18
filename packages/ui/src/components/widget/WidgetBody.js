@@ -16,6 +16,7 @@ const Body = styled.div`
 export default class WidgetBody extends Component {
     static propTypes = {
         style: PropTypes.object,
+        children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     }
 
     static defaultProps = {
