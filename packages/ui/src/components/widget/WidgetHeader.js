@@ -54,6 +54,8 @@ class WidgetHeader extends Component {
         icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
         iconStyle: PropTypes.object.isRequired,
         style: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
+        iconColor: PropTypes.string,
     }
 
     static defaultProps = {
@@ -96,7 +98,7 @@ class WidgetHeader extends Component {
             icon = (
                 <IconWrapper>
                     {_icon({
-                        color: theme.colors.icon,
+                        color: iconColor ? iconColor : theme.colors.icon,
                     })}
                 </IconWrapper>
             )
