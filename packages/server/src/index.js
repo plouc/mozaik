@@ -14,6 +14,8 @@ const logger = require('./logger')
 const CoreApi = require('./core_api')
 const loadYaml = require('./load_yaml')
 
+const rootPath = Symbol('root')
+
 let configuration
 let socket
 
@@ -22,23 +24,36 @@ const bus = new Bus({
 })
 
 exports.configure = _configuration => {
-    configuration = _configuration
+    if (_configuration[rootPath]) {
+        configuration = _configuration
+    } else {
+        configuration = {
+            [rootPath]: configuration,
+        }
+    }
 }
 
-const loadConfig = configurationPath => {
-    return loadYaml(configurationPath).then(_configuration => {
-        configuration = _configuration
+const configuredPaths = configurationObject =>
+    Object.getOwnPropertySymbols(configurationObject).concat(Object.getOwnPropertyNames(configurationObject))
 
-        return configuration
+const loadConfig = (configurationPath, urlPath) => {
+    return loadYaml(configurationPath).then(_configuration => {
+        configuration[urlPath] = _configuration
+
+        return configuration[urlPath]
     })
 }
 
-exports.configureFromFile = (configurationPath, watch = true) => {
-    if (watch === true) {
-        const watcher = chokidar.watch(configurationPath)
+exports.rootPath = rootPath
+
+exports.configureFromFiles = (configurationPaths, watchRootConfigFile = true) => {
+    configuration = {}
+
+    if (watchRootConfigFile) {
+        const watcher = chokidar.watch(configurationPaths[rootPath])
         watcher.on('change', () => {
             logger.info(`configuration updated, reloading`)
-            loadConfig(configurationPath).then(configuration => {
+            loadConfig(configurationPaths[rootPath], rootPath).then(configuration => {
                 if (socket) {
                     socket.emit('configuration', _.omit(configuration, 'api'))
                 }
@@ -46,7 +61,16 @@ exports.configureFromFile = (configurationPath, watch = true) => {
         })
     }
 
-    return loadConfig(configurationPath)
+    return Promise.all(configuredPaths(configurationPaths).map(key => loadConfig(configurationPaths[key], key)))
+}
+
+exports.configureFromFile = (configurationPath, watch = true) => {
+    return exports.configureFromFiles(
+        {
+            [rootPath]: configurationPath,
+        },
+        watch
+    )
 }
 
 /**
@@ -56,10 +80,21 @@ exports.start = _app => {
     if (!configuration) {
         logger.error(
             chalk.red(
-                `no configuration, you must either call 'configure()' or 'configureFromFile()' before starting Mozaïk server`
+                `no configuration, you must either call 'configure()' or 'configureFromFiles()' before starting Mozaïk`
             )
         )
         process.exit(1)
+    }
+
+    if (!configuration[rootPath]) {
+        logger.error(
+            chalk.red(`configuration object must include a key for the root url path, i.e. { [Mozaik.rootPath]: ... }`)
+        )
+        process.exit(1)
+    }
+
+    if (configuration[rootPath].apisPollInterval) {
+        bus.setAPIsPollInterval(configuration[rootPath].apisPollInterval)
     }
 
     bus.registerApi('mozaik', CoreApi(bus))
@@ -70,20 +105,33 @@ exports.start = _app => {
 
     const baseDir = (configuration.baseDir || process.cwd()) + path.sep
     logger.info(chalk.yellow(`serving static contents from ${baseDir}build`))
-    app.use(express.static(`${baseDir}/build`))
 
-    app.get('/config', (req, res) => {
-        res.send(_.omit(configuration, 'api'))
-    })
+    for (let path of configuredPaths(configuration)) {
+        logger.info(chalk.yellow(`configuring path ${path.toString()}`))
+        let router = new express.Router()
+
+        router.use(express.static(`${baseDir}/build`))
+
+        router.get('/config', (req, res) => {
+            res.send(_.omit(configuration[path], 'api'))
+        })
+
+        if (path === rootPath) {
+            app.use(router)
+        } else {
+            app.use(`/${path}`, router)
+        }
+    }
 
     const server = http.createServer(app)
 
     socket = SocketIO(server, {
+        transports: ['polling'],
         serviceClient: false,
     })
 
-    socket.on('error', error => {
-        console.error(error)
+    socket.on('error', function(err) {
+        logger.error(chalk.red(`Socket error - ${err}`))
     })
 
     socket.on('connection', client => {
@@ -97,16 +145,16 @@ exports.start = _app => {
         client.on('disconnect', () => {
             bus.removeClient(client.id)
         })
+        client.on('error', function(err) {
+            logger.error(chalk.red(`Socket error - ${err}`))
+        })
     })
 
-    const port = process.env.PORT || configuration.port
+    const port = process.env.PORT || configuration[rootPath].port
+    const host = 'localhost' || configuration[rootPath].host
 
     server.listen(port, configuration.host, () => {
-        logger.info(
-            chalk.yellow(
-                `Mozaïk server listening at http://${configuration.host}:${port}`
-            )
-        )
+        logger.info(chalk.yellow(`Mozaïk server listening at http://${host}:${port}`))
     })
 }
 
