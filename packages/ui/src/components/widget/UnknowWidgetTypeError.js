@@ -16,25 +16,16 @@ export default class UnknowWidgetTypeError extends Component {
 
     render() {
         const { extension, widget } = this.props
-        const { theme } = this.context
-
-        //style={/*{ color: theme.colors.failure }*/}
-
         return (
             <Widget>
-                <WidgetHeader
-                    title="Error"
-                    icon="warning"
-                    //iconStyle={{ color: theme.colors.failure }}
-                />
+                <WidgetHeader title="Error" icon="warning" />
                 <WidgetBody style={{ padding: '2vmin' }}>
                     <p>
-                        Unknown widget "{widget}" for extension "{extension}".
+                        Unknown widget &quot;{widget}&quot; for extension &quot;{extension}&quot;.
                     </p>
                     <p>
-                        Please make sure you installed the corresponding package
-                        (should be "mozaik-ext-{extension}") and the package
-                        provides a "{widget}" widget.
+                        Please make sure you installed the corresponding package (should be &quot;mozaik-ext-{extension}&quot;)
+                        and the package provides a &quot;{widget}&quot; widget.
                     </p>
                 </WidgetBody>
             </Widget>
