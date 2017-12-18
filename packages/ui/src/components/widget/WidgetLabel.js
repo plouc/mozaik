@@ -15,6 +15,8 @@ const Label = styled.span`
     display: inline-block;
     white-space: pre;
     flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
     padding: ${props => props.theme.label.main.padding};
     background: ${props => props.theme.label.main.background};
     color: ${props => props.theme.label.main.color};
@@ -27,6 +29,9 @@ const Addon = styled.span`
     background: ${props => props.theme.label.addon.background};
     color: ${props => props.theme.label.addon.color};
     ${props => props.theme.label.addon.extend.trim()};
+    svg {
+        margin-top: 0.5vmin;
+    }
 `
 
 export default class WidgetLabel extends Component {
