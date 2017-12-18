@@ -1,6 +1,7 @@
 import { connect } from './wsActions'
 import { setDashboards, play } from './dashboardsActions'
 import { notifySuccess, notifyError } from './notificationsActions'
+import { setTheme } from '../actions/themesActions'
 
 export const FETCH_CONFIGURATION = 'FETCH_CONFIGURATION'
 export const FETCH_CONFIGURATION_SUCCESS = 'FETCH_CONFIGURATION_SUCCESS'
@@ -20,14 +21,10 @@ export const fetchConfiguration = () => {
     return dispatch => {
         dispatch({ type: FETCH_CONFIGURATION })
 
-        return fetch('/config')
+        return fetch('config')
             .then(res => {
                 if (res.status !== 200) {
-                    return Promise.reject(
-                        new Error(
-                            `Unable to fetch configuration: ${res.statusText} (${res.status})`
-                        )
-                    )
+                    return Promise.reject(new Error(`Unable to fetch configuration: ${res.statusText} (${res.status})`))
                 }
 
                 return res.json()
@@ -42,6 +39,9 @@ export const fetchConfiguration = () => {
                     })
                 )
                 dispatch(setDashboards(configuration.dashboards))
+                if (configuration.theme) {
+                    dispatch(setTheme(configuration.theme))
+                }
                 dispatch(play())
             })
             .catch(err => {

@@ -12,6 +12,7 @@ class ThemeSetting extends Component {
         themes: PropTypes.object.isRequired,
         currentTheme: PropTypes.string.isRequired,
         setTheme: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
     }
 
     shouldComponentUpdate(nextProps) {
