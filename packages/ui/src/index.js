@@ -1,4 +1,5 @@
 import Registry from './WidgetsRegistry'
+import ReducersRegistry from './ReducersRegistry'
 import ThemeManager from './lib/ThemeManager'
 import defaultTheme from './defaultTheme'
 import Mozaik from './app'
@@ -22,6 +23,7 @@ Registry.add('mozaik', 'Inspector', Inspector)
 export default Mozaik
 export {
     Registry,
+    ReducersRegistry,
     ThemeManager,
     defaultTheme,
     TrapApiError,
