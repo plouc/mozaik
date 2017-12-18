@@ -33,10 +33,10 @@ class Bus {
      * Push message to matching clients.
      *
      * @param {String} subscriptionId
-     * @param {Object} data
+     * @param {Object} message
      * @param {string} type
      */
-    send(subscriptionId, data, type = API_DATA_MESSAGE) {
+    send(subscriptionId, message, type = API_DATA_MESSAGE) {
         if (!this.subscriptions[subscriptionId]) {
             this.logger.warn(
                 chalk.magenta(
@@ -48,7 +48,7 @@ class Bus {
         }
 
         this.subscriptions[subscriptionId].clients.forEach(clientId => {
-            this.clients[clientId].emit(type, data)
+            this.clients[clientId].emit(type, message)
         })
     }
 
@@ -149,12 +149,24 @@ class Bus {
         // Will handle Promises and other return values
         return Promise.resolve(callFn(params))
             .then(data => {
-                const message = { id, data }
+                let message = {
+                    id,
+                    data,
+                }
 
                 // cache message if subscription exists
                 if (this.subscriptions[id]) {
-                    this.logger.info(`Caching response for ${id} subscription`)
-                    this.subscriptions[id].cached = message
+                    if (data !== undefined) {
+                        this.logger.info(`Caching response for ${id} subscription`)
+                        this.subscriptions[id].cached = message
+                    } else if (this.subscriptions[id].cached) {
+                        this.logger.warn(
+                            `Empty message received for cached subscription ${id} - returning cached message`
+                        )
+                        message = this.subscriptions[id].cached
+                    } else {
+                        throw new Error('No data received from API and no cached information to display')
+                    }
                 }
 
                 this.send(id, message)
@@ -162,24 +174,30 @@ class Bus {
                 return message
             })
             .catch(err => {
-                this.logger.error(
-                    chalk.red(
-                        `[${id.split(
-                            '.'
-                        )[0]}] ${id} - status code: ${err.status ||
-                            err.statusCode}`
-                    )
-                )
+                this.logger.error(chalk.red(`Error fetching API data for subscription ${id}`))
 
-                const message = {
-                    id,
-                    // data is in fact the error object
-                    data: {
-                        message: err.message,
-                    },
+                const cachedMessage = this.subscriptions[id].cached ? this.subscriptions[id].cached : undefined
+
+                if (cachedMessage) {
+                    this.logger.warn(chalk.yellow(`Returning previously cached data`))
+                    this.send(id, cachedMessage)
+                } else {
+                    this.logger.error(
+                        chalk.red(`No cached information found for subscription [${id.split('.')[0]}] ${id}`)
+                    )
+                    const message = {
+                        id,
+                        // data is in fact the error object
+                        data: {
+                            message: err.message,
+                        },
+                    }
+                    this.send(id, message, API_ERROR_MESSAGE)
                 }
 
-                this.send(id, message, API_ERROR_MESSAGE)
+                this.logger.error(
+                    chalk.red(`[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`)
+                )
             })
     }
 
