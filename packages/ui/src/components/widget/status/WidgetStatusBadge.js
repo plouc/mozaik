@@ -41,11 +41,15 @@ const iconMapping = [
 ]
 
 const getIcon = status => {
-    const icon = _.find(iconMapping, mapping => {
+    const matchedMapping = _.find(iconMapping, mapping => {
         return mapping.match.includes(status)
     })
 
-    return icon || QuestionIcon
+    if (matchedMapping) {
+        return matchedMapping.icon
+    } else {
+        return QuestionIcon
+    }
 }
 
 class WidgetStatusBadge extends Component {
