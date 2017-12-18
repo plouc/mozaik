@@ -5,6 +5,9 @@ const chalk = require('chalk')
 const Bus = require('../bus')
 const loggerMock = require('./logger')
 
+jest.useFakeTimers()
+const pollInterval = 100
+
 beforeAll(() => {
     chalk.enabled = false
 })
@@ -82,6 +85,60 @@ it('should cache result', () => {
             data: 'test',
         })
     })
+})
+
+it('should return cached data to the client when the API call returns no data', done => {
+    const logger = loggerMock()
+    const bus = new Bus({ logger, pollInterval })
+    const apiData = { test: true }
+
+    bus.subscriptions['test_api.test_method'] = { clients: [] }
+    bus.processApiCall('test_api.test_method', () => apiData) // Hydrate cache
+
+    bus.registerApi('test_api', () => ({ test_method: () => undefined }))
+    
+    let receivedInitialCall = false
+    const clientMock = { id: 'test_client', emit: (type, message) => {
+        if (!receivedInitialCall) {
+            receivedInitialCall = true
+            jest.runTimersToTime(pollInterval)
+            return
+        }
+        expect(type).toBe('api.data')
+        expect(message.data).toBe(apiData)
+        done()
+    }}
+
+    bus.addClient(clientMock)
+    bus.subscribe('test_client', { id: 'test_api.test_method' })
+})
+
+it('should return cached data to the client when the API call fails', done => {
+    const logger = loggerMock()
+    const bus = new Bus({ logger, pollInterval })
+    const apiData = { test: true }
+
+    bus.subscriptions['test_api.test_method'] = { clients: [] }
+    bus.processApiCall('test_api.test_method', () => apiData) // Hydrate cache
+
+    bus.registerApi('test_api', () => ({
+        test_method: () => Promise.reject('Test error')
+    }))
+
+    let receivedInitialCall = false
+    const clientMock = { id: 'test_client', emit: (type, message) => {
+        if (!receivedInitialCall) {
+            receivedInitialCall = true
+            jest.runTimersToTime(pollInterval)
+            return
+        }
+        expect(type).toBe('api.data')
+        expect(message.data).toBe(apiData)
+        done()
+    }}
+
+    bus.addClient(clientMock)
+    bus.subscribe('test_client', { id: 'test_api.test_method' })
 })
 
 it('should notify clients on success', () => {

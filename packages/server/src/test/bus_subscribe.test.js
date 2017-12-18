@@ -6,6 +6,7 @@ const Bus = require('../bus')
 const loggerMock = require('./logger')
 
 jest.useFakeTimers()
+const pollInterval = 100
 
 beforeEach(() => {
     chalk.enabled = false
@@ -112,7 +113,7 @@ it(`should immediately call the api if there's no matching subscription`, () => 
     expect(apiMock.fetch).toHaveBeenCalledWith('arg0')
 })
 
-it(`should create a timer if there's no matching subscription`, () => {
+it(`should create a timer if there's no matching subscription`, done => {
     const apiData = { test: true }
     const apiMock = {
         fetch: jest.fn(() => ({
@@ -121,37 +122,24 @@ it(`should create a timer if there's no matching subscription`, () => {
             }),
         })),
     }
-    const clientMock = { id: 'test_client', emit: jest.fn() }
     const logger = loggerMock()
-    const bus = new Bus({ logger })
-
+    const bus = new Bus({ logger, pollInterval })
     bus.registerApi('test_api', () => apiMock)
+
+    let receivedInitialCall = false
+    const clientMock = { id: 'test_client', emit: (type, message) => {
+        if (!receivedInitialCall) {
+            receivedInitialCall = true
+            jest.runTimersToTime(pollInterval)
+            return
+        }
+        expect(type).toBe('api.data')
+        expect(message.data).toBe(apiData)
+        done()
+    }}
+
     bus.addClient(clientMock)
     bus.subscribe('test_client', { id: 'test_api.fetch' })
-
-    expect(logger.error).not.toHaveBeenCalled()
-
-    expect(setInterval.mock.calls.length).toBe(1)
-    expect(setInterval.mock.calls[0][1]).toBe(15000)
-
-    jest.runTimersToTime(15000)
-
-    expect(logger.info).toHaveBeenCalledTimes(6)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Registered API 'test_api' (mode: poll)`
-    )
-    expect(logger.info).toHaveBeenCalledWith(`Client #test_client connected`)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Added subscription 'test_api.fetch'`
-    )
-    expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.fetch'`)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Creating scheduler for subscription 'test_api.fetch'`
-    )
-
-    expect(apiMock.fetch).toHaveBeenCalledTimes(2)
-    //expect(clientMock.emit).toHaveBeenCalled()
-    //expect(clientMock.emit).toHaveBeenCalledWith('api.data', undefined)
 })
 
 it(`should create a producer if there's no matching subscription and API mode is 'push'`, () => {
