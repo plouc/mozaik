@@ -77,6 +77,8 @@ class WidgetStatusBadge extends Component {
 
         const iconStyle = {
             color: theme.colors[colorKey],
+            width: '50px',
+            height: '50px',
         }
 
         let messageNode = null
