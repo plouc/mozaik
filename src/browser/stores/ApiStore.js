@@ -51,7 +51,8 @@ const connectWS = (config, store) => {
     if (port && port !== '') {
         wsUrl = `${wsUrl}:${port}`;
     }
-
+    wsUrl = wsUrl + window.location.pathname;
+    
     ws = new WebSocket(wsUrl);
 
     ws.onopen = event => {
