@@ -22,6 +22,7 @@ export const guessWSURL = (config = {}) => {
     if (port && port !== '') {
         wsUrl = `${wsUrl}:${port}`
     }
+    wsUrl = wsUrl + window.location.pathname
 
     return wsUrl
 }
