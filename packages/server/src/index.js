@@ -113,6 +113,4 @@ exports.start = _app => {
 /**
  * Alias to Bus method.
  */
-exports.registerApi = (id, api) => {
-    bus.registerApi(id, api)
-}
+exports.registerApi = bus.registerApi.bind(bus)
