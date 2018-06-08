@@ -54,6 +54,7 @@ class WidgetHeader extends Component {
         icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
         iconStyle: PropTypes.object.isRequired,
         style: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
     }
 
     static defaultProps = {

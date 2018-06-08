@@ -35,6 +35,7 @@ export const sendPendingSubscriptions = () => (dispatch, getState) => {
     const { api, ws } = getState()
 
     if (ws.connected !== true) {
+        // eslint-disable-next-line no-console
         console.error(
             `Cannot send pending subscriptions as ws is disconnected!`
         )

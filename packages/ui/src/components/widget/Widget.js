@@ -19,6 +19,7 @@ const Inner = styled.div`
 export default class Widget extends Component {
     static propTypes = {
         style: PropTypes.object.isRequired,
+        children: PropTypes.node.isRequired,
     }
 
     static defaultProps = {

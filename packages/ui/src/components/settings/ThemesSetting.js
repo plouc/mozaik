@@ -10,6 +10,7 @@ import WidgetListItem from '../widget/list/WidgetListItem'
 class ThemeSetting extends Component {
     static propTypes = {
         themes: PropTypes.object.isRequired,
+        theme: PropTypes.object.isRequired,
         currentTheme: PropTypes.string.isRequired,
         setTheme: PropTypes.func.isRequired,
     }

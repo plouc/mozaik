@@ -11,11 +11,11 @@
     "@mozaik/themes": "1.0.0-alpha.13",
     "@mozaik/ui": "^2.0.0-alpha.13",
     "nivo": "^0.15.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.1.4"
   },
   "proxy": {
     "/socket": {

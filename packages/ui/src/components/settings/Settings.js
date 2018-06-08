@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 import ThemeSetting from './ThemesSetting'
 import { TransitionMotion, spring } from 'react-motion'
 import styled from 'styled-components'
