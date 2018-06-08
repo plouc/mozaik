@@ -1,7 +1,6 @@
 import {
     FETCH_CONFIGURATION,
     FETCH_CONFIGURATION_SUCCESS,
-    FETCH_CONFIGURATION_FAILURE,
 } from '../actions/configurationActions'
 
 export default function configuration(

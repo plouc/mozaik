@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TransitionMotion, spring } from 'react-motion'
 import styled, { injectGlobal } from 'styled-components'
 
 import Dashboard, { DashboardPropType } from './dashboard/Dashboard'

@@ -78,7 +78,8 @@ export const connect = configuration => {
         })
 
         socket.on('error', error => {
-            console.log('Socket error', error.code, error)
+            // eslint-disable-next-line no-console
+            console.error('Socket error', error.code, error)
         })
 
         socket.on('configuration', configuration => {
@@ -93,6 +94,7 @@ export const connect = configuration => {
         })
 
         socket.on('disconnect', () => {
+            // eslint-disable-next-line no-console
             console.warn('disconnected')
             dispatch(disconnected())
             dispatch(

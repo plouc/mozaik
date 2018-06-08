@@ -48,6 +48,7 @@ class DashboardHeader extends Component {
         previous: PropTypes.func.isRequired,
         next: PropTypes.func.isRequired,
         pause: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired
     }
 
     render() {

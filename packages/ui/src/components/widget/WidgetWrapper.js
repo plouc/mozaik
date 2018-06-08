@@ -11,13 +11,14 @@ const ignoreProps = ['extension', 'widget', 'registry', 'apiData', 'apiError']
 class WidgetWrapper extends Component {
     static propTypes = {
         apiData: PropTypes.object,
+        apiError: PropTypes.object,
         extension: PropTypes.string.isRequired,
         widget: PropTypes.string.isRequired,
         subscriptionId: PropTypes.string,
         theme: PropTypes.object.isRequired,
         registry: PropTypes.shape({
             getComponent: PropTypes.func.isRequired,
-        }).isRequired,
+        }).isRequired
     }
 
     shouldComponentUpdate(nextProps) {
