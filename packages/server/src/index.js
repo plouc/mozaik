@@ -113,6 +113,6 @@ exports.start = _app => {
 /**
  * Alias to Bus method.
  */
-exports.registerApi = (id, api) => {
-    bus.registerApi(id, api)
+exports.registerApi = (id, api, mode) => {
+    bus.registerApi(id, api, mode)
 }
