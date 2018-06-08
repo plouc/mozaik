@@ -32,7 +32,7 @@ class ConnectionStatus extends Component {
         }, 1000)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.startCountDown()
     }
 
@@ -40,7 +40,7 @@ class ConnectionStatus extends Component {
         this.clearCountDown()
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (this.timer) {
             clearInterval(this.timer)
         }

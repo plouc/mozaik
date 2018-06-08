@@ -16,8 +16,6 @@ const defaultState = Map({
 })
 
 export default function configuration(state = defaultState, action) {
-    let subscriptions
-
     switch (action.type) {
         case API_SUBSCRIBE:
             if (state.get('subscriptions').has(action.subscription.id)) {

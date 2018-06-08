@@ -36,6 +36,7 @@ export const setDashboards = dashboards => {
                         const subscription = component.getApiRequest(childProps)
 
                         if (!_.isObject(subscription) || !subscription.id) {
+                            // eslint-disable-next-line no-console
                             console.error(
                                 `widget ${w.extension}.${w.widget} 'getApiRequest()' must return an object with an 'id' property`
                             )
