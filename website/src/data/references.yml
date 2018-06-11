@@ -1,0 +1,15 @@
+- image: jolicode.svg
+  link:  http://jolicode.com/
+  label: JoliCode
+
+- image: canalplus.png
+  link:  http://canalplus.github.io/
+  label: Canal+
+
+- image: aptus-health.png
+  link:  http://www.aptushealth.com/
+  label: Aptus Health
+
+- image: sc5.png
+  link:  https://sc5.io/
+  label: SC5

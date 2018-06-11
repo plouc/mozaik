@@ -1,0 +1,21 @@
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    position: relative;
+    background-color: #13aae3;
+    background-image: url("../assets/mozaik-pattern.png");
+    background-size: 255px 128px;
+    padding-top: 50px;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
