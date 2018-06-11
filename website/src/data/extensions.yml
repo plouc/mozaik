@@ -1,0 +1,172 @@
+- name:        mozaik-ext-github
+  description: Github widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-github
+  demo:        https://mozaik-github.herokuapp.com/
+  travis:      plouc/mozaik-ext-github
+  compat:      [1, 2]
+  tags:
+    - github
+
+- name:        mozaik-ext-gitlab
+  description: GitLab widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-gitlab
+  demo:        https://mozaik-gitlab.herokuapp.com/
+  travis:      plouc/mozaik-ext-gitlab
+  compat:      [1, 2]
+  tags:
+    - gitlab
+
+- name:        mozaik-ext-slack
+  description: Slack widgets for Mozaïk.
+  link:        https://github.com/juhamust/mozaik-ext-slack
+  compat:      [1]
+  tags:
+    - slack
+
+- name:        mozaik-ext-travis
+  description: Travis widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-travis
+  demo:        https://mozaik-travis.herokuapp.com/
+  travis:      plouc/mozaik-ext-travis
+  compat:      [1, 2]
+  tags:
+    - travis
+    - ci
+    - testing
+
+- name:        mozaik-ext-time
+  description: Time widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-time
+  demo:        https://mozaik-time.herokuapp.com/
+  travis:      plouc/mozaik-ext-time
+  compat:      [1, 2]
+  tags:
+    - time
+
+- name:        mozaik-ext-weather
+  description: Weather widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-weather
+  travis:      plouc/mozaik-ext-weather
+  compat:      [1]
+  tags:
+    - weather
+
+- name:        mozaik-ext-jenkins
+  description: Jenkins widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-jenkins
+  travis:      plouc/mozaik-ext-jenkins
+  compat:      [1]
+  tags:
+    - jenkins
+    - ci
+    - testing
+
+- name:        mozaik-ext-teamcity
+  description: Teamcity widgets for Mozaïk.
+  link:        https://github.com/gazab/mozaik-ext-teamcity
+  compat:      [1]
+  tags:
+    - teamcity
+    - ci
+
+- name:        mozaik-ext-heroku
+  description: Heroku widgets for Mozaïk.
+  link:        https://github.com/plouc/mozaik-ext-heroku
+  travis:      plouc/mozaik-ext-heroku
+  compat:      [1]
+  tags:
+    - heroku
+    - deploy
+
+- name:        mozaik-ext-analytics
+  description: Google analytics widgets for Mozaïk.
+  link:        https://github.com/SC5/mozaik-ext-analytics
+  compat:      [1]
+  tags:
+    - google
+    - analytics
+
+- name:        mozaik-ext-switch
+  description: Multiple widgets with periodic switching.
+  link:        https://github.com/juhamust/mozaik-ext-switch
+  compat:      [1]
+  tags:
+    - switch
+
+- name:        mozaik-ext-embed
+  description: Mozaïk extension to embed raw content like HTML markup into widget.
+  link:        https://github.com/juhamust/mozaik-ext-embed
+  compat:      [1]
+  tags:
+    - iframe
+    - html
+
+- name:        mozaik-ext-iframe
+  description: iFrame widgets for Mozaïk.
+  link:        https://github.com/tomav/mozaik-ext-iframe
+  compat:      [1]
+  tags:
+    - iframe
+
+- name:        mozaik-ext-calendar
+  description: Google calendar widgets for Mozaïk.
+  link:        https://github.com/SC5/mozaik-ext-analytics
+  compat:      [1]
+  tags:
+    - google
+    - calendar
+
+- name:        mozaik-ext-json
+  description: Mozaïk extension that displays a distant JSON object in a widget.
+  link:        https://github.com/jtbonhomme/mozaik-ext-json
+  compat:      [1]
+  tags:
+    - json
+
+- name:        mozaik-ext-multijson
+  description: Widget to display information from multiple json sources.
+  link:        https://github.com/jtbonhomme/mozaik-ext-multijson
+  compat:      [1]
+  tags:
+    - json
+
+- name:        mozaik-ext-value
+  description: Mozaïk value plugin.
+  link:        https://github.com/arildwtv/mozaik-ext-value
+  compat:      [1]
+  tags:
+    - basic
+    - value
+
+- name:        mozaik-ext-bamboo
+  description: Bamboo widgets for Mozaïk.
+  link:        https://github.com/swissmanu/mozaik-ext-bamboo
+  compat:      [1]
+  tags:
+    - bamboo
+
+- name:        mozaik-ext-image
+  description: Show image in a Mozaïk widget.
+  link:        https://www.npmjs.com/package/mozaik-ext-image
+  compat:      [1]
+  tags:
+    - basic
+    - image
+
+- name:        mozaik-ext-okrs
+  description: Show OKR week trends from Google Sheets.
+  link:        https://github.com/grahamar/mozaik-ext-okrs
+  compat:      [1]
+  tags:
+    - google
+    - spreadsheet
+    - OKR
+
+- name:        mozaik-ext-saucelabs
+  description: SauceLabs widgets for Mozaïk.
+  link:        https://github.com/iamfiscus/mozaik-ext-saucelabs
+  compat:      [1]
+  tags:
+    - saucelabs
+    - ci
+    - testing

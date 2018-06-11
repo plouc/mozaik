@@ -1,4 +1,5 @@
-.PHONY: help ls
+.PHONY: help ls \
+    website
 
 NODE_MODULES     = "./node_modules"
 NODE_MODULES_BIN = "${NODE_MODULES}/.bin"
@@ -124,3 +125,21 @@ example-install-%: ##@2 examples install dependencies for a specific example
 example-start-%: ##@2 examples start a specific example
 	@echo "${YELLOW}Starting ${*} example${RESET}"
 	@cd "examples/${*}" && yarn start
+
+########################################################################################################################
+#
+# WEBSITE
+#
+########################################################################################################################
+
+website: ##@3 website start mozaik website in dev mode
+	@echo "${YELLOW}Starting mozaik website in dev mode${RESET}"
+	@cd website && "${NODE_MODULES_BIN}/gatsby" develop
+
+website-build: ##@3 website build mozaik website
+	@echo "${YELLOW}Building mozaik website${RESET}"
+	@cd website && "${NODE_MODULES_BIN}/gatsby" build
+
+website-serve: website-build ##@3 website build & serve mozaik website
+	@echo "${YELLOW}Serving mozaik website${RESET}"
+	@cd website && "${NODE_MODULES_BIN}/gatsby" serve

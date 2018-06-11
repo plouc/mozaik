@@ -21,3 +21,6 @@ coverage
 /graphism
 
 /tmp
+
+website/.cache
+website/public
