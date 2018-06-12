@@ -21,13 +21,16 @@ const bus = new Bus({
     logger,
 })
 
-exports.configure = _configuration => {
+const setConfiguration = _configuration => {
     configuration = _configuration
+    bus.setConfiguration(_configuration)
 }
+
+exports.configure = setConfiguration
 
 const loadConfig = configurationPath => {
     return loadYaml(configurationPath).then(_configuration => {
-        configuration = _configuration
+        setConfiguration(_configuration)
 
         return configuration
     })

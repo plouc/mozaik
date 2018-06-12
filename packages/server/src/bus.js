@@ -8,10 +8,12 @@ const logger = require('./logger')
 const API_MODE_POLL = 'poll'
 const API_MODE_PUSH = 'push'
 
-const DEFAULT_POLL_INTERVAL = 15000
-
 const API_DATA_MESSAGE = 'api.data'
 const API_ERROR_MESSAGE = 'api.error'
+
+const DEFAULT_CONFIGURATION = {
+    pollInterval: 15000
+}
 
 /**
  * Bus class.
@@ -24,9 +26,14 @@ class Bus {
         this.apis = {}
         this.clients = {}
         this.subscriptions = {}
+        this.configuration = {}
 
         this.logger = options.logger || logger
-        this.pollInterval = options.pollInterval || DEFAULT_POLL_INTERVAL
+        this.setConfiguration()
+    }
+
+    setConfiguration(configuration = {}) {
+        Object.assign(this.configuration, DEFAULT_CONFIGURATION, configuration);
     }
 
     /**
@@ -262,7 +269,7 @@ class Bus {
 
             this.subscriptions[subscriptionId].timer = setInterval(() => {
                 this.processApiCall(subscriptionId, callFn, subscription.params)
-            }, this.pollInterval)
+            }, this.configuration.pollInterval)
         }
 
         // avoid adding a client for the same API call twice
