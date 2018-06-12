@@ -21,17 +21,18 @@ const bus = new Bus({
     logger,
 })
 
-exports.configure = _configuration => {
+const configure = _configuration => {
     configuration = _configuration
+
+    if (configuration.apisPollInterval)
+        bus.pollInterval = configuration.apisPollInterval
+
+    return configuration
 }
 
-const loadConfig = configurationPath => {
-    return loadYaml(configurationPath).then(_configuration => {
-        configuration = _configuration
+exports.configure = configure
 
-        return configuration
-    })
-}
+const loadConfig = configurationPath => loadYaml(configurationPath).then(configure)
 
 exports.configureFromFile = (configurationPath, watch = true) => {
     if (watch === true) {
