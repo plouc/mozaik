@@ -33,7 +33,7 @@ class Bus {
     }
 
     setConfiguration(configuration = {}) {
-        this.configuration = Object.assign(this.configuration, DEFAULT_CONFIGURATION, configuration);
+        Object.assign(this.configuration, DEFAULT_CONFIGURATION, configuration);
     }
 
     /**
