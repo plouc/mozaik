@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import reducers from './reducers'
+import ReducersRegistry from './ReducersRegistry'
 
 export default function configureStore(initialState) {
     const store = createStore(
-        reducers,
+        ReducersRegistry.combined(),
         initialState,
         compose(
             applyMiddleware(thunkMiddleware),
