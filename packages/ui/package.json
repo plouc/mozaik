@@ -28,7 +28,7 @@
     "styled-components": "^2.1.1"
   },
   "peerDependencies": {
-    "react": "^15.6.1"
+    "react": "^16.4.0"
   },
   "devDependencies": {
     "@mozaik/babel-preset": "^1.0.0-alpha.6",
