@@ -1,5 +1,7 @@
-.PHONY: help ls \
-    website
+.PHONY: help ls website ext-build-all
+
+PACKAGES   = $(shell ls packages)
+EXTENSIONS = $(shell ls extensions)
 
 NODE_MODULES     = "./node_modules"
 NODE_MODULES_BIN = "${NODE_MODULES}/.bin"
@@ -45,6 +47,13 @@ help: ##prints help
 #
 ########################################################################################################################
 
+init: ##@0 global cleanup/install/bootstrap
+	@${MAKE} clean-all
+	@yarn install
+	@${MAKE} bootstrap
+	@${MAKE} pkg-build-all
+	@${MAKE} ext-build-all
+
 bootstrap: ##@0 global lerna bootstrap
 	@${NODE_MODULES_BIN}/lerna bootstrap
 
@@ -67,11 +76,28 @@ ls: ##@0 global list packages & extensions
 	@echo "${YELLOW}Available packages & extensions:${RESET}"
 	@${NODE_MODULES_BIN}/lerna ls
 
+clean-all: ##@0 global uninstall node modules, remove transpiled code & lock files
+	@rm -rf node_modules
+	@rm -rf package-lock.json
+	@$(foreach pkg,$(PACKAGES),$(call clean_dir_all,packages/$(pkg)))
+	@$(foreach ext,$(EXTENSIONS),$(call clean_dir_all,extensions/$(ext)))
+
+define clean_dir_all
+	rm -rf $(1)/es
+	rm -rf $(1)/lib
+	rm -rf $(1)/node_modules
+	rm -rf $(1)/package-lock.json
+endef
+
 ########################################################################################################################
 #
 # PACKAGES
 #
 ########################################################################################################################
+
+pkg-build-all: ##@1 packages build all packages
+	@${MAKE} pkg-build-ui
+	@${MAKE} pkg-build-themes
 
 pkg-build-%: ##@1 packages build a specific package
 	@echo "${YELLOW}Building: ${WHITE}@mozaik/${*}${RESET}"
@@ -114,15 +140,43 @@ pkg-test-%: ##@1 packages run tests for a specific package
 
 ########################################################################################################################
 #
+# EXTENSIONS
+#
+########################################################################################################################
+
+ext-build-all: ##@2 extensions build all extensions
+	@$(foreach ext,$(EXTENSIONS),$(MAKE) ext-build-$(ext))
+
+ext-build-%: ##@2 extensions build a specific extension
+	@echo "${YELLOW}Building: ${WHITE}@mozaik/ext-${*}${RESET}"
+	@cd "extensions/${*}" && yarn run build
+
+ext-watch-%: ##@2 extensions enable watch mode for a specific extension
+	@echo "extensions/${*}"
+	@cd "extensions/${*}" && yarn run build:es:watch
+
+ext-pub-%: ##@2 extensions publish an extension (eg. ext-pub-gitlab)
+	@if [ -z "${V}" ]; then \
+		echo "${RED}version 'V' is not defined${RESET}"; \
+		exit 1; \
+	fi;
+	@echo "${YELLOW}Publishing ${WHITE}@mozaik/ext-${*}@${V}${YELLOW} from ${WHITE}@mozaik/ext-${*}@$$(cd "extensions/${*}" && npm run -s version)${RESET}"
+	@cd extensions/${*} && npm version -m "feat(release): release v%s" "${V}"
+	@cd extensions/${*} && git add package.json
+	@cd extensions/${*} && npm publish --access public
+	@echo "${GREEN}✔ successfully published @mozaik/ext-${*}@${V}${RESET}"
+
+########################################################################################################################
+#
 # EXAMPLES
 #
 ########################################################################################################################
 
-example-install-%: ##@2 examples install dependencies for a specific example
+example-install-%: ##@3 examples install dependencies for a specific example
 	@echo "${YELLOW}Installing ${*} example dependencies${RESET}"
 	@cd "examples/${*}" && yarn install
 
-example-start-%: ##@2 examples start a specific example
+example-start-%: ##@3 examples start a specific example
 	@echo "${YELLOW}Starting ${*} example${RESET}"
 	@cd "examples/${*}" && yarn start
 
@@ -132,14 +186,14 @@ example-start-%: ##@2 examples start a specific example
 #
 ########################################################################################################################
 
-website: ##@3 website start mozaik website in dev mode
+website: ##@4 website start mozaik website in dev mode
 	@echo "${YELLOW}Starting mozaik website in dev mode${RESET}"
 	@cd website && "${NODE_MODULES_BIN}/gatsby" develop
 
-website-build: ##@3 website build mozaik website
+website-build: ##@4 website build mozaik website
 	@echo "${YELLOW}Building mozaik website${RESET}"
 	@cd website && "${NODE_MODULES_BIN}/gatsby" build
 
-website-serve: website-build ##@3 website build & serve mozaik website
+website-serve: website-build ##@4 website build & serve mozaik website
 	@echo "${YELLOW}Serving mozaik website${RESET}"
 	@cd website && "${NODE_MODULES_BIN}/gatsby" serve
