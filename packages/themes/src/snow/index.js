@@ -5,11 +5,8 @@ export default {
     name: 'snow',
     colors,
     root: {
-        fontFamily: `'Open sans', sans-serif`,
         color: colors.text,
         background: colors.background,
-        fontSize: '1.6vmin',
-        lineHeight: '3vmin',
         extend: `
         @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,200,600,700|Montserrat:400,700");
         
@@ -48,10 +45,8 @@ export default {
         header: {
             height: '5vmin',
             background: '#fafafa',
-            fontSize: '2vmin',
             extend: `
             border-bottom: 1px solid ${colors.background};
-            font-family: 'Montserrat', sans-serif;
             border-radius: 2px 2px 0 0;
             `,
             subject: {

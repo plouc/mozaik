@@ -10,12 +10,11 @@ Official themes for Mozaïk.
 
 **Themes:**
 
-- `night blue`
-- `snow`
-- `solarized dark`
-- `sunny`
-- `wine`
-
+-   `night blue`
+-   `snow`
+-   `solarized dark`
+-   `sunny`
+-   `wine`
 
 [license-image]: https://img.shields.io/github/license/plouc/mozaik-themes.svg?style=flat-square
 [license-url]: https://github.com/plouc/mozaik-themes/blob/master/LICENSE.md
