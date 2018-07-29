@@ -102,11 +102,7 @@ exports.start = _app => {
     const port = process.env.PORT || configuration.port
 
     server.listen(port, configuration.host, () => {
-        logger.info(
-            chalk.yellow(
-                `Mozaïk server listening at http://${configuration.host}:${port}`
-            )
-        )
+        logger.info(chalk.yellow(`Mozaïk server listening at http://${configuration.host}:${port}`))
     })
 }
 
