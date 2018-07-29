@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import InspectorIcon from 'react-icons/lib/fa/stethoscope'
-import WidgetsIcon from 'react-icons/lib/fa/columns'
-import ApisIcon from 'react-icons/lib/fa/plug'
-import ClientsIcon from 'react-icons/lib/fa/user'
-import UptimeIcon from 'react-icons/lib/fa/clock-o'
-
 import Registry from './../WidgetsRegistry'
 import Widget from './widget/Widget'
 import WidgetHeader from './widget/WidgetHeader'
 import WidgetBody from './widget/WidgetBody'
 import WidgetLabel from './widget/WidgetLabel'
+import { ClockIcon, GridIcon, UsersIcon, InfoIcon, PackageIcon } from './icons'
 
 const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60
 const SECONDS_PER_DAY = SECONDS_PER_HOUR * 24
+
+const ICON_SIZE = '1.8vmin'
 
 /**
  * Format uptime (seconds) to human readable output.
@@ -68,7 +65,7 @@ export default class Inspector extends Component {
                 key="widgets"
                 label="widgets"
                 prefix={Registry.widgetsCount()}
-                suffix={<WidgetsIcon />}
+                suffix={<GridIcon size={ICON_SIZE} />}
             />
         )
 
@@ -78,7 +75,7 @@ export default class Inspector extends Component {
                     key="apis"
                     label="APIs"
                     prefix={apiData.apis.length}
-                    suffix={<ApisIcon />}
+                    suffix={<PackageIcon size={ICON_SIZE} />}
                 />
             )
             items.push(
@@ -86,14 +83,14 @@ export default class Inspector extends Component {
                     key="clients"
                     label="connected clients"
                     prefix={apiData.clientCount}
-                    suffix={<ClientsIcon />}
+                    suffix={<UsersIcon size={ICON_SIZE} />}
                 />
             )
             items.push(
                 <WidgetLabel
                     key="uptime"
                     label={`uptime: ${formatUptime(apiData.uptime)}`}
-                    suffix={<UptimeIcon />}
+                    suffix={<ClockIcon size={ICON_SIZE} />}
                 />
             )
         }
@@ -104,7 +101,7 @@ export default class Inspector extends Component {
                     title={<span>Mozaïk</span>}
                     subject="inspector"
                     subjectPlacement="append"
-                    icon={InspectorIcon}
+                    icon={InfoIcon}
                 />
                 <WidgetBody
                     style={{

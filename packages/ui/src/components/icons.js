@@ -8,9 +8,10 @@ export { default as LockIcon } from 'react-feather/dist/icons/lock'
 export { default as UnlockIcon } from 'react-feather/dist/icons/unlock'
 export { default as StarIcon } from 'react-feather/dist/icons/star'
 export { default as TagIcon } from 'react-feather/dist/icons/tag'
-
-
-
-
-
-
+export { default as GridIcon } from 'react-feather/dist/icons/grid'
+export { default as InfoIcon } from 'react-feather/dist/icons/info'
+export { default as PackageIcon } from 'react-feather/dist/icons/package'
+export { default as HelpIcon } from 'react-feather/dist/icons/help-circle'
+export { default as CheckCircleIcon } from 'react-feather/dist/icons/check-circle'
+export { default as AlertTriangleIcon } from 'react-feather/dist/icons/alert-triangle'
+export { default as AlertCircleIcon } from 'react-feather/dist/icons/alert-circle'

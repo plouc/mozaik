@@ -4,7 +4,7 @@ import { setOptions } from '@storybook/addon-options'
 
 setOptions({
     name: '@mozaik/ui',
-    downPanelInRight: true,
+    addonPanelInRight: true,
 })
 
 addDecorator(withKnobs)
@@ -15,6 +15,7 @@ function loadStories() {
     require('../stories/widget_label')
     require('../stories/widget_list_item')
     require('../stories/widget_counter')
+    require('../stories/widget_status_badge')
 }
 
 configure(loadStories, module)
