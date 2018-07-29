@@ -46,7 +46,7 @@ const IconWrapper = styled.div`
 
 class WidgetHeader extends Component {
     static propTypes = {
-        title: PropTypes.node.isRequired,
+        title: PropTypes.node,
         subject: PropTypes.node,
         subjectPlacement: PropTypes.oneOf(['prepend', 'append']).isRequired,
         count: PropTypes.node,

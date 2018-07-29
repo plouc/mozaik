@@ -20,7 +20,6 @@
     "lodash-es": "^4.17.4",
     "prop-types": "^15.5.10",
     "react-feather": "^1.1.1",
-    "react-icons": "^2.2.5",
     "react-redux": "^5.0.5",
     "react-svg-buttons": "^0.4.0",
     "redux": "^3.7.2",
