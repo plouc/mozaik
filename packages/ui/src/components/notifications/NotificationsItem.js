@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
+import typography from '../../theming/typography'
 
 const Item = styled.div`
     position: relative;
@@ -10,6 +11,7 @@ const Item = styled.div`
     background: ${props => props.theme.notifications.item.background};
     color: ${props => props.theme.notifications.item.color};
     ${props => props.theme.notifications.item.extend.trim()};
+    ${props => typography(props.theme)};
 `
 
 export default class NotificationsItem extends Component {
