@@ -26,11 +26,7 @@ class ThemeSetting extends Component {
 
         return (
             <Widget>
-                <WidgetHeader
-                    title="Themes"
-                    count={themeIds.length}
-                    icon="adjust"
-                />
+                <WidgetHeader title="Themes" count={themeIds.length} icon="adjust" />
                 <WidgetBody>
                     {themeIds.map(t => {
                         let icon = 'cross'
@@ -46,13 +42,7 @@ class ThemeSetting extends Component {
                                 }}
                                 title={t}
                                 style={{ cursor: 'pointer' }}
-                                pre={
-                                    <MorphIcon
-                                        type={icon}
-                                        size={26}
-                                        color={theme.colors.icon}
-                                    />
-                                }
+                                pre={<MorphIcon type={icon} size={26} color={theme.colors.icon} />}
                             />
                         )
                     })}

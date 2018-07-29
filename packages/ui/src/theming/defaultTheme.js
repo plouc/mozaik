@@ -1,6 +1,38 @@
 export default {
     name: 'default',
+    typography: {
+        default: {
+            default: {
+                fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+                fontSize: '1.8vmin',
+                fontWeight: 400,
+                lineHeight: '1.5em',
+            },
+            strong: {
+                fontWeight: 600,
+            },
+            small: {
+                fontSize: '1.8vmin',
+            },
+        },
+        display: {
+            default: {
+                fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+                fontSize: '2vmin',
+                fontWeight: 600,
+            },
+        },
+        mono: {
+            default: {
+                fontFamily: `'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace`,
+                fontSize: '1.8vmin',
+                lineHeight: '1.4em',
+            },
+        },
+    },
     colors: {
+        text: '#555',
+        textHighlight: '#000',
         icon: '#000',
         unknown: '#d3dfe8',
         success: '#8ddb8d',
@@ -8,11 +40,7 @@ export default {
         failure: '#e37856',
     },
     root: {
-        fontFamily: 'sans-serif',
-        color: '#555',
         background: '#eee',
-        fontSize: '1.6vmin',
-        lineHeight: '3vmin',
         extend: '',
     },
     dashboard: {
@@ -49,14 +77,12 @@ export default {
         },
         header: {
             height: '6vmin',
-            textTransform: 'normal',
             background: 'transparent',
             color: 'inherit',
             padding: '2vmin',
             fontSize: 'inherit',
             extend: '',
             subject: {
-                color: 'inherit',
                 extend: '',
             },
             count: {
@@ -72,6 +98,7 @@ export default {
         },
         body: {
             top: '6vmin',
+            padding: '1vmin 2vmin 2vmin',
             extend: '',
         },
     },

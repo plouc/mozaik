@@ -50,11 +50,8 @@ const Root = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    font-family: ${props => props.theme.root.fontFamily};
-    font-size: ${props => props.theme.root.fontSize};
-    line-height: ${props => props.theme.root.lineHeight};
     background: ${props => props.theme.root.background};
-    color: ${props => props.theme.root.color};
+    color: ${props => props.theme.colors.text};
     ${props => props.theme.root.extend.trim()};
 `
 

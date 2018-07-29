@@ -26,10 +26,7 @@ export const setDashboards = dashboards => {
         dashboards.forEach((dashboard, dahsboardIndex) => {
             dashboard.widgets.forEach((w, widgetIndex) => {
                 if (Registry.has(w.extension, w.widget)) {
-                    const component = Registry.getComponent(
-                        w.extension,
-                        w.widget
-                    )
+                    const component = Registry.getComponent(w.extension, w.widget)
 
                     if (typeof component.getApiRequest === 'function') {
                         const childProps = _.omit(w, ignoreProps)
@@ -38,12 +35,12 @@ export const setDashboards = dashboards => {
                         if (!_.isObject(subscription) || !subscription.id) {
                             // eslint-disable-next-line no-console
                             console.error(
-                                `widget ${w.extension}.${w.widget} 'getApiRequest()' must return an object with an 'id' property`
+                                `widget ${w.extension}.${
+                                    w.widget
+                                } 'getApiRequest()' must return an object with an 'id' property`
                             )
                         } else {
-                            dashboards[dahsboardIndex].widgets[
-                                widgetIndex
-                            ].subscriptionId =
+                            dashboards[dahsboardIndex].widgets[widgetIndex].subscriptionId =
                                 subscription.id
                             dispatch(subscribeToApi(subscription))
                             newSubscriptionsIds.push(subscription.id)
@@ -53,10 +50,7 @@ export const setDashboards = dashboards => {
             })
         })
 
-        const staleSubscriptionsIds = _.difference(
-            currentSubscriptionsIds,
-            newSubscriptionsIds
-        )
+        const staleSubscriptionsIds = _.difference(currentSubscriptionsIds, newSubscriptionsIds)
         staleSubscriptionsIds.forEach(id => {
             dispatch(unsubscribeFromApi(id))
         })
@@ -74,7 +68,9 @@ const setCurrentDashboard = index => {
 
 export const previous = () => {
     return (dispatch, getState) => {
-        const { dashboards: { dashboards, current } } = getState()
+        const {
+            dashboards: { dashboards, current },
+        } = getState()
 
         let prevIndex
         if (current > 0) {

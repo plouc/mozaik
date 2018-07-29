@@ -18,11 +18,7 @@ class ThemeProvider extends Component {
             theme = themes[current]
         }
 
-        return (
-            <Provider theme={theme}>
-                {this.props.children}
-            </Provider>
-        )
+        return <Provider theme={theme}>{this.props.children}</Provider>
     }
 }
 

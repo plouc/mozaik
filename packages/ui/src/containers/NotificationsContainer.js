@@ -2,7 +2,10 @@ import { connect } from 'react-redux'
 import Notifications from '../components/notifications/Notifications'
 
 const mapStateToProps = state => {
-    const { notifications: { items }, themes: { current: themeId } } = state
+    const {
+        notifications: { items },
+        themes: { current: themeId },
+    } = state
 
     return {
         notifications: items,
@@ -13,4 +16,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = () => ({})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifications)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Notifications)

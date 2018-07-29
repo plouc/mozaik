@@ -1,9 +1,10 @@
 import Registry from './WidgetsRegistry'
-import ThemeManager from './lib/ThemeManager'
-import defaultTheme from './defaultTheme'
+import ThemeManager from './theming/ThemeManager'
+import defaultTheme from './theming/defaultTheme'
 import Mozaik from './App'
 import Inspector from './components/Inspector'
 import TrapApiError from './components/TrapApiError'
+import Text from './components/Text'
 import Widget from './components/widget/Widget'
 import WidgetHeader from './components/widget/WidgetHeader'
 import WidgetBody from './components/widget/WidgetBody'
@@ -16,6 +17,7 @@ import WidgetTableHeadCell from './components/widget/table/WidgetTableHeadCell'
 import WidgetAvatar from './components/widget/WidgetAvatar'
 import WidgetStatusChip from './components/widget/status/WidgetStatusChip'
 import WidgetStatusBadge from './components/widget/status/WidgetStatusBadge'
+import WidgetCounter from './components/widget/WidgetCounter'
 
 Registry.add('mozaik', 'Inspector', Inspector)
 
@@ -25,6 +27,7 @@ export {
     ThemeManager,
     defaultTheme,
     TrapApiError,
+    Text,
     Widget,
     WidgetHeader,
     WidgetBody,
@@ -37,4 +40,5 @@ export {
     WidgetAvatar,
     WidgetStatusChip,
     WidgetStatusBadge,
+    WidgetCounter,
 }

@@ -1,7 +1,9 @@
 import _ from 'lodash'
-import defaultTheme from '../defaultTheme'
+import defaultTheme from './defaultTheme'
 
-const themes = {}
+const themes = {
+    [defaultTheme.name]: defaultTheme,
+}
 
 const ThemeManager = {
     add(theme) {
@@ -17,7 +19,6 @@ const ThemeManager = {
     },
 }
 
-ThemeManager.add(defaultTheme)
 ThemeManager.defaultTheme = defaultTheme.name
 
 export default ThemeManager

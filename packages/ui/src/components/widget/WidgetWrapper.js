@@ -18,36 +18,25 @@ class WidgetWrapper extends Component {
         theme: PropTypes.object.isRequired,
         registry: PropTypes.shape({
             getComponent: PropTypes.func.isRequired,
-        }).isRequired
+        }).isRequired,
     }
 
     shouldComponentUpdate(nextProps) {
         return (
-            !shallowEqual(
-                _.omit(this.props, ignoreProps),
-                _.omit(nextProps, ignoreProps)
-            ) ||
+            !shallowEqual(_.omit(this.props, ignoreProps), _.omit(nextProps, ignoreProps)) ||
             !is(this.props.apiData, nextProps.apiData) ||
             !is(this.props.apiError, nextProps.apiError)
         )
     }
 
     render() {
-        const {
-            registry,
-            extension,
-            widget: type,
-            apiData,
-            apiError,
-        } = this.props
+        const { registry, extension, widget: type, apiData, apiError } = this.props
 
         //console.log(`=> ${extension}.${type}`)
 
         let content
         if (!registry.has(extension, type)) {
-            content = (
-                <UnknowWidgetTypeError extension={extension} widget={type} />
-            )
+            content = <UnknowWidgetTypeError extension={extension} widget={type} />
         } else {
             // Pick component from registry and instantiate with filtered props
             const component = registry.getComponent(extension, type)

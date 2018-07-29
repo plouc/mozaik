@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Text from '../../Text'
+import { typography } from '../../../theming/typography'
 
 const Item = styled.div`
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: ${props =>
+        props.align === 'top' ? 'flex-start' : props.align === 'center' ? 'center' : 'flex-end'};
     padding: ${props => props.theme.list.item.padding};
     background: ${props => props.theme.list.item.background};
     ${props => props.theme.list.item.extend.trim()} &:hover {
@@ -13,12 +16,21 @@ const Item = styled.div`
     }
 `
 
-const Pre = styled.div`margin-right: 2vmin;`
+const Title = styled.div`
+    color: ${props => props.theme.colors.textHighlight};
+    ${props => typography(props.theme, 'default', 'strong')};
+`
 
-const Post = styled.div`margin-left: 2vmin;`
+const Pre = styled.div`
+    margin-right: 2vmin;
+`
+
+const Post = styled.div`
+    margin-left: 2vmin;
+`
 
 const Meta = styled.div`
-    fontSize: ${props => props.theme.list.item.meta.fontSize};
+    fontsize: ${props => props.theme.list.item.meta.fontSize};
     ${props => props.theme.list.item.meta.extend.trim()};
 `
 
@@ -30,47 +42,41 @@ export default class WidgetListItem extends Component {
         meta: PropTypes.node,
         style: PropTypes.object,
         onClick: PropTypes.func,
+        align: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
     }
 
     static defaultProps = {
         subjectPlacement: 'prepend',
+        align: 'center',
     }
 
     render() {
-        const { title, pre, post, meta, onClick, style } = this.props
+        const { title, pre, post, meta, onClick, align, style } = this.props
 
         let metaNode = null
         if (meta !== undefined) {
             metaNode = (
-                <Meta>
+                <Text tag="div" type="default" variant="small">
                     {meta}
-                </Meta>
+                </Text>
             )
         }
 
         let preNode = null
         if (pre !== undefined) {
-            preNode = (
-                <Pre>
-                    {pre}
-                </Pre>
-            )
+            preNode = <Pre>{pre}</Pre>
         }
 
         let postNode = null
         if (post !== undefined) {
-            postNode = (
-                <Post>
-                    {post}
-                </Post>
-            )
+            postNode = <Post>{post}</Post>
         }
 
         return (
-            <Item style={style} onClick={onClick}>
+            <Item align={align} style={style} onClick={onClick}>
                 {preNode}
                 <div style={{ flexGrow: 1 }}>
-                    {title}
+                    <Title>{title}</Title>
                     {metaNode}
                 </div>
                 {postNode}
