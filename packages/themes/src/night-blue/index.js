@@ -1,11 +1,12 @@
 import colors from './colors'
 import charts from './charts'
+import typography from './typography'
 
 export default {
     name: 'night blue',
+    typography,
     colors,
     root: {
-        fontFamily: `'Raleway', sans-serif`,
         color: colors.text,
         background: colors.background,
         extend: `
@@ -21,11 +22,7 @@ export default {
             background: '#2b3847',
             color: colors.text,
             boxShadow: '0 1px 1px rgba(0, 0, 0, 0.35)',
-            title: {
-                color: colors.text,
-                textTransform: 'uppercase',
-                fontFamily: `'Montserrat', sans-serif`,
-            },
+            title: {},
         },
     },
     widget: {
@@ -39,18 +36,14 @@ export default {
         },
         header: {
             height: '5vmin',
-            textTransform: 'uppercase',
             background: '#323f53',
             color: colors.text,
             extend: `
             box-shadow: 0 1px 0 #495b71 inset;
             border-bottom: 1px solid #253246;
-            font-family: 'Montserrat', sans-serif;
             border-radius: 2px 2px 0 0;
             `,
-            subject: {
-                color: '#f6ecd0',
-            },
+            subject: {},
             count: {
                 color: '#7e9ebc',
                 extend: `
@@ -59,7 +52,6 @@ export default {
                 text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
                 border-radius: 2px;
                 padding: 0.5vmin 0.8vmin;
-                text-transform: none;
                 `,
             },
             icon: {

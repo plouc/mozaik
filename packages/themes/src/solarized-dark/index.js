@@ -1,12 +1,13 @@
 import colors from './colors'
 import charts from './charts'
+import typography from './typography'
 
 export default {
     name: 'solarized dark',
+    typography,
     colors,
     root: {
         fontFamily: `'Space Mono', Consolas, monospace`,
-        color: colors.text,
         background: colors.background,
         fontSize: '1.6vmin',
         lineHeight: '2.8vmin',
@@ -40,9 +41,7 @@ export default {
         },
         header: {
             height: '5vmin',
-            subject: {
-                color: '#eee8d5',
-            },
+            subject: {},
             count: {
                 color: '#eee8d5',
             },

@@ -1,12 +1,12 @@
 import colors from './colors'
 import charts from './charts'
+import typography from './typography'
 
 export default {
     name: 'mini kuro',
+    typography,
     colors,
     root: {
-        fontFamily: `'Roboto Mono', monospace`,
-        color: '#fff',
         background: '#000',
         extend: `
         @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700');
@@ -22,12 +22,7 @@ export default {
     },
     dashboard: {
         header: {
-            title: {
-                textTransform: 'uppercase',
-                extend: `
-                font-weight: 700;
-                `,
-            },
+            title: {},
         },
     },
     widget: {
@@ -36,18 +31,12 @@ export default {
             padding: '1.6vmin 3vmin',
         },
         header: {
-            textTransform: 'uppercase',
-            fontSize: '1.8vmin',
             padding: '0.8vmin 0 0 0',
             extend: `
             border-top: 2px solid #fff;
             align-items: flex-start;    
             `,
-            subject: {
-                extend: `
-                font-weight: 700;
-                `,
-            },
+            subject: {},
             count: {
                 extend: `
                 font-weight: 700;
