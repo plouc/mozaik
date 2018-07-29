@@ -23,6 +23,7 @@ export { default as WidgetAvatar } from './components/widget/WidgetAvatar'
 export { default as WidgetStatusChip } from './components/widget/status/WidgetStatusChip'
 export { default as WidgetStatusBadge } from './components/widget/status/WidgetStatusBadge'
 export { default as WidgetCounter } from './components/widget/WidgetCounter'
+export { default as ExternalLink } from './components/ExternalLink'
 export * from './components/icons'
 
 export default Mozaik
