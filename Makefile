@@ -138,6 +138,9 @@ pkg-test-%: ##@1 packages run tests for a specific package
 	    --setupTestFrameworkScriptFile=raf/polyfill
 	    ./packages/ui/test
 
+ui-storybook: ##@1 packages run storybook for ui package
+	@cd packages/ui && yarn run storybook
+
 ########################################################################################################################
 #
 # EXTENSIONS
