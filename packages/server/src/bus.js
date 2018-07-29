@@ -1,8 +1,8 @@
 'use strict'
 
-const util = require('util')
 const _ = require('lodash')
 const chalk = require('chalk')
+const request = require('request-promise-native')
 const logger = require('./logger')
 
 const API_MODE_POLL = 'poll'
@@ -74,6 +74,7 @@ class Bus {
         this.apis[id] = {
             methods: api({
                 logger,
+                request,
                 loadApiConfig: config => {
                     //console.log(config)
                 },
@@ -270,8 +271,6 @@ class Bus {
                 )
             }
         }
-
-        //console.log(util.inspect(this.subscriptions, { depth: null, colors: true }))
     }
 
     /**
