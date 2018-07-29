@@ -27,7 +27,7 @@ class ThemeSetting extends Component {
         return (
             <Widget>
                 <WidgetHeader title="Themes" count={themeIds.length} icon="adjust" />
-                <WidgetBody>
+                <WidgetBody disablePadding={true}>
                     {themeIds.map(t => {
                         let icon = 'cross'
                         if (t === currentTheme) {

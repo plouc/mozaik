@@ -34,9 +34,9 @@
     babel-plugin-transform-object-rest-spread "^6.23.0"
     babel-plugin-transform-react-jsx "^6.24.1"
 
-"@mozaik/themes@1.0.0-alpha.13":
-  version "1.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/@mozaik/themes/-/themes-1.0.0-alpha.13.tgz#5c360fa313dffd94a478ea69bc01afa9b9bf0f71"
+"@mozaik/themes@1.0.0-alpha.17":
+  version "1.0.0-alpha.17"
+  resolved "https://registry.yarnpkg.com/@mozaik/themes/-/themes-1.0.0-alpha.17.tgz#6232550adf4765ae8587b1ddd57950b25a6affb4"
 
 "@storybook/addon-actions@3.4.8":
   version "3.4.8"
@@ -6320,6 +6320,10 @@ react-dom@^16.4.0:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-feather@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.1.tgz#dd59143af457601e68f2cd3bf32c0d94d30f89e7"
 
 react-fuzzy@^0.5.2:
   version "0.5.2"

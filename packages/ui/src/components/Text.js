@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { typography } from '../theming/typography'
+import typography from '../theming/typography'
 
 export default class Text extends Component {
     static propTypes = {

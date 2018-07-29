@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Text from '../../Text'
-import { typography } from '../../../theming/typography'
+import typography from '../../../theming/typography'
 
 const Item = styled.div`
     position: relative;
@@ -42,7 +42,7 @@ export default class WidgetListItem extends Component {
         meta: PropTypes.node,
         style: PropTypes.object,
         onClick: PropTypes.func,
-        align: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+        align: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
     }
 
     static defaultProps = {
