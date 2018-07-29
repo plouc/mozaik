@@ -5,7 +5,7 @@ import { NavButton } from 'react-svg-buttons'
 import { DashboardPropType } from './Dashboard'
 import DashboardTitle from './DashboardTitle'
 import DashboardPlayer from './DashboardPlayer'
-import { typography } from '../../theming/typography'
+import typography from '../../theming/typography'
 
 const Header = styled.header`
     position: absolute;
