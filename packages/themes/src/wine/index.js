@@ -1,14 +1,13 @@
 import colors from './colors'
 import charts from './charts'
+import typography from './typography'
 
 export default {
     name: 'wine',
+    typography,
     colors,
     root: {
-        fontFamily: `'Open sans', sans-serif`,
-        color: colors.text,
         background: colors.background,
-        fontSize: '1.8vmin',
         extend: `
         @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300|Open+Sans:400italic,400,300,600,700");
         & a {
@@ -33,17 +32,10 @@ export default {
         },
         header: {
             fontSize: '2.2vmin',
-            color: 'hsl(10, 60%, 90%)',
             extend: `
-            font-family: 'Roboto Slab', sans-serif;
             border-bottom: 1px solid rgb(40, 18, 18);
             `,
-            subject: {
-                color: '#fff',
-                extend: `
-                font-weight: 300;
-                `,
-            },
+            subject: {},
             count: {
                 color: 'hsl(0, 52%, 60%)',
                 fontSize: '1.8vmin',
