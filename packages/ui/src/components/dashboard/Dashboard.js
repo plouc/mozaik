@@ -40,16 +40,7 @@ const widgetWillLeave = () => ({
     x: spring(-60, { stiffness: 120, damping: 15, precision: 1 }),
 })
 
-const ignoreProps = [
-    'x',
-    'y',
-    'top',
-    'left',
-    'columns',
-    'rows',
-    'width',
-    'height',
-]
+const ignoreProps = ['x', 'y', 'top', 'left', 'columns', 'rows', 'width', 'height']
 
 export default class Dashboard extends Component {
     static propTypes = {
@@ -71,10 +62,10 @@ export default class Dashboard extends Component {
             return {
                 ...w,
                 key: `dashboard${dashboardIndex}.x${w.x}.y${w.y}`,
-                width: `${w.columns / columns * 100}%`,
-                height: `${w.rows / rows * 100}%`,
-                left: `${w.x / columns * 100}%`,
-                top: `${w.y / rows * 100}%`,
+                width: `${(w.columns / columns) * 100}%`,
+                height: `${(w.rows / rows) * 100}%`,
+                left: `${(w.x / columns) * 100}%`,
+                top: `${(w.y / rows) * 100}%`,
             }
         })
 
@@ -99,7 +90,7 @@ export default class Dashboard extends Component {
                     },
                 }))}
             >
-                {styles =>
+                {styles => (
                     <Wrapper>
                         {styles.map(({ key, data, style }) => {
                             return (
@@ -116,14 +107,12 @@ export default class Dashboard extends Component {
                                         transform: `translate3d(${style.x}px,0,0)`,
                                     }}
                                 >
-                                    <Widget
-                                        {..._.omit(data, ignoreProps)}
-                                        registry={registry}
-                                    />
+                                    <Widget {..._.omit(data, ignoreProps)} registry={registry} />
                                 </div>
                             )
                         })}
-                    </Wrapper>}
+                    </Wrapper>
+                )}
             </TransitionMotion>
         )
     }

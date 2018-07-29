@@ -32,10 +32,6 @@ export default class NotificationsItem extends Component {
             content = notification.message
         }
 
-        return (
-            <Item>
-                {content}
-            </Item>
-        )
+        return <Item>{content}</Item>
     }
 }

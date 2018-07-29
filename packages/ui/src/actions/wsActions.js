@@ -50,7 +50,10 @@ export const send = (type, data) => () => {
 
 export const connect = configuration => {
     const wsUrl = guessWSURL(configuration)
-    let reconnectionAttempts = 'reconnectionAttempts' in configuration ? configuration.reconnectionAttempts : WS_MAX_RETRIES
+    let reconnectionAttempts =
+        'reconnectionAttempts' in configuration
+            ? configuration.reconnectionAttempts
+            : WS_MAX_RETRIES
     return dispatch => {
         dispatch({
             type: WS_CONNECT,

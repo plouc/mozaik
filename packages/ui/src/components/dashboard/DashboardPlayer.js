@@ -18,7 +18,9 @@ const Button = styled.span`
     padding: 0 0.6vmin;
 `
 
-const PlayButton = Button.extend`margin-left: 0.6vmin;`
+const PlayButton = Button.extend`
+    margin-left: 0.6vmin;
+`
 
 const Page = styled.span`
     display: inline-block;
@@ -74,20 +76,11 @@ class DashboardPlayer extends Component {
                 <Button onClick={previous}>
                     <MorphIcon type="arrowLeft" size={32} color={iconColor} />
                 </Button>
-                <Page>
-                    {currentDashboardIndex + 1}
-                </Page>
+                <Page>{currentDashboardIndex + 1}</Page>
                 <Slash>/</Slash>
-                <Page>
-                    {dashboards.length}
-                </Page>
+                <Page>{dashboards.length}</Page>
                 <PlayButton onClick={handler}>
-                    <PlayIcon
-                        type={icon}
-                        size={32}
-                        isPlaying={isPlaying}
-                        color={iconColor}
-                    />
+                    <PlayIcon type={icon} size={32} isPlaying={isPlaying} color={iconColor} />
                 </PlayButton>
                 <Button onClick={next}>
                     <MorphIcon type="arrowRight" size={32} color={iconColor} />

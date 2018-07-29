@@ -1,7 +1,4 @@
-import {
-    FETCH_CONFIGURATION,
-    FETCH_CONFIGURATION_SUCCESS,
-} from '../actions/configurationActions'
+import { FETCH_CONFIGURATION, FETCH_CONFIGURATION_SUCCESS } from '../actions/configurationActions'
 
 export default function configuration(
     state = {

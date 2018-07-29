@@ -81,20 +81,12 @@ class WidgetStatusBadge extends Component {
 
         let messageNode = null
         if (message !== undefined) {
-            messageNode = (
-                <div>
-                    {message}
-                </div>
-            )
+            messageNode = <div>{message}</div>
         }
 
         let metaNode = null
         if (meta !== undefined) {
-            metaNode = (
-                <div>
-                    {meta}
-                </div>
-            )
+            metaNode = <div>{meta}</div>
         }
 
         return (

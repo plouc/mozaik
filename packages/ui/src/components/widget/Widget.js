@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { typography } from '../../theming/typography'
 
 const Container = styled.div`
     position: relative;
@@ -14,6 +15,7 @@ const Inner = styled.div`
     width: 100%;
     height: 100%;
     background: ${props => props.theme.widget.background};
+    ${props => typography(props.theme, 'default', 'default')};
 `
 
 export default class Widget extends Component {
@@ -31,9 +33,7 @@ export default class Widget extends Component {
 
         return (
             <Container style={_style}>
-                <Inner>
-                    {children}
-                </Inner>
+                <Inner>{children}</Inner>
             </Container>
         )
     }

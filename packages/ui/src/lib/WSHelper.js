@@ -6,10 +6,7 @@ export const guessWSURL = (config = {}) => {
     }
 
     let proto = 'ws'
-    if (
-        config.useWssConnection === true ||
-        window.document.location.protocol === 'https:'
-    ) {
+    if (config.useWssConnection === true || window.document.location.protocol === 'https:') {
         proto = 'wss'
     }
 

@@ -16,7 +16,7 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .35);
+    background-color: rgba(0, 0, 0, 0.35);
 `
 
 const Container = styled.div`
@@ -68,7 +68,7 @@ export default class Settings extends Component {
                         },
                     }))}
                 >
-                    {styles =>
+                    {styles => (
                         <div>
                             {styles.map(({ key, style }) => {
                                 return (
@@ -87,7 +87,8 @@ export default class Settings extends Component {
                                     </Container>
                                 )
                             })}
-                        </div>}
+                        </div>
+                    )}
                 </TransitionMotion>
             </div>
         )

@@ -11,11 +11,7 @@ export default class TrapApiError extends Component {
         const { error, children } = this.props
 
         if (error) {
-            return (
-                <div className="widget__error">
-                    {error.message}
-                </div>
-            )
+            return <div className="widget__error">{error.message}</div>
         }
 
         return children

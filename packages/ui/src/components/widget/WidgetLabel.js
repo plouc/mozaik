@@ -46,28 +46,18 @@ export default class WidgetLabel extends Component {
 
         let prefixNode = null
         if (prefix !== undefined) {
-            prefixNode = (
-                <Addon>
-                    {prefix}
-                </Addon>
-            )
+            prefixNode = <Addon>{prefix}</Addon>
         }
 
         let suffixNode = null
         if (suffix !== undefined) {
-            suffixNode = (
-                <Addon>
-                    {suffix}
-                </Addon>
-            )
+            suffixNode = <Addon>{suffix}</Addon>
         }
 
         return (
             <Wrapper style={style}>
                 {prefixNode}
-                <Label>
-                    {label}
-                </Label>
+                <Label>{label}</Label>
                 {suffixNode}
             </Wrapper>
         )

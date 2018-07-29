@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
+import { typography } from '../../theming/typography'
 
 const Header = styled.header`
     position: relative;
@@ -10,13 +11,11 @@ const Header = styled.header`
     align-items: center;
     justify-content: space-between;
     white-space: pre;
-    font-size: ${props => props.theme.widget.header.fontSize};
     height: ${props => props.theme.widget.header.height};
     padding: ${props => props.theme.widget.header.padding};
     background: ${props => props.theme.widget.header.background};
-    color: ${props => props.theme.widget.header.color};
-    text-transform: ${props => props.theme.widget.header.textTransform};
-    ${props => props.theme.widget.header.extend.trim()};
+    ${props => typography(props.theme, 'display')} ${props =>
+        props.theme.widget.header.extend.trim()};
 `
 
 const Count = styled.div`
@@ -30,7 +29,7 @@ const Count = styled.div`
 const Subject = styled.div`
     display: inline-block;
     margin-left: 0.5em;
-    color: ${props => props.theme.widget.header.subject.color};
+    color: ${props => props.theme.colors.textHighlight};
 
     &:first-child {
         margin-left: 0;
@@ -64,32 +63,16 @@ class WidgetHeader extends Component {
     }
 
     render() {
-        const {
-            title,
-            subject,
-            subjectPlacement,
-            count,
-            icon: _icon,
-            style,
-            theme,
-        } = this.props
+        const { title, subject, subjectPlacement, count, icon: _icon, style, theme } = this.props
 
         let subjectNode = null
         if (subject) {
-            subjectNode = (
-                <Subject>
-                    {subject}
-                </Subject>
-            )
+            subjectNode = <Subject>{subject}</Subject>
         }
 
         let countNode = null
         if (count !== undefined) {
-            countNode = (
-                <Count>
-                    {count}
-                </Count>
-            )
+            countNode = <Count>{count}</Count>
         }
 
         let icon = null
