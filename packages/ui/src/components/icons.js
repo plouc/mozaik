@@ -16,3 +16,4 @@ export { default as CheckCircleIcon } from 'react-feather/dist/icons/check-circl
 export { default as AlertTriangleIcon } from 'react-feather/dist/icons/alert-triangle'
 export { default as AlertCircleIcon } from 'react-feather/dist/icons/alert-circle'
 export { default as SlidersIcon } from 'react-feather/dist/icons/sliders'
+export { default as FolderIcon } from 'react-feather/dist/icons/folder'
