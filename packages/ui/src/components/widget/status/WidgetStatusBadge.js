@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import QuestionIcon from 'react-icons/lib/fa/question'
-import SuccessIcon from 'react-icons/lib/fa/check-circle'
-import WarningIcon from 'react-icons/lib/fa/exclamation-triangle'
 import styled, { withTheme } from 'styled-components'
+import { HelpIcon, CheckCircleIcon, AlertTriangleIcon, AlertCircleIcon } from '../../icons'
+import Text from '../../Text'
 
 const Badge = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 3vmin;
     align-items: center;
     justify-content: space-between;
     height: 100%;
+`
+
+const IconWrapper = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const colorMapping = {
@@ -31,12 +36,16 @@ const getColorKey = status => {
 
 const iconMapping = [
     {
-        icon: SuccessIcon,
+        icon: CheckCircleIcon,
         match: ['success', 'passed', 'good', 'ok'],
     },
     {
-        icon: WarningIcon,
-        match: ['warning', 'error', 'failed', 'bad', 'ko'],
+        icon: AlertTriangleIcon,
+        match: ['warning'],
+    },
+    {
+        icon: AlertCircleIcon,
+        match: ['error', 'failed', 'bad', 'ko'],
     },
 ]
 
@@ -48,7 +57,7 @@ const getIcon = status => {
     if (matchedMapping) {
         return matchedMapping.icon
     } else {
-        return QuestionIcon
+        return HelpIcon
     }
 }
 
@@ -59,14 +68,16 @@ class WidgetStatusBadge extends Component {
         meta: PropTypes.node,
         style: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
+        iconSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     }
 
     static defaultProps = {
+        iconSize: '9vmin',
         style: {},
     }
 
     render() {
-        const { status, message, meta, style, theme } = this.props
+        const { status, message, meta, iconSize, style, theme } = this.props
 
         const colorKey = getColorKey(status)
         const Icon = getIcon(status)
@@ -75,23 +86,21 @@ class WidgetStatusBadge extends Component {
             ...style,
         }
 
-        const iconStyle = {
-            color: theme.colors[colorKey],
-        }
-
         let messageNode = null
         if (message !== undefined) {
-            messageNode = <div>{message}</div>
+            messageNode = <Text>{message}</Text>
         }
 
         let metaNode = null
         if (meta !== undefined) {
-            metaNode = <div>{meta}</div>
+            metaNode = <Text variant="small">{meta}</Text>
         }
 
         return (
             <Badge style={rootStyle}>
-                <Icon style={iconStyle} />
+                <IconWrapper>
+                    <Icon size={iconSize} color={theme.colors[colorKey]} />
+                </IconWrapper>
                 {messageNode}
                 {metaNode}
             </Badge>

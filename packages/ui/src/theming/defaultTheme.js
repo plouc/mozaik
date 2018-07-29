@@ -92,7 +92,7 @@ export default {
             },
             icon: {
                 color: 'inherit',
-                fontSize: 'inherit',
+                fontSize: '2vmin',
                 extend: '',
             },
         },
