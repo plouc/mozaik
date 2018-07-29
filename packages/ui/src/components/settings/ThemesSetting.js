@@ -6,6 +6,7 @@ import Widget from '../widget/Widget'
 import WidgetHeader from '../widget/WidgetHeader'
 import WidgetBody from '../widget/WidgetBody'
 import WidgetListItem from '../widget/list/WidgetListItem'
+import { SlidersIcon } from '../icons'
 
 class ThemeSetting extends Component {
     static propTypes = {
@@ -26,7 +27,7 @@ class ThemeSetting extends Component {
 
         return (
             <Widget>
-                <WidgetHeader title="Themes" count={themeIds.length} icon="adjust" />
+                <WidgetHeader title="Themes" count={themeIds.length} icon={SlidersIcon} />
                 <WidgetBody disablePadding={true}>
                     {themeIds.map(t => {
                         let icon = 'cross'
