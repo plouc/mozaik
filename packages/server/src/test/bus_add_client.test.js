@@ -32,7 +32,5 @@ it('should throw if a client with the same id already exists', () => {
     }).toThrow(`Client with id 'test_client' already exists`)
 
     expect(logger.error).toHaveBeenCalled()
-    expect(logger.error).toHaveBeenCalledWith(
-        `Client with id 'test_client' already exists`
-    )
+    expect(logger.error).toHaveBeenCalledWith(`Client with id 'test_client' already exists`)
 })

@@ -22,9 +22,7 @@ it('should log an error if there is no existing client having given id', () => {
 
     expect(apiMock.fetch).not.toHaveBeenCalled()
     expect(logger.error).toHaveBeenCalled()
-    expect(logger.error).toHaveBeenCalledWith(
-        `Unable to find a client with id 'test_client'`
-    )
+    expect(logger.error).toHaveBeenCalledWith(`Unable to find a client with id 'test_client'`)
 })
 
 it('should throw and log an error if the request id is invalid', () => {
@@ -137,17 +135,11 @@ it(`should create a timer if there's no matching subscription`, () => {
     jest.runTimersToTime(15000)
 
     expect(logger.info).toHaveBeenCalledTimes(6)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Registered API 'test_api' (mode: poll)`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Registered API 'test_api' (mode: poll)`)
     expect(logger.info).toHaveBeenCalledWith(`Client #test_client connected`)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Added subscription 'test_api.fetch'`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Added subscription 'test_api.fetch'`)
     expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.fetch'`)
-    expect(logger.info).toHaveBeenCalledWith(
-        `Creating scheduler for subscription 'test_api.fetch'`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Creating scheduler for subscription 'test_api.fetch'`)
 
     expect(apiMock.fetch).toHaveBeenCalledTimes(2)
     //expect(clientMock.emit).toHaveBeenCalled()
@@ -172,9 +164,7 @@ it(`should create a producer if there's no matching subscription and API mode is
     expect(subscriptions['test_api.push'].timer).toBeUndefined()
 
     expect(logger.info).toHaveBeenCalled()
-    expect(logger.info).toHaveBeenCalledWith(
-        `Creating producer for 'test_api.push'`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Creating producer for 'test_api.push'`)
 })
 
 it('should not add the same client id twice to the subscription client list', () => {
