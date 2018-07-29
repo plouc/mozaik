@@ -1,0 +1,93 @@
+#
+# @mozaik/ext-json demo dashboard
+#
+port: 5000
+
+# define duraton between each dashboard rotation (ms)
+rotationDuration: 4000
+# define the interval used by Mozaïk Bus to call registered APIs
+apisPollInterval: 10000000
+
+dashboards:
+-
+  columns: 4
+  rows:    3
+  title:   '@mozaik/ext-json demo'
+  widgets:
+  -
+    extension:      json
+    widget:         JsonKeys
+    title:          Json keys
+    url:            https://jsonplaceholder.typicode.com/todos/1
+    headers:
+      X-Whatever: yay
+    keys:
+      - id
+      - userId
+      - title
+      - completed
+    columns:        1
+    rows:           1
+    x:              0
+    y:              0
+  -
+    extension:      json
+    widget:         CustomJson
+    title:          Custom json
+    url:            https://jsonplaceholder.typicode.com/todos/1
+    headers:
+      X-Whatever: yay
+    template: |
+      Using custom template to display json data:<br/><br/>
+      &nbsp;&nbsp;The user ID is <strong>${userId}</strong>,<br/>
+      &nbsp;&nbsp;and the title is <strong>${title}</strong>.
+    columns:        1
+    rows:           1
+    x:              1
+    y:              0
+  -
+    extension:      mozaik
+    widget:         Inspector
+    columns:        1
+    rows:           1
+    x:              2
+    y:              0
+  -
+    extension:      json
+    widget:         JsonStatus
+    title:          Json status (contains)
+    url:            https://jsonplaceholder.typicode.com/todos/1
+    statuses:
+      - assert: contains(title,delectus)
+        status: success
+        label:  Task `title` contains 'delectus'
+    columns:        1
+    rows:           1
+    x:              0
+    y:              1
+  -
+    extension:      json
+    widget:         JsonStatus
+    title:          Json status (falsy)
+    url:            https://jsonplaceholder.typicode.com/todos/1
+    statuses:
+      - assert: falsy(completed)
+        status: warning
+        label:  Task `completed` is a falsy value
+    columns:        1
+    rows:           1
+    x:              1
+    y:              1
+  -
+    extension:      json
+    widget:         JsonStatus
+    title:          Json status (matches)
+    url:            https://jsonplaceholder.typicode.com/todos/1
+    statuses:
+      - assert: matches(title, tem$)
+        status: error
+        label:  Task `title` matches `/tem$/`
+    columns:        1
+    rows:           1
+    x:              2
+    y:              1
