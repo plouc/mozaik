@@ -12,7 +12,8 @@ const Wrapper = styled.span`
 `
 
 const Label = styled.span`
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     white-space: pre;
     flex-grow: 1;
     padding: ${props => props.theme.label.main.padding};
@@ -22,6 +23,8 @@ const Label = styled.span`
 `
 
 const Addon = styled.span`
+    display: inline-flex;
+    align-items: center;
     white-space: pre;
     padding: ${props => props.theme.label.addon.padding};
     background: ${props => props.theme.label.addon.background};
