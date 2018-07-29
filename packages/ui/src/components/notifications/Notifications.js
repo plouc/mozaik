@@ -21,12 +21,12 @@ export default class Notifications extends Component {
 
         return (
             <Wrapper>
-                {notifications.map(notification =>
+                {notifications.map(notification => (
                     <NotificationsItem
                         key={`notification.${notification.id}`}
                         notification={notification}
                     />
-                )}
+                ))}
             </Wrapper>
         )
     }

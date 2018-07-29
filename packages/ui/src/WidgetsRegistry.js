@@ -54,10 +54,7 @@ const WidgetsRegistry = {
      * @return {boolean}
      */
     has(extension, widget) {
-        return (
-            registry.hasOwnProperty(extension) &&
-            registry[extension].hasOwnProperty(widget)
-        )
+        return registry.hasOwnProperty(extension) && registry[extension].hasOwnProperty(widget)
     },
 
     /**
@@ -67,9 +64,7 @@ const WidgetsRegistry = {
      */
     getComponent(extension, widget) {
         if (!WidgetsRegistry.has(extension, widget)) {
-            throw new Error(
-                `No widget "${widget}" defined for extension "${extension}"`
-            )
+            throw new Error(`No widget "${widget}" defined for extension "${extension}"`)
         }
 
         return registry[extension][widget]

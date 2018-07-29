@@ -11,7 +11,10 @@ export const NOTIFY = 'NOTIFY'
 export const NOTIFICATION_UPDATE = 'NOTIFICATION_UPDATE'
 export const NOTIFICATION_CLOSE = 'NOTIFICATION_CLOSE'
 
-const uid = () => Math.random().toString(34).slice(2)
+const uid = () =>
+    Math.random()
+        .toString(34)
+        .slice(2)
 
 const timers = {}
 const clearTimer = id => {
@@ -34,7 +37,9 @@ const addNotification = notification => ({
 
 export const notify = notification => {
     return (dispatch, getState) => {
-        const { notifications: { items } } = getState()
+        const {
+            notifications: { items },
+        } = getState()
 
         if (!_.has(notification, 'id')) {
             notification.id = uid()

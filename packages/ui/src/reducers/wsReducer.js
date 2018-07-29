@@ -1,8 +1,4 @@
-import {
-    WS_CONNECT,
-    WS_CONNECT_SUCCESS,
-    WS_DISCONNECTED,
-} from '../actions/wsActions'
+import { WS_CONNECT, WS_CONNECT_SUCCESS, WS_DISCONNECTED } from '../actions/wsActions'
 
 export default function ws(
     state = {

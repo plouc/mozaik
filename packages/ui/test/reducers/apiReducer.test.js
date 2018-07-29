@@ -1,10 +1,6 @@
 import { Map } from 'immutable'
 import apiReducer from '../../src/reducers/apiReducer'
-import {
-    API_SUBSCRIBE,
-    API_UNSUBSCRIBE,
-    API_DATA,
-} from '../../src/actions/apiActions'
+import { API_SUBSCRIBE, API_UNSUBSCRIBE, API_DATA } from '../../src/actions/apiActions'
 
 it('should return the initial state', () => {
     expect(apiReducer(undefined, {})).toEqual(

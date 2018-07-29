@@ -5,6 +5,7 @@ import { NavButton } from 'react-svg-buttons'
 import { DashboardPropType } from './Dashboard'
 import DashboardTitle from './DashboardTitle'
 import DashboardPlayer from './DashboardPlayer'
+import { typography } from '../../theming/typography'
 
 const Header = styled.header`
     position: absolute;
@@ -27,6 +28,7 @@ const TitleWrapper = styled.div`
     flex-grow: 1;
     margin-right: 4vmin;
     height: 6vmin;
+    ${props => typography(props.theme, 'display')};
 `
 
 const Toogle = styled.div`
@@ -48,7 +50,7 @@ class DashboardHeader extends Component {
         previous: PropTypes.func.isRequired,
         next: PropTypes.func.isRequired,
         pause: PropTypes.func.isRequired,
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     }
 
     render() {
@@ -76,26 +78,21 @@ class DashboardHeader extends Component {
         return (
             <Header>
                 <TitleWrapper>
-                    <DashboardTitle
-                        currentDashboardIndex={currentDashboardIndex}
-                        title={title}
-                    />
+                    <DashboardTitle currentDashboardIndex={currentDashboardIndex} title={title} />
                 </TitleWrapper>
                 {dashboards.length &&
-                    dashboards.length > 1 &&
-                    <DashboardPlayer
-                        dashboards={dashboards}
-                        currentDashboardIndex={currentDashboardIndex}
-                        isPlaying={isPlaying}
-                        play={play}
-                        pause={pause}
-                        previous={previous}
-                        next={next}
-                    />}
-                <Toogle
-                    onClick={toggleSettings}
-                    className="Dashboard__Header__Toggle"
-                >
+                    dashboards.length > 1 && (
+                        <DashboardPlayer
+                            dashboards={dashboards}
+                            currentDashboardIndex={currentDashboardIndex}
+                            isPlaying={isPlaying}
+                            play={play}
+                            pause={pause}
+                            previous={previous}
+                            next={next}
+                        />
+                    )}
+                <Toogle onClick={toggleSettings} className="Dashboard__Header__Toggle">
                     <NavButton
                         direction="down"
                         opened={settingsOpened}

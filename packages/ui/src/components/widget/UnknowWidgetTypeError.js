@@ -24,8 +24,10 @@ export default class UnknowWidgetTypeError extends Component {
                         Unknown widget &quot;{widget}&quot; for extension &quot;{extension}&quot;.
                     </p>
                     <p>
-                        Please make sure you installed the corresponding package (should be &quot;mozaik-ext-{extension}&quot;)
-                        and the package provides a &quot;{widget}&quot; widget.
+                        Please make sure you installed the corresponding package (should be
+                        &quot;mozaik-ext-{extension}&quot;) and the package provides a &quot;{
+                            widget
+                        }&quot; widget.
                     </p>
                 </WidgetBody>
             </Widget>

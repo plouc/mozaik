@@ -13,8 +13,7 @@ const Title = styled.div`
     white-space: pre;
     font-family: ${props => props.theme.dashboard.header.title.fontFamily};
     font-size: ${props => props.theme.dashboard.header.title.fontSize};
-    text-transform: ${props =>
-        props.theme.dashboard.header.title.textTransform};
+    text-transform: ${props => props.theme.dashboard.header.title.textTransform};
     color: ${props => props.theme.dashboard.header.title.color};
     ${props => props.theme.dashboard.header.title.extend.trim()};
 `
@@ -49,7 +48,7 @@ export default class DashboardTitle extends Component {
                     },
                 }))}
             >
-                {styles =>
+                {styles => (
                     <div style={{ position: 'relative' }}>
                         {styles.map(({ key, data, style }) => {
                             return (
@@ -65,7 +64,8 @@ export default class DashboardTitle extends Component {
                                 </Title>
                             )
                         })}
-                    </div>}
+                    </div>
+                )}
             </TransitionMotion>
         )
     }

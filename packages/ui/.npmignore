@@ -10,3 +10,5 @@
 /src
 *.log*
 yarn.lock
+/stories
+/.storybook

@@ -44,4 +44,7 @@ const mapDispatchToProps = dispatch => ({
     },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Mozaik)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Mozaik)

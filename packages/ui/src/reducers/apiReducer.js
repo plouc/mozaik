@@ -36,10 +36,7 @@ export default function configuration(state = defaultState, action) {
                 return state
             }
 
-            return state.setIn(
-                ['subscriptions', action.subscription.id, 'hasSubscribed'],
-                true
-            )
+            return state.setIn(['subscriptions', action.subscription.id, 'hasSubscribed'], true)
 
         case API_ALL_UNSUBSCRIBED:
             return state.setIn(
@@ -57,9 +54,7 @@ export default function configuration(state = defaultState, action) {
             return state.deleteIn(['subscriptions', action.id])
 
         case API_DATA:
-            return state
-                .deleteIn(['errors', action.id])
-                .setIn(['data', action.id], action.data)
+            return state.deleteIn(['errors', action.id]).setIn(['data', action.id], action.data)
 
         case API_FAILURE:
             return state.mergeIn(['errors', action.id], action.data)

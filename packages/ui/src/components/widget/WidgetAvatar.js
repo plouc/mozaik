@@ -37,10 +37,6 @@ export default class WidgetAvatar extends Component {
             ..._style,
         }
 
-        return (
-            <Avatar style={style}>
-                {children}
-            </Avatar>
-        )
+        return <Avatar style={style}>{children}</Avatar>
     }
 }

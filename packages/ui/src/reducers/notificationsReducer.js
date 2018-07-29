@@ -1,8 +1,4 @@
-import {
-    NOTIFY,
-    NOTIFICATION_UPDATE,
-    NOTIFICATION_CLOSE,
-} from '../actions/notificationsActions'
+import { NOTIFY, NOTIFICATION_UPDATE, NOTIFICATION_CLOSE } from '../actions/notificationsActions'
 
 export default function notifications(
     state = {
