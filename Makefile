@@ -57,6 +57,9 @@ init: ##@0 global cleanup/install/bootstrap
 bootstrap: ##@0 global lerna bootstrap
 	@${NODE_MODULES_BIN}/lerna bootstrap
 
+link: ##@0 global symlink packages & extensions
+	@${NODE_MODULES_BIN}/lerna link
+
 fmt: ##@0 global format code using prettier (js, css, md)
 	@${NODE_MODULES_BIN}/prettier --color --write \
 		"packages/**/*.js" \
@@ -94,6 +97,10 @@ endef
 # PACKAGES
 #
 ########################################################################################################################
+
+pkg-watch-%: ##@1 packages enable watch mode for a specific package
+	@echo "packages/${*}"
+	@cd "packages/${*}" && yarn run build:es:watch
 
 pkg-build-all: ##@1 packages build all packages
 	@${MAKE} pkg-build-ui
