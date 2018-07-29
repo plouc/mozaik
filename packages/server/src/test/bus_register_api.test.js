@@ -17,9 +17,7 @@ it('should make the API available', () => {
 
     expect(bus.listApis()).toEqual(['test_api'])
     expect(logger.info).toHaveBeenCalled()
-    expect(logger.info).toHaveBeenCalledWith(
-        `Registered API 'test_api' (mode: poll)`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Registered API 'test_api' (mode: poll)`)
 })
 
 it('should throw if the API was already registered', () => {
@@ -29,9 +27,7 @@ it('should throw if the API was already registered', () => {
     bus.registerApi('test_api', () => {})
 
     expect(logger.info).toHaveBeenCalled()
-    expect(logger.info).toHaveBeenCalledWith(
-        `Registered API 'test_api' (mode: poll)`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Registered API 'test_api' (mode: poll)`)
 
     const expectedError = `API 'test_api' already registered`
 
@@ -51,9 +47,7 @@ it(`should allow to set API mode to 'push'`, () => {
 
     expect(bus.listApis()).toEqual(['test_api'])
     expect(logger.info).toHaveBeenCalled()
-    expect(logger.info).toHaveBeenCalledWith(
-        `Registered API 'test_api' (mode: push)`
-    )
+    expect(logger.info).toHaveBeenCalledWith(`Registered API 'test_api' (mode: push)`)
 })
 
 it('should throw if we pass an invalid API mode', () => {

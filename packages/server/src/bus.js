@@ -38,11 +38,7 @@ class Bus {
      */
     send(subscriptionId, data, type = API_DATA_MESSAGE) {
         if (!this.subscriptions[subscriptionId]) {
-            this.logger.warn(
-                chalk.magenta(
-                    `No subscription found matching '${subscriptionId}'`
-                )
-            )
+            this.logger.warn(chalk.magenta(`No subscription found matching '${subscriptionId}'`))
 
             return
         }
@@ -114,9 +110,7 @@ class Bus {
      */
     removeClient(id) {
         _.forOwn(this.subscriptions, (subscription, subscriptionId) => {
-            subscription.clients = subscription.clients.filter(
-                clientId => clientId !== id
-            )
+            subscription.clients = subscription.clients.filter(clientId => clientId !== id)
 
             // if there's no more subscribers, clear the interval
             // to avoid consuming APIs for nothing.
@@ -164,10 +158,7 @@ class Bus {
             .catch(err => {
                 this.logger.error(
                     chalk.red(
-                        `[${id.split(
-                            '.'
-                        )[0]}] ${id} - status code: ${err.status ||
-                            err.statusCode}`
+                        `[${id.split('.')[0]}] ${id} - status code: ${err.status || err.statusCode}`
                     )
                 )
 
@@ -252,13 +243,8 @@ class Bus {
         }
 
         // if there is no interval running, create one
-        if (
-            !this.subscriptions[subscriptionId].timer &&
-            api.mode === API_MODE_POLL
-        ) {
-            this.logger.info(
-                `Creating scheduler for subscription '${subscriptionId}'`
-            )
+        if (!this.subscriptions[subscriptionId].timer && api.mode === API_MODE_POLL) {
+            this.logger.info(`Creating scheduler for subscription '${subscriptionId}'`)
 
             this.subscriptions[subscriptionId].timer = setInterval(() => {
                 this.processApiCall(subscriptionId, callFn, subscription.params)
@@ -314,9 +300,7 @@ class Bus {
             return
         }
 
-        subscription.clients = subscription.clients.filter(
-            id => id !== clientId
-        )
+        subscription.clients = subscription.clients.filter(id => id !== clientId)
 
         // if there is no more clients, remove subscription
         if (subscription.clients.length === 0) {

@@ -17,9 +17,7 @@ it('should log api call', () => {
 
     return bus.processApiCall('test_api.test_method', () => {}).then(() => {
         expect(logger.info).toHaveBeenCalled()
-        expect(logger.info).toHaveBeenCalledWith(
-            `Calling 'test_api.test_method'`
-        )
+        expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.test_method'`)
     })
 })
 
@@ -32,16 +30,14 @@ it('should support calling apis which return promises', () => {
 
     expect.assertions(3)
 
-    return bus
-        .processApiCall('test_api.test_method', apiMock, apiParams)
-        .then(message => {
-            expect(apiMock).toHaveBeenCalled()
-            expect(apiMock).toHaveBeenCalledWith(apiParams)
-            expect(message).toEqual({
-                id: 'test_api.test_method',
-                data: 'test',
-            })
+    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then(message => {
+        expect(apiMock).toHaveBeenCalled()
+        expect(apiMock).toHaveBeenCalledWith(apiParams)
+        expect(message).toEqual({
+            id: 'test_api.test_method',
+            data: 'test',
         })
+    })
 })
 
 it('should support calling apis which does not return promises', () => {
@@ -53,16 +49,14 @@ it('should support calling apis which does not return promises', () => {
 
     expect.assertions(3)
 
-    return bus
-        .processApiCall('test_api.test_method', apiMock, apiParams)
-        .then(message => {
-            expect(apiMock).toHaveBeenCalled()
-            expect(apiMock).toHaveBeenCalledWith(apiParams)
-            expect(message).toEqual({
-                id: 'test_api.test_method',
-                data: 'test',
-            })
+    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then(message => {
+        expect(apiMock).toHaveBeenCalled()
+        expect(apiMock).toHaveBeenCalledWith(apiParams)
+        expect(message).toEqual({
+            id: 'test_api.test_method',
+            data: 'test',
         })
+    })
 })
 
 it('should cache result', () => {
@@ -126,9 +120,7 @@ it('should not notify clients on error and log error', () => {
     expect.assertions(4)
 
     return bus
-        .processApiCall('test_api.test_method', () =>
-            Promise.reject({ status: -1 })
-        )
+        .processApiCall('test_api.test_method', () => Promise.reject({ status: -1 }))
         .then(() => {
             expect(emitMock).toHaveBeenCalledTimes(1)
             expect(emitMock).toHaveBeenCalledWith('api.error', {
