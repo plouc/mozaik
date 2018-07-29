@@ -1,6 +1,6 @@
 const cache = {}
 
-export const typography = (theme, type = 'default', variant = 'default') => {
+export default (theme, type = 'default', variant = 'default') => {
     const key = `${theme.name}.${type}.${variant}`
 
     const cached = cache[key]

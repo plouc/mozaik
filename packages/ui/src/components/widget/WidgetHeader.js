@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
-import { typography } from '../../theming/typography'
+import typography from '../../theming/typography'
 
 const Header = styled.header`
     position: relative;
@@ -50,7 +50,7 @@ class WidgetHeader extends Component {
         subject: PropTypes.node,
         subjectPlacement: PropTypes.oneOf(['prepend', 'append']).isRequired,
         count: PropTypes.node,
-        icon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+        icon: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
         iconStyle: PropTypes.object.isRequired,
         style: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
@@ -76,14 +76,19 @@ class WidgetHeader extends Component {
         }
 
         let icon = null
-        if (_.isFunction(_icon)) {
-            icon = (
-                <IconWrapper>
-                    {_icon({
-                        color: theme.colors.icon,
-                    })}
-                </IconWrapper>
-            )
+        if (_icon !== undefined) {
+            if (_.isFunction(_icon)) {
+                icon = (
+                    <IconWrapper>
+                        {_icon({
+                            size: theme.widget.header.icon.fontSize,
+                            color: theme.colors.icon,
+                        })}
+                    </IconWrapper>
+                )
+            } else {
+                icon = <IconWrapper>{_icon}</IconWrapper>
+            }
         }
 
         return (
