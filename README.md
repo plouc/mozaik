@@ -4,20 +4,19 @@
 [![Travis CI][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
 [![Quality][codeclimate-image]][codeclimate-url]
-[![Dependencies][gemnasium-image]][gemnasium-url]
 
-Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft beautiful dashboards. [See demo](http://mozaik.herokuapp.com/)
+Mozaïk is a tool based on nodejs / react / redux / d3 / stylus to easily craft beautiful dashboards. [See demo](http://mozaik.herokuapp.com/)
 
 ![preview](https://raw.githubusercontent.com/juhamust/mozaik/readme/preview.png)
 
 **Features:**
 
-- Scalable layout
-- Themes support
-- Extendable by modules
-- Grid positioning
-- Optimized backend communication
-- Rotation support (with smooth transition)
+-   Scalable layout
+-   Themes support
+-   Extendable by modules
+-   Grid positioning
+-   Optimized backend communication
+-   Rotation support (with smooth transition)
 
 ## Getting started
 
@@ -25,8 +24,8 @@ Mozaïk is a tool based on nodejs / react / reflux / d3 / stylus to easily craft
 
 Installation instructions:
 
-- [Mozaïk V1 (stable)](http://mozaik.rocks/v1/use/)
-- [Mozaïk V2 (latest)](http://mozaik.rocks/v2/use/)
+-   [Mozaïk V1 (stable)](http://mozaik.rocks/v1/use/)
+-   [Mozaïk V2 (latest)](http://mozaik.rocks/v2/use/)
 
 Visit the [website](http://mozaik.rocks/) for further information/doc.
 
@@ -41,7 +40,5 @@ Visit the [website](http://mozaik.rocks/) for further information/doc.
 [travis-url]: https://travis-ci.org/plouc/mozaik
 [codeclimate-image]: https://img.shields.io/codeclimate/github/plouc/mozaik.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/plouc/mozaik
-[gemnasium-image]: https://img.shields.io/gemnasium/plouc/mozaik.svg?style=flat-square
-[gemnasium-url]: https://gemnasium.com/plouc/mozaik
 [npmjs-url]: https://www.npmjs.com
 [generator-mozaik-url]: https://www.npmjs.com/package/generator-mozaik

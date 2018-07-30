@@ -75,9 +75,7 @@ class Bus {
             methods: api({
                 logger,
                 request,
-                loadApiConfig: config => {
-                    //console.log(config)
-                },
+                loadApiConfig: () => {},
             }),
             mode,
         }
@@ -314,8 +312,6 @@ class Bus {
 
             delete this.subscriptions[subscriptionId]
         }
-
-        //console.log(util.inspect(this.subscriptions, { depth: null, colors: true }))
     }
 
     /**

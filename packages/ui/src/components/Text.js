@@ -8,6 +8,7 @@ export default class Text extends Component {
         tag: PropTypes.string.isRequired,
         type: PropTypes.oneOf(['default', 'display', 'mono']).isRequired,
         variant: PropTypes.oneOf(['strong', 'small']).isRequired,
+        children: PropTypes.node.isRequired,
     }
 
     static defaultProps = {

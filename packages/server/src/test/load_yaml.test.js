@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path')
-const yaml = require('js-yaml')
 const loadYaml = require('../load_yaml')
 
 it('should reject when file does not exist', () => {

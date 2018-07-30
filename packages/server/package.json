@@ -13,10 +13,10 @@
     "url": "https://github.com/plouc"
   },
   "devDependencies": {
-    "jest": "^20.0.4"
+    "jest": "^23.4.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "version": "echo ${npm_package_version}"
   },
   "dependencies": {
@@ -30,5 +30,8 @@
     "winston": "^2.3.1",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5"
+  },
+  "jest": {
+    "testURL": "http://localhost/"
   }
 }

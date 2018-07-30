@@ -9,9 +9,8 @@
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.9.1",
-    "jest": "^23.1.0",
     "lerna": "^3.0.0-rc.0",
-    "prettier": "^1.13.4",
+    "prettier": "^1.14.0",
     "raf": "^3.4.0",
     "rollup": "^0.60.1"
   },

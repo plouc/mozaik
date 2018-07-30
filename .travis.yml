@@ -3,11 +3,9 @@ node_js:
   - '8'
   - '10'
 before_script:
-  - yarn install
-  - lerna bootstrap
+  - make init
 script:
-  - cd packages/server && yarn test
-  - cd ../ui && yarn test
+  - make test-all
   #- npm run test-cover
 #after_success:
 #  - npm run coveralls

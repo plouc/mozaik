@@ -1,0 +1,8 @@
+globals:
+  jest:       true
+  test:       true
+  expect:     true
+  describe:   true
+  it:         true
+  beforeAll:  true
+  beforeEach: true
