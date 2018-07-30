@@ -12,15 +12,7 @@ coverage
 # to ease extension authoring using lerna abilities
 /extensions
 
-# ignore examples except those which are available by default
-/examples/*
-!/examples/basic
-
-/demos
-
-/graphism
-
-/tmp
+/demo/build
 
 website/.cache
 website/public
