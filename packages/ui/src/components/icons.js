@@ -17,3 +17,7 @@ export { default as AlertTriangleIcon } from 'react-feather/dist/icons/alert-tri
 export { default as AlertCircleIcon } from 'react-feather/dist/icons/alert-circle'
 export { default as SlidersIcon } from 'react-feather/dist/icons/sliders'
 export { default as FolderIcon } from 'react-feather/dist/icons/folder'
+export { default as LoaderIcon } from 'react-feather/dist/icons/loader'
+export { default as CalendarIcon } from 'react-feather/dist/icons/calendar'
+
+
