@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { MorphIcon, PlayButton as PlayIcon } from 'react-svg-buttons'
 import styled, { withTheme } from 'styled-components'
+import typography from '../../theming/typography'
 
 const Container = styled.div`
     margin-right: 6vmin;
     display: flex;
     align-items: center;
     height: 100%;
+    ${props => typography(props.theme)}
 `
 
 const Button = styled.span`
