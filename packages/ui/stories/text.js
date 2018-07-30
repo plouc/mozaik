@@ -16,7 +16,8 @@ stories.add('default', () => (
             </div>
             <div>
                 <Text tag="div">
-                    default default variant div<br />
+                    default default variant div
+                    <br />
                     with multiline text
                 </Text>
             </div>
@@ -25,7 +26,8 @@ stories.add('default', () => (
             </div>
             <div>
                 <Text tag="div" variant="strong">
-                    default strong variant div<br />
+                    default strong variant div
+                    <br />
                     with multiline text
                 </Text>
             </div>
@@ -34,7 +36,8 @@ stories.add('default', () => (
             </div>
             <div>
                 <Text tag="div" variant="small">
-                    default small variant div<br />
+                    default small variant div
+                    <br />
                     with multiline text
                 </Text>
             </div>

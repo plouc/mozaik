@@ -65,9 +65,8 @@ class ConnectionStatus extends Component {
             iconClass = 'warning'
             message = (
                 <span>
-                    lost connection to Mozaïk server, will attempt to reconnect in {countdown}s ({
-                        retryCount
-                    }
+                    lost connection to Mozaïk server, will attempt to reconnect in {countdown}s (
+                    {retryCount}
                     {attemptsText} attempts so far).
                 </span>
             )

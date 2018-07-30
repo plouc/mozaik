@@ -9,7 +9,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     height: 100%;
-    ${props => typography(props.theme)}
+    ${props => typography(props.theme)};
 `
 
 const Button = styled.span`

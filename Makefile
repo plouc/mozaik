@@ -92,6 +92,12 @@ define clean_dir_all
 	rm -rf $(1)/package-lock.json
 endef
 
+test-all: ##@0 run all checks/tests
+	@make fmt-check
+	@make pkgs-lint
+	@make pkg-test-server
+	@make pkg-test-ui
+
 ########################################################################################################################
 #
 # PACKAGES
@@ -99,8 +105,10 @@ endef
 ########################################################################################################################
 
 pkg-watch-%: ##@1 packages enable watch mode for a specific package
-	@echo "packages/${*}"
 	@cd "packages/${*}" && yarn run build:es:watch
+
+pkg-test-%: ##@1 packages run tests for a specific package
+	cd "packages/${*}" && yarn run test
 
 pkg-build-all: ##@1 packages build all packages
 	@${MAKE} pkg-build-ui
@@ -139,11 +147,6 @@ pkgs-lint: ##@1 packages run eslint on all packages
 	@${NODE_MODULES_BIN}/eslint \
         ./packages/*/{src,test}
 	@echo "${GREEN}✔ Well done!${RESET}"
-
-pkg-test-%: ##@1 packages run tests for a specific package
-	@${NODE_MODULES_BIN}/jest \
-	    --setupTestFrameworkScriptFile=raf/polyfill
-	    ./packages/ui/test
 
 ui-storybook: ##@1 packages run storybook for ui package
 	@cd packages/ui && yarn run storybook

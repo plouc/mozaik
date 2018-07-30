@@ -23,7 +23,3 @@ export { default as GitCommitIcon } from 'react-feather/dist/icons/git-commit'
 export { default as PauseCircleIcon } from 'react-feather/dist/icons/pause-circle'
 export { default as FastForwardIcon } from 'react-feather/dist/icons/fast-forward'
 export { default as GithubIcon } from 'react-feather/dist/icons/github'
-
-
-
-

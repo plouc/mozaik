@@ -29,11 +29,6 @@ const Post = styled.div`
     margin-left: 2vmin;
 `
 
-const Meta = styled.div`
-    fontsize: ${props => props.theme.list.item.meta.fontSize};
-    ${props => props.theme.list.item.meta.extend.trim()};
-`
-
 export default class WidgetListItem extends Component {
     static propTypes = {
         title: PropTypes.node.isRequired,
