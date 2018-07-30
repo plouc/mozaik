@@ -19,5 +19,9 @@ export { default as SlidersIcon } from 'react-feather/dist/icons/sliders'
 export { default as FolderIcon } from 'react-feather/dist/icons/folder'
 export { default as LoaderIcon } from 'react-feather/dist/icons/loader'
 export { default as CalendarIcon } from 'react-feather/dist/icons/calendar'
+export { default as GitCommitIcon } from 'react-feather/dist/icons/git-commit'
+export { default as PauseCircleIcon } from 'react-feather/dist/icons/pause-circle'
+export { default as FastForwardIcon } from 'react-feather/dist/icons/fast-forward'
+
 
 
