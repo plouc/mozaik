@@ -64,7 +64,7 @@ fmt: ##@0 global format code using prettier (js, css, md)
 	@${NODE_MODULES_BIN}/prettier --color --write \
 		"packages/**/*.js" \
 		"packages/*/README.md" \
-		"examples/**/*.js" \
+		"demo/**/*.js" \
 		"README.md"
 
 fmt-check: ##@0 global check if files were all formatted using prettier
@@ -72,7 +72,7 @@ fmt-check: ##@0 global check if files were all formatted using prettier
 	@${NODE_MODULES_BIN}/prettier --color --list-different \
         "packages/**/*.js" \
         "packages/*/README.md" \
-        "examples/**/*.js" \
+        "demo/**/*.js" \
         "README.md"
 
 ls: ##@0 global list packages & extensions
@@ -105,6 +105,14 @@ test-all: ##@0 run all checks/tests
 ########################################################################################################################
 
 pkg-watch-%: ##@1 packages enable watch mode for a specific package
+	@${MAKE} MAKEFLAGS="-j 2" ext-commonjs-watch-${*} ext-es-watch-${*}
+
+pkg-commonjs-watch-%: ##@1 packages enable watch mode for a specific package (commonjs)
+	@echo "${YELLOW}enabling watch mode (commonjs) for ${WHITE}@mozaik/${*}${RESET}"
+	@cd "packages/${*}" && yarn run build:commonjs:watch
+
+pkg-es-watch-%: ##@1 packages enable watch mode for a specific package (es)
+	@echo "${YELLOW}enabling watch mode (es) for ${WHITE}@mozaik/${*}${RESET}"
 	@cd "packages/${*}" && yarn run build:es:watch
 
 pkg-test-%: ##@1 packages run tests for a specific package
@@ -165,7 +173,23 @@ ext-build-%: ##@2 extensions build a specific extension
 	@cd "extensions/${*}" && yarn run build
 
 ext-watch-%: ##@2 extensions enable watch mode for a specific extension
-	@echo "extensions/${*}"
+	@${MAKE} MAKEFLAGS="-j 2" ext-commonjs-watch-${*} ext-es-watch-${*}
+
+ext-dev-%: ##@2 extensions start dev mode for a specific extension
+	@${MAKE} MAKEFLAGS="-j 6" \
+		ext-commonjs-watch-${*} \
+		ext-es-watch-${*} \
+		pkg-commonjs-watch-ui \
+		pkg-es-watch-ui \
+		demo-start-ui \
+		demo-start-server CONF="conf/config-${*}.yml"
+
+ext-commonjs-watch-%: ##@2 extensions enable watch mode for a specific extension (commonjs)
+	@echo "${YELLOW}enabling watch mode (commonjs) for ${WHITE}@mozaik/ext-${*}${RESET}"
+	@cd "extensions/${*}" && yarn run build:commonjs:watch
+
+ext-es-watch-%: ##@2 extensions enable watch mode for a specific extension (es)
+	@echo "${YELLOW}enabling watch mode (es) for ${WHITE}@mozaik/ext-${*}${RESET}"
 	@cd "extensions/${*}" && yarn run build:es:watch
 
 ext-pub-%: ##@2 extensions publish an extension (eg. ext-pub-gitlab)
@@ -181,17 +205,24 @@ ext-pub-%: ##@2 extensions publish an extension (eg. ext-pub-gitlab)
 
 ########################################################################################################################
 #
-# EXAMPLES
+# DEMO
 #
 ########################################################################################################################
 
-example-install-%: ##@3 examples install dependencies for a specific example
-	@echo "${YELLOW}Installing ${*} example dependencies${RESET}"
-	@cd "examples/${*}" && yarn install
+demo-install: ##@3 demo install demo dependencies
+	@echo "${YELLOW}Installing demo dependencies${RESET}"
+	@cd demo && yarn install
 
-example-start-%: ##@3 examples start a specific example
-	@echo "${YELLOW}Starting ${*} example${RESET}"
-	@cd "examples/${*}" && yarn start
+demo-start-ui: ##@3 demo start demo react app
+	@echo "${YELLOW}Starting demo react app${RESET}"
+	@cd demo && yarn start
+
+demo-start-server: ##@3 demo start demo mozaik server
+	@echo "${YELLOW}Starting demo mozaïk server (${CONF})${RESET}"
+	@cd demo && node server.js ${CONF}
+
+demo-start: ##@3 demo start demo
+	@${MAKE} MAKEFLAGS="-j 2" demo-start-ui demo-start-server
 
 ########################################################################################################################
 #

@@ -9,11 +9,11 @@ extension:   &extension travis
 
 # change those values of you want to use another user/repo
 travisOwner: &travisOwner plouc
-travisRepo:  &travisRepo  mozaik-ext-travis
+travisRepo:  &travisRepo  mozaik
 
 dashboards:
-- columns: 2
-  rows:    2
+- columns: 4
+  rows:    3
   title:   travis demo
   widgets:
   -
@@ -31,15 +31,15 @@ dashboards:
     owner:      *travisOwner
     repository: *travisRepo
     columns:    1
-    rows:       1
-    x:          1
+    rows:       3
+    x:          3
     y:          0
-  -
-    extension:  *extension
-    widget:     BuildHistogram
-    owner:      *travisOwner
-    repository: *travisRepo
-    columns:    2
-    rows:       1
-    x:          0
-    y:          1
+#  -
+#    extension:  *extension
+#    widget:     BuildHistogram
+#    owner:      *travisOwner
+#    repository: *travisRepo
+#    columns:    2
+#    rows:       1
+#    x:          0
+#    y:          1
