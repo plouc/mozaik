@@ -11,7 +11,7 @@ github_org:  &github_org  ekino
 github_repo: &github_repo plouc/mozaik
 
 dashboards:
-- title:   GitHub Dashboard Demo 1 (mozaik-ext-github)
+- title:   '@mozaik/ext-github demo 1'
   columns: 3
   rows:    3
   widgets:
@@ -70,7 +70,7 @@ dashboards:
     x:            2
     y:            2
 
-- title:   GitHub Dashboard Demo 2 (mozaik-ext-github)
+- title:   '@mozaik/ext-github demo 2'
   columns: 3
   rows:    3
   widgets:
