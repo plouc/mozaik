@@ -198,10 +198,13 @@ ext-pub-%: ##@2 extensions publish an extension (eg. ext-pub-gitlab)
 		exit 1; \
 	fi;
 	@echo "${YELLOW}Publishing ${WHITE}@mozaik/ext-${*}@${V}${YELLOW} from ${WHITE}@mozaik/ext-${*}@$$(cd "extensions/${*}" && npm run -s version)${RESET}"
+	@cd extensions/${*} && rm -rf node_modules
+	@cd extensions/${*} && yarn install --pure-lockfile
 	@cd extensions/${*} && npm version -m "feat(release): release v%s" "${V}"
 	@cd extensions/${*} && git add package.json
 	@cd extensions/${*} && npm publish --access public
 	@echo "${GREEN}✔ successfully published @mozaik/ext-${*}@${V}${RESET}"
+	@${MAKE} link
 
 ########################################################################################################################
 #
