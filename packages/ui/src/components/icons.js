@@ -24,3 +24,4 @@ export { default as PauseCircleIcon } from 'react-feather/dist/icons/pause-circl
 export { default as FastForwardIcon } from 'react-feather/dist/icons/fast-forward'
 export { default as GithubIcon } from 'react-feather/dist/icons/github'
 export { default as SlashIcon } from 'react-feather/dist/icons/slash'
+export { default as PlayCircleIcon } from 'react-feather/dist/icons/play-circle'
