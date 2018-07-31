@@ -28,4 +28,3 @@ export { default as PlayCircleIcon } from 'react-feather/dist/icons/play-circle'
 export { default as CodeIcon } from 'react-feather/dist/icons/code'
 export { default as HashIcon } from 'react-feather/dist/icons/hash'
 export { default as PieChartIcon } from 'react-feather/dist/icons/pie-chart'
-

@@ -96,7 +96,7 @@ class WidgetHeader extends Component {
                 <span>
                     {subjectPlacement === 'prepend' && subjectNode}
                     {title}
-                    {subjectPlacement === 'append' && <Fragment>{' '}{subjectNode}</Fragment>}
+                    {subjectPlacement === 'append' && <Fragment> {subjectNode}</Fragment>}
                     {countNode}
                 </span>
                 {icon}
