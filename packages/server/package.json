@@ -1,6 +1,6 @@
 {
   "name": "@mozaik/server",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "Mozaïk server",
   "main": "src/index.js",
   "license": "MIT",
