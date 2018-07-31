@@ -1,9 +1,8 @@
-'use strict'
+declare var jest, it, expect, beforeAll
 
-const chalk = require('chalk')
-
-const Bus = require('../bus')
-const loggerMock = require('./logger')
+import chalk from 'chalk'
+import Bus from '../src/bus'
+import loggerMock from './logger'
 
 beforeAll(() => {
     chalk.enabled = false

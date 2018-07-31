@@ -3,7 +3,7 @@
 [![License][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 
-# Mozaïk server
+# @mozaik/server
 
 [logo]: https://raw.githubusercontent.com/wiki/plouc/mozaik/assets/mozaik-logo-v2.png
 [license-image]: https://img.shields.io/github/license/plouc/mozaik.svg?style=flat-square

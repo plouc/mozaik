@@ -1,7 +1,7 @@
-'use strict'
+declare var jest, it, expect
 
-const path = require('path')
-const loadYaml = require('../load_yaml')
+import * as path from 'path'
+import loadYaml from '../src/load_yaml'
 
 it('should reject when file does not exist', () => {
     expect.assertions(1)

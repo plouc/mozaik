@@ -1,9 +1,8 @@
-'use strict'
+declare var jest, beforeEach, it, expect
 
-const chalk = require('chalk')
-
-const Bus = require('../bus')
-const loggerMock = require('./logger')
+import chalk from 'chalk'
+import Bus from '../src/bus'
+import loggerMock from './logger'
 
 jest.useFakeTimers()
 
@@ -142,8 +141,8 @@ it(`should create a timer if there's no matching subscription`, () => {
     expect(logger.info).toHaveBeenCalledWith(`Creating scheduler for subscription 'test_api.fetch'`)
 
     expect(apiMock.fetch).toHaveBeenCalledTimes(2)
-    //expect(clientMock.emit).toHaveBeenCalled()
-    //expect(clientMock.emit).toHaveBeenCalledWith('api.data', undefined)
+    // expect(clientMock.emit).toHaveBeenCalled()
+    // expect(clientMock.emit).toHaveBeenCalledWith('api.data', undefined)
 })
 
 it(`should create a producer if there's no matching subscription and API mode is 'push'`, () => {

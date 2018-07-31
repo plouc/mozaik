@@ -1,9 +1,9 @@
-'use strict'
+declare var jest, it, expect, beforeAll
 
-const chalk = require('chalk')
-
-const Bus = require('../bus')
-const loggerMock = require('./logger')
+import chalk from 'chalk'
+import { Socket } from 'socket.io'
+import Bus, { Subscription } from '../src/bus'
+import loggerMock from './logger'
 
 beforeAll(() => {
     chalk.enabled = false
@@ -13,7 +13,7 @@ it('should remove a registered client from the current list', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.addClient({ id: 'test_client' })
+    bus.addClient({ id: 'test_client' } as Socket)
     expect(bus.listClients()).toHaveProperty('test_client')
 
     bus.removeClient('test_client')
@@ -30,8 +30,8 @@ it('should cleanup subscription and remove timer if no clients left', () => {
 
     bus.addClient({
         id: 'test_client',
-        emit() {},
-    })
+        emit: jest.fn(),
+    } as Socket)
     expect(bus.listClients()).toHaveProperty('test_client')
 
     bus.registerApi('test_api', () => ({
@@ -39,7 +39,7 @@ it('should cleanup subscription and remove timer if no clients left', () => {
     }))
     expect(bus.listApis()).toEqual(['test_api'])
 
-    bus.subscribe('test_client', { id: 'test_api.test' })
+    bus.subscribe('test_client', { id: 'test_api.test' } as Subscription)
 
     const subscriptions = bus.listSubscriptions()
     expect(subscriptions['test_api.test'].timer).not.toBeUndefined()
