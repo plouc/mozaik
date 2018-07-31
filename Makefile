@@ -176,6 +176,7 @@ ext-watch-%: ##@2 extensions enable watch mode for a specific extension
 	@${MAKE} MAKEFLAGS="-j 2" ext-commonjs-watch-${*} ext-es-watch-${*}
 
 ext-dev-%: ##@2 extensions start dev mode for a specific extension
+	@${MAKE} ext-build-${*}
 	@${MAKE} MAKEFLAGS="-j 6" \
 		ext-commonjs-watch-${*} \
 		ext-es-watch-${*} \
