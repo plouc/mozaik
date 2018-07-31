@@ -1,15 +1,10 @@
-'use strict'
-
-const fs = require('fs')
-const yaml = require('js-yaml')
+import * as fs from 'fs'
+import * as yaml from 'js-yaml'
 
 /**
  * Loads and parse a yaml file.
- *
- * @param {string} path - Path to yaml file
- * @return {Object|string} Parsed yaml data
  */
-module.exports = path =>
+export default (path: string): any =>
     new Promise((resolve, reject) => {
         fs.readFile(path, 'utf8', (err, data) => {
             if (err) return reject(err)

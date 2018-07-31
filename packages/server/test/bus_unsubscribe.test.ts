@@ -1,9 +1,9 @@
-'use strict'
+declare var beforeAll, it, expect
 
-const chalk = require('chalk')
-
-const Bus = require('../bus')
-const loggerMock = require('./logger')
+import chalk from 'chalk'
+import { Socket } from 'socket.io'
+import Bus, { Subscription } from '../src/bus'
+import loggerMock from './logger'
 
 beforeAll(() => {
     chalk.enabled = false
@@ -25,7 +25,7 @@ it('should warn if the subscription does not exist', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.clients = { test_client: {} }
+    bus.clients = { test_client: {} as Socket }
     bus.unsubscribe('test_client', 'invalid')
 
     expect(logger.warn).toHaveBeenCalled()
@@ -38,11 +38,11 @@ it('should remove client from subscription', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.clients = { test_client: {} }
+    bus.clients = { test_client: {} as Socket }
     bus.subscriptions = {
         test_subscription: {
             clients: ['test_client', 'other_client'],
-        },
+        } as Subscription,
     }
     bus.unsubscribe('test_client', 'test_subscription')
 
@@ -57,12 +57,12 @@ it('should remove subscription if no more client left', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.clients = { test_client: {} }
+    bus.clients = { test_client: {} as Socket }
     bus.subscriptions = {
         test_subscription: {
             clients: ['test_client'],
-            timer: true,
-        },
+            timer: {} as NodeJS.Timer,
+        } as Subscription,
     }
 
     bus.unsubscribe('test_client', 'test_subscription')

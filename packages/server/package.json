@@ -2,7 +2,7 @@
   "name": "@mozaik/server",
   "version": "2.0.0-alpha.6",
   "description": "Mozaïk server",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,25 +13,53 @@
     "url": "https://github.com/plouc"
   },
   "devDependencies": {
-    "jest": "^23.4.2"
+    "@types/chokidar": "^1.7.5",
+    "@types/cors": "^2.8.4",
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.1",
+    "@types/js-yaml": "^3.11.2",
+    "@types/lodash": "^4.14.115",
+    "@types/request-promise-native": "^1.0.15",
+    "@types/socket.io": "^1.4.36",
+    "@types/winston": "^2.3.9",
+    "jest": "^23.4.2",
+    "prettier": "^1.14.0",
+    "ts-jest": "^23.0.1",
+    "tslint-config-prettier": "^1.14.0",
+    "typescript": "^3.0.1"
   },
   "scripts": {
     "test": "jest --verbose",
-    "version": "echo ${npm_package_version}"
+    "build": "tsc",
+    "version": "echo ${npm_package_version}",
+    "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
+    "fmt": "prettier --color --write \"{src,test}/**/*.{js,ts}\"",
+    "fmt:check": "prettier --list-different \"{src,test}/**/*.{js,ts}\""
   },
   "dependencies": {
-    "chalk": "^2.0.1",
+    "chalk": "^2.4.1",
     "chokidar": "^1.7.0",
     "cors": "^2.8.4",
     "express": "^4.15.3",
     "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",
-    "socket.io": "^2.0.3",
-    "winston": "^2.3.1",
     "request": "^2.87.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "socket.io": "^2.1.1",
+    "tslint": "^5.11.0",
+    "winston": "^2.3.1"
   },
   "jest": {
-    "testURL": "http://localhost/"
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   }
 }

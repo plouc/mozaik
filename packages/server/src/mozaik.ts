@@ -1,41 +1,46 @@
-'use strict'
+import * as http from 'http'
+import * as path from 'path'
+import { omit } from 'lodash'
+import * as express from 'express'
+import { Express, Request, Response } from 'express'
+import * as chokidar from 'chokidar'
+import chalk from 'chalk'
+import * as cors from 'cors'
+import * as SocketIO from 'socket.io'
+import { Server as SocketIOServer, Socket } from 'socket.io'
+import Bus, { APIRegistration, PollMode, Subscription } from './bus'
+import logger, { Logger } from './logger'
+import loadYaml from './load_yaml'
+import CoreApi from './core_api'
 
-const http = require('http')
-const path = require('path')
-const { omit } = require('lodash')
-const express = require('express')
-const chokidar = require('chokidar')
-const chalk = require('chalk')
-const cors = require('cors')
-const SocketIO = require('socket.io')
-const Bus = require('./bus')
-const logger = require('./logger')
-const loadYaml = require('./load_yaml')
-const CoreApi = require('./core_api')
+export default class Mozaik {
+    private logger: Logger
+    private bus: Bus
+    private configuration: any
+    private socket: SocketIOServer
 
-class Mozaik {
     constructor() {
         this.logger = logger
         this.bus = new Bus({ logger: this.logger })
     }
 
-    registerApi(...params) {
-        this.bus.registerApi(...params)
+    public registerApi(id: string, api: APIRegistration, mode: PollMode) {
+        this.bus.registerApi(id, api, mode)
     }
 
-    configure(configuration) {
+    public configure(configuration: any) {
         this.configuration = configuration
     }
 
-    loadYamlConfig(configurationPath) {
-        return loadYaml(configurationPath).then(configuration => {
+    public loadYamlConfig(configurationPath: string) {
+        return loadYaml(configurationPath).then((configuration: any) => {
             this.configuration = configuration
 
             return configuration
         })
     }
 
-    configureFromFile(configurationPath, watch = true) {
+    public configureFromFile(configurationPath: string, watch = true) {
         if (watch === true) {
             const watcher = chokidar.watch(configurationPath)
             watcher.on('change', () => {
@@ -53,7 +58,7 @@ class Mozaik {
         return this.loadYamlConfig(configurationPath)
     }
 
-    start(_app) {
+    public start(existingApp?: Express) {
         if (!this.configuration) {
             this.logger.error(
                 chalk.red(
@@ -73,7 +78,7 @@ class Mozaik {
 
         this.bus.registerApi('mozaik', CoreApi(this.bus))
 
-        const app = _app || express()
+        const app = existingApp || express()
 
         app.use(cors())
 
@@ -81,30 +86,29 @@ class Mozaik {
         logger.info(chalk.yellow(`serving static contents from ${baseDir}build`))
         app.use(express.static(`${baseDir}/build`))
 
-        app.get('/config', (req, res) => {
+        app.get('/config', (req: Request, res: Response) => {
             // apis might contain sensible info
             res.send(omit(this.configuration, 'apis'))
         })
 
         const server = http.createServer(app)
 
-        this.socket = SocketIO(server, {
+        this.socket = SocketIO(server as any, {
             // client is installed as an autonomous package on the UI
-            serviceClient: false,
+            serveClient: false,
         })
 
-        this.socket.on('error', error => {
-            // eslint-disable-next-line no-console
-            console.error(chalk.red(error.message), error)
+        this.socket.on('error', (error: Error) => {
+            this.logger.error(chalk.red(error.message), error)
         })
 
-        this.socket.on('connection', client => {
+        this.socket.on('connection', (client: Socket) => {
             this.bus.addClient(client)
 
-            client.on('api.subscription', subscription => {
+            client.on('api.subscription', (subscription: Subscription) => {
                 this.bus.subscribe(client.id, subscription)
             })
-            client.on('api.unsubscription', subscription => {
+            client.on('api.unsubscription', (subscription: Subscription) => {
                 this.bus.unsubscribe(client.id, subscription.id)
             })
             client.on('disconnect', () => {
@@ -119,5 +123,3 @@ class Mozaik {
         })
     }
 }
-
-module.exports = Mozaik
