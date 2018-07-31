@@ -34,7 +34,8 @@
     "version": "echo ${npm_package_version}",
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
     "fmt": "prettier --color --write \"{src,test}/**/*.{js,ts}\"",
-    "fmt:check": "prettier --list-different \"{src,test}/**/*.{js,ts}\""
+    "fmt:check": "prettier --list-different \"{src,test}/**/*.{js,ts}\"",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "chalk": "^2.4.1",
