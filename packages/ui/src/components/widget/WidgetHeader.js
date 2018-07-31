@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
@@ -96,7 +96,7 @@ class WidgetHeader extends Component {
                 <span>
                     {subjectPlacement === 'prepend' && subjectNode}
                     {title}
-                    {subjectPlacement === 'append' && subjectNode}
+                    {subjectPlacement === 'append' && <Fragment>{' '}{subjectNode}</Fragment>}
                     {countNode}
                 </span>
                 {icon}
