@@ -9,9 +9,9 @@
     "@mozaik/ext-json": "^0.4.0",
     "@mozaik/ext-time": "^2.0.0-alpha.11",
     "@mozaik/ext-travis": "^2.0.0-rc.0",
-    "@mozaik/server": "^2.0.0-alpha.6",
+    "@mozaik/server": "^2.0.0-alpha.7",
     "@mozaik/themes": "^1.0.0-alpha.17",
-    "@mozaik/ui": "^2.0.0-rc.1",
+    "@mozaik/ui": "^2.0.0-rc.2",
     "nivo": "^0.15.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"

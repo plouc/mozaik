@@ -1,5 +1,8 @@
 .gitignore
+.prettierrc
+tsconfig.json
+tslint.json
 .DS_Store
 /coverage
-/src/test
+/src
 *.log*
