@@ -67,14 +67,14 @@ export default class WidgetCounter extends Component {
 
         return (
             <Container>
-                {preLabel && <PreLabel align={align}>preLabel</PreLabel>}
+                {preLabel && <PreLabel align={align}>{preLabel}</PreLabel>}
                 <Count align={align}>
                     <CountInner>
                         <CountText>{count}</CountText>
                         {unit && <Unit>{unit}</Unit>}
                     </CountInner>
                 </Count>
-                {postLabel && <PostLabel align={align}>postLabel</PostLabel>}
+                {postLabel && <PostLabel align={align}>{postLabel}</PostLabel>}
             </Container>
         )
     }
