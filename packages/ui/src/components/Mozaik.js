@@ -76,8 +76,26 @@ export default class Mozaik extends Component {
         super(props)
 
         this.toggleSettings = this.toggleSettings.bind(this)
+        this.onKeyDown = this.onKeyDown.bind(this)
 
         this.state = { settingsOpened: false }
+    }
+
+    onKeyDown({ code }) {
+        switch (code) {
+            case "ArrowRight": {
+                this.props.next()
+                this.props.play()
+                break
+            }
+            case "ArrowLeft": {
+                this.props.previous()
+                this.props.play()
+                break
+            }
+            case "Space":
+                return this.props.isPlaying ? this.props.pause() : this.props.play()
+        }
     }
 
     toggleSettings() {
@@ -88,6 +106,12 @@ export default class Mozaik extends Component {
     componentDidMount() {
         const { fetchConfiguration } = this.props
         fetchConfiguration()
+
+        document.addEventListener("keydown", this.onKeyDown)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.onKeyDown)
     }
 
     render() {
