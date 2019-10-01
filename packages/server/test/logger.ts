@@ -1,4 +1,4 @@
-declare var jest
+import 'jest'
 
 import { LeveledLogMethod } from 'winston'
 
