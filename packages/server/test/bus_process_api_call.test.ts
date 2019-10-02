@@ -14,10 +14,12 @@ it('should log api call', () => {
 
     expect.assertions(2)
 
-    return bus.processApiCall('test_api.test_method', () => {}).then(() => {
-        expect(logger.info).toHaveBeenCalled()
-        expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.test_method'`)
-    })
+    return bus
+        .processApiCall('test_api.test_method', () => {})
+        .then(() => {
+            expect(logger.info).toHaveBeenCalled()
+            expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.test_method'`)
+        })
 })
 
 it('should support calling apis which return promises', () => {
@@ -66,15 +68,17 @@ it('should cache result', () => {
 
     expect.assertions(3)
 
-    return bus.processApiCall('test_api.test_method', () => 'test').then(() => {
-        const subscriptions = bus.listSubscriptions()
-        expect(subscriptions['test_api.test_method']).not.toBeUndefined()
-        expect(subscriptions['test_api.test_method']).toHaveProperty('cached')
-        expect(subscriptions['test_api.test_method'].cached).toEqual({
-            id: 'test_api.test_method',
-            data: 'test',
+    return bus
+        .processApiCall('test_api.test_method', () => 'test')
+        .then(() => {
+            const subscriptions = bus.listSubscriptions()
+            expect(subscriptions['test_api.test_method']).not.toBeUndefined()
+            expect(subscriptions['test_api.test_method']).toHaveProperty('cached')
+            expect(subscriptions['test_api.test_method'].cached).toEqual({
+                id: 'test_api.test_method',
+                data: 'test',
+            })
         })
-    })
 })
 
 it('should notify clients on success', () => {
@@ -93,13 +97,15 @@ it('should notify clients on success', () => {
 
     expect.assertions(2)
 
-    return bus.processApiCall('test_api.test_method', () => 'test').then(() => {
-        expect(emitMock).toHaveBeenCalled()
-        expect(emitMock).toHaveBeenCalledWith('api.data', {
-            id: 'test_api.test_method',
-            data: 'test',
+    return bus
+        .processApiCall('test_api.test_method', () => 'test')
+        .then(() => {
+            expect(emitMock).toHaveBeenCalled()
+            expect(emitMock).toHaveBeenCalledWith('api.data', {
+                id: 'test_api.test_method',
+                data: 'test',
+            })
         })
-    })
 })
 
 it('should not notify clients on error and log error', () => {

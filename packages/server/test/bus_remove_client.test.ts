@@ -28,10 +28,10 @@ it('should cleanup subscription and remove timer if no clients left', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.addClient({
+    bus.addClient(({
         id: 'test_client',
         emit: jest.fn(),
-    } as unknown as Socket)
+    } as unknown) as Socket)
     expect(bus.listClients()).toHaveProperty('test_client')
 
     bus.registerApi('test_api', () => ({

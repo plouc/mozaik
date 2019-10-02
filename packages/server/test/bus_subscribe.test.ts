@@ -8,8 +8,8 @@ import { Socket } from 'socket.io'
 jest.useFakeTimers()
 
 beforeEach(() => {
-    chalk.enabled = false;
-    (setInterval as any).mockClear()
+    chalk.enabled = false
+    ;(setInterval as any).mockClear()
 })
 
 it('should log an error if there is no existing client having given id', () => {
@@ -100,7 +100,7 @@ it(`should immediately call the api if there's no matching subscription`, () => 
     const logger = loggerMock()
     const bus = new Bus({ logger })
     const apiMock = { fetch: jest.fn() }
-    const clientMock = { id: 'test_client', emit: jest.fn() } as unknown as Socket
+    const clientMock = ({ id: 'test_client', emit: jest.fn() } as unknown) as Socket
 
     bus.registerApi('test_api', () => apiMock)
     bus.addClient(clientMock)
@@ -119,7 +119,7 @@ it(`should create a timer if there's no matching subscription`, () => {
             }),
         })),
     }
-    const clientMock = { id: 'test_client', emit: jest.fn() } as unknown as Socket
+    const clientMock = ({ id: 'test_client', emit: jest.fn() } as unknown) as Socket
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
@@ -151,7 +151,7 @@ it(`should create a producer if there's no matching subscription and API mode is
     const bus = new Bus({ logger })
 
     const pushMock = jest.fn()
-    const clientMock = { id: 'test_client', emit: jest.fn() } as unknown as Socket
+    const clientMock = ({ id: 'test_client', emit: jest.fn() } as unknown) as Socket
 
     bus.registerApi('test_api', () => ({ push: pushMock }), PollMode.Push)
     bus.addClient(clientMock)
@@ -171,8 +171,8 @@ it('should not add the same client id twice to the subscription client list', ()
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.registerApi('test_api', () => ({ push: () => { } }), PollMode.Push)
-    bus.addClient({ id: 'test_client', emit() {} } as unknown as Socket)
+    bus.registerApi('test_api', () => ({ push: () => {} }), PollMode.Push)
+    bus.addClient(({ id: 'test_client', emit() {} } as unknown) as Socket)
     bus.subscribe('test_client', { id: 'test_api.push', clients: [] })
 
     let subscriptions = bus.listSubscriptions()

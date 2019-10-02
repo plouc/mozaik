@@ -6,7 +6,9 @@ it('should reject when file does not exist', () => {
     expect.assertions(1)
 
     return loadYaml('noent.yml').catch((err: any) =>
-        expect(err.message).toEqual(`ENOENT: no such file or directory, open '${path.resolve("noent.yml")}'`)
+        expect(err.message).toEqual(
+            `ENOENT: no such file or directory, open '${path.resolve('noent.yml')}'`
+        )
     )
 })
 

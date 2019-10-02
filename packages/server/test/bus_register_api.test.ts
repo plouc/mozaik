@@ -42,7 +42,7 @@ it(`should allow to set API mode to 'push'`, () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.registerApi('test_api', () => { }, PollMode.Push)
+    bus.registerApi('test_api', () => {}, PollMode.Push)
 
     expect(bus.listApis()).toEqual(['test_api'])
     expect(logger.info).toHaveBeenCalled()
@@ -56,7 +56,7 @@ it('should throw if we pass an invalid API mode', () => {
     const expectedError = `API mode 'invalid' is not a valid mode, must be one of 'poll' or 'push'`
 
     expect(() => {
-        bus.registerApi('test_api', () => { }, 'invalid' as PollMode)
+        bus.registerApi('test_api', () => {}, 'invalid' as PollMode)
     }).toThrow(expectedError)
 
     expect(logger.error).toHaveBeenCalled()
