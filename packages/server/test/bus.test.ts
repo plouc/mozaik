@@ -1,4 +1,4 @@
-declare var jest, beforeAll, it, expect
+import 'jest'
 
 import chalk from 'chalk'
 import { Socket } from 'socket.io'

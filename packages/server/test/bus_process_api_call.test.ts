@@ -1,4 +1,4 @@
-declare var jest, it, expect, beforeAll
+import 'jest'
 
 import chalk from 'chalk'
 import Bus from '../src/bus'
@@ -10,26 +10,28 @@ beforeAll(() => {
 
 it('should log api call', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     expect.assertions(2)
 
-    return bus.processApiCall('test_api.test_method', () => {}).then(() => {
-        expect(logger.info).toHaveBeenCalled()
-        expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.test_method'`)
-    })
+    return bus
+        .processApiCall('test_api.test_method', () => {})
+        .then(() => {
+            expect(logger.info).toHaveBeenCalled()
+            expect(logger.info).toHaveBeenCalledWith(`Calling 'test_api.test_method'`)
+        })
 })
 
 it('should support calling apis which return promises', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     const apiMock = jest.fn(() => Promise.resolve('test'))
     const apiParams = { param: 'param' }
 
     expect.assertions(3)
 
-    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then(message => {
+    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then((message: any) => {
         expect(apiMock).toHaveBeenCalled()
         expect(apiMock).toHaveBeenCalledWith(apiParams)
         expect(message).toEqual({
@@ -41,14 +43,14 @@ it('should support calling apis which return promises', () => {
 
 it('should support calling apis which does not return promises', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     const apiMock = jest.fn(() => 'test')
     const apiParams = { param: 'param' }
 
     expect.assertions(3)
 
-    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then(message => {
+    return bus.processApiCall('test_api.test_method', apiMock, apiParams).then((message: any) => {
         expect(apiMock).toHaveBeenCalled()
         expect(apiMock).toHaveBeenCalledWith(apiParams)
         expect(message).toEqual({
@@ -60,26 +62,28 @@ it('should support calling apis which does not return promises', () => {
 
 it('should cache result', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     bus.subscriptions['test_api.test_method'] = { clients: [] }
 
     expect.assertions(3)
 
-    return bus.processApiCall('test_api.test_method', () => 'test').then(() => {
-        const subscriptions = bus.listSubscriptions()
-        expect(subscriptions['test_api.test_method']).not.toBeUndefined()
-        expect(subscriptions['test_api.test_method']).toHaveProperty('cached')
-        expect(subscriptions['test_api.test_method'].cached).toEqual({
-            id: 'test_api.test_method',
-            data: 'test',
+    return bus
+        .processApiCall('test_api.test_method', () => 'test')
+        .then(() => {
+            const subscriptions = bus.listSubscriptions()
+            expect(subscriptions['test_api.test_method']).not.toBeUndefined()
+            expect(subscriptions['test_api.test_method']).toHaveProperty('cached')
+            expect(subscriptions['test_api.test_method'].cached).toEqual({
+                id: 'test_api.test_method',
+                data: 'test',
+            })
         })
-    })
 })
 
 it('should notify clients on success', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     const emitMock = jest.fn()
     bus.clients = {
@@ -93,18 +97,20 @@ it('should notify clients on success', () => {
 
     expect.assertions(2)
 
-    return bus.processApiCall('test_api.test_method', () => 'test').then(() => {
-        expect(emitMock).toHaveBeenCalled()
-        expect(emitMock).toHaveBeenCalledWith('api.data', {
-            id: 'test_api.test_method',
-            data: 'test',
+    return bus
+        .processApiCall('test_api.test_method', () => 'test')
+        .then(() => {
+            expect(emitMock).toHaveBeenCalled()
+            expect(emitMock).toHaveBeenCalledWith('api.data', {
+                id: 'test_api.test_method',
+                data: 'test',
+            })
         })
-    })
 })
 
 it('should not notify clients on error and log error', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     const emitMock = jest.fn()
     bus.clients = {

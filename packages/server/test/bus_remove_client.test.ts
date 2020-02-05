@@ -1,4 +1,4 @@
-declare var jest, it, expect, beforeAll
+import 'jest'
 
 import chalk from 'chalk'
 import { Socket } from 'socket.io'
@@ -28,10 +28,10 @@ it('should cleanup subscription and remove timer if no clients left', () => {
     const logger = loggerMock()
     const bus = new Bus({ logger })
 
-    bus.addClient({
+    bus.addClient(({
         id: 'test_client',
         emit: jest.fn(),
-    } as Socket)
+    } as unknown) as Socket)
     expect(bus.listClients()).toHaveProperty('test_client')
 
     bus.registerApi('test_api', () => ({
@@ -39,7 +39,7 @@ it('should cleanup subscription and remove timer if no clients left', () => {
     }))
     expect(bus.listApis()).toEqual(['test_api'])
 
-    bus.subscribe('test_client', { id: 'test_api.test' } as Subscription)
+    bus.subscribe('test_client', { id: 'test_api.test', clients: [] })
 
     const subscriptions = bus.listSubscriptions()
     expect(subscriptions['test_api.test'].timer).not.toBeUndefined()

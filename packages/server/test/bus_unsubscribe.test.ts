@@ -1,4 +1,4 @@
-declare var beforeAll, it, expect
+import 'jest'
 
 import chalk from 'chalk'
 import { Socket } from 'socket.io'
@@ -23,7 +23,7 @@ it('should warn if the client does not exist', () => {
 
 it('should warn if the subscription does not exist', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     bus.clients = { test_client: {} as Socket }
     bus.unsubscribe('test_client', 'invalid')
@@ -36,7 +36,7 @@ it('should warn if the subscription does not exist', () => {
 
 it('should remove client from subscription', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     bus.clients = { test_client: {} as Socket }
     bus.subscriptions = {
@@ -55,7 +55,7 @@ it('should remove client from subscription', () => {
 
 it('should remove subscription if no more client left', () => {
     const logger = loggerMock()
-    const bus = new Bus({ logger })
+    const bus: any = new Bus({ logger })
 
     bus.clients = { test_client: {} as Socket }
     bus.subscriptions = {
