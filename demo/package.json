@@ -12,24 +12,29 @@
     "@mozaik/server": "^2.0.0-alpha.7",
     "@mozaik/themes": "^1.0.0-alpha.17",
     "@mozaik/ui": "^2.0.0-rc.2",
+    "http-proxy-middleware": "^0.20.0",
     "nivo": "^0.15.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "react-scripts": "1.1.4"
-  },
-  "proxy": {
-    "/socket": {
-      "target": "ws://localhost:5000",
-      "ws": true
-    },
-    "/config": {
-      "target": "http://localhost:5000"
-    }
+    "cross-env": "^7.0.0",
+    "react-scripts": "^3.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-require('dotenv').load({ silent: true })
+require('dotenv').config()
 
 const path = require('path')
 const server = require('@mozaik/server').default
